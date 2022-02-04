@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo博客搭建与部署 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态文件。 一、环境搭建1、Node.jsNode.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击这里，一路next。安">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客搭建与部署">
+<meta property="og:url" content="http://example.com/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态文件。 一、环境搭建1、Node.jsNode.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击这里，一路next。安">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-04T12:06:58.000Z">
+<meta property="article:modified_time" content="2022-02-04T13:23:47.469Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Hexo博客搭建与部署" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="article-date">
+  <time class="dt-published" datetime="2022-02-04T12:06:58.000Z" itemprop="datePublished">2022-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Hexo博客搭建与部署
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态文件。</p>
+<h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h2 id="1、Node-js"><a href="#1、Node-js" class="headerlink" title="1、Node.js"></a>1、Node.js</h2><p>Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">这里</a>，一路next。安装完成后可以用命令行查看版本号。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v <span class="comment">//查看node.js的版本</span></span><br><span class="line"></span><br><span class="line">npm -v  <span class="comment">//查看包管理器的版本</span></span><br></pre></td></tr></table></figure>
+
+<p>由于国内环境使用npm速度感人，可以安装cnpm，把镜像源换成淘宝的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
+
+<p>之后可以命令行输入cnpm，如果能打出帮助界面表示安装成功。</p>
+<h2 id="2、Git"><a href="#2、Git" class="headerlink" title="2、Git"></a>2、Git</h2><p>git的相关配置不在此赘述。hexo的很多操作都要依赖于git</p>
+<h2 id="3、Hexo"><a href="#3、Hexo" class="headerlink" title="3、Hexo"></a>3、Hexo</h2><p>Hexo依托于npm包管理器，我们可以直接下载</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnmp install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>-g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v    <span class="comment">//查看Hexo版本</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>首先我们新建一个存放博客的文件目录。之后我们的操作全部在此目录下。如果之后我们搭建错误想要从头再来，直接删掉这个目录新建一个即可。</p>
+<p>然后我们初始化hexo</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
+<p>之后安装hexo的依赖组件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p>目前目录下面有如下几个部分：</p>
+<ul>
+<li>node_modules：存的是利用【npm install –save】下载安装的组件</li>
+<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
+<li>source：存放用户资源，即我们的待发布文档</li>
+<li>themes：存放主题文件夹，默认landspace</li>
+<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
+<li>package.json：应用程序的信息</li>
+</ul>
+<p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure>
+<p>本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
+<h1 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇文章&quot;</span></span><br><span class="line"><span class="comment">//hexo new命令，会在source\\_posts目录下生成一篇博客文章</span></span><br></pre></td></tr></table></figure>
+
+<p>生成博客还是老三样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="四、部署到github"><a href="#四、部署到github" class="headerlink" title="四、部署到github"></a>四、部署到github</h1><p>执行完上述步骤，我们的博客只能在本地看，我们必须部署到网上才能通过网络来看，Github提供GitPages免费站点服务，自带域名和1G免费空间，存放博客资源和网页信息足够。</p>
+<p>git本地配置和ssh公钥配不再赘述</p>
+<h2 id="1、新建git仓库"><a href="#1、新建git仓库" class="headerlink" title="1、新建git仓库"></a>1、新建git仓库</h2><p>要注意仓库名必须要符合规则，即【用户名.github.io】格式。git会跟进这个仓库来创建域名。</p>
+<h2 id="2、hexo配置git插件"><a href="#2、hexo配置git插件" class="headerlink" title="2、hexo配置git插件"></a>2、hexo配置git插件</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后我们需要修改_config.yml文件中的Deployment信息（最下面）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: git@github.com:Liuqianci/Liuqianci.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、部署远端"><a href="#3、部署远端" class="headerlink" title="3、部署远端"></a>3、部署远端</h2><p>在之前的基础上，可以把本地文章部署到远端了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo d   <span class="comment">//hexo deploy命令，部署远端</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/" data-id="ckz8fvu0b0000ekjsbtaca70m" data-title="Hexo博客搭建与部署" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/02/04/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/">Hexo博客搭建与部署</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/04/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
