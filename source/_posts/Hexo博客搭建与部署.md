@@ -2,6 +2,9 @@
 title: Hexo博客搭建与部署
 date: 2022-02-04 20:06:58
 tags:
+    - Hexo
+categories:
+    - Hexo
 ---
 
 Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。
