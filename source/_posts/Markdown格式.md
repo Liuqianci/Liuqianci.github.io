@@ -2,9 +2,9 @@
 title: Markdown格式
 date: 2022-02-06 16:21:09
 tags:
-    - Hexo博客
+    - Hexo
 categories:
-    - Hexo博客
+    - Hexo
 ---
 
 Hexo博客要求必须使用Github风格的Markdown语言编辑。所以需要了解具体的编写格式。
