@@ -104,6 +104,7 @@ npm install hexo-asset-image --save
 Markdown使用&#36;包裹实现行内公式，使用&#36;&#36;包裹实现行间公式。
 Latex语法可以不掌握，借助工具即可：
 [HostMath](http://www.hostmath.com/)
+不过Hexo显示数学公式还需要一些其他设置，Hexo默认使用 hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，导致公式不显示。
 
 # 五、表格
 ```

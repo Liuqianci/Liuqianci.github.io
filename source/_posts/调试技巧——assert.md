@@ -10,12 +10,8 @@ categories:
 &emsp;&emsp;编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。
 
 &emsp;&emsp;举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：
-$$
-\overline{A\cup B} = \overline{A}\cap \overline{B} 
-$$
-$$
-\overline{A\cap B} = \overline{A}\cup\overline{B}
-$$
+
+![](https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png)
 
 ```cpp
 #include<iostream>
