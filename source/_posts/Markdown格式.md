@@ -101,7 +101,7 @@ npm install hexo-asset-image --save
 
 # 四、公式
 公式使用的是Latex语法。但需要注意，Hexo并不支持Laxte语法，所以我们需要开启相关的开关。有些主题就自带这个功能。
-Markdown使用`$`包裹实现行内公式，使用`$$`包裹实现行间公式。
+Markdown使用&#36;包裹实现行内公式，使用&#36;&#36;包裹实现行间公式。
 Latex语法可以不掌握，借助工具即可：
 [HostMath](http://www.hostmath.com/)
 
