@@ -9,7 +9,9 @@ categories:
 # 三种基本结构
 ![](https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.png)
 
-## if分支语句
+## 分支结构
+
+### if分支语句
 + 单一语句：在任何一个表达式后面加上分号；
 + 符合语句：用一对花括号{}括起来的语句块，在语法上等效一个单一的语句；
 + if语句：if语句是最常用的一种分支语句，也称为条件语句。
@@ -71,7 +73,7 @@ int main()
 }
 ```
 
-## switch分支语句
+### switch分支语句
 
 ```cpp
 #include <iostream>
@@ -268,3 +270,201 @@ int main()
 1. 分支少的时候，差别不是很大，分支多时，switch性能较高；
 2. if开始处几个分支效率高，之后效率递减；
 3. switch的所有case速度几乎一样。
+
+
+## 循环结构
+
+C++中一共提供了三种循环语句：while、do while、for
+
+### 三种循环结构
+
+```cpp
+//计算1 + 2 + …… + 99 + 100的和
+
+#include <iostream>
+using namespace std;
+int main()
+{   // TODO: 1+2+3+4...+100
+	// while语句
+	int sum = 0;
+	int index = 1;
+	while (index <= 100)
+	{
+		sum += index;
+		index += 1;
+	}
+	cout << sum << endl;
+
+	// for语句
+	index = 1;
+	sum = 0;
+	for (index = 1; index <= 100; ++index)
+	{
+		sum += index;
+	}
+	cout << sum << endl;
+
+	// do-while语句
+	sum = 0;
+	index = 1;
+	do
+	{
+		sum += index;
+		index += 1;
+	} while (index <= 100);
+	cout << sum << endl;
+
+	return 0;
+}
+
+```
+
+```
+三种汇编代码的底层逻辑：
+	// while语句
+	int sum = 0;
+002A17BE  mov         dword ptr [sum],0  
+	int index = 1;
+002A17C5  mov         dword ptr [index],1  
+	while (index <= 100)
+002A17CC  cmp         dword ptr [index],64h  
+002A17D0  jg          main+46h (02A17E6h)  
+	{
+		sum += index;
+002A17D2  mov         eax,dword ptr [sum]  
+002A17D5  add         eax,dword ptr [index]  
+002A17D8  mov         dword ptr [sum],eax  
+		index += 1;
+002A17DB  mov         eax,dword ptr [index]  
+002A17DE  add         eax,1  
+002A17E1  mov         dword ptr [index],eax  
+	}
+002A17E4  jmp         main+2Ch (02A17CCh)  
+	//cout << sum << endl;
+
+	// for语句
+	//index = 1;
+	sum = 0;
+002A17E6  mov         dword ptr [sum],0  
+	for (index = 1; index <= 100; ++index)
+002A17ED  mov         dword ptr [index],1  
+002A17F4  jmp         main+5Fh (02A17FFh)  
+002A17F6  mov         eax,dword ptr [index]  
+002A17F9  add         eax,1  
+002A17FC  mov         dword ptr [index],eax  
+002A17FF  cmp         dword ptr [index],64h  
+002A1803  jg          main+70h (02A1810h)  
+	{
+		sum += index;
+002A1805  mov         eax,dword ptr [sum]  
+	{
+		sum += index;
+002A1808  add         eax,dword ptr [index]  
+002A180B  mov         dword ptr [sum],eax  
+	}
+002A180E  jmp         main+56h (02A17F6h)  
+	//cout << sum << endl;
+
+	// do-while语句
+	sum = 0;
+002A1810  mov         dword ptr [sum],0  
+	index = 1;
+002A1817  mov         dword ptr [index],1  
+	do 
+	{
+		sum += index;
+002A181E  mov         eax,dword ptr [sum]  
+002A1821  add         eax,dword ptr [index]  
+002A1824  mov         dword ptr [sum],eax  
+		index += 1;
+002A1827  mov         eax,dword ptr [index]  
+002A182A  add         eax,1  
+002A182D  mov         dword ptr [index],eax  
+	} while (index <= 100);
+002A1830  cmp         dword ptr [index],64h  
+002A1834  jle         main+7Eh (02A181Eh)  
+	//cout << sum << endl;
+```
+
+
+从底层逻辑上看，do while循环的效率最高，for循环的效率最低。
+
+
+### 多层循环与循环优化
+
+请输出所有形如aabb的四位完全平方数：
+```cpp
+#include <iostream>
+using namespace std;
+#include <math.h>
+
+int main()
+{
+	// aabb的完全平方数
+
+	//方法一：一个显而易见的方法
+	int n = 0;
+	double m = 0;
+	for (size_t a = 1; a < 10; a++)
+	{// for1
+		for (size_t b = 0; b < 10; b++)
+		{// for 2
+			n = a * 1100 + b * 11; //aabb
+			//求平方根，看是否是整数
+			m = sqrt(n);          
+			if (m - int(m) < 0.00000001)  //当差值小于一个极小值即可，这个值和浮点数的精度有关
+			{
+				cout << n << endl;
+			}
+		}// for 2
+	}// for1
+
+
+	//方法二：逆向思维
+	//先保证是平方根，再看是否是aabb类型
+	//这样做第一不需要双层循环，第二避免了开平方根造成的精度丢失和低速运算
+	int high, low;
+
+	//不需要从1开始，31*31=961，32*32=1024
+	for (size_t index = 31; ; index++)
+	{
+		n = index * index; //n就是我们要构造的完全平方数
+		if (n < 1000)
+			continue;   // 继续下一次循环
+		if (n > 9999)
+			break;        // 退出循环
+		high = n / 100;   // 4567/100 = 45
+		low = n % 100;   // 4567%100 = 67
+		if ((high / 10 == high % 10) && (low / 10 == low % 10))   // 判断aa， bb
+		{
+			cout << n << endl;
+		}
+	}
+
+	return 0;
+}
+```
+
+
+# 函数
+一个C++程序是由若干个源程序文件构成，一个源程序是由若干函数构成，函数将一段逻辑封装起来，便于复用；
+从用户角度看，函数分成：
++ 库函数：标准函数，由C++系统提供；
++ 用户自定义函数：需要用户自定义后使用
+
+
+函数的组成部分：
+1. 返回类型：一个函数可以返回一个值；
+2. 函数名称：函数的实际名称，函数名和参数列表一起构成了函数签名；
+3. 参数：参数列表包括函数参数的类型、顺序、数量。参数是可选的，即函数可以不包含参数；
+
+## 函数重载与Name Mangling
+
+函数重载Overload，函数的名称一样，但参数列表不同：
+```
+int test(int a);
+int test(double a);
+int test(int a,double b);
+```
+
+程序是怎么选择调用哪个函数的呢？这就引入了Name Mangling，给重载的函数不同的签名，以避免调用时的二义性调用。
