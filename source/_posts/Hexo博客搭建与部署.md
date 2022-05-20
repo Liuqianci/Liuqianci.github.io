@@ -34,7 +34,7 @@ git的相关配置不在此赘述。hexo的很多操作都要依赖于git
 ## 3、Hexo
 Hexo依托于npm包管理器，我们可以直接下载
 ```C
-cnmp install -g hexo-cli
+cnpm install -g hexo-cli
 ```
 -g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功
 ```C

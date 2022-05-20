@@ -468,3 +468,45 @@ int test(int a,double b);
 ```
 
 程序是怎么选择调用哪个函数的呢？这就引入了Name Mangling，给重载的函数不同的签名，以避免调用时的二义性调用。
+
+```cpp
+#include <iostream>
+using namespace std;
+#include <math.h>
+
+int test(int a)
+{
+	return a;
+}
+
+int test(double a)
+{
+	return int(a);
+}
+
+int test(int a, double b)
+{
+	return a + b;
+}
+
+int main()
+{
+	int result = test(1);
+	result = test(2.0);
+	result = test(1, 2.0);
+
+	return 0;
+}
+```
+
+观察编译生成的.obj中间代码，可以看到有三个test函数：
+```
+//?test@@YAHH@Z 
+//?test@@YAHN@Z 
+//?test@@YAHHN@Z
+```
+
+我们用VS自带的undname.exe工具，观察其中的一个可以看到：
+1[](https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/undname.jpg)
+
+即在程序中存储的是程序的签名。
