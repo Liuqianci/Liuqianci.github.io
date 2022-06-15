@@ -510,3 +510,82 @@ int main()
 1[](https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/undname.jpg)
 
 即在程序中存储的是程序的签名。
+
+## 函数与指针
+指针的功能很强大，我们可以让指针指向任意的地址空间，所以我们可以让指针指向一个函数。
+```cpp
+#include <iostream>
+
+int test(int a)
+{
+	return a;
+}
+
+int test(double a)
+{
+	return int(a);
+}
+
+int test(int a, double b)
+{
+	return a + b;
+}
+int main()
+{
+	int(*p)(int);  //定义一个指针p，表示参数是int，返回值是int的一个函数
+	p = test;   //指针变量赋值，此时虽然有三个同名函数，但明确指向的是参数为int的函数
+	int result = (*p)(1); //函数指针的使用，此时*p是间接引用
+
+
+	return 0;
+}
+```
+
+要注意区别指向函数的指针和返回指针的函数：
+
++ 每一个函数都占用一段内存单元，我们可以通过内存访问到函数，它们有个起始地址，我们可以用一个指针指向起始地址。指向函数入口地址的指针称为**函数指针**;
+  一般形式：数据类型(*指针变量名)(参数表)
++ 区分与返回指针的函数的区别
+  + int(*p)(int);  //是指针，指向一个函数的入口地址
+  + int* p(int);   //是函数，返回的值是int指针
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int MaxValue(int x, int y)
+{
+	return (x > y) ? x : y;
+}
+
+int MinValue(int x, int y)
+{
+	return (x < y) ? x : y;
+}
+
+int Add(int x, int y)
+{
+	return x + y;
+}
+
+bool ProcessNum(int x, int y, int(*p)(int a, int b)) //参数中有函数指针
+{
+	cout << p(x, y) << endl;
+	return true;
+}
+
+int main()
+{
+	int x = 10, y = 20;
+
+	//直接用函数名做参数，只要保证函数的参数列表是两个int，返回值是int就可以
+	ProcessNum(x, y, MaxValue);
+	ProcessNum(x, y, MinValue);
+	ProcessNum(x, y, Add);
+
+	return 0;
+}
+```
+
+上文的例子中，bool ProcessNum(int x, int y, int(*p)(int a, int b))参数有函数指针，我们把函数名传递进去，真正的调用是在这个函数体内部的。我们把这样的调用方式称为回调函数。
