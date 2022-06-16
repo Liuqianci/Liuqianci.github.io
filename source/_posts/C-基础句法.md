@@ -589,3 +589,37 @@ int main()
 ```
 
 上文的例子中，bool ProcessNum(int x, int y, int(*p)(int a, int b))参数有函数指针，我们把函数名传递进去，真正的调用是在这个函数体内部的。我们把这样的调用方式称为回调函数。
+
+## 命名空间
+开发过程中，可能会出现相同的函数签名，但内部实现不一样的情况。为了解决这个问题，可以使用命名空间。
+命名空间这个概念，可作为附加信息来区分不同库中相同名称的函数、类、变量等，命名空间即定义了上下文。本质上，命名空间就是定义了一个范围。
+关键词：using和namespace的使用。
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int test(int a)
+{
+	return a;
+}
+
+namespace AA
+{
+	int test(int a)
+	{
+		return a + 1;
+	}
+}
+
+int main()
+{
+	cout << test(1) << endl;
+
+	cout << AA::test(1) << endl;
+
+	return 0;
+}
+```
+
+在开发中，命名空间的使用非常广泛，尤其是使用第三方库的时候。程序中常用的cout就属于std命名空间。
