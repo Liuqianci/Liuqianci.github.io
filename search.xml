@@ -649,17 +649,42 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/05/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>Hexo博客搭建与部署</title>
+    <url>/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<p>Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。</p>
+<h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h2 id="1、Node-js"><a href="#1、Node-js" class="headerlink" title="1、Node.js"></a>1、Node.js</h2><p>Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击<a href="https://nodejs.org/zh-cn/">这里</a>，一路next。安装完成后可以用命令行查看版本号。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">node -v <span class="comment">//查看node.js的版本</span></span><br><span class="line"></span><br><span class="line">npm -v  <span class="comment">//查看包管理器的版本</span></span><br></pre></td></tr></table></figure>
+<p>由于国内环境使用npm速度感人，可以安装cnpm，把镜像源换成淘宝的<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
+<p>之后可以命令行输入cnpm，如果能打出帮助界面表示安装成功。</p>
+<h2 id="2、Git"><a href="#2、Git" class="headerlink" title="2、Git"></a>2、Git</h2><p>git的相关配置不在此赘述。hexo的很多操作都要依赖于git</p>
+<h2 id="3、Hexo"><a href="#3、Hexo" class="headerlink" title="3、Hexo"></a>3、Hexo</h2><p>Hexo依托于npm包管理器，我们可以直接下载<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure><br>-g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo -v    <span class="comment">//查看Hexo版本</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>首先我们新建一个存放博客的文件目录。之后我们的操作全部在此目录下。如果之后我们搭建错误想要从头再来，直接删掉这个目录新建一个即可。</p>
+<p>然后我们初始化hexo<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><br>初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
+<p>之后安装hexo的依赖组件<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure></p>
+<p>目前目录下面有如下几个部分：</p>
+<ul>
+<li>node_modules：存的是利用【npm install —save】下载安装的组件</li>
+<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
+<li>source：存放用户资源，即我们的待发布文档</li>
+<li>themes：存放主题文件夹，默认landspace</li>
+<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
+<li>package.json：应用程序的信息</li>
+</ul>
+<p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure><br>本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
+<h1 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇文章&quot;</span></span><br><span class="line"><span class="comment">//hexo new命令，会在source\\_posts目录下生成一篇博客文章</span></span><br></pre></td></tr></table></figure>
+<p>生成博客还是老三样<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
+<h1 id="四、部署到github"><a href="#四、部署到github" class="headerlink" title="四、部署到github"></a>四、部署到github</h1><p>执行完上述步骤，我们的博客只能在本地看，我们必须部署到网上才能通过网络来看。Github提供GitPages免费站点服务，自带域名和1G免费空间，存放博客资源和网页信息足够。</p>
+<p>git本地配置和ssh公钥配不再赘述</p>
+<h2 id="1、新建git仓库"><a href="#1、新建git仓库" class="headerlink" title="1、新建git仓库"></a>1、新建git仓库</h2><p>要注意仓库名必须要符合规则，即【用户名.github.io】格式。git会跟进这个仓库来创建域名。</p>
+<h2 id="2、hexo配置git插件"><a href="#2、hexo配置git插件" class="headerlink" title="2、hexo配置git插件"></a>2、hexo配置git插件</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>安装完成后我们需要修改_config.yml文件中的Deployment信息（最下面）<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">    type:</span> git</span><br><span class="line"><span class="symbol">    repo:</span> git@github.com:Liuqianci/Liuqianci.github.io.git</span><br><span class="line"><span class="symbol">    branch:</span> master</span><br></pre></td></tr></table></figure></p>
+<h2 id="3、部署远端"><a href="#3、部署远端" class="headerlink" title="3、部署远端"></a>3、部署远端</h2><p>在之前的基础上，可以把本地文章部署到远端了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo d   <span class="comment">//hexo deploy命令，部署远端</span></span><br></pre></td></tr></table></figure></p>
+<p>此时我们的github仓库就有内容了，我们也可以输入域名直接访问我们的博客。</p>
+<h1 id="五、自定义域名"><a href="#五、自定义域名" class="headerlink" title="五、自定义域名"></a>五、自定义域名</h1><p>虽然gitpages给我们提供了一个域名，但是我们还可以自己申请一个属于自己的域名。我绑定的是腾讯的域名。</p>
+<p>在腾讯云里申请域名，此流程很快。</p>
+<p>域名申请下来后，需要绑定我们的博客网站。在腾讯云的控制台上进行域名解析。一般解析两条，A对应IP，CNAME对应域名。我们博客的IP，直接ping我们博客的域名即可。</p>
+<p>域名解析完成后，我们要进行域名绑定，在source目录下新建一个CNAME文件，写入自己的域名。然后在GitPages上也进行配置，进入Github的settings中，添加GitPages的Custom Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启https</p>
+<p>最后在_config.yml的url选项中填写我们的自定义域名。完成发布。</p>
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -742,71 +767,17 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo博客搭建与部署</title>
-    <url>/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
-    <content><![CDATA[<p>Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。</p>
-<h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h2 id="1、Node-js"><a href="#1、Node-js" class="headerlink" title="1、Node.js"></a>1、Node.js</h2><p>Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击<a href="https://nodejs.org/zh-cn/">这里</a>，一路next。安装完成后可以用命令行查看版本号。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">node -v <span class="comment">//查看node.js的版本</span></span><br><span class="line"></span><br><span class="line">npm -v  <span class="comment">//查看包管理器的版本</span></span><br></pre></td></tr></table></figure>
-<p>由于国内环境使用npm速度感人，可以安装cnpm，把镜像源换成淘宝的<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
-<p>之后可以命令行输入cnpm，如果能打出帮助界面表示安装成功。</p>
-<h2 id="2、Git"><a href="#2、Git" class="headerlink" title="2、Git"></a>2、Git</h2><p>git的相关配置不在此赘述。hexo的很多操作都要依赖于git</p>
-<h2 id="3、Hexo"><a href="#3、Hexo" class="headerlink" title="3、Hexo"></a>3、Hexo</h2><p>Hexo依托于npm包管理器，我们可以直接下载<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure><br>-g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo -v    <span class="comment">//查看Hexo版本</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>首先我们新建一个存放博客的文件目录。之后我们的操作全部在此目录下。如果之后我们搭建错误想要从头再来，直接删掉这个目录新建一个即可。</p>
-<p>然后我们初始化hexo<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><br>初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
-<p>之后安装hexo的依赖组件<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure></p>
-<p>目前目录下面有如下几个部分：</p>
-<ul>
-<li>node_modules：存的是利用【npm install —save】下载安装的组件</li>
-<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
-<li>source：存放用户资源，即我们的待发布文档</li>
-<li>themes：存放主题文件夹，默认landspace</li>
-<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
-<li>package.json：应用程序的信息</li>
-</ul>
-<p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure><br>本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
-<h1 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇文章&quot;</span></span><br><span class="line"><span class="comment">//hexo new命令，会在source\\_posts目录下生成一篇博客文章</span></span><br></pre></td></tr></table></figure>
-<p>生成博客还是老三样<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
-<h1 id="四、部署到github"><a href="#四、部署到github" class="headerlink" title="四、部署到github"></a>四、部署到github</h1><p>执行完上述步骤，我们的博客只能在本地看，我们必须部署到网上才能通过网络来看。Github提供GitPages免费站点服务，自带域名和1G免费空间，存放博客资源和网页信息足够。</p>
-<p>git本地配置和ssh公钥配不再赘述</p>
-<h2 id="1、新建git仓库"><a href="#1、新建git仓库" class="headerlink" title="1、新建git仓库"></a>1、新建git仓库</h2><p>要注意仓库名必须要符合规则，即【用户名.github.io】格式。git会跟进这个仓库来创建域名。</p>
-<h2 id="2、hexo配置git插件"><a href="#2、hexo配置git插件" class="headerlink" title="2、hexo配置git插件"></a>2、hexo配置git插件</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>安装完成后我们需要修改_config.yml文件中的Deployment信息（最下面）<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">    type:</span> git</span><br><span class="line"><span class="symbol">    repo:</span> git@github.com:Liuqianci/Liuqianci.github.io.git</span><br><span class="line"><span class="symbol">    branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<h2 id="3、部署远端"><a href="#3、部署远端" class="headerlink" title="3、部署远端"></a>3、部署远端</h2><p>在之前的基础上，可以把本地文章部署到远端了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo d   <span class="comment">//hexo deploy命令，部署远端</span></span><br></pre></td></tr></table></figure></p>
-<p>此时我们的github仓库就有内容了，我们也可以输入域名直接访问我们的博客。</p>
-<h1 id="五、自定义域名"><a href="#五、自定义域名" class="headerlink" title="五、自定义域名"></a>五、自定义域名</h1><p>虽然gitpages给我们提供了一个域名，但是我们还可以自己申请一个属于自己的域名。我绑定的是腾讯的域名。</p>
-<p>在腾讯云里申请域名，此流程很快。</p>
-<p>域名申请下来后，需要绑定我们的博客网站。在腾讯云的控制台上进行域名解析。一般解析两条，A对应IP，CNAME对应域名。我们博客的IP，直接ping我们博客的域名即可。</p>
-<p>域名解析完成后，我们要进行域名绑定，在source目录下新建一个CNAME文件，写入自己的域名。然后在GitPages上也进行配置，进入Github的settings中，添加GitPages的Custom Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启https</p>
-<p>最后在_config.yml的url选项中填写我们的自定义域名。完成发布。</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>多台电脑同步提交博客</title>
-    <url>/2022/02/05/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%90%8C%E6%AD%A5%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p> 由于Hexo属于静态博客，文章内容都是本地存储，只有静态页面（public文件夹）会push到git上面。如果我们更换电脑的话，配置相同的环境、依赖和博客文件，如果用U盘拷贝就太low了。所以我们可以利用Github远程仓库来实现多台终端的博客更新部署。</p>
-<p> 主要思路是利用git的分支，把静态博客页面文件放在master主分支，把hexo的部署环境文件和博客原文放在新建的Hexo分支上。</p>
-<h1 id="一、Hexo的原理和依赖"><a href="#一、Hexo的原理和依赖" class="headerlink" title="一、Hexo的原理和依赖"></a>一、Hexo的原理和依赖</h1><h2 id="1、环境"><a href="#1、环境" class="headerlink" title="1、环境"></a>1、环境</h2><p>Hexo需要有Node.js环境和Git环境，这在哪个电脑都必须有的。</p>
-<h2 id="2、资源配置依赖"><a href="#2、资源配置依赖" class="headerlink" title="2、资源配置依赖"></a>2、资源配置依赖</h2><p>首先要安装Hexo<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure></p>
-<p>hexo所需要的包信息都已经存储在package.json文件中了，我们可以直接利用这个文件，执行命令行安装所需资源：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
-<h2 id="3、博客内容"><a href="#3、博客内容" class="headerlink" title="3、博客内容"></a>3、博客内容</h2><p>博客的内容主要就是主题文件和博客文件</p>
-<ul>
-<li>node_modules: hexo所需要的文件，这个文件不需要上传git</li>
-<li>themes：主题文件</li>
-<li>suurces：博文的md文件</li>
-<li>public：生成的静态页面，这个一般都clean掉</li>
-<li>_config.yml：全局配置文件</li>
-<li>.gitignore：hexo自动生成的，里面一般会记录node_modules，我们不许要改，这个文件就会被忽略掉</li>
-</ul>
-<h1 id="二、Git仓库修改"><a href="#二、Git仓库修改" class="headerlink" title="二、Git仓库修改"></a>二、Git仓库修改</h1><p>对我们之前创建的username.github.io仓库，创建一个新的hexo分支，并在仓库-&gt;Settings-&gt;Branches-&gt;Default branch中把这个分支设置为默认分支。clone到本地，此时本地应该是Hexo分支。</p>
-<p>之后我们把我们之前写的博客目录下的文件，全部拷贝到这个本地仓库中【注意要把之前themes目录中的.git文件删掉。因为一个git目录下不能有另一个git仓库。如果我们需要更新主题文件，只能把主题clone到本地后进行拷贝覆盖】。然后提交git到Hexo分支：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
-<p>此时我们观察github，可以看到，master分支里面保存着静态博客资源（在_config.yml中的Deployment配置的），Hexo分支备份博客部署文件，供我们维护更新。两者在一个仓库中互不干扰。</p>
-<h1 id="三、新的提交操作"><a href="#三、新的提交操作" class="headerlink" title="三、新的提交操作"></a>三、新的提交操作</h1><p>目前我们在写博客时，就要在提交前做git更新了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git pull     <span class="comment">//提交前最好更新最新</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+    <title>Hello World</title>
+    <url>/2022/05/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -874,128 +845,32 @@
       </tags>
   </entry>
   <entry>
-    <title>数组</title>
-    <url>/2022/02/08/%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="声明和数组下标"><a href="#声明和数组下标" class="headerlink" title="声明和数组下标"></a>声明和数组下标</h2><p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。<br>int arr[10] = {1,2,3,4,5,6,7,8};</p>
-<p>数组声明：</p>
+    <title>多台电脑同步提交博客</title>
+    <url>/2022/02/05/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%90%8C%E6%AD%A5%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p> 由于Hexo属于静态博客，文章内容都是本地存储，只有静态页面（public文件夹）会push到git上面。如果我们更换电脑的话，配置相同的环境、依赖和博客文件，如果用U盘拷贝就太low了。所以我们可以利用Github远程仓库来实现多台终端的博客更新部署。</p>
+<p> 主要思路是利用git的分支，把静态博客页面文件放在master主分支，把hexo的部署环境文件和博客原文放在新建的Hexo分支上。</p>
+<h1 id="一、Hexo的原理和依赖"><a href="#一、Hexo的原理和依赖" class="headerlink" title="一、Hexo的原理和依赖"></a>一、Hexo的原理和依赖</h1><h2 id="1、环境"><a href="#1、环境" class="headerlink" title="1、环境"></a>1、环境</h2><p>Hexo需要有Node.js环境和Git环境，这在哪个电脑都必须有的。</p>
+<h2 id="2、资源配置依赖"><a href="#2、资源配置依赖" class="headerlink" title="2、资源配置依赖"></a>2、资源配置依赖</h2><p>首先要安装Hexo<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure></p>
+<p>hexo所需要的包信息都已经存储在package.json文件中了，我们可以直接利用这个文件，执行命令行安装所需资源：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<h2 id="3、博客内容"><a href="#3、博客内容" class="headerlink" title="3、博客内容"></a>3、博客内容</h2><p>博客的内容主要就是主题文件和博客文件</p>
 <ul>
-<li>int arr[10];</li>
-<li>类型名int表示数组里所有元素的类型</li>
-<li>整数10表示数组里包含的元素个数</li>
-<li>数组元素个数不可以改变，是常量</li>
+<li>node_modules: hexo所需要的文件，这个文件不需要上传git</li>
+<li>themes：主题文件</li>
+<li>suurces：博文的md文件</li>
+<li>public：生成的静态页面，这个一般都clean掉</li>
+<li>_config.yml：全局配置文件</li>
+<li>.gitignore：hexo自动生成的，里面一般会记录node_modules，我们不许要改，这个文件就会被忽略掉</li>
 </ul>
-<p>使用注意：</p>
-<ul>
-<li>每个元素都有下标，标识一个元素在当前数组容器中的位置。通过下标可以直接访问数组内任意元素</li>
-<li>下标从零开始</li>
-<li>超过范围的下标不可以使用，会内存错误。一定要注意，内存溢出是程序中经常出现的BUG</li>
-<li><p>数组名和下标可以表示数组里的元素，如a[2]表示第三个元素</p>
-<p>数组优点：</p>
-</li>
-<li>可以编写循环程序，依次处理数组里的所有元素</li>
-<li>循环变量依次代表所有元素</li>
-</ul>
-<h2 id="数组使用常见错误：off-by-one-error-差一错误"><a href="#数组使用常见错误：off-by-one-error-差一错误" class="headerlink" title="数组使用常见错误：off-by-one error(差一错误)"></a>数组使用常见错误：off-by-one error(差一错误)</h2><p>考虑一个问题，假定整数x满足边界条件x&gt;=16且x&lt;=37，那么此范围内的整数x可能的取值有多少？</p>
-<ol>
-<li>首先考虑最简单的情况（特例），然后将结果外推</li>
-<li>仔细计算边界问题</li>
-</ol>
-<p> 特例：x的上界与下界重合，即x&gt;=16与x&lt;=16，显然其中的x个数为1；那么假定下界位low，上界位high；当low与high重合，个数为1，即共有high-low+1个元素。那么外推，这里共有37-16+1=22个元素。<br>最容易出错的地方就是+1，很容易就仅仅计算high-low。</p>
-<p>编程技巧：</p>
-<ul>
-<li>用数学上的左闭右开[,)区间表示，上述问题可以看作[16,38)，即38-16=22</li>
-<li>C++中，我们编程也遵循这个原则，从0开始，使用非对称区间，让下界可以取到值，上界取不到值。这样设计程序，可以直接用上界-下界来取得范围大小；当取值范围为空的时候，上界值=下界值；即使取值范围为空，上界值也永远不可能小于下界值。</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//推荐的方式：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt; <span class="number">10</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不推荐的方式</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt;= <span class="number">9</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><ul>
-<li>在尾部添加和删除操作，时间复杂度为O(1)。只需要操作尾部元素即可，对与其他元素没有干扰。</li>
-<li><p>在数组中间进行添加和删除操作，时间复杂度为O(n)。在中间操作，会对其他元素造成影响，操作元素后面的每一个元素都需要进一步操作</p>
-</li>
-<li><p>数组的访问用遍历很高效，时间复杂度为O(1)；</p>
-</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下标访问</span></span><br><span class="line">a[<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针访问</span></span><br><span class="line"><span class="type">int</span>* p = a;</span><br><span class="line">*(p+<span class="number">2</span>) = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<p>数组的查找时间复杂度并不低，一般取绝与数组自身容量(数组容量很大的时候并不适合遍历查找，时间复杂度太高，可以用二分查找)：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找a[]中第一个值为3的目标：</span></span><br><span class="line"><span class="type">int</span> len = <span class="built_in">sizeof</span>(a)/<span class="built_in">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index&lt;len;++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[index] == <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><p>二维数组包含了两个维度的数组。</p>
-<p>二维数组访问：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row=<span class="number">0</span>;row&lt;<span class="number">2</span>;++row)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>;col&lt;<span class="number">4</span>;++col)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；即我们一般把时间最长的循环放在内层，最短的循环放在外层，以减少CPU跨切循环的次数。</p>
-<h1 id="std-vector"><a href="#std-vector" class="headerlink" title="std::vector"></a>std::vector</h1><p>Vector是面向对象方式的动态数组。</p>
-<p>我们经常使用的简单的数组，因为定义的时候就有固定容量，无法实现动态扩容插入元素。</p>
-<p>使用vector容器，可以轻松实现动态扩容添加元素。</p>
-<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; vec = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾添加</span></span><br><span class="line">	vec.<span class="built_in">push_back</span>(<span class="number">5</span>);  <span class="comment">//尾添加，不会出现下标越界 &#123;1,2,3,4,5&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定位置添加</span></span><br><span class="line">	<span class="comment">//insert方法，传入位置和值</span></span><br><span class="line">	vec.<span class="built_in">insert</span>(--vec.<span class="built_in">end</span>(), <span class="number">4</span>);   <span class="comment">//&#123;1,2,3,4,4,5&#125;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index &lt; vec.<span class="built_in">size</span>();++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;vec[index]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们可以使用vector中的capacity()方法来查看vector当前的容量，用size()的方法来查看已经存储的元素的个数。这两者有区别。</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
-<li>vec.pop_back();    //尾删除</li>
-<li>vec.eraser(pos);          //指定位置删除</li>
-</ul>
-<p>要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line">vec.<span class="built_in">eraser</span>(vec.<span class="built_in">end</span>()<span class="number">-1</span>);   <span class="comment">//这两者等价</span></span><br></pre></td></tr></table></figure>
+<h1 id="二、Git仓库修改"><a href="#二、Git仓库修改" class="headerlink" title="二、Git仓库修改"></a>二、Git仓库修改</h1><p>对我们之前创建的username.github.io仓库，创建一个新的hexo分支，并在仓库-&gt;Settings-&gt;Branches-&gt;Default branch中把这个分支设置为默认分支。clone到本地，此时本地应该是Hexo分支。</p>
+<p>之后我们把我们之前写的博客目录下的文件，全部拷贝到这个本地仓库中【注意要把之前themes目录中的.git文件删掉。因为一个git目录下不能有另一个git仓库。如果我们需要更新主题文件，只能把主题clone到本地后进行拷贝覆盖】。然后提交git到Hexo分支：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>此时我们观察github，可以看到，master分支里面保存着静态博客资源（在_config.yml中的Deployment配置的），Hexo分支备份博客部署文件，供我们维护更新。两者在一个仓库中互不干扰。</p>
+<h1 id="三、新的提交操作"><a href="#三、新的提交操作" class="headerlink" title="三、新的提交操作"></a>三、新的提交操作</h1><p>目前我们在写博客时，就要在提交前做git更新了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git pull     <span class="comment">//提交前最好更新最新</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
-        <category>C++</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>调试技巧——assert()</title>
-    <url>/2022/02/08/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
-    <content><![CDATA[<p>&emsp;&emsp;编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
-<p>&emsp;&emsp;举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" alt=""></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
-<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
-<p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
-<p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
-<p>注意assert()不是函数，而是一个宏定义。</p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自定义结构</title>
-    <url>/2022/04/10/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><p>使用#define和const创建符号常量，使用enum不仅可以创建符号常量，还能定义新的数据类型。</p>
-<p>枚举类型的声明和定义：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">wT</span>&#123;</span><br><span class="line">    Monday,</span><br><span class="line">    Tuseday,</span><br><span class="line">    Wednesday,</span><br><span class="line">    Thursday,</span><br><span class="line">    Firday,</span><br><span class="line">    Saturday,</span><br><span class="line">    Sunday</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义</span></span><br><span class="line">wT weekday;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">wT</span>&#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;; <span class="comment">// 声明wT类型</span></span><br><span class="line">	wT weekday;</span><br><span class="line">	weekday = Monday;</span><br><span class="line">	weekday = Tuesday;</span><br><span class="line">	<span class="comment">//weekday = 1;             // 错误 不能直接给int值，只能赋值成wT定义好的类型值</span></span><br><span class="line">    <span class="comment">//可以写成weekday = wT(1),但是涉及类型转换的写法不推荐</span></span><br><span class="line">	cout &lt;&lt; weekday &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//Monday = 0;             // 错误 类型值不能做左值，不是有存储空间的变量</span></span><br><span class="line">	<span class="type">int</span> a = Wednesday;</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用细节：</p>
-<ul>
-<li>枚举值不能做左值；</li>
-<li>非枚举变量不可以赋值给枚举变量；</li>
-<li>枚举变量可以赋值给非枚举变量；</li>
-</ul>
-<h1 id="结构体和联合体"><a href="#结构体和联合体" class="headerlink" title="结构体和联合体"></a>结构体和联合体</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    Score s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Score</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> sc;</span><br><span class="line">    <span class="type">char</span> level;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="存储结构与结构体数据对齐"><a href="#存储结构与结构体数据对齐" class="headerlink" title="存储结构与结构体数据对齐"></a>存储结构与结构体数据对齐</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> <span class="title class_">Score</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> ds;    <span class="comment">//8字节</span></span><br><span class="line">		<span class="type">char</span> level;   <span class="comment">//1字节</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> name[<span class="number">6</span>];      <span class="comment">//6字节                           </span></span><br><span class="line">		<span class="type">int</span> age;           <span class="comment">//32位环境 4字节</span></span><br><span class="line">		Score s;               </span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Score) &lt;&lt; endl;      <span class="comment">// 8</span></span><br><span class="line">	</span><br><span class="line">	Student s1;</span><br><span class="line">	<span class="built_in">strcpy_s</span>(s1.name, <span class="string">&quot;lili&quot;</span>);</span><br><span class="line">	s1.age = <span class="number">16</span>;</span><br><span class="line">	s1.s.ds = <span class="number">95.5</span>;</span><br><span class="line">	s1.s.level = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Student) &lt;&lt; endl;    <span class="comment">// 24     </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">s1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s1) = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">s2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s2) = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png" alt=""></p>
-<h2 id="数据对齐原则-45-45-缺省对齐"><a href="#数据对齐原则-45-45-缺省对齐" class="headerlink" title="数据对齐原则&#45;&#45;缺省对齐"></a>数据对齐原则&#45;&#45;缺省对齐</h2><ul>
-<li>32位CPU<ul>
-<li>char：任何地址</li>
-<li>short：偶数倍地址</li>
-<li>int：4的整数倍</li>
-<li>double：8的整数倍</li>
-</ul>
-</li>
-</ul>
-<p>程序是可以修改默认编译选项的，修改结构体内存分配：<br><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">Visual C++：</span><br><span class="line">#pragma pack(n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g++:</span><br><span class="line"><span class="constructor">__attribute__(<span class="params">aligned</span>(<span class="params">n</span>)</span>)</span><br><span class="line"><span class="constructor">__attribute__(<span class="params">__packed__</span>)</span></span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1233,6 +1108,131 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编写一个函数，输入两个int型变量a,b</span></span><br><span class="line"><span class="comment">// 实现在函数内部将a,b的值进行交换。</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> tmp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap2</span><span class="params">(<span class="type">int</span>* a, <span class="type">int</span>* b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> tmp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 交换变量的测试</span></span><br><span class="line">	<span class="type">int</span> a = <span class="number">3</span>, b = <span class="number">4</span>;</span><br><span class="line">	<span class="built_in">swap</span>(a, b);</span><br><span class="line">	<span class="built_in">assert</span>(a == <span class="number">4</span> &amp;&amp; b == <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	a = <span class="number">3</span>, b = <span class="number">4</span>;</span><br><span class="line">	<span class="built_in">swap2</span>(&amp;a, &amp;b);</span><br><span class="line">	<span class="built_in">assert</span>(a == <span class="number">4</span> &amp;&amp; b == <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>&emsp;&emsp;C++为什么要同时存在指针和引用？在java语言中我们直接使用引用，传统C语言我们都使用指针。C++可以认为是夹在C和java之间的一种。之所以要使用引用是为了支持函数的运算符重载。而C++为了兼容C语言不能摒弃指针。</p>
 <p>&emsp;&emsp;在函数传递参数的时候，对于内置基础类型（int、double等）而言，在函数中传递值更高效(pass by value)；在面向对象中自定义类型而言，在函数中传递const引用更高效(pass by reference to const)。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调试技巧——assert()</title>
+    <url>/2022/02/08/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
+    <content><![CDATA[<p>&emsp;&emsp;编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
+<p>&emsp;&emsp;举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
+<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
+<p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
+<p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
+<p>注意assert()不是函数，而是一个宏定义。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组</title>
+    <url>/2022/02/08/%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="声明和数组下标"><a href="#声明和数组下标" class="headerlink" title="声明和数组下标"></a>声明和数组下标</h2><p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。<br>int arr[10] = {1,2,3,4,5,6,7,8};</p>
+<p>数组声明：</p>
+<ul>
+<li>int arr[10];</li>
+<li>类型名int表示数组里所有元素的类型</li>
+<li>整数10表示数组里包含的元素个数</li>
+<li>数组元素个数不可以改变，是常量</li>
+</ul>
+<p>使用注意：</p>
+<ul>
+<li>每个元素都有下标，标识一个元素在当前数组容器中的位置。通过下标可以直接访问数组内任意元素</li>
+<li>下标从零开始</li>
+<li>超过范围的下标不可以使用，会内存错误。一定要注意，内存溢出是程序中经常出现的BUG</li>
+<li><p>数组名和下标可以表示数组里的元素，如a[2]表示第三个元素</p>
+<p>数组优点：</p>
+</li>
+<li>可以编写循环程序，依次处理数组里的所有元素</li>
+<li>循环变量依次代表所有元素</li>
+</ul>
+<h2 id="数组使用常见错误：off-by-one-error-差一错误"><a href="#数组使用常见错误：off-by-one-error-差一错误" class="headerlink" title="数组使用常见错误：off-by-one error(差一错误)"></a>数组使用常见错误：off-by-one error(差一错误)</h2><p>考虑一个问题，假定整数x满足边界条件x&gt;=16且x&lt;=37，那么此范围内的整数x可能的取值有多少？</p>
+<ol>
+<li>首先考虑最简单的情况（特例），然后将结果外推</li>
+<li>仔细计算边界问题</li>
+</ol>
+<p> 特例：x的上界与下界重合，即x&gt;=16与x&lt;=16，显然其中的x个数为1；那么假定下界位low，上界位high；当low与high重合，个数为1，即共有high-low+1个元素。那么外推，这里共有37-16+1=22个元素。<br>最容易出错的地方就是+1，很容易就仅仅计算high-low。</p>
+<p>编程技巧：</p>
+<ul>
+<li>用数学上的左闭右开[,)区间表示，上述问题可以看作[16,38)，即38-16=22</li>
+<li>C++中，我们编程也遵循这个原则，从0开始，使用非对称区间，让下界可以取到值，上界取不到值。这样设计程序，可以直接用上界-下界来取得范围大小；当取值范围为空的时候，上界值=下界值；即使取值范围为空，上界值也永远不可能小于下界值。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//推荐的方式：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt; <span class="number">10</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不推荐的方式</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt;= <span class="number">9</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><ul>
+<li>在尾部添加和删除操作，时间复杂度为O(1)。只需要操作尾部元素即可，对与其他元素没有干扰。</li>
+<li><p>在数组中间进行添加和删除操作，时间复杂度为O(n)。在中间操作，会对其他元素造成影响，操作元素后面的每一个元素都需要进一步操作</p>
+</li>
+<li><p>数组的访问用遍历很高效，时间复杂度为O(1)；</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下标访问</span></span><br><span class="line">a[<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针访问</span></span><br><span class="line"><span class="type">int</span>* p = a;</span><br><span class="line">*(p+<span class="number">2</span>) = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>数组的查找时间复杂度并不低，一般取绝与数组自身容量(数组容量很大的时候并不适合遍历查找，时间复杂度太高，可以用二分查找)：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找a[]中第一个值为3的目标：</span></span><br><span class="line"><span class="type">int</span> len = <span class="built_in">sizeof</span>(a)/<span class="built_in">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index&lt;len;++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[index] == <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><p>二维数组包含了两个维度的数组。</p>
+<p>二维数组访问：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row=<span class="number">0</span>;row&lt;<span class="number">2</span>;++row)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>;col&lt;<span class="number">4</span>;++col)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；即我们一般把时间最长的循环放在内层，最短的循环放在外层，以减少CPU跨切循环的次数。</p>
+<h1 id="std-vector"><a href="#std-vector" class="headerlink" title="std::vector"></a>std::vector</h1><p>Vector是面向对象方式的动态数组。</p>
+<p>我们经常使用的简单的数组，因为定义的时候就有固定容量，无法实现动态扩容插入元素。</p>
+<p>使用vector容器，可以轻松实现动态扩容添加元素。</p>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; vec = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾添加</span></span><br><span class="line">	vec.<span class="built_in">push_back</span>(<span class="number">5</span>);  <span class="comment">//尾添加，不会出现下标越界 &#123;1,2,3,4,5&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定位置添加</span></span><br><span class="line">	<span class="comment">//insert方法，传入位置和值</span></span><br><span class="line">	vec.<span class="built_in">insert</span>(--vec.<span class="built_in">end</span>(), <span class="number">4</span>);   <span class="comment">//&#123;1,2,3,4,4,5&#125;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index &lt; vec.<span class="built_in">size</span>();++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;vec[index]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以使用vector中的capacity()方法来查看vector当前的容量，用size()的方法来查看已经存储的元素的个数。这两者有区别。</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
+<li>vec.pop_back();    //尾删除</li>
+<li>vec.eraser(pos);          //指定位置删除</li>
+</ul>
+<p>要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line">vec.<span class="built_in">eraser</span>(vec.<span class="built_in">end</span>()<span class="number">-1</span>);   <span class="comment">//这两者等价</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自定义结构</title>
+    <url>/2022/04/10/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><p>使用#define和const创建符号常量，使用enum不仅可以创建符号常量，还能定义新的数据类型。</p>
+<p>枚举类型的声明和定义：<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">wT</span>&#123;</span><br><span class="line">    Monday,</span><br><span class="line">    Tuseday,</span><br><span class="line">    Wednesday,</span><br><span class="line">    Thursday,</span><br><span class="line">    Firday,</span><br><span class="line">    Saturday,</span><br><span class="line">    Sunday</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义</span></span><br><span class="line">wT weekday;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">wT</span>&#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;; <span class="comment">// 声明wT类型</span></span><br><span class="line">	wT weekday;</span><br><span class="line">	weekday = Monday;</span><br><span class="line">	weekday = Tuesday;</span><br><span class="line">	<span class="comment">//weekday = 1;             // 错误 不能直接给int值，只能赋值成wT定义好的类型值</span></span><br><span class="line">    <span class="comment">//可以写成weekday = wT(1),但是涉及类型转换的写法不推荐</span></span><br><span class="line">	cout &lt;&lt; weekday &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//Monday = 0;             // 错误 类型值不能做左值，不是有存储空间的变量</span></span><br><span class="line">	<span class="type">int</span> a = Wednesday;</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用细节：</p>
+<ul>
+<li>枚举值不能做左值；</li>
+<li>非枚举变量不可以赋值给枚举变量；</li>
+<li>枚举变量可以赋值给非枚举变量；</li>
+</ul>
+<h1 id="结构体和联合体"><a href="#结构体和联合体" class="headerlink" title="结构体和联合体"></a>结构体和联合体</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    Score s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Score</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> sc;</span><br><span class="line">    <span class="type">char</span> level;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="存储结构与结构体数据对齐"><a href="#存储结构与结构体数据对齐" class="headerlink" title="存储结构与结构体数据对齐"></a>存储结构与结构体数据对齐</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> <span class="title class_">Score</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> ds;    <span class="comment">//8字节</span></span><br><span class="line">		<span class="type">char</span> level;   <span class="comment">//1字节</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> name[<span class="number">6</span>];      <span class="comment">//6字节                           </span></span><br><span class="line">		<span class="type">int</span> age;           <span class="comment">//32位环境 4字节</span></span><br><span class="line">		Score s;               </span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Score) &lt;&lt; endl;      <span class="comment">// 8</span></span><br><span class="line">	</span><br><span class="line">	Student s1;</span><br><span class="line">	<span class="built_in">strcpy_s</span>(s1.name, <span class="string">&quot;lili&quot;</span>);</span><br><span class="line">	s1.age = <span class="number">16</span>;</span><br><span class="line">	s1.s.ds = <span class="number">95.5</span>;</span><br><span class="line">	s1.s.level = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Student) &lt;&lt; endl;    <span class="comment">// 24     </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">s1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s1) = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">s2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s2) = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png" alt=""></p>
+<h2 id="数据对齐原则-45-45-缺省对齐"><a href="#数据对齐原则-45-45-缺省对齐" class="headerlink" title="数据对齐原则&#45;&#45;缺省对齐"></a>数据对齐原则&#45;&#45;缺省对齐</h2><ul>
+<li>32位CPU<ul>
+<li>char：任何地址</li>
+<li>short：偶数倍地址</li>
+<li>int：4的整数倍</li>
+<li>double：8的整数倍</li>
+</ul>
+</li>
+</ul>
+<p>程序是可以修改默认编译选项的，修改结构体内存分配：<br><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">Visual C++：</span><br><span class="line">#pragma pack(n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g++:</span><br><span class="line"><span class="constructor">__attribute__(<span class="params">aligned</span>(<span class="params">n</span>)</span>)</span><br><span class="line"><span class="constructor">__attribute__(<span class="params">__packed__</span>)</span></span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
         <category>C++</category>
