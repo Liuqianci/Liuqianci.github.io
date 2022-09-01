@@ -82,6 +82,148 @@
       </tags>
   </entry>
   <entry>
+    <title>C++基础语法</title>
+    <url>/2022/02/07/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h1><p>编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低</p>
+<ol>
+<li>机器语言、汇编语言：这些语言执行效率很高，但移植性很差；</li>
+<li>编译型语言：C/C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度；</li>
+<li>解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强；</li>
+<li>脚本语言：bash、csh。不同的平台拥有不同的脚本，本身的功能并不强大，但是很容易把各种语言融合在一起。</li>
+</ol>
+<p>C++属于编译型语言，需要经历编译和链接的过程，才能变成真正的可执行程序：<br>源程序➡编译器➡目标程序➡链接器➡可执行程序 </p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>C++中的每个变量都有其数据类型，数据类型决定这个变量所占用内存空间的大小和布局方式、该空间能存储的值的范围，以及变量能参与的运算。<br>在计算机中，1byte=8bit。我们在说数据类型的大小的时候一般以byte作为单位来计算。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:left">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">char</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">存储字符或者整数，8位(bit)</td>
+<td style="text-align:left">有符号：-128~127；无符号：0 ~ 255</td>
+</tr>
+<tr>
+<td style="text-align:center">short</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">短整数，16位</td>
+<td style="text-align:left">有符号：-32768~32767；无符号0 ~65535</td>
+</tr>
+<tr>
+<td style="text-align:center">long</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">长整数，32位</td>
+<td style="text-align:left">有符号：-2147483648~2147483647；无符号0 ~4294967295</td>
+</tr>
+<tr>
+<td style="text-align:center">int</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">整数</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:center">float</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">浮点数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">double</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">双精度浮点数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">long double</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">长双精度浮点数</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">bool</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">布尔值，只能是真值或假值</td>
+<td style="text-align:left">true或false</td>
+</tr>
+<tr>
+<td style="text-align:center">wchar_t</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">宽字符，这是为存储两字节长的国际字符而设计的类型</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//常见的数据类型的定义</span></span><br><span class="line"><span class="type">char</span> a[<span class="number">10</span>] = <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">short</span> <span class="type">int</span> s = <span class="number">97</span>;</span><br><span class="line"><span class="type">int</span> m = <span class="number">97</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">int</span> n = <span class="number">97</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="number">97.0f</span>;</span><br><span class="line"><span class="type">double</span> d = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">double</span> k = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="type">wchar_t</span> w[<span class="number">10</span>] = <span class="string">L&quot;a&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="标识符和关键字"><a href="#标识符和关键字" class="headerlink" title="标识符和关键字"></a>标识符和关键字</h1><p>C++中的标识符是用来标识变量、函数、类、模块，或者任何其他用户自定义项目的名字；</p>
+<ul>
+<li>一个标识符通常以字母A~Z或a ~z或下划线_开始，后面跟零个或者多个字母、下划线和数字；</li>
+<li>一个标识符不允许使用数字开头；</li>
+<li>一个标识符内不允许出现标点字符，如@、&amp;等等；</li>
+<li>不能混淆大小写，C++是区分大小写的编程语言；</li>
+<li>不能使用C++关键字作为标识符，原则上不允许长度超过32位；</li>
+</ul>
+<p>标识符命名规则：</p>
+<ul>
+<li>不要试图发明最好的命名规则，要制定一个让大部分人都满意的命名并在项目组中贯彻执行；</li>
+<li>标识符应该直观，可以望文知意，尽量使用英文单词组合，不要使用拼音；</li>
+<li>标识符长度要符合“min-length&amp;max-information”原则，长度尽可能短，信息尽可能多</li>
+<li>变量名字尽可能使用“名词”或“形容词+名词”形式，尽量避免出现数字；函数名尽量使用“动词+名词”</li>
+<li>可借鉴的命名规则：<ul>
+<li>匈牙利命名法：开头字母用变量类型缩写，其余部分用变量的英文或者英文缩写，要求第一个字母大写，如int iMyAge;</li>
+<li>Camel(驼峰)命名法：第一个单词首字母小写，后面单词首字母大写，如int myAge;</li>
+<li>Pascal命名法：每个单词的第一个字母都大写，如int MyAge;</li>
+</ul>
+</li>
+</ul>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><p><a href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
+<h1 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>变量就是在程序运行过程中，值可以改变的量；</li>
+<li>变量在程序的执行中可以进行赋值造作，发生变化；</li>
+<li>变量有一个名字，并在使用之前要说明其类型，一经说明，就在内存中占据与其类型相应的存储单元；</li>
+</ul>
+<p>变量定义：</p>
+<ul>
+<li>首先是类型说明符，随后紧跟一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束：int m = 1,n = 1;</li>
+<li>当变量在创建时获得了一个特定的值，我们说这个变量被初始化了。用于初始化变量的值可以是任意复杂的表达式；</li>
+<li>当一次定义了一个或多个变量时，变量的名字随着定义就可以使用了，如：int m=1,n=1; int sum = m + n;</li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ul>
+<li>在程序运行过程中，其值一直保持不变的量为常量；</li>
+<li>常量也区分不同的数据类型；</li>
+</ul>
+<p>常量在C++中有两种定义的方法：</p>
+<ol>
+<li>使用#define，如：#define PI 3.14</li>
+<li>使用const，如：const double PI = 3.14</li>
+</ol>
+<p>尽量使用const形式定义变量，因为#define不会出现在编译时期，在编译出错时不容易排错。</p>
+<h2 id="整数常量"><a href="#整数常量" class="headerlink" title="整数常量"></a>整数常量</h2><p>整数常量可以是十进制、八进制或者十六进制的常量</p>
+<ul>
+<li>前缀指定基数：0x或者0X表示十六进制，0表示八进制，不带前缀则默认十进制；</li>
+<li>整数常量也可以带一个后缀，后缀是U和L的组合，U表示无符号整数，L表示长整数。后缀可以是大写也可以小写，不区分顺序。</li>
+</ul>
+<h2 id="布尔常量"><a href="#布尔常量" class="headerlink" title="布尔常量"></a>布尔常量</h2><p>布尔常量共有两个，他们都是C++关键字，true代表真，false代表假。</p>
+<h2 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h2><ul>
+<li>字符常量是括在单引号中的。如果常量以L开头，则表示宽字符常量。如果是宽字符常量则必须保存在wchar_t类型的变量中；</li>
+<li>字符常量可以是一个普通字符（‘x’）、一个转义序列（’\t’）、或者一个通用字符（’\u02C0’）。</li>
+<li>需要表达一些符号的时候需要用到转义字符</li>
+</ul>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++概况</title>
     <url>/2022/02/07/C-%E6%A6%82%E5%86%B5/</url>
     <content><![CDATA[<h1 id="C-概况"><a href="#C-概况" class="headerlink" title="C++概况"></a>C++概况</h1><p>C++语言应用广泛，凡是要求大型的、对性能要求很高的程序，以及物联网应用上，都会用到C++语言。</p>
@@ -507,193 +649,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C++基础语法</title>
-    <url>/2022/02/07/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h1><p>编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低</p>
-<ol>
-<li>机器语言、汇编语言：这些语言执行效率很高，但移植性很差；</li>
-<li>编译型语言：C/C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度；</li>
-<li>解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强；</li>
-<li>脚本语言：bash、csh。不同的平台拥有不同的脚本，本身的功能并不强大，但是很容易把各种语言融合在一起。</li>
-</ol>
-<p>C++属于编译型语言，需要经历编译和链接的过程，才能变成真正的可执行程序：<br>源程序➡编译器➡目标程序➡链接器➡可执行程序 </p>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>C++中的每个变量都有其数据类型，数据类型决定这个变量所占用内存空间的大小和布局方式、该空间能存储的值的范围，以及变量能参与的运算。<br>在计算机中，1byte=8bit。我们在说数据类型的大小的时候一般以byte作为单位来计算。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">字节数</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:left">范围</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">char</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">存储字符或者整数，8位(bit)</td>
-<td style="text-align:left">有符号：-128~127；无符号：0 ~ 255</td>
-</tr>
-<tr>
-<td style="text-align:center">short</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">短整数，16位</td>
-<td style="text-align:left">有符号：-32768~32767；无符号0 ~65535</td>
-</tr>
-<tr>
-<td style="text-align:center">long</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">长整数，32位</td>
-<td style="text-align:left">有符号：-2147483648~2147483647；无符号0 ~4294967295</td>
-</tr>
-<tr>
-<td style="text-align:center">int</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">整数</td>
-<td style="text-align:left">同上</td>
-</tr>
-<tr>
-<td style="text-align:center">float</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">浮点数</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">double</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">双精度浮点数</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">long double</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">长双精度浮点数</td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:center">bool</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">布尔值，只能是真值或假值</td>
-<td style="text-align:left">true或false</td>
-</tr>
-<tr>
-<td style="text-align:center">wchar_t</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">宽字符，这是为存储两字节长的国际字符而设计的类型</td>
-</tr>
-</tbody>
-</table>
-</div>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//常见的数据类型的定义</span></span><br><span class="line"><span class="type">char</span> a[<span class="number">10</span>] = <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">short</span> <span class="type">int</span> s = <span class="number">97</span>;</span><br><span class="line"><span class="type">int</span> m = <span class="number">97</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">int</span> n = <span class="number">97</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="number">97.0f</span>;</span><br><span class="line"><span class="type">double</span> d = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">double</span> k = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="type">wchar_t</span> w[<span class="number">10</span>] = <span class="string">L&quot;a&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="标识符和关键字"><a href="#标识符和关键字" class="headerlink" title="标识符和关键字"></a>标识符和关键字</h1><p>C++中的标识符是用来标识变量、函数、类、模块，或者任何其他用户自定义项目的名字；</p>
-<ul>
-<li>一个标识符通常以字母A~Z或a ~z或下划线_开始，后面跟零个或者多个字母、下划线和数字；</li>
-<li>一个标识符不允许使用数字开头；</li>
-<li>一个标识符内不允许出现标点字符，如@、&amp;等等；</li>
-<li>不能混淆大小写，C++是区分大小写的编程语言；</li>
-<li>不能使用C++关键字作为标识符，原则上不允许长度超过32位；</li>
-</ul>
-<p>标识符命名规则：</p>
-<ul>
-<li>不要试图发明最好的命名规则，要制定一个让大部分人都满意的命名并在项目组中贯彻执行；</li>
-<li>标识符应该直观，可以望文知意，尽量使用英文单词组合，不要使用拼音；</li>
-<li>标识符长度要符合“min-length&amp;max-information”原则，长度尽可能短，信息尽可能多</li>
-<li>变量名字尽可能使用“名词”或“形容词+名词”形式，尽量避免出现数字；函数名尽量使用“动词+名词”</li>
-<li>可借鉴的命名规则：<ul>
-<li>匈牙利命名法：开头字母用变量类型缩写，其余部分用变量的英文或者英文缩写，要求第一个字母大写，如int iMyAge;</li>
-<li>Camel(驼峰)命名法：第一个单词首字母小写，后面单词首字母大写，如int myAge;</li>
-<li>Pascal命名法：每个单词的第一个字母都大写，如int MyAge;</li>
-</ul>
-</li>
-</ul>
-<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><p><a href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
-<h1 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
-<li>变量就是在程序运行过程中，值可以改变的量；</li>
-<li>变量在程序的执行中可以进行赋值造作，发生变化；</li>
-<li>变量有一个名字，并在使用之前要说明其类型，一经说明，就在内存中占据与其类型相应的存储单元；</li>
-</ul>
-<p>变量定义：</p>
-<ul>
-<li>首先是类型说明符，随后紧跟一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束：int m = 1,n = 1;</li>
-<li>当变量在创建时获得了一个特定的值，我们说这个变量被初始化了。用于初始化变量的值可以是任意复杂的表达式；</li>
-<li>当一次定义了一个或多个变量时，变量的名字随着定义就可以使用了，如：int m=1,n=1; int sum = m + n;</li>
-</ul>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ul>
-<li>在程序运行过程中，其值一直保持不变的量为常量；</li>
-<li>常量也区分不同的数据类型；</li>
-</ul>
-<p>常量在C++中有两种定义的方法：</p>
-<ol>
-<li>使用#define，如：#define PI 3.14</li>
-<li>使用const，如：const double PI = 3.14</li>
-</ol>
-<p>尽量使用const形式定义变量，因为#define不会出现在编译时期，在编译出错时不容易排错。</p>
-<h2 id="整数常量"><a href="#整数常量" class="headerlink" title="整数常量"></a>整数常量</h2><p>整数常量可以是十进制、八进制或者十六进制的常量</p>
-<ul>
-<li>前缀指定基数：0x或者0X表示十六进制，0表示八进制，不带前缀则默认十进制；</li>
-<li>整数常量也可以带一个后缀，后缀是U和L的组合，U表示无符号整数，L表示长整数。后缀可以是大写也可以小写，不区分顺序。</li>
-</ul>
-<h2 id="布尔常量"><a href="#布尔常量" class="headerlink" title="布尔常量"></a>布尔常量</h2><p>布尔常量共有两个，他们都是C++关键字，true代表真，false代表假。</p>
-<h2 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h2><ul>
-<li>字符常量是括在单引号中的。如果常量以L开头，则表示宽字符常量。如果是宽字符常量则必须保存在wchar_t类型的变量中；</li>
-<li>字符常量可以是一个普通字符（‘x’）、一个转义序列（’\t’）、或者一个通用字符（’\u02C0’）。</li>
-<li>需要表达一些符号的时候需要用到转义字符</li>
-</ul>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客搭建与部署</title>
-    <url>/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
-    <content><![CDATA[<p>Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。</p>
-<h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h2 id="1、Node-js"><a href="#1、Node-js" class="headerlink" title="1、Node.js"></a>1、Node.js</h2><p>Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击<a href="https://nodejs.org/zh-cn/">这里</a>，一路next。安装完成后可以用命令行查看版本号。</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">node -v <span class="comment">//查看node.js的版本</span></span><br><span class="line"></span><br><span class="line">npm -v  <span class="comment">//查看包管理器的版本</span></span><br></pre></td></tr></table></figure>
-<p>由于国内环境使用npm速度感人，可以安装cnpm，把镜像源换成淘宝的<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
-<p>之后可以命令行输入cnpm，如果能打出帮助界面表示安装成功。</p>
-<h2 id="2、Git"><a href="#2、Git" class="headerlink" title="2、Git"></a>2、Git</h2><p>git的相关配置不在此赘述。hexo的很多操作都要依赖于git</p>
-<h2 id="3、Hexo"><a href="#3、Hexo" class="headerlink" title="3、Hexo"></a>3、Hexo</h2><p>Hexo依托于npm包管理器，我们可以直接下载<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure><br>-g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo -v    <span class="comment">//查看Hexo版本</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>首先我们新建一个存放博客的文件目录。之后我们的操作全部在此目录下。如果之后我们搭建错误想要从头再来，直接删掉这个目录新建一个即可。</p>
-<p>然后我们初始化hexo<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><br>初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
-<p>之后安装hexo的依赖组件<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure></p>
-<p>目前目录下面有如下几个部分：</p>
-<ul>
-<li>node_modules：存的是利用【npm install —save】下载安装的组件</li>
-<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
-<li>source：存放用户资源，即我们的待发布文档</li>
-<li>themes：存放主题文件夹，默认landspace</li>
-<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
-<li>package.json：应用程序的信息</li>
-</ul>
-<p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure><br>本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
-<h1 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇文章&quot;</span></span><br><span class="line"><span class="comment">//hexo new命令，会在source\\_posts目录下生成一篇博客文章</span></span><br></pre></td></tr></table></figure>
-<p>生成博客还是老三样<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
-<h1 id="四、部署到github"><a href="#四、部署到github" class="headerlink" title="四、部署到github"></a>四、部署到github</h1><p>执行完上述步骤，我们的博客只能在本地看，我们必须部署到网上才能通过网络来看。Github提供GitPages免费站点服务，自带域名和1G免费空间，存放博客资源和网页信息足够。</p>
-<p>git本地配置和ssh公钥配不再赘述</p>
-<h2 id="1、新建git仓库"><a href="#1、新建git仓库" class="headerlink" title="1、新建git仓库"></a>1、新建git仓库</h2><p>要注意仓库名必须要符合规则，即【用户名.github.io】格式。git会跟进这个仓库来创建域名。</p>
-<h2 id="2、hexo配置git插件"><a href="#2、hexo配置git插件" class="headerlink" title="2、hexo配置git插件"></a>2、hexo配置git插件</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>安装完成后我们需要修改_config.yml文件中的Deployment信息（最下面）<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">    type:</span> git</span><br><span class="line"><span class="symbol">    repo:</span> git@github.com:Liuqianci/Liuqianci.github.io.git</span><br><span class="line"><span class="symbol">    branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<h2 id="3、部署远端"><a href="#3、部署远端" class="headerlink" title="3、部署远端"></a>3、部署远端</h2><p>在之前的基础上，可以把本地文章部署到远端了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo d   <span class="comment">//hexo deploy命令，部署远端</span></span><br></pre></td></tr></table></figure></p>
-<p>此时我们的github仓库就有内容了，我们也可以输入域名直接访问我们的博客。</p>
-<h1 id="五、自定义域名"><a href="#五、自定义域名" class="headerlink" title="五、自定义域名"></a>五、自定义域名</h1><p>虽然gitpages给我们提供了一个域名，但是我们还可以自己申请一个属于自己的域名。我绑定的是腾讯的域名。</p>
-<p>在腾讯云里申请域名，此流程很快。</p>
-<p>域名申请下来后，需要绑定我们的博客网站。在腾讯云的控制台上进行域名解析。一般解析两条，A对应IP，CNAME对应域名。我们博客的IP，直接ping我们博客的域名即可。</p>
-<p>域名解析完成后，我们要进行域名绑定，在source目录下新建一个CNAME文件，写入自己的域名。然后在GitPages上也进行配置，进入Github的settings中，添加GitPages的Custom Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启https</p>
-<p>最后在_config.yml的url选项中填写我们的自定义域名。完成发布。</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown格式</title>
     <url>/2022/02/06/Markdown%E6%A0%BC%E5%BC%8F/</url>
     <content><![CDATA[<p>Hexo博客要求必须使用Github风格的Markdown语言编辑。所以需要了解具体的编写格式。</p>
@@ -757,8 +712,9 @@
 </div>
 <p><code>------</code>表示左对齐，<code>:------：</code>表示居中，<code>-----:</code>表示右对齐<br>Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
 <h1 id="六、流程图"><a href="#六、流程图" class="headerlink" title="六、流程图"></a>六、流程图</h1><p>Hexo里流程图限制多多，直接在其他软件画完截图吧。我也懒得学了。【流汗黄豆】</p>
-<h1 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h1><p>常见转义如下：</p>
-<figure class="highlight llvm"><table><tr><td class="code"><pre><span class="line">! &amp;<span class="variable">#33</span><span class="comment">; — 惊叹号 Exclamation mark</span></span><br><span class="line">” &amp;<span class="variable">#34</span><span class="comment">; &amp;quot; 双引号 Quotation mark</span></span><br><span class="line"># &amp;<span class="variable">#35</span><span class="comment">; — 数字标志 Number sign</span></span><br><span class="line">$ &amp;<span class="variable">#36</span><span class="comment">; — 美元标志 Dollar sign</span></span><br><span class="line">% &amp;<span class="variable">#37</span><span class="comment">; — 百分号 Percent sign</span></span><br><span class="line">&amp; &amp;<span class="variable">#38</span><span class="comment">; &amp;amp; Ampersand</span></span><br><span class="line">‘ &amp;<span class="variable">#39</span><span class="comment">; — 单引号 Apostrophe</span></span><br><span class="line">( &amp;<span class="variable">#40</span><span class="comment">; — 小括号左边部分 Left parenthesis</span></span><br><span class="line">) &amp;<span class="variable">#41</span><span class="comment">; — 小括号右边部分 Right parenthesis</span></span><br><span class="line">* &amp;<span class="variable">#42</span><span class="comment">; — 星号 Asterisk</span></span><br><span class="line">+ &amp;<span class="variable">#43</span><span class="comment">; — 加号 Plus sign</span></span><br><span class="line">&lt; &amp;<span class="variable">#60</span><span class="comment">; &amp;lt; 小于号 Less than</span></span><br><span class="line"><span class="operator">=</span> &amp;<span class="variable">#61</span><span class="comment">; — 等于符号 Equals sign</span></span><br><span class="line">- &amp;<span class="variable">#45</span><span class="comment">; &amp;minus; — 减号</span></span><br><span class="line">&gt; &amp;<span class="variable">#62</span><span class="comment">; &amp;gt; 大于号 Greater than</span></span><br><span class="line">? &amp;<span class="variable">#63</span><span class="comment">; — 问号 Question mark</span></span><br><span class="line">@ &amp;<span class="variable">#64</span><span class="comment">; — Commercial at</span></span><br><span class="line">[ &amp;<span class="variable">#91</span><span class="comment">; --- 中括号左边部分 Left square bracket</span></span><br><span class="line">\ &amp;<span class="variable">#92</span><span class="comment">; --- 反斜杠 Reverse solidus (backslash)</span></span><br><span class="line">] &amp;<span class="variable">#93</span><span class="comment">; — 中括号右边部分 Right square bracket</span></span><br><span class="line">&#123; &amp;<span class="variable">#123</span><span class="comment">; — 大括号左边部分 Left curly brace</span></span><br><span class="line">| &amp;<span class="variable">#124</span><span class="comment">; — 竖线Vertical bar</span></span><br><span class="line">&#125; &amp;<span class="variable">#125</span><span class="comment">; — 大括号右边部分 Right curly brace</span></span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="七、特殊字符"><a href="#七、特殊字符" class="headerlink" title="七、特殊字符"></a>七、特殊字符</h1><p>常见转义如下：</p>
+<figure class="highlight llvm"><table><tr><td class="code"><pre><span class="line">! &amp;<span class="variable">#33</span><span class="comment">; — 惊叹号 Exclamation mark</span></span><br><span class="line">” &amp;<span class="variable">#34</span><span class="comment">; &amp;quot; 双引号 Quotation mark</span></span><br><span class="line"># &amp;<span class="variable">#35</span><span class="comment">; — 数字标志 Number sign</span></span><br><span class="line">$ &amp;<span class="variable">#36</span><span class="comment">; — 美元标志 Dollar sign</span></span><br><span class="line">% &amp;<span class="variable">#37</span><span class="comment">; — 百分号 Percent sign</span></span><br><span class="line">&amp; &amp;<span class="variable">#38</span><span class="comment">; &amp;amp; Ampersand</span></span><br><span class="line">‘ &amp;<span class="variable">#39</span><span class="comment">; — 单引号 Apostrophe</span></span><br><span class="line">( &amp;<span class="variable">#40</span><span class="comment">; — 小括号左边部分 Left parenthesis</span></span><br><span class="line">) &amp;<span class="variable">#41</span><span class="comment">; — 小括号右边部分 Right parenthesis</span></span><br><span class="line">* &amp;<span class="variable">#42</span><span class="comment">; — 星号 Asterisk</span></span><br><span class="line">+ &amp;<span class="variable">#43</span><span class="comment">; — 加号 Plus sign</span></span><br><span class="line">&lt; &amp;<span class="variable">#60</span><span class="comment">; &amp;lt; 小于号 Less than</span></span><br><span class="line"><span class="operator">=</span> &amp;<span class="variable">#61</span><span class="comment">; — 等于符号 Equals sign</span></span><br><span class="line">- &amp;<span class="variable">#45</span><span class="comment">; &amp;minus; — 减号</span></span><br><span class="line">&gt; &amp;<span class="variable">#62</span><span class="comment">; &amp;gt; 大于号 Greater than</span></span><br><span class="line">? &amp;<span class="variable">#63</span><span class="comment">; — 问号 Question mark</span></span><br><span class="line">@ &amp;<span class="variable">#64</span><span class="comment">; — Commercial at</span></span><br><span class="line">[ &amp;<span class="variable">#91</span><span class="comment">; --- 中括号左边部分 Left square bracket</span></span><br><span class="line">\ &amp;<span class="variable">#92</span><span class="comment">; --- 反斜杠 Reverse solidus (backslash)</span></span><br><span class="line">] &amp;<span class="variable">#93</span><span class="comment">; — 中括号右边部分 Right square bracket</span></span><br><span class="line">&#123; &amp;<span class="variable">#123</span><span class="comment">; — 大括号左边部分 Left curly brace</span></span><br><span class="line">| &amp;<span class="variable">#124</span><span class="comment">; — 竖线Vertical bar</span></span><br><span class="line">&#125; &amp;<span class="variable">#125</span><span class="comment">; — 大括号右边部分 Right curly brace</span></span><br></pre></td></tr></table></figure>
+<h1 id="八、hexo模板"><a href="#八、hexo模板" class="headerlink" title="八、hexo模板"></a>八、hexo模板</h1><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="meta"># ！！！！！！！！！！</span></span><br><span class="line"><span class="meta"># 每一项的 : 后面均有一个空格</span></span><br><span class="line"><span class="meta"># 且 : 为英文符号</span></span><br><span class="line"><span class="meta"># ！！！！！！！！！！</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">title:</span></span><br><span class="line"><span class="meta"># 文章标题，可以为中文</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">date:</span></span><br><span class="line"><span class="meta"># 建立日期，如果自己手动添加，请按固定格式</span></span><br><span class="line"><span class="meta"># 就算不写，页面每篇文章顶部的发表于……也能显示</span></span><br><span class="line"><span class="meta"># 只要在主题配置文件中，配置了 created_at 就行</span></span><br><span class="line"><span class="meta"># 那为什么还要自己加上？</span></span><br><span class="line"><span class="meta"># 自定义文章发布的时间</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">updated:</span></span><br><span class="line"><span class="meta"># 更新日期，其它与上面的建立日期类似</span></span><br><span class="line"><span class="meta"># 不过在页面每篇文章顶部，是更新于……</span></span><br><span class="line"><span class="meta"># 在主题配置文件中，是 updated_at</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">permalink:</span></span><br><span class="line"><span class="meta"># 若站点配置文件下的 permalink 配置了 title</span></span><br><span class="line"><span class="meta"># 则可以替换文章 URL 里面的 title（文章标题）</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">categories:</span></span><br><span class="line"><span class="meta"># 分类，支持多级，比如：</span></span><br><span class="line"><span class="meta"># - technology</span></span><br><span class="line"><span class="meta"># - computer</span></span><br><span class="line"><span class="meta"># - computer-aided-art</span></span><br><span class="line"><span class="meta"># 则为 technology/computer/computer-aided-art</span></span><br><span class="line"><span class="meta"># （不适用于 layout: page）</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">tags:</span></span><br><span class="line"><span class="meta"># 标签</span></span><br><span class="line"><span class="meta"># 多个可以这样写 [标签1,标签2,标签3]</span></span><br><span class="line"><span class="meta"># （不适用于 layout: page）</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">description:</span></span><br><span class="line"><span class="meta"># 文章的描述，在每篇文章标题下方显示</span></span><br><span class="line"><span class="meta"># 并且作为网页的 description 元数据</span></span><br><span class="line"><span class="meta"># 如果不写，则自动取 &lt;!-- more --&gt;</span></span><br><span class="line"><span class="meta"># 之前的文字作为网页的 description 元数据</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">keywords:</span></span><br><span class="line"><span class="meta"># 关键字，并且作为网页的 keywords 元数据</span></span><br><span class="line"><span class="meta"># 如果不写，则自动取 tags 里的项</span></span><br><span class="line"><span class="meta"># 作为网页的 keywords 元数据</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">comments:</span></span><br><span class="line"><span class="meta"># 是否开启评论</span></span><br><span class="line"><span class="meta"># 默认值是 true</span></span><br><span class="line"><span class="meta"># 要关闭写 false</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">layout:</span></span><br><span class="line"><span class="meta"># 页面布局，默认值是 post，默认值可以在</span></span><br><span class="line"><span class="meta"># 站点配置文件中修改 default_layout</span></span><br><span class="line"><span class="meta"># 另：404 页面可能用到，将其值改为 false</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">type:</span></span><br><span class="line"><span class="meta"># categories，目录页面</span></span><br><span class="line"><span class="meta"># tags，标签页面</span></span><br><span class="line"><span class="meta"># picture，用来生成 group-pictures</span></span><br><span class="line"><span class="meta"># quote？</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//io-oi.me/tech/test/</span></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">photos:</span></span><br><span class="line"><span class="meta"># Gallery support，用来支持画廊╱相册，用法如下：</span></span><br><span class="line"><span class="meta"># - photo_url_1</span></span><br><span class="line"><span class="meta"># - photo_url_2</span></span><br><span class="line"><span class="meta"># - photo_url_3</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//io-oi.me/tech/test/</span></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">link:</span></span><br><span class="line"><span class="meta"># 文章的外部链接</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//io-oi.me/tech/test/</span></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">image:</span></span><br><span class="line"><span class="meta"># 自定义的文章摘要图片，只在页面展示，文章内消失</span></span><br><span class="line"><span class="meta"># 此项只有参考本文 5.14 节配置好，否则请勿添加！</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">sticky:</span></span><br><span class="line"><span class="meta"># 文章置顶</span></span><br><span class="line"><span class="meta"># 此项只有参考本文 5.15 节配置好，否则请勿添加！</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">password:</span></span><br><span class="line"><span class="meta"># 文章密码，此项只有参考教程：</span></span><br><span class="line"><span class="meta"># http:<span class="comment">//shenzekun.cn/hexo的next主题个性化配置教程.html</span></span></span><br><span class="line"><span class="meta"># 第 24 节，配置好，否则请勿添加！</span></span><br><span class="line"><span class="meta"># 发现还是有 bug 的，就是右键在新标签中打开</span></span><br><span class="line"><span class="meta"># 然后无论是否输入密码，都能看到内容</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
@@ -767,81 +723,48 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/05/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>Hexo博客搭建与部署</title>
+    <url>/2022/02/04/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<p>Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。</p>
+<h1 id="一、环境搭建"><a href="#一、环境搭建" class="headerlink" title="一、环境搭建"></a>一、环境搭建</h1><h2 id="1、Node-js"><a href="#1、Node-js" class="headerlink" title="1、Node.js"></a>1、Node.js</h2><p>Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击<a href="https://nodejs.org/zh-cn/">这里</a>，一路next。安装完成后可以用命令行查看版本号。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">node -v <span class="comment">//查看node.js的版本</span></span><br><span class="line"></span><br><span class="line">npm -v  <span class="comment">//查看包管理器的版本</span></span><br></pre></td></tr></table></figure>
+<p>由于国内环境使用npm速度感人，可以安装cnpm，把镜像源换成淘宝的<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
+<p>之后可以命令行输入cnpm，如果能打出帮助界面表示安装成功。</p>
+<h2 id="2、Git"><a href="#2、Git" class="headerlink" title="2、Git"></a>2、Git</h2><p>git的相关配置不在此赘述。hexo的很多操作都要依赖于git</p>
+<h2 id="3、Hexo"><a href="#3、Hexo" class="headerlink" title="3、Hexo"></a>3、Hexo</h2><p>Hexo依托于npm包管理器，我们可以直接下载<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure><br>-g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo -v    <span class="comment">//查看Hexo版本</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="二、博客搭建"><a href="#二、博客搭建" class="headerlink" title="二、博客搭建"></a>二、博客搭建</h1><p>首先我们新建一个存放博客的文件目录。之后我们的操作全部在此目录下。如果之后我们搭建错误想要从头再来，直接删掉这个目录新建一个即可。</p>
+<p>然后我们初始化hexo<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><br>初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
+<p>之后安装hexo的依赖组件<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure></p>
+<p>目前目录下面有如下几个部分：</p>
+<ul>
+<li>node_modules：存的是利用【npm install —save】下载安装的组件</li>
+<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
+<li>source：存放用户资源，即我们的待发布文档</li>
+<li>themes：存放主题文件夹，默认landspace</li>
+<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
+<li>package.json：应用程序的信息</li>
+</ul>
+<p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure><br>本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
+<h1 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h1><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇文章&quot;</span></span><br><span class="line"><span class="comment">//hexo new命令，会在source\\_posts目录下生成一篇博客文章</span></span><br></pre></td></tr></table></figure>
+<p>生成博客还是老三样<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
+<h1 id="四、部署到github"><a href="#四、部署到github" class="headerlink" title="四、部署到github"></a>四、部署到github</h1><p>执行完上述步骤，我们的博客只能在本地看，我们必须部署到网上才能通过网络来看。Github提供GitPages免费站点服务，自带域名和1G免费空间，存放博客资源和网页信息足够。</p>
+<p>git本地配置和ssh公钥配不再赘述</p>
+<h2 id="1、新建git仓库"><a href="#1、新建git仓库" class="headerlink" title="1、新建git仓库"></a>1、新建git仓库</h2><p>要注意仓库名必须要符合规则，即【用户名.github.io】格式。git会跟进这个仓库来创建域名。</p>
+<h2 id="2、hexo配置git插件"><a href="#2、hexo配置git插件" class="headerlink" title="2、hexo配置git插件"></a>2、hexo配置git插件</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+<p>安装完成后我们需要修改_config.yml文件中的Deployment信息（最下面）<br><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">    type:</span> git</span><br><span class="line"><span class="symbol">    repo:</span> git@github.com:Liuqianci/Liuqianci.github.io.git</span><br><span class="line"><span class="symbol">    branch:</span> master</span><br></pre></td></tr></table></figure></p>
+<h2 id="3、部署远端"><a href="#3、部署远端" class="headerlink" title="3、部署远端"></a>3、部署远端</h2><p>在之前的基础上，可以把本地文章部署到远端了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo d   <span class="comment">//hexo deploy命令，部署远端</span></span><br></pre></td></tr></table></figure></p>
+<p>此时我们的github仓库就有内容了，我们也可以输入域名直接访问我们的博客。</p>
+<h1 id="五、自定义域名"><a href="#五、自定义域名" class="headerlink" title="五、自定义域名"></a>五、自定义域名</h1><p>虽然gitpages给我们提供了一个域名，但是我们还可以自己申请一个属于自己的域名。我绑定的是腾讯的域名。</p>
+<p>在腾讯云里申请域名，此流程很快。</p>
+<p>域名申请下来后，需要绑定我们的博客网站。在腾讯云的控制台上进行域名解析。一般解析两条，A对应IP，CNAME对应域名。我们博客的IP，直接ping我们博客的域名即可。</p>
+<p>域名解析完成后，我们要进行域名绑定，在source目录下新建一个CNAME文件，写入自己的域名。然后在GitPages上也进行配置，进入Github的settings中，添加GitPages的Custom Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启https</p>
+<p>最后在_config.yml的url选项中填写我们的自定义域名。完成发布。</p>
 ]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字符串</title>
-    <url>/2022/02/08/%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h1 id="字符串变量与常量"><a href="#字符串变量与常量" class="headerlink" title="字符串变量与常量"></a>字符串变量与常量</h1><h2 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h2><ul>
-<li>字符串是一个特殊的字符数组，以空字符&#92;0结尾</li>
-<li>空字符&#92;0自动添加到字符串的内部表示中</li>
-<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char str[11] = {“helloworld”},十个字符要留11个位置</li>
-</ul>
-<h2 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h2><ul>
-<li>字符串常量就是一对双引号括起来的字符序列：”helloworld”</li>
-<li>字符串常量中的每个元素可以作为一个数组元素访问</li>
-<li>字符串常量也是以’\0’结尾的</li>
-</ul>
-<h1 id="字符串的指针表示"><a href="#字符串的指针表示" class="headerlink" title="字符串的指针表示"></a>字符串的指针表示</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p>表示一个char型的指针变量，指向内存中一个存储字符串“helloworld”的地址。</p>
-<p>定义字符串的两种方式，char[]和char*，要区分以下两个概念：</p>
-<ul>
-<li>区分地址本身和地址存储的信息；</li>
-<li>区分可变与不可变；</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[<span class="number">11</span>] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line">	<span class="comment">//strHello是数组变量，它本身的值是不允许改变的，但是它指向的区域的值strHello[index]是可以改变的</span></span><br><span class="line">	strHello[<span class="number">2</span>] = <span class="string">&#x27;6&#x27;</span>;    <span class="comment">//strHello = he6loworld</span></span><br><span class="line">	<span class="comment">//strHello = &#123; &quot;helloworld&quot; &#125;;    //不允许改变了，编译不通过</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//ptrHello是指针变量，它本身是可以改变的，但是ptrHello[index]指向的值可变与否要取绝与所指向的区间是否可以改变</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* ptrHello_1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//指针指向常量区(必须要加const)，ptrHello[index]不可改变，但本身指向的地址可以变。</span></span><br><span class="line">	ptrHello_1 = <span class="string">&quot;change&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> tmp[<span class="number">7</span>] = <span class="string">&quot;change&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* ptrHello_2 = strHello;      <span class="comment">//指针指向数组变量，ptrHello[index]可以改变,本身也可以变</span></span><br><span class="line">	ptrHello_2[<span class="number">2</span>] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">	ptrHello_2 = tmp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><p>头文件：string.h</p>
-<h2 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
-<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到’\0’为止</p>
-<h2 id="字符串拷贝"><a href="#字符串拷贝" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
-<p>要注意一个陷阱，一定要保证字符串s1的内存大小能存的下要拷贝的s2的大小</p>
-<h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
-<p>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小<br>两个字符串指针不能直接相加，拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
-<h2 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
-<h2 id="安全函数"><a href="#安全函数" class="headerlink" title="安全函数"></a>安全函数</h2><p>以上程序都需要我们进行边界检查以防止内存问题。现在我们往往在程序中使用更加安全的API函数</p>
-<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。<br>strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有\0结束标志 。</p>
-<h1 id="字符串操作重点"><a href="#字符串操作重点" class="headerlink" title="字符串操作重点"></a>字符串操作重点</h1><ol>
-<li>C原始字符串的操作在安全性和效率中存在一定问题：<pre><code> 1. 一定要注意不要缓冲区溢出。
- 2. strlen的效率可以提升，当字符串很长的时候strlen的效率不高，我们可以用空间换时间，在定义字符串的时候用变量记住它的长度，不使用strlen函数来计算
-</code></pre></li>
-<li>目前有一个很好的开源库Redis字符串：<a href="https://redis.io/">Redis库</a></li>
-</ol>
-<h1 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h1><p>C++标准库中提供了string类型专门表示字符串</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
-<p>使用string可以更加方便和安全的管理字符串，对性能要求不是特别高的场景可以使用。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="字符串长度-1"><a href="#字符串长度-1" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较-1"><a href="#字符串比较-1" class="headerlink" title="字符串比较"></a>字符串比较</h2><p>直接使用&#61;&#61;&emsp;&#33;&#61;&emsp;&#60;&emsp;&#62;&emsp;&#62;&#61;&emsp;&#60; &#61; 即可，比较ASCII码来比较。</p>
-<h2 id="转换为C风格字符串"><a href="#转换为C风格字符串" class="headerlink" title="转换为C风格字符串"></a>转换为C风格字符串</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="随机访问"><a href="#随机访问" class="headerlink" title="随机访问"></a>随机访问</h2><p>字符串本身可以使用下标的方式访问</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout&lt;&lt;s[<span class="number">0</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拷贝-1"><a href="#字符串拷贝-1" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><p>不需要使用函数，直接使用=赋值</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">string s2 = s1;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拼接-1"><a href="#字符串拼接-1" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><p>string重载了+和+=，不需要使用函数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
       </tags>
   </entry>
   <entry>
@@ -865,6 +788,26 @@
 <p>之后我们把我们之前写的博客目录下的文件，全部拷贝到这个本地仓库中【注意要把之前themes目录中的.git文件删掉。因为一个git目录下不能有另一个git仓库。如果我们需要更新主题文件，只能把主题clone到本地后进行拷贝覆盖】。然后提交git到Hexo分支：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
 <p>此时我们观察github，可以看到，master分支里面保存着静态博客资源（在_config.yml中的Deployment配置的），Hexo分支备份博客部署文件，供我们维护更新。两者在一个仓库中互不干扰。</p>
 <h1 id="三、新的提交操作"><a href="#三、新的提交操作" class="headerlink" title="三、新的提交操作"></a>三、新的提交操作</h1><p>目前我们在写博客时，就要在提交前做git更新了<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git pull     <span class="comment">//提交前最好更新最新</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/05/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
       <categories>
         <category>Hexo</category>
@@ -1117,21 +1060,56 @@
       </tags>
   </entry>
   <entry>
-    <title>调试技巧——assert()</title>
-    <url>/2022/02/08/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
-    <content><![CDATA[<p>&emsp;&emsp;编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
-<p>&emsp;&emsp;举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" alt=""></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
-<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
-<p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
-<p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
-<p>注意assert()不是函数，而是一个宏定义。</p>
-]]></content>
+    <title>字符串</title>
+    <url>/2022/02/08/%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h1 id="字符串变量与常量"><a href="#字符串变量与常量" class="headerlink" title="字符串变量与常量"></a>字符串变量与常量</h1><h2 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h2><ul>
+<li>字符串是一个特殊的字符数组，以空字符&#92;0结尾</li>
+<li>空字符&#92;0自动添加到字符串的内部表示中</li>
+<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char str[11] = {“helloworld”},十个字符要留11个位置</li>
+</ul>
+<h2 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h2><ul>
+<li>字符串常量就是一对双引号括起来的字符序列：”helloworld”</li>
+<li>字符串常量中的每个元素可以作为一个数组元素访问</li>
+<li>字符串常量也是以’\0’结尾的</li>
+</ul>
+<h1 id="字符串的指针表示"><a href="#字符串的指针表示" class="headerlink" title="字符串的指针表示"></a>字符串的指针表示</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>表示一个char型的指针变量，指向内存中一个存储字符串“helloworld”的地址。</p>
+<p>定义字符串的两种方式，char[]和char*，要区分以下两个概念：</p>
+<ul>
+<li>区分地址本身和地址存储的信息；</li>
+<li>区分可变与不可变；</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[<span class="number">11</span>] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line">	<span class="comment">//strHello是数组变量，它本身的值是不允许改变的，但是它指向的区域的值strHello[index]是可以改变的</span></span><br><span class="line">	strHello[<span class="number">2</span>] = <span class="string">&#x27;6&#x27;</span>;    <span class="comment">//strHello = he6loworld</span></span><br><span class="line">	<span class="comment">//strHello = &#123; &quot;helloworld&quot; &#125;;    //不允许改变了，编译不通过</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//ptrHello是指针变量，它本身是可以改变的，但是ptrHello[index]指向的值可变与否要取绝与所指向的区间是否可以改变</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* ptrHello_1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//指针指向常量区(必须要加const)，ptrHello[index]不可改变，但本身指向的地址可以变。</span></span><br><span class="line">	ptrHello_1 = <span class="string">&quot;change&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> tmp[<span class="number">7</span>] = <span class="string">&quot;change&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* ptrHello_2 = strHello;      <span class="comment">//指针指向数组变量，ptrHello[index]可以改变,本身也可以变</span></span><br><span class="line">	ptrHello_2[<span class="number">2</span>] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">	ptrHello_2 = tmp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><p>头文件：string.h</p>
+<h2 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
+<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到’\0’为止</p>
+<h2 id="字符串拷贝"><a href="#字符串拷贝" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
+<p>要注意一个陷阱，一定要保证字符串s1的内存大小能存的下要拷贝的s2的大小</p>
+<h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
+<p>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小<br>两个字符串指针不能直接相加，拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
+<h2 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
+<h2 id="安全函数"><a href="#安全函数" class="headerlink" title="安全函数"></a>安全函数</h2><p>以上程序都需要我们进行边界检查以防止内存问题。现在我们往往在程序中使用更加安全的API函数</p>
+<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。<br>strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有\0结束标志 。</p>
+<h1 id="字符串操作重点"><a href="#字符串操作重点" class="headerlink" title="字符串操作重点"></a>字符串操作重点</h1><ol>
+<li>C原始字符串的操作在安全性和效率中存在一定问题：<pre><code> 1. 一定要注意不要缓冲区溢出。
+ 2. strlen的效率可以提升，当字符串很长的时候strlen的效率不高，我们可以用空间换时间，在定义字符串的时候用变量记住它的长度，不使用strlen函数来计算
+</code></pre></li>
+<li>目前有一个很好的开源库Redis字符串：<a href="https://redis.io/">Redis库</a></li>
+</ol>
+<h1 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h1><p>C++标准库中提供了string类型专门表示字符串</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
+<p>使用string可以更加方便和安全的管理字符串，对性能要求不是特别高的场景可以使用。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="字符串长度-1"><a href="#字符串长度-1" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较-1"><a href="#字符串比较-1" class="headerlink" title="字符串比较"></a>字符串比较</h2><p>直接使用&#61;&#61;&emsp;&#33;&#61;&emsp;&#60;&emsp;&#62;&emsp;&#62;&#61;&emsp;&#60; &#61; 即可，比较ASCII码来比较。</p>
+<h2 id="转换为C风格字符串"><a href="#转换为C风格字符串" class="headerlink" title="转换为C风格字符串"></a>转换为C风格字符串</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="随机访问"><a href="#随机访问" class="headerlink" title="随机访问"></a>随机访问</h2><p>字符串本身可以使用下标的方式访问</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout&lt;&lt;s[<span class="number">0</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串拷贝-1"><a href="#字符串拷贝-1" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><p>不需要使用函数，直接使用=赋值</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">string s2 = s1;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串拼接-1"><a href="#字符串拼接-1" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><p>string重载了+和+=，不需要使用函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>C++</category>
       </categories>
@@ -1199,6 +1177,29 @@
 </ul>
 <p>要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line">vec.<span class="built_in">eraser</span>(vec.<span class="built_in">end</span>()<span class="number">-1</span>);   <span class="comment">//这两者等价</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调试技巧——assert()</title>
+    <url>/2022/02/08/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
+    <content><![CDATA[<p>&emsp;&emsp;编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
+<p>&emsp;&emsp;举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
+<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
+<p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
+<p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
+<p>注意assert()不是函数，而是一个宏定义。</p>
 ]]></content>
       <categories>
         <category>C++</category>
