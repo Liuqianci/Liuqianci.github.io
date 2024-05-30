@@ -75,7 +75,12 @@ hexo s          //hexo server命令，开启本地服务器，可供我们本地
 
 ```C
 hexo n "第一篇文章"
-//hexo new命令，会在source\\_posts目录下生成一篇博客文章
+//hexo new [layout] <title>
+//hexo new命令，不设置layout会根据_config.yml中的default_layout在source\\_posts目录下生成一篇博客文章
+//如果标题包含空格，使用引号括起来
+
+//-p 自定义路径
+hexo new page --path about/me "About me"
 ```
 
 生成博客还是老三样
