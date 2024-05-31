@@ -56,6 +56,7 @@ cnpm install
 ```
 
 目前目录下面有如下几个部分：
+
 - node_modules：存的是利用【npm install --save】下载安装的组件
 - scaffolds：存放模板文件，可以创建post、page、draft三种页面
 - source：存放用户资源，即我们的待发布文档
