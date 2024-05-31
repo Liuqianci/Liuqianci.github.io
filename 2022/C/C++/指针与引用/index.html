@@ -14,10 +14,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="指针   内存由很多内存单元组成。这些内存单元用于存放各种类型的数据。为了标识内存单元，计算机对内存的每个单元都进行了编号，这个编号就称为内存地址，内存地址决定了内存单元在内存中的位置。程序员并不需要记住这些内存地址，C++的编译器让我们可以通过名字来访问这些内存位置。   指针本身就是一个变量，其符合变量定义的基本形式，它存储的值是内存地址。对于一个基本类型T，T* 是“到T的指针”类型，">
@@ -28,7 +30,7 @@
 <meta property="og:description" content="指针   内存由很多内存单元组成。这些内存单元用于存放各种类型的数据。为了标识内存单元，计算机对内存的每个单元都进行了编号，这个编号就称为内存地址，内存地址决定了内存单元在内存中的位置。程序员并不需要记住这些内存地址，C++的编译器让我们可以通过名字来访问这些内存位置。   指针本身就是一个变量，其符合变量定义的基本形式，它存储的值是内存地址。对于一个基本类型T，T* 是“到T的指针”类型，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-09T15:33:00.000Z">
-<meta property="article:modified_time" content="2024-05-31T16:36:20.122Z">
+<meta property="article:modified_time" content="2024-05-31T19:07:31.454Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="C++基础">
 <meta name="twitter:card" content="summary">
@@ -129,12 +131,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-schedule">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -218,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 00:36:20" itemprop="dateModified" datetime="2024-06-01T00:36:20+08:00">2024-06-01</time>
+                <time title="修改时间：2024-06-01 03:07:31" itemprop="dateModified" datetime="2024-06-01T03:07:31+08:00">2024-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,7 +289,11 @@ array)</p>
 <h2 id="const-pointer-pointer-to-const">const pointer &amp;&amp; pointer
 to const</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* pStr1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//修饰char，指针指向的地址可变，但是存储的区域中的内容不可变</span></span><br><span class="line">	<span class="type">char</span>* <span class="type">const</span> pStr2 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//修饰char*，指针指向的地址不可变。在最新的VS中编译不过，因为&quot;helloworld&quot;是常量，必须要用const指针</span></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* <span class="type">const</span> pStr3 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//地址和空间中的内容都不允许改变</span></span><br><span class="line"></span><br><span class="line">	pStr1 = strHello;</span><br><span class="line">	<span class="comment">//pStr2 = strHello;   //错误，pStr2地址不可改</span></span><br><span class="line">	<span class="comment">//pStr3 = strHello;   //错误，pStr3地址不可改 </span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//pStr1[1] = &#x27;a&#x27;;   //错误，存储区内的char不可改变</span></span><br><span class="line">	pStr2[<span class="number">1</span>] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="comment">//pStr3[1] = &#x27;a&#x27;;   //错误，存储区内的char不可变</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>关于const修饰: + 看左侧最近的部分 + 如果左侧没有，则看右侧</p>
+<p>关于const修饰:</p>
+<ul>
+<li>看左侧最近的部分</li>
+<li>如果左侧没有，则看右侧</li>
+</ul>
 <h2 id="pointer-to-pointer">pointer to pointer</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="type">int</span>* b = &amp;a;</span><br><span class="line"><span class="type">int</span>** c = &amp;b;</span><br></pre></td></tr></table></figure>
 <p>*操作符具有从右向左的结合性，**c 这个表达式相当于
@@ -401,9 +407,12 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%86%
 <li>一般而言，当我们在堆上分配内存时，很多语言会使用new这样的关键字，也有些语言是隐式分配，不使用new的语义，但使用的是new的方式。在C++中new对应词是delete，因为C++是允许程序员完全接管内存的分配释放的。</li>
 </ol>
 <h2 id="分配和回收动态内存的原则">分配和回收动态内存的原则</h2>
-<p>程序通常需要牵扯到三个内存管理器的操作： 1. 分配一个某大小的内存块；
-2. 释放一个之前分配的内存块； 3.
-垃圾收集操作，寻找不再使用的内存块并给予释放；</p>
+<p>程序通常需要牵扯到三个内存管理器的操作：</p>
+<ol type="1">
+<li>分配一个某大小的内存块；</li>
+<li>释放一个之前分配的内存块；</li>
+<li>垃圾收集操作，寻找不再使用的内存块并给予释放；</li>
+</ol>
 <p>这个回收策略需要实现性能、实时性、额外开销等各方面的平衡，很难有统一和高效的做法。
 C++使用了1和2；Java使用了1和3。</p>
 <h2
@@ -488,13 +497,17 @@ style="text-align: center;">所有系统的堆空间上限接近内存(虚拟内
 </table>
 <h1 id="内存泄漏memory-leak问题">内存泄漏(Memory Leak)问题</h1>
 <p>  内存泄漏指的是程序中已经动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果；</p>
-<p>内存泄漏发生的原因和排查方式： 1.
-内存泄漏主要发生在堆内存分配方式中，即“配置了内存后，所有指向该内存的指针都遗失了”。如果缺乏垃圾回收机制，这样的内存片就无法归还系统；
-2.
-因为内存泄漏属于程序运行中的问题，无法通过编译识别，所以只能在程序运行过程中来判别和诊断。</p>
+<p>内存泄漏发生的原因和排查方式：</p>
+<ol type="1">
+<li>内存泄漏主要发生在堆内存分配方式中，即“配置了内存后，所有指向该内存的指针都遗失了”。如果缺乏垃圾回收机制，这样的内存片就无法归还系统；</li>
+<li>因为内存泄漏属于程序运行中的问题，无法通过编译识别，所以只能在程序运行过程中来判别和诊断。</li>
+</ol>
 <h1 id="比指针更安全的解决方案">比指针更安全的解决方案</h1>
-<p>  使用指针是非常危险的行为，可能存在空指针，野指针的问题，并可能造成内存泄漏问题。可是指针又非常高效，所以我们希望以更安全的方式来使用指针。一般有两种典型方案：
-+ 使用更安全的指针：智能指针； + 使用安全的方式：引用；</p>
+<p>  使用指针是非常危险的行为，可能存在空指针，野指针的问题，并可能造成内存泄漏问题。可是指针又非常高效，所以我们希望以更安全的方式来使用指针。一般有两种典型方案：</p>
+<ul>
+<li>使用更安全的指针：智能指针；</li>
+<li>使用安全的方式：引用；</li>
+</ul>
 <h2 id="c的智能指针">C++的智能指针</h2>
 <p>  C++推出了四种常见的智能指针：unique_ptr、shared_ptr、weak_ptr和C++11中已经废弃(deprecated)的auto+ptr,C++17中auto+ptr已经被正式删除。</p>
 <h3 id="auto_ptr">auto_ptr</h3>
@@ -526,9 +539,12 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/weak_pt
 <li>野指针</li>
 <li>不知不觉改变了指针的值，我们却仍然在使用</li>
 </ol>
-<p>使用引用，我们可以避免这些问题： 1. 不存在空引用； 2.
-引用必须被初始化； 3.
-一个引用永远指向它初始化的那个对象，不允许被修改。</p>
+<p>使用引用，我们可以避免这些问题：</p>
+<ol type="1">
+<li>不存在空引用；</li>
+<li>引用必须被初始化；</li>
+<li>一个引用永远指向它初始化的那个对象，不允许被修改。</li>
+</ol>
 <p>引用可以认为是指定变量的别名，使用时可以认为是变量本身：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x1 = <span class="number">1</span>,x2 = <span class="number">3</span>;</span><br><span class="line"><span class="type">int</span>&amp; rx = x1;	<span class="comment">//定义引用，可以认为rx是x1的别名</span></span><br><span class="line">rx = <span class="number">2</span>;</span><br><span class="line">cout&lt;&lt;x1&lt;&lt;rx&lt;&lt;endl;	<span class="comment">//x1和rx都是2</span></span><br><span class="line">rx = x2;		<span class="comment">//引用一旦被初始化就不能更改，所以这里不是赋值rx为x2，而是x1=x2(别名直接替换)</span></span><br><span class="line">cout&lt;&lt;x1&lt;&lt;x2&lt;&lt;endl;		<span class="comment">//都是3</span></span><br></pre></td></tr></table></figure>
 <p>当我们在函数中需要操作形参并且返回时一并返回，这时候我们就可以传递引用。</p>
@@ -636,8 +652,7 @@ Acquisition Is Initization）</span></a></li></ol></li><li class="nav-item nav-l
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+          <a href="/archives">
           <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
@@ -645,7 +660,7 @@ Acquisition Is Initization）</span></a></li></ol></li><li class="nav-item nav-l
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -659,6 +674,9 @@ Acquisition Is Initization）</span></a></li></ol></li><li class="nav-item nav-l
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/Liuqianci" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Liuqianci" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/Damon_liufb@163.com" title="E-Mail → Damon_liufb@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -699,8 +717,10 @@ Acquisition Is Initization）</span></a></li></ol></li><li class="nav-item nav-l
       <span class="post-meta-item-text">站点总字数：</span>
     <span title="站点总字数">47k</span>
 </div>
+
+<!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
+  </div> -->
 
         
 <div class="busuanzi-count">
@@ -737,9 +757,8 @@ Acquisition Is Initization）</span></a></li></ol></li><li class="nav-item nav-l
 
   
   
-  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
 
 <script src="/js/utils.js"></script>
 

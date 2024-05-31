@@ -14,10 +14,12 @@
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
@@ -127,12 +129,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-schedule">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -216,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 00:36:20" itemprop="dateModified" datetime="2024-06-01T00:36:20+08:00">2024-06-01</time>
+                <time title="修改时间：2024-06-01 03:04:42" itemprop="dateModified" datetime="2024-06-01T03:04:42+08:00">2024-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,7 +236,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>678</span>
+              <span>668</span>
             </span>
 
         </div>
@@ -260,11 +262,17 @@ Stroustrup创立了带类的C，这就是C语言的超集。1983年，这个语�
 11之后，每三年C++都会发布新的语言标准，每一版都在基本保留向后兼容性的同时，提供着改进和新功能；</li>
 </ul>
 <h1 id="c特点">C++特点</h1>
-<p>优点： 1. 强大的抽象封装能力：这让C++语言具备了强大的开发工程能力；
-2. 高性能：运行快，占用资源少； 3.
-低功耗：特别适合在各种微型嵌入式设备中高效运行程序；</p>
-<p>缺点： 1. 语法相对复杂，细节比较多； 2.
-需要一些好的规范和范式，否则代码很难维护；</p>
+<p>优点：</p>
+<ol type="1">
+<li>强大的抽象封装能力：这让C++语言具备了强大的开发工程能力；</li>
+<li>高性能：运行快，占用资源少；</li>
+<li>低功耗：特别适合在各种微型嵌入式设备中高效运行程序；</li>
+</ol>
+<p>缺点：</p>
+<ol type="1">
+<li>语法相对复杂，细节比较多；</li>
+<li>需要一些好的规范和范式，否则代码很难维护；</li>
+</ol>
 <h1 id="c的应用">C++的应用</h1>
 <ul>
 <li>大型桌面应用程序（如Google Chrome、Miscrosoft Office）</li>
@@ -501,7 +509,7 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 00:36:20" itemprop="dateModified" datetime="2024-06-01T00:36:20+08:00">2024-06-01</time>
+                <time title="修改时间：2024-06-01 03:09:31" itemprop="dateModified" datetime="2024-06-01T03:09:31+08:00">2024-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -541,11 +549,15 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
 <p>hexo所需要的包信息都已经存储在package.json文件中了，我们可以直接利用这个文件，执行命令行安装所需资源：
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
 <h2 id="博客内容">3、博客内容</h2>
-<p>博客的内容主要就是主题文件和博客文件 - node_modules:
-hexo所需要的文件，这个文件不需要上传git - themes：主题文件 -
-source：博文的md文件 - public：生成的静态页面，这个一般都clean掉 -
-_config.yml：全局配置文件 -
-.gitignore：hexo自动生成的，里面一般会记录node_modules，我们不许要改，这个文件就会被忽略掉</p>
+<p>博客的内容主要就是主题文件和博客文件</p>
+<ul>
+<li>node_modules: hexo所需要的文件，这个文件不需要上传git</li>
+<li>themes：主题文件</li>
+<li>source：博文的md文件</li>
+<li>public：生成的静态页面，这个一般都clean掉</li>
+<li>_config.yml：全局配置文件</li>
+<li>.gitignore：hexo自动生成的，里面一般会记录node_modules，我们不许要改，这个文件就会被忽略掉</li>
+</ul>
 <h1 id="二git仓库修改">二、Git仓库修改</h1>
 <p>对我们之前创建的username.github.io仓库，创建一个新的hexo分支，并在仓库-&gt;Settings-&gt;Branches-&gt;Default
 branch中把这个分支设置为默认分支。clone到本地，此时本地应该是Hexo分支。</p>
@@ -604,7 +616,7 @@ branch中把这个分支设置为默认分支。clone到本地，此时本地应
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 00:36:20" itemprop="dateModified" datetime="2024-06-01T00:36:20+08:00">2024-06-01</time>
+                <time title="修改时间：2024-06-01 03:08:30" itemprop="dateModified" datetime="2024-06-01T03:08:30+08:00">2024-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -655,13 +667,15 @@ target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">这里</a>，一
 <p>然后我们初始化hexo <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
 <p>之后安装hexo的依赖组件 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure></p>
-<p>目前目录下面有如下几个部分： - node_modules：存的是利用【npm install
---save】下载安装的组件 -
-scaffolds：存放模板文件，可以创建post、page、draft三种页面 -
-source：存放用户资源，即我们的待发布文档 -
-themes：存放主题文件夹，默认landspace -
-_config.yml：此文件很重要，是我们网站的配置信息 -
-package.json：应用程序的信息</p>
+<p>目前目录下面有如下几个部分：</p>
+<ul>
+<li>node_modules：存的是利用【npm install --save】下载安装的组件</li>
+<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
+<li>source：存放用户资源，即我们的待发布文档</li>
+<li>themes：存放主题文件夹，默认landspace</li>
+<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
+<li>package.json：应用程序的信息</li>
+</ul>
 <p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure>
 本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
@@ -771,8 +785,7 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+          <a href="/archives">
           <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
@@ -780,7 +793,7 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -794,6 +807,9 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/Liuqianci" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Liuqianci" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/Damon_liufb@163.com" title="E-Mail → Damon_liufb@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -834,8 +850,10 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
       <span class="post-meta-item-text">站点总字数：</span>
     <span title="站点总字数">47k</span>
 </div>
+
+<!--
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
+  </div> -->
 
         
 <div class="busuanzi-count">
@@ -872,9 +890,8 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
 
   
   
-  <script color='0,0,0' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
 
 <script src="/js/utils.js"></script>
 
