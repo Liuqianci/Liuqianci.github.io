@@ -25,7 +25,7 @@
   <meta name="description" content="逻辑结构--线性表的定义 线性表是具有数据类型的n(n 0)个数据元素的有限序列。n为表长，n&#x3D;0时称为空表。  相同数据类型：每个元素所占空间一样大； 有限：长度必须有限，比如所有整数就不是个线性表 序列：必须有次序    是线性表的”第i个“元素线性表中的位序； 是表头元素，是表尾元素。注意线性表的位序是从1开始，数组下标是从0开始； 除表头外，每个元素都有直接前驱；除">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二、线性表">
-<meta property="og:url" content="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
+<meta property="og:url" content="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
 <meta property="og:description" content="逻辑结构--线性表的定义 线性表是具有数据类型的n(n 0)个数据元素的有限序列。n为表长，n&#x3D;0时称为空表。  相同数据类型：每个元素所占空间一样大； 有限：长度必须有限，比如所有整数就不是个线性表 序列：必须有次序    是线性表的”第i个“元素线性表中的位序； 是表头元素，是表尾元素。注意线性表的位序是从1开始，数组下标是从0开始； 除表头外，每个元素都有直接前驱；除">
 <meta property="og:locale" content="zh_CN">
@@ -37,7 +37,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png">
 
-<link rel="canonical" href="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+<link rel="canonical" href="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/">
 
 
 <script id="page-configurations">
@@ -299,7 +299,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
@@ -520,7 +520,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" rel="prev" title="一、数据结构概述">
+    <a href="/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" rel="prev" title="一、数据结构概述">
       <i class="fa fa-chevron-left"></i> 一、数据结构概述
     </a></div>
       <div class="post-nav-item"></div>
