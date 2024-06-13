@@ -325,7 +325,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-14 00:57:41" itemprop="dateModified" datetime="2024-06-14T00:57:41+08:00">2024-06-14</time>
+                <time title="修改时间：2024-06-14 01:10:43" itemprop="dateModified" datetime="2024-06-14T01:10:43+08:00">2024-06-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -465,7 +465,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <h3 id="单链表">单链表</h3>
 <h4 id="单链表定义">单链表定义</h4>
 <p>线性表的链式存储又称为单链表。</p>
-<p>!()[https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.jpg]</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.jpg"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单链表的定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span>{</span></span><br><span class="line">	ElemType data;        <span class="comment">//数据域</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span>   <span class="comment">//指针域</span></span><br><span class="line">}LNode, *LinkList;</span><br><span class="line"></span><br><span class="line"><span class="comment">//表示一个单链表，只需要声明一个头指针L，指向单链表的第一个节点</span></span><br><span class="line">LNode* L;</span><br><span class="line">LinkLisk L;</span><br><span class="line"></span><br><span class="line"><span class="comment">//LNode*和LinkLisk一个意思，不过代码中一般用LNode*来强调这是一个结点，用LinkList来强调这是一个单链表。</span></span><br></pre></td></tr></table></figure>
 <p>单链表有两种实现方式，一种是带头节点，一种是不带头节点：</p>
 <p>不带头节点的单链表初始化方式如下：</p>
