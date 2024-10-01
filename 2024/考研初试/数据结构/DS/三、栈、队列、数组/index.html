@@ -22,20 +22,20 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。 一、环境搭建 1、Node.js Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击这里，">
+  <meta name="description" content="栈 逻辑结构 栈是只允许在一端进行插入或删除操作的线性表。 几个术语：  栈顶：线性表允许插入删除的那一端； 栈底：固定的、不允许进行插入和删除的那一端； 空栈：不含任何元素的空表； 特点：后进先出（LIFO）   栈的常考题型：给定进栈顺序，判断有哪些合法的出栈顺序？n个不同元素进栈，出栈元素不同的排列顺序为\(\frac{1}{n+1}C_{2n}^n\)，称为卡特兰数。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客搭建与部署">
-<meta property="og:url" content="https://liu-fb.com/2022/Hexo/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="page">
+<meta property="og:url" content="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%B8%89%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E3%80%81%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。 一、环境搭建 1、Node.js Node.js是基于Chrome JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击这里，">
+<meta property="og:description" content="栈 逻辑结构 栈是只允许在一端进行插入或删除操作的线性表。 几个术语：  栈顶：线性表允许插入删除的那一端； 栈底：固定的、不允许进行插入和删除的那一端； 空栈：不含任何元素的空表； 特点：后进先出（LIFO）   栈的常考题型：给定进栈顺序，判断有哪些合法的出栈顺序？n个不同元素进栈，出栈元素不同的排列顺序为\(\frac{1}{n+1}C_{2n}^n\)，称为卡特兰数。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-04T12:06:58.000Z">
-<meta property="article:modified_time" content="2024-05-31T19:08:30.683Z">
+<meta property="article:published_time" content="2024-10-01T15:21:30.000Z">
+<meta property="article:modified_time" content="2024-10-01T16:47:54.569Z">
 <meta property="article:author" content="Fabian">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://liu-fb.com/2022/Hexo/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/">
+<link rel="canonical" href="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%B8%89%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E3%80%81%E6%95%B0%E7%BB%84/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>Hexo博客搭建与部署 | Fabian备忘录</title>
+  <title>page | Fabian备忘录</title>
   
 
 
@@ -185,7 +185,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2022/Hexo/hexo/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%B8%89%E3%80%81%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E3%80%81%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo博客搭建与部署
+          page
         </h1>
 
         <div class="post-meta">
@@ -208,14 +208,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-02-04 20:06:58" itemprop="dateCreated datePublished" datetime="2022-02-04T20:06:58+08:00">2022-02-04</time>
+              <time title="创建时间：2024-10-01 23:21:30" itemprop="dateCreated datePublished" datetime="2024-10-01T23:21:30+08:00">2024-10-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 03:08:30" itemprop="dateModified" datetime="2024-06-01T03:08:30+08:00">2024-06-01</time>
+                <time title="修改时间：2024-10-02 00:47:54" itemprop="dateModified" datetime="2024-10-02T00:47:54+08:00">2024-10-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,7 +223,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                  <a href="/categories/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">考研初试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a>
                 </span>
             </span>
 
@@ -240,7 +244,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>1.8k</span>
             </span>
 
         </div>
@@ -252,61 +256,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Hexo是一个快速，简单而强大的博客框架，使用Markdown语言编写文章，Hexo可以在几秒钟内生成具有美丽主题的静态页面文件。</p>
-<h1 id="一环境搭建">一、环境搭建</h1>
-<h2 id="node.js">1、Node.js</h2>
-<p>Node.js是基于Chrome
-JavaScript运行时建立的一个平台，npm是node.js的包管理工具。Hexo是基于Node.js的，使用Hexo搭建博客，就需要本地有Node.js环境。Node.js环境点击<a
-target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">这里</a>，一路next。安装完成后可以用命令行查看版本号。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v <span class="comment">//查看node.js的版本</span></span><br><span class="line"></span><br><span class="line">npm -v  <span class="comment">//查看包管理器的版本</span></span><br></pre></td></tr></table></figure>
-<p>由于国内环境使用npm速度感人，可以安装cnpm，把镜像源换成淘宝的
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure></p>
-<p>之后可以命令行输入cnpm，如果能打出帮助界面表示安装成功。</p>
-<h2 id="git">2、Git</h2>
-<p>git的相关配置不在此赘述。hexo的很多操作都要依赖于git</p>
-<h2 id="hexo">3、Hexo</h2>
-<p>Hexo依托于npm包管理器，我们可以直接下载 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
--g命令是在全局安装Hexo命令行工具。当安装完成后，我们可以查看hexo版本来检查是否安装成功
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v    <span class="comment">//查看Hexo版本</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="二博客搭建">二、博客搭建</h1>
-<p>首先我们新建一个存放博客的文件目录。之后我们的操作全部在此目录下。如果之后我们搭建错误想要从头再来，直接删掉这个目录新建一个即可。</p>
-<p>然后我们初始化hexo <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-初始化后，文件目录下面就会自动生成hexo的基础框架，后续博客都是基于这个框架来做。</p>
-<p>之后安装hexo的依赖组件 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure></p>
-<p>目前目录下面有如下几个部分：</p>
+        <h1 id="栈">栈</h1>
+<h2 id="逻辑结构">逻辑结构</h2>
+<p>栈是只允许在<strong>一端进行</strong>插入或删除操作的<strong>线性表</strong>。</p>
+<p>几个术语：</p>
 <ul>
-<li>node_modules：存的是利用【npm install --save】下载安装的组件</li>
-<li>scaffolds：存放模板文件，可以创建post、page、draft三种页面</li>
-<li>source：存放用户资源，即我们的待发布文档</li>
-<li>themes：存放主题文件夹，默认landspace</li>
-<li>_config.yml：此文件很重要，是我们网站的配置信息</li>
-<li>package.json：应用程序的信息</li>
+<li>栈顶：线性表允许插入删除的那一端；</li>
+<li>栈底：固定的、不允许进行插入和删除的那一端；</li>
+<li>空栈：不含任何元素的空表；</li>
+<li>特点：后进先出（LIFO）</li>
 </ul>
-<p>此时会自动生成一篇Helloworld的博客，我们可以启动博客来看看效果。
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean      <span class="comment">//清空缓存，即清空我们的public文件夹</span></span><br><span class="line">hexo g          <span class="comment">//hexo generate命令，在本地生成静态页面，即pubilc文件夹</span></span><br><span class="line">hexo s          <span class="comment">//hexo server命令，开启本地服务器，可供我们本地预览</span></span><br></pre></td></tr></table></figure>
-本地服务器开启后，我们可以访问localhost:4000来本地预览，输入Ctrl+C关闭本地服务器</p>
-<h1 id="三写博客">三、写博客</h1>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">&quot;第一篇文章&quot;</span></span><br><span class="line"><span class="comment">//hexo new [layout] &lt;title&gt;</span></span><br><span class="line"><span class="comment">//hexo new命令，不设置layout会根据_config.yml中的default_layout在source\\_posts目录下生成一篇博客文章</span></span><br><span class="line"><span class="comment">//如果标题包含空格，使用引号括起来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//-p 自定义路径</span></span><br><span class="line">hexo new page --path about/me <span class="string">&quot;About me&quot;</span></span><br></pre></td></tr></table></figure>
-<p>生成博客还是老三样 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure></p>
-<h1 id="四部署到github">四、部署到github</h1>
-<p>执行完上述步骤，我们的博客只能在本地看，我们必须部署到网上才能通过网络来看。Github提供GitPages免费站点服务，自带域名和1G免费空间，存放博客资源和网页信息足够。</p>
-<p>git本地配置和ssh公钥配不再赘述</p>
-<h2 id="新建git仓库">1、新建git仓库</h2>
-<p>要注意仓库名必须要符合规则，即【用户名.github.io】格式。git会跟进这个仓库来创建域名。</p>
-<h2 id="hexo配置git插件">2、hexo配置git插件</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
-<p>安装完成后我们需要修改_config.yml文件中的Deployment信息（最下面）
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">    type:</span> git</span><br><span class="line"><span class="symbol">    repo:</span> git@github.com:Liuqianci/Liuqianci.github.io.git</span><br><span class="line"><span class="symbol">    branch:</span> master</span><br></pre></td></tr></table></figure></p>
-<h2 id="部署远端">3、部署远端</h2>
-<p>在之前的基础上，可以把本地文章部署到远端了 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo d   <span class="comment">//hexo deploy命令，部署远端</span></span><br></pre></td></tr></table></figure></p>
-<p>此时我们的github仓库就有内容了，我们也可以输入域名直接访问我们的博客。</p>
-<h1 id="五自定义域名">五、自定义域名</h1>
-<p>虽然gitpages给我们提供了一个域名，但是我们还可以自己申请一个属于自己的域名。我绑定的是腾讯的域名。</p>
-<p>在腾讯云里申请域名，此流程很快。</p>
-<p>域名申请下来后，需要绑定我们的博客网站。在腾讯云的控制台上进行域名解析。一般解析两条，A对应IP，CNAME对应域名。我们博客的IP，直接ping我们博客的域名即可。</p>
-<p>域名解析完成后，我们要进行域名绑定，在source目录下新建一个CNAME文件，写入自己的域名。然后在GitPages上也进行配置，进入Github的settings中，添加GitPages的Custom
-Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启https</p>
-<p>最后在_config.yml的url选项中填写我们的自定义域名。完成发布。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png" /></p>
+<p>栈的常考题型：给定进栈顺序，判断有哪些合法的出栈顺序？n个不同元素进栈，出栈元素不同的排列顺序为<span
+class="math inline">\(\frac{1}{n+1}C_{2n}^n\)</span>，称为卡特兰数。</p>
+<h2 id="存储结构">存储结构</h2>
+<h3 id="顺序存储">顺序存储</h3>
+<h4 id="顺序栈的实现">顺序栈的实现</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MaxSize 10   <span class="comment">//栈的最大个数</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span>   </span><br><span class="line">    ElemType data[MaxSize];   <span class="comment">//静态数组存放栈的元素</span></span><br><span class="line">    <span class="type">int</span> top;                  <span class="comment">//栈顶指针(数组下标)</span></span><br><span class="line">&#125;SqStack;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>栈顶指针：S.top，指向栈顶元素，可以理解为数组下标，初始时S.top=-1，栈顶元素表示为S.data[S.top]</li>
+<li>进栈操作：栈不满时，栈顶指针先加1，再送值到栈顶元素；</li>
+<li>出栈操作：栈非空时，先找栈顶元素值，再将栈顶指针减1；</li>
+<li>栈空条件：S.top==-1</li>
+<li>栈满条件：S.top == MaxSize-1;栈长S.top+1;</li>
+</ul>
+<h4 id="基本运算">基本运算</h4>
+<p>栈的基本运算的时间复杂度都是<span
+class="math inline">\(O(1)\)</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">InitStack</span><span class="params">(SqStack &amp;S)</span></span><br><span class="line">&#123;</span><br><span class="line">    S.top = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判空</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">StackEmpty</span><span class="params">(SqStack S)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//进栈</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">Push</span><span class="params">(SqStack &amp;S, ElemType x)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == MaxSize <span class="number">-1</span>)    <span class="comment">//栈满了</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    S.top = S.top + <span class="number">1</span>;       <span class="comment">//指针先+1</span></span><br><span class="line">    S.data[S.top] = x;       <span class="comment">//新元素再入栈</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出栈  </span></span><br><span class="line"><span class="comment">//注意，出栈操作只是逻辑上被删除出栈了，但数据依旧残留在内存中</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">Pop</span><span class="params">(SqStack &amp;S, ElemType &amp;x)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)    <span class="comment">//栈空</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    x = S.data[S.top];    <span class="comment">//栈顶元素先出栈</span></span><br><span class="line">    S.top = S.top - <span class="number">1</span>;     <span class="comment">//指针再减1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读栈顶元素</span></span><br><span class="line"><span class="type">bool</span> <span class="title function_">GetTop</span><span class="params">(SqStack S, ElemType &amp;x)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(S.top == <span class="number">-1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    x = S.data[S.top];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>上述设计都是栈顶指针初始化为-1，即指向当前栈顶位置，此时入栈和出栈都需要先变更指针再操作数据；如果栈顶指针初始化为0，即指向下一个操作数的位置，那么正好相反，入栈和出栈需要先操作数据，再变更指针。</p>
+<p>顺序栈的缺点：用静态数组存放元素，栈的大小不可改变。但如果我们一开始就分配非常大的地址空间，那么又会造成资源浪费。所以我们可以利用相对栈底位置不变的特性，让两个顺序栈公用一个一维数组空间，将两个栈的栈底分别设置在共享空间的两端，两个栈顶向共享空间的中间延申。这个就是<strong>共享栈</strong></p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%85%B1%E4%BA%AB%E6%A0%88.png" /></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> Max 50</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType data[MaxSize];</span><br><span class="line">    <span class="type">int</span> top0;           <span class="comment">//0号栈顶指针</span></span><br><span class="line">    <span class="type">int</span> top1;           <span class="comment">//1号栈顶指针</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">InitStack</span><span class="params">(ShStack &amp;S)</span>&#123;</span><br><span class="line">    S.top0 = <span class="number">-1</span>;</span><br><span class="line">    S.top1 = MaxSize;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>top0=-1时，0号栈为空；top1=MaxSize时，1号栈为空；</li>
+<li>栈满条件：top0 + 1 == top1</li>
+<li>0号栈进栈时，top0先加1再赋值；1号栈进栈时，top1先减1再赋值；</li>
+</ul>
+<p>共享栈目的：</p>
+<ul>
+<li>更好的利用存储空间；</li>
+<li>两个栈互相调节，只有再整个存储空间都被占满时才发生上溢；</li>
+</ul>
+<h3 id="链式存储">链式存储</h3>
+<p>链式存储方式完全可以类比链表操作，只是规定了只能在链表的一端（表头）进行操作。一般规定链栈没有头结点，LHead直接指向栈顶元素。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">Linknode</span></span><br><span class="line">&#123;</span><br><span class="line">    ElemType data;            <span class="comment">//数据域</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Linknode</span>* next;    <span class="comment">//指针域</span></span><br><span class="line">&#125;*LiStack;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -316,7 +312,7 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           </div>
 
         
@@ -324,11 +320,11 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2022/Hexo/hexo/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%90%8C%E6%AD%A5%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2/" rel="next" title="多台电脑同步提交博客">
-      多台电脑同步提交博客 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DS/%E4%BA%8C%E3%80%81%E7%BA%BF%E6%80%A7%E8%A1%A8/" rel="prev" title="二、线性表">
+      <i class="fa fa-chevron-left"></i> 二、线性表
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -387,7 +383,7 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">一、环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#node.js"><span class="nav-number">1.1.</span> <span class="nav-text">1、Node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git"><span class="nav-number">1.2.</span> <span class="nav-text">2、Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo"><span class="nav-number">1.3.</span> <span class="nav-text">3、Hexo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA"><span class="nav-number">2.</span> <span class="nav-text">二、博客搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E5%86%99%E5%8D%9A%E5%AE%A2"><span class="nav-number">3.</span> <span class="nav-text">三、写博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E9%83%A8%E7%BD%B2%E5%88%B0github"><span class="nav-number">4.</span> <span class="nav-text">四、部署到github</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAgit%E4%BB%93%E5%BA%93"><span class="nav-number">4.1.</span> <span class="nav-text">1、新建git仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo%E9%85%8D%E7%BD%AEgit%E6%8F%92%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">2、hexo配置git插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E8%BF%9C%E7%AB%AF"><span class="nav-number">4.3.</span> <span class="nav-text">3、部署远端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="nav-number">5.</span> <span class="nav-text">五、自定义域名</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">1.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">顺序存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">顺序栈的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">基本运算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">链式存储</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
