@@ -1629,10 +1629,16 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-10-06 03:04:26 / 修改时间：03:38:14" itemprop="dateCreated datePublished" datetime="2024-10-06T03:04:26+08:00">2024-10-06</time>
+              <time title="创建时间：2024-10-06 03:04:26" itemprop="dateCreated datePublished" datetime="2024-10-06T03:04:26+08:00">2024-10-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-09 01:32:43" itemprop="dateModified" datetime="2024-10-09T01:32:43+08:00">2024-10-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1653,7 +1659,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>266</span>
+              <span>957</span>
             </span>
 
         </div>
@@ -1704,7 +1710,43 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%93%8D%E4%BD
 </ul></li>
 </ul>
 <p> </p>
-<p><strong>特征：</strong></p>
+<h1 id="操作系统特征">操作系统特征</h1>
+<ul>
+<li>并发</li>
+<li>共享</li>
+<li>虚拟</li>
+<li>异步</li>
+</ul>
+<p> </p>
+<p><strong><em>并发：</em></strong> 需要区分并发和并行：</p>
+<ol type="1">
+<li>并发是指两个或多个事件在同一时间间隔内发生。宏观上同时发生，微观上交替发生；</li>
+<li>并行：两个或多个事件在同一时刻同时发生；</li>
+</ol>
+<p>单核CPU同一时刻只能执行一个程序，各个程序只能并发执行；多核CPU同一时刻可以同时执行多个程序，多个程序可以并行执行；</p>
+<p> </p>
+<p><strong><em>共享：</em></strong></p>
+<p>资源共享，系统中的资源可供内存中多个并发执行的进程共同使用。</p>
+<p>两种资源共享方式：</p>
+<ul>
+<li>互斥共享：
+系统中的某些资源，虽然可以提供给多个进程使用，但一个时间段内只允许一个进程访问该资源；</li>
+<li>同时共享：系统中的某些资源，允许一个时间段内由多个进程”同时“对它们进行访问。（注意这个同时是宏观上的，微观上可能是交替的进行资源访问）</li>
+</ul>
+<p> </p>
+<p><strong><em>虚拟：</em></strong></p>
+<p>虚拟是指把一个物理上的实体变为若干逻辑上的对应物。物理实体是实际存在的，逻辑对应物是用户感知到的。</p>
+<ul>
+<li>空分复用技术：如虚拟存储器，系统只有4g内存，但可以同时允许很多软件</li>
+<li>时分复用技术：如处理器的分时共享：单核CPU在用户看来也可以同时运行很多软件</li>
+</ul>
+<p> </p>
+<p><strong><em>异步：</em></strong></p>
+<p>异步是指在多道程序环境下，允许多个程序并发执行。但是由于资源有限，进程的执行不是一贯到底的，而是走走停停，以不可预知的速度向前推进。</p>
+<p> </p>
+<p><strong>并发和共享互为存在条件</strong>：如果失去并发性，则系统中只有一个程序正在运行，则共享性失去意义；如果失去共享性，那么多个程序无法实现同时访问资源，就无法并发执行。</p>
+<p> </p>
+<p><strong>并发和共享是最基本的两个性质，没有并发和共享，就谈不上虚拟和异步</strong>：如果失去了并发性，则一个时间段内指运行一个程序，那么就失去了实现虚拟性的意义了；如果失去了并发性，那么系统只能串行地运行各个程序，那么每个程序的执行只会一贯到底，没有异步可言。</p>
 <h1 id="操作系统发展历程">操作系统发展历程</h1>
 <h1 id="操作系统运行环境">操作系统运行环境</h1>
 <h1 id="操作系统结构">操作系统结构</h1>
@@ -2220,7 +2262,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">79k</span>
+    <span title="站点总字数">80k</span>
 </div>
 
 <!--
