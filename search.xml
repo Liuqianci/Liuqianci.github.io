@@ -1083,42 +1083,79 @@ style="text-align: left;">系统中各个计算机地位相同，任何工作都
 </ul></li>
 </ul>
 <p>操作系统的内核需要运行在内核态，非内核功能运行在用户态。</p>
-<p>内核分为大内核和微内核：</p>
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: left;">大内核</th>
-<th style="text-align: left;">微内核</th>
+<th style="text-align: left;">特性</th>
+<th style="text-align: left;">优点</th>
+<th style="text-align: left;">缺点</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">定义</td>
+<td style="text-align: left;">分层结构</td>
 <td
-style="text-align: left;">将操作系统的主要功能模块都作为系统内核，运行在核心态</td>
+style="text-align: left;">内核分多层，每层可单向调用更低一层的接口</td>
 <td
-style="text-align: left;">只把最基本的功能保留在内核，资源管理的功能放在用户态执行</td>
+style="text-align: left;">1、便于调试和验证，自底向上逐层验证<br>2、易扩充易维护，各层之间接口调用清晰固定</td>
+<td
+style="text-align: left;">1、仅可调用相邻低层，难以合理定义各层的边界<br>2、效率低，不可跨层调用，系统调用执行时间长</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">优点</td>
-<td style="text-align: left;">高性能</td>
-<td style="text-align: left;">内核代码庞大，结构混乱，难以维护</td>
+<td style="text-align: left;">模块化</td>
+<td
+style="text-align: left;">将内核划分为多个模块，各个模块相互协作<br>内核=主模块+可加载内核模块<br>主模块：只负责核心功能，如进程调度、内存管理；<br>可加载内核模块：可以动态加载新模块到内核，无需重新编译整个内核</td>
+<td
+style="text-align: left;">1、模块间逻辑清晰易于维护，确定模块间接口后可多模块同时开发<br>2、支持动态加载新的内核模块，增强OS适应性<br>3、任何模块都可以直接调用其他模块，无需采用消息传递进行通信，效率高</td>
+<td
+style="text-align: left;">1、模块间的接口定义未必合理、实用；<br>2、模块间相互依赖，更难调试和验证</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">缺点</td>
-<td style="text-align: left;">内核功能少，结构清晰，方便维护</td>
+<td style="text-align: left;">大内核(宏内核)</td>
+<td style="text-align: left;">所有系统功能都放在内核里</td>
 <td
-style="text-align: left;">需要频繁的在核心态和用户态之间切换，性能低</td>
+style="text-align: left;">性能高，内核内部各功能都可以直接互相调用</td>
+<td
+style="text-align: left;">1、内核庞大功能复杂，难以维护<br>2、大内核中某个功能模块出错，就可能导致整个系统崩溃</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">微内核</td>
+<td
+style="text-align: left;">只把中断、原语、进程通信等最核心的功能放入内核。进程管理、文件管理、设备管理等功能以用户态进程形式运行在用户态</td>
+<td
+style="text-align: left;">1、内核功能小、易于维护，内核可靠性高<br>2、内核外的某个功能模块出错不会导致整个系统崩溃</td>
+<td
+style="text-align: left;">1、性能低，需要频繁切换用户态/和心态。<br>2、用户态下各功能模块不能互相调用，只能通过内核的消息传递来间接通信</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">外核</td>
+<td
+style="text-align: left;">内核负责进程调度、进程通信等功能，外核负责为用户进程分配未经抽象的硬件资源，且由外核负责保证资源使用安全</td>
+<td
+style="text-align: left;">1、外核可以直接给用户进程分配“不虚拟、不抽象”的硬件资源，使用户进程可以更灵活的使用硬件资源<br>2、减少了虚拟硬件资源的“映射层”，提升效率</td>
+<td
+style="text-align: left;">1、降低了系统的一致性<br>2、使系统变的更复杂</td>
 </tr>
 </tbody>
 </table>
 <h1 id="操作系统引导">操作系统引导</h1>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC.png" /></p>
+<p>引导过程：</p>
+<ol type="1">
+<li>CPU从一个特定主存地址开始，取指令，执行ROM中的引导程序（先进行硬件自检，再开机）；</li>
+<li>将磁盘的第一块——主引导记录
+读入内存，执行磁盘引导程序，扫描分区表；</li>
+<li>从活动分区（又称主分区，即安装了操作系统的分区）读入分区引导记录，执行其中的程序；</li>
+<li>从根目录下找到完整的操作系统初始化程序(即启动管理器)并执行，完成“开机”的一系列动作；</li>
+</ol>
 <h1 id="虚拟机">虚拟机</h1>
 ]]></content>
       <categories>
