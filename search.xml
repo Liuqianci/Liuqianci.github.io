@@ -886,6 +886,125 @@ Provider），如移动、电信、联通</p>
 <li>负载均衡：网络中各台计算机共同分担繁重工作；</li>
 <li>其他：满足社会需求和生活需求；</li>
 </ul>
+<h1 id="数据交换技术">数据交换技术</h1>
+<p>现代计算机网络技术诞生于20世纪60年代，APRAnet项目。数据通信的发展史：5世纪起兴起邮政网络，1830s出现电报网络，1870s出现电话网络。现代计算机发展初始，需要分析电报网络和电话网络的优缺点。</p>
+<p> </p>
+<p><strong>电话网络</strong></p>
+<p>电话网络采用电路交换技术，电路交换的步骤如下：</p>
+<ol type="1">
+<li>建立连接（尝试占用通信资源）</li>
+<li>通信（一直占用通信资源）</li>
+<li>释放连接（归还通信资源）</li>
+</ol>
+<p>电路交换的优点：通信前从主叫端到被叫端建立一条专用的物理通路，在通信的全部时间内，两个用户始终占用端到端的线路资源。数据直送，传输速率高；</p>
+<p>电路交换的确缺点：建立/释放连接，需要额外的时间开销；通信过程中线路被双方独占，录用率低；线路分配的灵活性差；交换结点不支持“差错控制”(无法发现传输过程中发生的数据错误)；</p>
+<p>电路交换更适用于低频次、大量地传输数据。但计算机之间的数据传输往往是“突发式”的传输，往往是高频词，少量传输数据。</p>
+<p> </p>
+<p><strong>电报网络</strong></p>
+<p>电报网络采用报文交换技术，报文交换采用存储转发思想，把传送的数据单元先存储进中间结点，再根据目的地址转发至下一结点。</p>
+<p>报文交换的优点：</p>
+<ul>
+<li>通信前无需建立连接；</li>
+<li>数据以“报文”为单位被交换结点间“存储转发”，通信线路可以灵活分配；</li>
+<li>在通信时间内，两个用户无需独占一整条物理线路，相比于电路交换，线路利用率高；</li>
+<li>交换结点支持“差错控制”;</li>
+</ul>
+<p>报文交换的缺点：</p>
+<ul>
+<li>报文不定长，不方便存储转发管理；</li>
+<li>长报文的存储转发时间开销大、缓存开销大；</li>
+<li>长报文容易出错，重传代价高；</li>
+</ul>
+<p> </p>
+<p><strong>分组交换</strong></p>
+<p>计算机网络可以参考报文交换技术，但需要解决报文不定长的问题。所以出现了分组交换技术。把不定长的报文分成固定长度的组，包含：源地址、目的地址、分组号等。</p>
+<p>在现代计算机网络技术中，路由器就是典型的分组交换机。</p>
+<p>分组交换的优点：</p>
+<ul>
+<li>通信前无需建立连接；</li>
+<li>数据以“分组”为单位被交换结点间“存储转发”，通信线路可以灵活分配；</li>
+<li>在通信时间内，两个用户无需独占一整条物理线路，相比于电路交换，线路利用率高；</li>
+<li>交换结点支持“差错控制”;</li>
+</ul>
+<p>相较于报文交换，分组交换改进了如下问题：</p>
+<ol type="1">
+<li>分组定长，方便存储转发管理；</li>
+<li>分组的存储转发时间开销小、缓存开销小；</li>
+<li>分组不易出错，重传代价低；</li>
+</ol>
+<p>分组交换的缺点：</p>
+<ul>
+<li>相比于报文交换，分组交换的控制信息占比增加了；</li>
+<li>相比于电路交换，依然存在存储转发时延；</li>
+<li>报文被拆分为多个组，传输过程中可能出现失序、丢失等问题，增加处理的复杂度；</li>
+</ul>
+<p> </p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">电路交换</th>
+<th style="text-align: left;">报文交换</th>
+<th style="text-align: left;">分组交换</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">完成传输所需时间</td>
+<td style="text-align: left;">最少(不包括建立/释放连接耗时)</td>
+<td style="text-align: left;">最多</td>
+<td style="text-align: left;">较少</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">存储转发时延</td>
+<td style="text-align: left;">无</td>
+<td style="text-align: left;">较高</td>
+<td style="text-align: left;">较低</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">通信前是否需要建立连接</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">否</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">缓存开销</td>
+<td style="text-align: left;">无</td>
+<td style="text-align: left;">高</td>
+<td style="text-align: left;">低</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">是否支持差错控制</td>
+<td style="text-align: left;">不支持</td>
+<td style="text-align: left;">支持</td>
+<td style="text-align: left;">支持</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">报文数据有序到达</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">否</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">是否需要额外的控制信息</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">是(控制信息占比大)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">线路分配灵活性</td>
+<td style="text-align: left;">不灵活</td>
+<td style="text-align: left;">灵活</td>
+<td style="text-align: left;">非常灵活</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">线路利用率</td>
+<td style="text-align: left;">低</td>
+<td style="text-align: left;">高</td>
+<td style="text-align: left;">非常高</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       <categories>
         <category>考研初试</category>
