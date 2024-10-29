@@ -835,50 +835,41 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
   <entry>
     <title>一、计算机网络体系结构</title>
     <url>/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/CN/%E4%B8%80%E3%80%81%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="计算机网络概念">计算机网络概念</h1>
-<p>计算机网络是一个将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
+    <content><![CDATA[<h1 id="计算机网络概念"><a href="#计算机网络概念" class="headerlink" title="计算机网络概念"></a>计算机网络概念</h1><p>计算机网络是一个将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
 <ul>
 <li>互联：互联互通；</li>
 <li>自治：无主从关系，互相连通但不能彼此控制；</li>
 </ul>
-<p> </p>
+<p>&emsp;</p>
 <p>几个概念：</p>
-<ol type="1">
+<ol>
 <li>计算机网络：由若干结点和连接这些结点的链路组成。结点可以是计算机、集线器、交换机、路由器等，链路可以是有线链路、无线链路；主要功能：数据通信、资源共享</li>
 <li>互连网：多个计算机网络通过路由器互相连接而成；内部可以使用任何通信协议；</li>
 <li>互联网：译为因特网。，特质全世界最大的计算机网络，由各大ISP和国际机构组建；使用TCP/IP协议族作为通信规则</li>
 </ol>
-<p>ISP：互连网服务提供商（Internet Service
-Provider），如移动、电信、联通</p>
+<p>ISP：互连网服务提供商（Internet Service Provider），如移动、电信、联通</p>
 <p>集线器、交换机用于连接同一网络内的不同结点；路由器用于连接不同的网络；</p>
 <p>家用路由器的概念不同于路由器，家用路由器=路由器+交换机+其他功能；</p>
-<h1 id="计算机网络组成">计算机网络组成</h1>
-<h2 id="从组成部分看">从组成部分看</h2>
-<ol type="1">
-<li>硬件
-<ol type="1">
+<h1 id="计算机网络组成"><a href="#计算机网络组成" class="headerlink" title="计算机网络组成"></a>计算机网络组成</h1><h2 id="从组成部分看"><a href="#从组成部分看" class="headerlink" title="从组成部分看"></a>从组成部分看</h2><ol>
+<li>硬件<ol>
 <li>主机，即端系统，如电脑、手机、物联网设备</li>
 <li>通信设备：如集线器、交换机、路由器</li>
 <li>通信链路：如网线、光纤、同轴电缆</li>
-</ol></li>
-<li>软件：方便用户使用，实现资源共享。如Email、聊天软件、网盘</li>
-<li>协议：规定计算机网络中的通信规则，由硬件、软件共同实现。如网络适配器+软件
-实现网络通信协议</li>
 </ol>
-<h2 id="从逻辑功能看">从逻辑功能看</h2>
-<ol type="1">
+</li>
+<li>软件：方便用户使用，实现资源共享。如Email、聊天软件、网盘</li>
+<li>协议：规定计算机网络中的通信规则，由硬件、软件共同实现。如网络适配器+软件 实现网络通信协议</li>
+</ol>
+<h2 id="从逻辑功能看"><a href="#从逻辑功能看" class="headerlink" title="从逻辑功能看"></a>从逻辑功能看</h2><ol>
 <li>资源子网：计算机网络中运行应用程序，向用户提供可共享的硬件、软件和信息资源的部分。主要由连接到互连网上的主机组成；</li>
-<li>通信子网：计算机网络中负责计算机间信息传输的部分。即把计算机和其他用户装置连在遗器的所有通信设备和介质的总称。主要由
-通信链路+通信设备+协议 组成。</li>
+<li>通信子网：计算机网络中负责计算机间信息传输的部分。即把计算机和其他用户装置连在遗器的所有通信设备和介质的总称。主要由 通信链路+通信设备+协议 组成。</li>
 </ol>
 <p>注：主机北部实现信息传输的网络适配器、底层协议属于通信子网的范畴。</p>
-<h2 id="从工作方式看">从工作方式看</h2>
-<ol type="1">
+<h2 id="从工作方式看"><a href="#从工作方式看" class="headerlink" title="从工作方式看"></a>从工作方式看</h2><ol>
 <li>边缘部分：直接为用户服务（通信、资源共享），主要由连接到互连网上的主机和其软件组成；</li>
 <li>核心部分：为边缘部分提供服务(连通性、交换服务)，由大量网络和连接这些网络的路由器组成</li>
 </ol>
-<h1 id="计算机网络的功能">计算机网络的功能</h1>
-<ul>
+<h1 id="计算机网络的功能"><a href="#计算机网络的功能" class="headerlink" title="计算机网络的功能"></a>计算机网络的功能</h1><ul>
 <li>数据通信：实现计算机之间数据传输。是<strong>最基本，最重要</strong>的功能；</li>
 <li>资源共享：包括硬件、软件、数据资源；</li>
 <li>分布式处理：将某个复杂任务分配给网络中的多台计算机处理；</li>
@@ -886,12 +877,11 @@ Provider），如移动、电信、联通</p>
 <li>负载均衡：网络中各台计算机共同分担繁重工作；</li>
 <li>其他：满足社会需求和生活需求；</li>
 </ul>
-<h1 id="数据交换技术">数据交换技术</h1>
-<p>现代计算机网络技术诞生于20世纪60年代，APRAnet项目。数据通信的发展史：5世纪起兴起邮政网络，1830s出现电报网络，1870s出现电话网络。现代计算机发展初始，需要分析电报网络和电话网络的优缺点。</p>
-<p> </p>
+<h1 id="数据交换技术"><a href="#数据交换技术" class="headerlink" title="数据交换技术"></a>数据交换技术</h1><p>现代计算机网络技术诞生于20世纪60年代，APRAnet项目。数据通信的发展史：5世纪起兴起邮政网络，1830s出现电报网络，1870s出现电话网络。现代计算机发展初始，需要分析电报网络和电话网络的优缺点。</p>
+<p>&emsp;</p>
 <p><strong>电话网络</strong></p>
 <p>电话网络采用电路交换技术，电路交换的步骤如下：</p>
-<ol type="1">
+<ol>
 <li>建立连接（尝试占用通信资源）</li>
 <li>通信（一直占用通信资源）</li>
 <li>释放连接（归还通信资源）</li>
@@ -899,7 +889,7 @@ Provider），如移动、电信、联通</p>
 <p>电路交换的优点：通信前从主叫端到被叫端建立一条专用的物理通路，在通信的全部时间内，两个用户始终占用端到端的线路资源。数据直送，传输速率高；</p>
 <p>电路交换的确缺点：建立/释放连接，需要额外的时间开销；通信过程中线路被双方独占，录用率低；线路分配的灵活性差；交换结点不支持“差错控制”(无法发现传输过程中发生的数据错误)；</p>
 <p>电路交换更适用于低频次、大量地传输数据。但计算机之间的数据传输往往是“突发式”的传输，往往是高频词，少量传输数据。</p>
-<p> </p>
+<p>&emsp;</p>
 <p><strong>电报网络</strong></p>
 <p>电报网络采用报文交换技术，报文交换采用存储转发思想，把传送的数据单元先存储进中间结点，再根据目的地址转发至下一结点。</p>
 <p>报文交换的优点：</p>
@@ -915,7 +905,7 @@ Provider），如移动、电信、联通</p>
 <li>长报文的存储转发时间开销大、缓存开销大；</li>
 <li>长报文容易出错，重传代价高；</li>
 </ul>
-<p> </p>
+<p>&emsp;</p>
 <p><strong>分组交换</strong></p>
 <p>计算机网络可以参考报文交换技术，但需要解决报文不定长的问题。所以出现了分组交换技术。把不定长的报文分成固定长度的组，包含：源地址、目的地址、分组号等。</p>
 <p>在现代计算机网络技术中，路由器就是典型的分组交换机。</p>
@@ -927,7 +917,7 @@ Provider），如移动、电信、联通</p>
 <li>交换结点支持“差错控制”;</li>
 </ul>
 <p>相较于报文交换，分组交换改进了如下问题：</p>
-<ol type="1">
+<ol>
 <li>分组定长，方便存储转发管理；</li>
 <li>分组的存储转发时间开销小、缓存开销小；</li>
 <li>分组不易出错，重传代价低；</li>
@@ -938,73 +928,75 @@ Provider），如移动、电信、联通</p>
 <li>相比于电路交换，依然存在存储转发时延；</li>
 <li>报文被拆分为多个组，传输过程中可能出现失序、丢失等问题，增加处理的复杂度；</li>
 </ul>
-<p> </p>
+<p>&emsp;</p>
+<div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">电路交换</th>
-<th style="text-align: left;">报文交换</th>
-<th style="text-align: left;">分组交换</th>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">电路交换</th>
+<th style="text-align:left">报文交换</th>
+<th style="text-align:left">分组交换</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">完成传输所需时间</td>
-<td style="text-align: left;">最少(不包括建立/释放连接耗时)</td>
-<td style="text-align: left;">最多</td>
-<td style="text-align: left;">较少</td>
+<tr>
+<td style="text-align:left"><strong>完成传输所需时间</strong></td>
+<td style="text-align:left">最少(不包括建立/释放连接耗时)</td>
+<td style="text-align:left">最多</td>
+<td style="text-align:left">较少</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">存储转发时延</td>
-<td style="text-align: left;">无</td>
-<td style="text-align: left;">较高</td>
-<td style="text-align: left;">较低</td>
+<tr>
+<td style="text-align:left"><strong>存储转发时延</strong></td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">较高</td>
+<td style="text-align:left">较低</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">通信前是否需要建立连接</td>
-<td style="text-align: left;">是</td>
-<td style="text-align: left;">否</td>
-<td style="text-align: left;">否</td>
+<tr>
+<td style="text-align:left"><strong>通信前是否需要建立连接</strong></td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">否</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">缓存开销</td>
-<td style="text-align: left;">无</td>
-<td style="text-align: left;">高</td>
-<td style="text-align: left;">低</td>
+<tr>
+<td style="text-align:left"><strong>缓存开销</strong></td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">高</td>
+<td style="text-align:left">低</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">是否支持差错控制</td>
-<td style="text-align: left;">不支持</td>
-<td style="text-align: left;">支持</td>
-<td style="text-align: left;">支持</td>
+<tr>
+<td style="text-align:left"><strong>是否支持差错控制</strong></td>
+<td style="text-align:left">不支持</td>
+<td style="text-align:left">支持</td>
+<td style="text-align:left">支持</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">报文数据有序到达</td>
-<td style="text-align: left;">是</td>
-<td style="text-align: left;">是</td>
-<td style="text-align: left;">否</td>
+<tr>
+<td style="text-align:left"><strong>报文数据有序到达</strong></td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">否</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">是否需要额外的控制信息</td>
-<td style="text-align: left;">否</td>
-<td style="text-align: left;">是</td>
-<td style="text-align: left;">是(控制信息占比大)</td>
+<tr>
+<td style="text-align:left"><strong>是否需要额外的控制信息</strong></td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">是(控制信息占比大)</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">线路分配灵活性</td>
-<td style="text-align: left;">不灵活</td>
-<td style="text-align: left;">灵活</td>
-<td style="text-align: left;">非常灵活</td>
+<tr>
+<td style="text-align:left"><strong>线路分配灵活性</strong></td>
+<td style="text-align:left">不灵活</td>
+<td style="text-align:left">灵活</td>
+<td style="text-align:left">非常灵活</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">线路利用率</td>
-<td style="text-align: left;">低</td>
-<td style="text-align: left;">高</td>
-<td style="text-align: left;">非常高</td>
+<tr>
+<td style="text-align:left"><strong>线路利用率</strong></td>
+<td style="text-align:left">低</td>
+<td style="text-align:left">高</td>
+<td style="text-align:left">非常高</td>
 </tr>
 </tbody>
 </table>
+</div>
 ]]></content>
       <categories>
         <category>考研初试</category>
