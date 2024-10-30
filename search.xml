@@ -848,41 +848,50 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
   <entry>
     <title>一、计算机网络体系结构</title>
     <url>/2024/%E8%80%83%E7%A0%94%E5%88%9D%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/CN/%E4%B8%80%E3%80%81%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="计算机网络概念"><a href="#计算机网络概念" class="headerlink" title="计算机网络概念"></a>计算机网络概念</h1><p>计算机网络是一个将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
+    <content><![CDATA[<h1 id="计算机网络概念">计算机网络概念</h1>
+<p>计算机网络是一个将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
 <ul>
 <li>互联：互联互通；</li>
 <li>自治：无主从关系，互相连通但不能彼此控制；</li>
 </ul>
-<p>&emsp;</p>
+<p> </p>
 <p>几个概念：</p>
-<ol>
+<ol type="1">
 <li>计算机网络：由若干结点和连接这些结点的链路组成。结点可以是计算机、集线器、交换机、路由器等，链路可以是有线链路、无线链路；主要功能：数据通信、资源共享</li>
 <li>互连网：多个计算机网络通过路由器互相连接而成；内部可以使用任何通信协议；</li>
 <li>互联网：译为因特网。，特质全世界最大的计算机网络，由各大ISP和国际机构组建；使用TCP/IP协议族作为通信规则</li>
 </ol>
-<p>ISP：互连网服务提供商（Internet Service Provider），如移动、电信、联通</p>
+<p>ISP：互连网服务提供商（Internet Service
+Provider），如移动、电信、联通</p>
 <p>集线器、交换机用于连接同一网络内的不同结点；路由器用于连接不同的网络；</p>
 <p>家用路由器的概念不同于路由器，家用路由器=路由器+交换机+其他功能；</p>
-<h1 id="计算机网络组成"><a href="#计算机网络组成" class="headerlink" title="计算机网络组成"></a>计算机网络组成</h1><h2 id="从组成部分看"><a href="#从组成部分看" class="headerlink" title="从组成部分看"></a>从组成部分看</h2><ol>
-<li>硬件<ol>
+<h1 id="计算机网络组成">计算机网络组成</h1>
+<h2 id="从组成部分看">从组成部分看</h2>
+<ol type="1">
+<li>硬件
+<ol type="1">
 <li>主机，即端系统，如电脑、手机、物联网设备</li>
 <li>通信设备：如集线器、交换机、路由器</li>
 <li>通信链路：如网线、光纤、同轴电缆</li>
-</ol>
-</li>
+</ol></li>
 <li>软件：方便用户使用，实现资源共享。如Email、聊天软件、网盘</li>
-<li>协议：规定计算机网络中的通信规则，由硬件、软件共同实现。如网络适配器+软件 实现网络通信协议</li>
+<li>协议：规定计算机网络中的通信规则，由硬件、软件共同实现。如网络适配器+软件
+实现网络通信协议</li>
 </ol>
-<h2 id="从逻辑功能看"><a href="#从逻辑功能看" class="headerlink" title="从逻辑功能看"></a>从逻辑功能看</h2><ol>
+<h2 id="从逻辑功能看">从逻辑功能看</h2>
+<ol type="1">
 <li>资源子网：计算机网络中运行应用程序，向用户提供可共享的硬件、软件和信息资源的部分。主要由连接到互连网上的主机组成；</li>
-<li>通信子网：计算机网络中负责计算机间信息传输的部分。即把计算机和其他用户装置连在遗器的所有通信设备和介质的总称。主要由 通信链路+通信设备+协议 组成。</li>
+<li>通信子网：计算机网络中负责计算机间信息传输的部分。即把计算机和其他用户装置连在遗器的所有通信设备和介质的总称。主要由
+通信链路+通信设备+协议 组成。</li>
 </ol>
 <p>注：主机北部实现信息传输的网络适配器、底层协议属于通信子网的范畴。</p>
-<h2 id="从工作方式看"><a href="#从工作方式看" class="headerlink" title="从工作方式看"></a>从工作方式看</h2><ol>
+<h2 id="从工作方式看">从工作方式看</h2>
+<ol type="1">
 <li>边缘部分：直接为用户服务（通信、资源共享），主要由连接到互连网上的主机和其软件组成；</li>
 <li>核心部分：为边缘部分提供服务(连通性、交换服务)，由大量网络和连接这些网络的路由器组成</li>
 </ol>
-<h1 id="计算机网络的功能"><a href="#计算机网络的功能" class="headerlink" title="计算机网络的功能"></a>计算机网络的功能</h1><ul>
+<h1 id="计算机网络的功能">计算机网络的功能</h1>
+<ul>
 <li>数据通信：实现计算机之间数据传输。是<strong>最基本，最重要</strong>的功能；</li>
 <li>资源共享：包括硬件、软件、数据资源；</li>
 <li>分布式处理：将某个复杂任务分配给网络中的多台计算机处理；</li>
@@ -890,11 +899,12 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <li>负载均衡：网络中各台计算机共同分担繁重工作；</li>
 <li>其他：满足社会需求和生活需求；</li>
 </ul>
-<h1 id="数据交换技术"><a href="#数据交换技术" class="headerlink" title="数据交换技术"></a>数据交换技术</h1><p>现代计算机网络技术诞生于20世纪60年代，APRAnet项目。数据通信的发展史：5世纪起兴起邮政网络，1830s出现电报网络，1870s出现电话网络。现代计算机发展初始，需要分析电报网络和电话网络的优缺点。</p>
-<p>&emsp;</p>
+<h1 id="数据交换技术">数据交换技术</h1>
+<p>现代计算机网络技术诞生于20世纪60年代，APRAnet项目。数据通信的发展史：5世纪起兴起邮政网络，1830s出现电报网络，1870s出现电话网络。现代计算机发展初始，需要分析电报网络和电话网络的优缺点。</p>
+<p> </p>
 <p><strong>电话网络</strong></p>
 <p>电话网络采用电路交换技术，电路交换的步骤如下：</p>
-<ol>
+<ol type="1">
 <li>建立连接（尝试占用通信资源）</li>
 <li>通信（一直占用通信资源）</li>
 <li>释放连接（归还通信资源）</li>
@@ -902,7 +912,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <p>电路交换的优点：通信前从主叫端到被叫端建立一条专用的物理通路，在通信的全部时间内，两个用户始终占用端到端的线路资源。数据直送，传输速率高；</p>
 <p>电路交换的确缺点：建立/释放连接，需要额外的时间开销；通信过程中线路被双方独占，录用率低；线路分配的灵活性差；交换结点不支持“差错控制”(无法发现传输过程中发生的数据错误)；</p>
 <p>电路交换更适用于低频次、大量地传输数据。但计算机之间的数据传输往往是“突发式”的传输，往往是高频词，少量传输数据。</p>
-<p>&emsp;</p>
+<p> </p>
 <p><strong>电报网络</strong></p>
 <p>电报网络采用报文交换技术，报文交换采用存储转发思想，把传送的数据单元先存储进中间结点，再根据目的地址转发至下一结点。</p>
 <p>报文交换的优点：</p>
@@ -918,7 +928,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <li>长报文的存储转发时间开销大、缓存开销大；</li>
 <li>长报文容易出错，重传代价高；</li>
 </ul>
-<p>&emsp;</p>
+<p> </p>
 <p><strong>分组交换</strong></p>
 <p>计算机网络可以参考报文交换技术，但需要解决报文不定长的问题。所以出现了分组交换技术。把不定长的报文分成固定长度的组，包含：源地址、目的地址、分组号等。</p>
 <p>在现代计算机网络技术中，路由器就是典型的分组交换机。</p>
@@ -930,7 +940,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <li>交换结点支持“差错控制”;</li>
 </ul>
 <p>相较于报文交换，分组交换改进了如下问题：</p>
-<ol>
+<ol type="1">
 <li>分组定长，方便存储转发管理；</li>
 <li>分组的存储转发时间开销小、缓存开销小；</li>
 <li>分组不易出错，重传代价低；</li>
@@ -941,90 +951,90 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <li>相比于电路交换，依然存在存储转发时延；</li>
 <li>报文被拆分为多个组，传输过程中可能出现失序、丢失等问题，增加处理的复杂度；</li>
 </ul>
-<p>&emsp;</p>
-<div class="table-container">
+<p> </p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:left">电路交换</th>
-<th style="text-align:left">报文交换</th>
-<th style="text-align:left">分组交换</th>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">电路交换</th>
+<th style="text-align: left;">报文交换</th>
+<th style="text-align: left;">分组交换</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left"><strong>完成传输所需时间</strong></td>
-<td style="text-align:left">最少(不包括建立/释放连接耗时)</td>
-<td style="text-align:left">最多</td>
-<td style="text-align:left">较少</td>
+<tr class="odd">
+<td style="text-align: left;"><strong>完成传输所需时间</strong></td>
+<td style="text-align: left;">最少(不包括建立/释放连接耗时)</td>
+<td style="text-align: left;">最多</td>
+<td style="text-align: left;">较少</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>存储转发时延</strong></td>
-<td style="text-align:left">无</td>
-<td style="text-align:left">较高</td>
-<td style="text-align:left">较低</td>
+<tr class="even">
+<td style="text-align: left;"><strong>存储转发时延</strong></td>
+<td style="text-align: left;">无</td>
+<td style="text-align: left;">较高</td>
+<td style="text-align: left;">较低</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>通信前是否需要建立连接</strong></td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">否</td>
-<td style="text-align:left">否</td>
+<tr class="odd">
+<td style="text-align: left;"><strong>通信前是否需要建立连接</strong></td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">否</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>缓存开销</strong></td>
-<td style="text-align:left">无</td>
-<td style="text-align:left">高</td>
-<td style="text-align:left">低</td>
+<tr class="even">
+<td style="text-align: left;"><strong>缓存开销</strong></td>
+<td style="text-align: left;">无</td>
+<td style="text-align: left;">高</td>
+<td style="text-align: left;">低</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>是否支持差错控制</strong></td>
-<td style="text-align:left">不支持</td>
-<td style="text-align:left">支持</td>
-<td style="text-align:left">支持</td>
+<tr class="odd">
+<td style="text-align: left;"><strong>是否支持差错控制</strong></td>
+<td style="text-align: left;">不支持</td>
+<td style="text-align: left;">支持</td>
+<td style="text-align: left;">支持</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>报文数据有序到达</strong></td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">否</td>
+<tr class="even">
+<td style="text-align: left;"><strong>报文数据有序到达</strong></td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">否</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>是否需要额外的控制信息</strong></td>
-<td style="text-align:left">否</td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">是(控制信息占比大)</td>
+<tr class="odd">
+<td style="text-align: left;"><strong>是否需要额外的控制信息</strong></td>
+<td style="text-align: left;">否</td>
+<td style="text-align: left;">是</td>
+<td style="text-align: left;">是(控制信息占比大)</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>线路分配灵活性</strong></td>
-<td style="text-align:left">不灵活</td>
-<td style="text-align:left">灵活</td>
-<td style="text-align:left">非常灵活</td>
+<tr class="even">
+<td style="text-align: left;"><strong>线路分配灵活性</strong></td>
+<td style="text-align: left;">不灵活</td>
+<td style="text-align: left;">灵活</td>
+<td style="text-align: left;">非常灵活</td>
 </tr>
-<tr>
-<td style="text-align:left"><strong>线路利用率</strong></td>
-<td style="text-align:left">低</td>
-<td style="text-align:left">高</td>
-<td style="text-align:left">非常高</td>
+<tr class="odd">
+<td style="text-align: left;"><strong>线路利用率</strong></td>
+<td style="text-align: left;">低</td>
+<td style="text-align: left;">高</td>
+<td style="text-align: left;">非常高</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h1 id="计算机网络分类"><a href="#计算机网络分类" class="headerlink" title="计算机网络分类"></a>计算机网络分类</h1><p><strong>按分布范围分类：</strong></p>
-<ol>
+<h1 id="计算机网络分类">计算机网络分类</h1>
+<p><strong>按分布范围分类：</strong></p>
+<ol type="1">
 <li>广域网(WAN:Wide Area Network)</li>
 <li>城域网(MAN:Metropolitan Area Network):并入局域网范围探讨</li>
 <li>局域网(LAN:Local Area Network):采用以太网技术</li>
-<li>个域网(PAN:Personal Area Network)：通常是用无线技术将个人设备连接起来，因此也称为无线个域网(WPAN)</li>
+<li>个域网(PAN:Personal Area
+Network)：通常是用无线技术将个人设备连接起来，因此也称为无线个域网(WPAN)</li>
 </ol>
 <p>如今局域网几乎都是采用以太网技术实现，因此“以太网”已经成为“局域网”代名词。局域网通过路由器接入广域网。</p>
-<p>&emsp;</p>
+<p> </p>
 <p><strong>按传输技术分类：</strong></p>
 <ul>
 <li>广播式网络：当一台计算机发送数据分组时，广播范围内所有计算机都会收到该分组，并通过检查分组的目的地址决定是否接收该分组。所有的无线网络都是“广播式”；</li>
 <li>点对点网络：数据只会从发送方“点对点”发送到接收方，精准送达。比如路由器转发的数据分组；</li>
 </ul>
-<p>&emsp;</p>
+<p> </p>
 <p><strong>按拓扑结构分类：</strong></p>
 <ul>
 <li>总线形结构：数据“广播式”传输，存在“总线争用”的问题；比如集线器连接的设备；</li>
@@ -1032,56 +1042,63 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
 <li>星形结构：由中央设备实现数据的“点对点”传输，不存在“总线争用”问题，如以太网交换机连接的设备；</li>
 <li>网状结构：数据通过各中间结点逐一存储转发；属于“点到点”传输。如众多路由器构建的广域网。</li>
 </ul>
-<p>&emsp;</p>
+<p> </p>
 <p><strong>按使用者分类：</strong></p>
 <ul>
 <li>公用网———向公众开放的网络</li>
 <li>专用网——仅供某个组织内部使用的网络</li>
 </ul>
-<p>&emsp;</p>
+<p> </p>
 <p><strong>按传输介质分类</strong></p>
 <ul>
 <li>有线网络，如光纤、网线；</li>
 <li>无线网络：如5G、WiFi、卫星；</li>
 </ul>
-<h1 id="计算机网络性能指标"><a href="#计算机网络性能指标" class="headerlink" title="计算机网络性能指标"></a>计算机网络性能指标</h1><h2 id="速率、带宽、吞吐量"><a href="#速率、带宽、吞吐量" class="headerlink" title="速率、带宽、吞吐量"></a>速率、带宽、吞吐量</h2><p>信道：表示向某一方向传送信息的通道，信道$\neq$通信线路。一条融信线路在逻辑上往往对应一条发送信道和一条接收信道。</p>
+<h1 id="计算机网络性能指标">计算机网络性能指标</h1>
+<h2 id="速率带宽吞吐量">速率、带宽、吞吐量</h2>
+<p>信道：表示向某一方向传送信息的通道，信道<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.486ex;" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="2.106ex" role="img" focusable="false" viewBox="0 -716 778 931"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="2260" d="M166 -215T159 -215T147 -212T141 -204T139 -197Q139 -190 144 -183L306 133H70Q56 140 56 153Q56 168 72 173H327L406 327H72Q56 332 56 347Q56 360 70 367H426Q597 702 602 707Q605 716 618 716Q625 716 630 712T636 703T638 696Q638 692 471 367H707Q722 359 722 347Q722 336 708 328L451 327L371 173H708Q722 163 722 153Q722 140 707 133H351Q175 -210 170 -212Q166 -215 159 -215Z"></path></g></g></g></svg></mjx-container></span>通信线路。一条融信线路在逻辑上往往对应一条发送信道和一条接收信道。</p>
 <p>速率：指连接到网络上的节点在信道上传输数据的速率。也称数据率、比特率、数据传输速率。</p>
 <p>速率单位：bit/s、b/s、bps (每秒传输多少比特)</p>
 <p>要注意B和b表示的不一样，1B=8b，有时候单位也会使用Bps、B/s；</p>
 <p>要注意区分计网中的常用数量前缀和计组、操作系统中的数量前缀。</p>
 <ul>
-<li>计网：千：k($10^3$)、兆：M($10^6$)、吉：G($10^9$)、太：T($10^12$)；</li>
-<li>计组、操作系统等表示容量：K($2^{10}$)、M($2^{20}$)、G($2^{30}$)、T($2^{40}$)；</li>
+<li>计网：千：k(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.25ex" height="2.003ex" role="img" focusable="false" viewBox="0 -863.3 1436.6 885.3"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g></g></g></svg></mjx-container></span>)、兆：M(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.25ex" height="2.005ex" role="img" focusable="false" viewBox="0 -864 1436.6 886"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path></g></g></g></g></svg></mjx-container></span>)、吉：G(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="3.25ex" height="2.005ex" role="img" focusable="false" viewBox="0 -864 1436.6 886"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="39" d="M352 287Q304 211 232 211Q154 211 104 270T44 396Q42 412 42 436V444Q42 537 111 606Q171 666 243 666Q245 666 249 666T257 665H261Q273 665 286 663T323 651T370 619T413 560Q456 472 456 334Q456 194 396 97Q361 41 312 10T208 -22Q147 -22 108 7T68 93T121 149Q143 149 158 135T173 96Q173 78 164 65T148 49T135 44L131 43Q131 41 138 37T164 27T206 22H212Q272 22 313 86Q352 142 352 280V287ZM244 248Q292 248 321 297T351 430Q351 508 343 542Q341 552 337 562T323 588T293 615T246 625Q208 625 181 598Q160 576 154 546T147 441Q147 358 152 329T172 282Q197 248 244 248Z"></path></g></g></g></g></svg></mjx-container></span>)、太：T(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.05ex;" xmlns="http://www.w3.org/2000/svg" width="4.381ex" height="2.005ex" role="img" focusable="false" viewBox="0 -864 1936.6 886"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g><g data-mml-node="mn" transform="translate(1436.6,0)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g></svg></mjx-container></span>)；</li>
+<li>计组、操作系统等表示容量：K(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>)、M(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>)、G(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>)、T(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.904ex" role="img" focusable="false" viewBox="0 -841.7 1290.1 841.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>)；</li>
 </ul>
-<p>&emsp;</p>
+<p> </p>
 <p>带宽是指某信道所能传送的最高数据率。单位也是bps；</p>
 <p>在通信原理中，带宽也表示某信道允许通过的信号频带范围，单位Hz;</p>
 <p>节点间通信实际所能到达的最高速率，由宽带、节点性能共同限制。不是带宽高了，传输速率就一定高。</p>
-<p>&emsp;</p>
+<p> </p>
 <p>吞吐量指单位时间内通过某个网络(或接口、信道)的实际数据率。单位也是b/s、B/s、MB/s;</p>
 <p>吞吐量受带宽限制、受复杂的网络负载情况影响；</p>
-<h2 id="时延、时延带宽积、往返时延"><a href="#时延、时延带宽积、往返时延" class="headerlink" title="时延、时延带宽积、往返时延"></a>时延、时延带宽积、往返时延</h2><p>时延：指数据(一个报文或分组、甚至比特)从网络(或链路)的一端传送到另一端所需的时间。也称延迟。</p>
+<h2 id="时延时延带宽积往返时延">时延、时延带宽积、往返时延</h2>
+<p>时延：指数据(一个报文或分组、甚至比特)从网络(或链路)的一端传送到另一端所需的时间。也称延迟。</p>
 <ul>
-<li>总时延 = 发送时延 + 传播时延 + 处理时延 + 排队时延<ul>
-<li>发送时延：又名传输时延，节点将数据推向信道所花的时间；$\frac{数据长度(bit)}{发送速率(bit/s)}$</li>
-<li>传播时延：电磁波在信道中传播一定距离所花的时间；$\frac{信道长度(m)}{电磁波在信道中的传播速度(m/s)}$</li>
+<li>总时延 = 发送时延 + 传播时延 + 处理时延 + 排队时延
+<ul>
+<li>发送时延：又名传输时延，节点将数据推向信道所花的时间；<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.238ex;" xmlns="http://www.w3.org/2000/svg" width="12.005ex" height="3.607ex" role="img" focusable="false" viewBox="0 -1047.1 5306.3 1594.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(562.6,516.8) scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">据</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">长</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">度</text></g><g data-mml-node="mo" transform="translate(4000,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(4389,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mi" transform="translate(4818,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(5163,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mo" transform="translate(5524,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-370.3) scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">发</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">送</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">速</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">率</text></g><g data-mml-node="mo" transform="translate(4000,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(4389,0)"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path></g><g data-mml-node="mi" transform="translate(4818,0)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(5163,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(5524,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(6024,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mo" transform="translate(6493,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><rect width="5066.3" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span></li>
+<li>传播时延：电磁波在信道中传播一定距离所花的时间；<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.238ex;" xmlns="http://www.w3.org/2000/svg" width="24.392ex" height="3.607ex" role="img" focusable="false" viewBox="0 -1047.1 10781.4 1594.2"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(3391,516.8) scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">信</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">道</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">长</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">度</text></g><g data-mml-node="mo" transform="translate(4000,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(4389,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(5267,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-370.3) scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">电</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">磁</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">波</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">在</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">信</text></g><g data-mml-node="mi" transform="translate(5000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">道</text></g><g data-mml-node="mi" transform="translate(6000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">中</text></g><g data-mml-node="mi" transform="translate(7000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(8000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">传</text></g><g data-mml-node="mi" transform="translate(9000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">播</text></g><g data-mml-node="mi" transform="translate(10000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">速</text></g><g data-mml-node="mi" transform="translate(11000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">度</text></g><g data-mml-node="mo" transform="translate(12000,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(12389,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(13267,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(13767,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path></g><g data-mml-node="mo" transform="translate(14236,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><rect width="10541.4" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span></li>
 <li>处理时延：被路由器处理所花的时间，比如分析首部、查找存储转发表；</li>
 <li>排队时延：数据排队进入、排队发出路由器所花的时间</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>要注意区分<strong>传播时延</strong> 和 <strong>传输时延(发送时延)</strong></p>
-<p>&emsp;</p>
-<p>时延带宽积 = 传播时延 $\times$ 带宽。单位是bit（s $\times$ bit/s）</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E7%BD%91%E7%BB%9C/%E6%97%B6%E5%BB%B6%E5%B8%A6%E5%AE%BD%E7%A7%AF.png" alt=""></p>
+<p>要注意区分<strong>传播时延</strong> 和
+<strong>传输时延(发送时延)</strong></p>
+<p> </p>
+<p>时延带宽积 = 传播时延 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0.02ex;" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.09ex" role="img" focusable="false" viewBox="0 -491 778 482"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g></g></g></svg></mjx-container></span>
+带宽。单位是bit（s <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0.02ex;" xmlns="http://www.w3.org/2000/svg" width="1.76ex" height="1.09ex" role="img" focusable="false" viewBox="0 -491 778 482"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g></g></g></svg></mjx-container></span>
+bit/s）</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E7%BD%91%E7%BB%9C/%E6%97%B6%E5%BB%B6%E5%B8%A6%E5%AE%BD%E7%A7%AF.png"></p>
 <p>时延带宽积表达的含义是一条链路中，已经从发送端发出但是还没有到达接收端的最大比特数。表现类似容量的概念。</p>
-<p>&emsp;</p>
+<p> </p>
 <p>往返时延：表示从发送方<strong>发送完</strong>数据，到发送方<strong>收到来自接收方的确认</strong>总共经历的时间。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E7%BD%91%E7%BB%9C/%E5%BE%80%E8%BF%94%E6%97%B6%E5%BB%B6.png" alt=""></p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E7%BD%91%E7%BB%9C/%E5%BE%80%E8%BF%94%E6%97%B6%E5%BB%B6.png"></p>
 <p>往返时延 = t2 + t3 + t4 + t5. 不包括t1</p>
-<h2 id="信道利用率"><a href="#信道利用率" class="headerlink" title="信道利用率"></a>信道利用率</h2><p>信道利用率表示某个信道有百分之多少的时间是有数据通过的。</p>
-<p>信道利用率 = $\frac{有数据通过的时间}{有数据通过的时间+没有数据通过的时间}$</p>
-<p>信道利用率不能太低，浪费资源；但信道利用率也不能太高，容易导致网络阻塞。</p>
+<h2 id="信道利用率">信道利用率</h2>
+<p>信道利用率表示某个信道有百分之多少的时间是有数据通过的。</p>
+<p>信道利用率 = <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -1.158ex;" xmlns="http://www.w3.org/2000/svg" width="29.437ex" height="3.447ex" role="img" focusable="false" viewBox="0 -1011.8 13010.9 1523.5"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(3677,481.4) scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">有</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">据</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">通</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">过</text></g><g data-mml-node="mi" transform="translate(5000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(6000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">时</text></g><g data-mml-node="mi" transform="translate(7000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">间</text></g></g><g data-mml-node="mrow" transform="translate(220,-370.3) scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">有</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">据</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">通</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">过</text></g><g data-mml-node="mi" transform="translate(5000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(6000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">时</text></g><g data-mml-node="mi" transform="translate(7000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">间</text></g><g data-mml-node="mo" transform="translate(8000,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(8778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">没</text></g><g data-mml-node="mi" transform="translate(9778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">有</text></g><g data-mml-node="mi" transform="translate(10778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g><g data-mml-node="mi" transform="translate(11778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">据</text></g><g data-mml-node="mi" transform="translate(12778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">通</text></g><g data-mml-node="mi" transform="translate(13778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">过</text></g><g data-mml-node="mi" transform="translate(14778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">的</text></g><g data-mml-node="mi" transform="translate(15778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">时</text></g><g data-mml-node="mi" transform="translate(16778,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">间</text></g></g><rect width="12770.9" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span></p>
+<p>信道利用率不能太低，浪费资源；但信道利用率也不能太高，容易导致网拥塞。</p>
 ]]></content>
       <categories>
         <category>考研初试</category>
