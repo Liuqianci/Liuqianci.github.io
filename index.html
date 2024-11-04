@@ -1716,7 +1716,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-03 03:47:08" itemprop="dateModified" datetime="2024-11-03T03:47:08+08:00">2024-11-03</time>
+                <time title="修改时间：2024-11-04 08:37:53" itemprop="dateModified" datetime="2024-11-04T08:37:53+08:00">2024-11-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1738,7 +1738,7 @@ e):按值查找操作。在表L中查找具有给定关键字值的元素；</li
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.2k</span>
+              <span>5.7k</span>
             </span>
 
         </div>
@@ -2087,6 +2087,15 @@ bit/s）</p>
 </tbody>
 </table>
 <p>注意：数据链路层、网络层、传输层都有差错控制，这几个不一样。数据链路层传输数据的单位是"帧"、网络层传输数据的单位是"分组"、传输层传输数据的单位是报文段。一个分组由很多帧组成，报文段可以拆分成很多组。数据链路层确保帧的差错控制，网络层确保分组之间的差错控制，传输层确保报文段之间的差错控制。</p>
+<h2 id="tcpip模型">TCP/IP模型</h2>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E7%BD%91%E7%BB%9C/TCP-IP.png"></p>
+<p>(口诀：接网叔用)</p>
+<ul>
+<li><p>TCP/IP模型把表示层和会话层删去了，因为这两个层次并不是所有网络应用都需要的。如果某些应用需要数据格式转换、会话管理功能，就交给应用层的特定协议去实现。</p></li>
+<li><p>TCP/IP在低层没有采用OSI中的物理层+数据链路层的模型，因为网络硬件种类繁多，不应该有过多的限制。TCP/IP模型低层为网络接口层，实现相邻节点间的数据传输(为网络层传输"分组")。但具体怎么传输不做规定。这使得T=CP/IP网络体系结构具有更强的灵活性、适应性。</p></li>
+<li><p>TCP/IP模型的网络层去掉了OSI模型中网络层的差错控制、流量控制、可靠传输管理功能，传输层直接把报文段传递给网络层，由网络层拆分成不同分组，传递给网络接口层，再由网络接口层拆分为多个帧传输。因此网络接口层不完全可靠，因为它收到的分组有可能有差错。。这就是TCP/IP模型网络层特点：只保证尽最大能力交付数据，不保证数据可靠。网络层是网络的核心部分，这么做的优点是降低网络层功能复杂度，负载降低，造价降低。</p></li>
+<li><p>TCP/IP模型中传输层来负责差错控制、流量控制、连接建立与释放、可靠传输管理，由它来保证传输的正确性、可靠性。TCP/IP模型把保证数据正确的功能全部交给传输层负责，压力给到网络的边缘部分(主机)。</p></li>
+</ul>
 
       
     </div>
@@ -2700,7 +2709,7 @@ style="text-align: left;">第二类VMM部分运行在用户态，部分运行在
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">88k</span>
+    <span title="站点总字数">89k</span>
 </div>
 
 <!--
