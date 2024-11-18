@@ -30,8 +30,9 @@
 <meta property="og:description" content="串的定义和实现 串，即字符串是由零个或多个字符组成的有限序列，一般记为。其中S是串命，n为串的长度  n&#x3D;0时的串被称为空串(用表示) 子串：串中任意个连续字符组成的子序列。空串也是字串； 主串：包含子串的串； 字符在主串中的位置称为字符在串中的序号。注意序号是从1开始的； 子串在主串中的位置：子串第一个字符在主串中的位置；  串是一种特殊的线性表，数据元素之间呈现线性关系。串的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP-1.png">
 <meta property="article:published_time" content="2024-10-29T17:48:16.000Z">
-<meta property="article:modified_time" content="2024-11-07T18:43:55.431Z">
+<meta property="article:modified_time" content="2024-11-18T15:36:57.223Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -329,7 +330,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-11-08 02:43:55" itemprop="dateModified" datetime="2024-11-08T02:43:55+08:00">2024-11-08</time>
+                <time title="修改时间：2024-11-18 23:36:57" itemprop="dateModified" datetime="2024-11-18T23:36:57+08:00">2024-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -358,7 +359,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
+              <span>4.9k</span>
             </span>
 
         </div>
@@ -423,6 +424,99 @@ mjx-container[display="true"] + br {
 <h2 id="kmp算法">KMP算法</h2>
 <p>基于朴素模式匹配算法优化得来的。朴素模式匹配算法中，依次遍历主串和模式串，一旦遍历失败，那么指针回溯，一切从头开始匹配。</p>
 <p>但其实某一个子串哪怕匹配失败，但前面已经匹配过的字符是我们完全已知的，相当于模式串的子串。我们可以不用回溯主串指针。</p>
+<p>以模式串"abaabc"为例：</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP-1.png"></p>
+<p>上图主串S和模式串匹配到第6个元素的时候，由于前5个元素已经知道了，那么可以令主串指针不变，依旧指向第6位，模式串直接从第3位开始匹配。依次类推。</p>
+<p>这种匹配方式和主串无关，只和模式串有关，例如针对模式串T="abaabc"，有：</p>
+<ul>
+<li>当第6个元素匹配失败时，可令主串指针i不变，模式串指针j=3;</li>
+<li>当第5个元素匹配失败时，可令主串指针i不变，模式串指针j=2;</li>
+<li>当第4个元素匹配失败时，可令主串指针i不变，模式串指针j=2;</li>
+<li>当第3个元素匹配失败时，可令主串指针i不变，模式串指针j=1;</li>
+<li>当第2个元素匹配失败时，可令主串指针i不变，模式串指针j=1;</li>
+<li>当第1个元素匹配失败时，匹配下一个相邻子串，令j=0，i++,j++;</li>
+</ul>
+<p>这样我们可以得到一个next数组：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">next[0]</th>
+<th style="text-align: center;">next[1]</th>
+<th style="text-align: center;">next[2]</th>
+<th style="text-align: center;">next[3]</th>
+<th style="text-align: center;">next[4]</th>
+<th style="text-align: center;">next[5]</th>
+<th style="text-align: center;">next[6]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+<p>改造朴素模式匹配算法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Index_KMP</span><span class="params">(SString S, SString T, <span class="type">int</span> next[])</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>, j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= s.length &amp;&amp; j &lt;=T.length)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || S.ch[i] == T.ch[j]){</span><br><span class="line">            <span class="comment">//继续匹配后继字符</span></span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = next[j];   <span class="comment">//模式串向右移动</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(j &gt; T.length)</span><br><span class="line">        <span class="keyword">return</span> i-T.length;   <span class="comment">//匹配成功</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>KMP算法的最坏时间复杂度为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="9.596ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 4241.4 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(2252.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(3252.4,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3852.4,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>;其中求next数组的时间复杂度<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="5.473ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2419 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(2030,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>，模式匹配过程最坏复杂度<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>；</p>
+<h3 id="next数组手算">next数组手算</h3>
+<p>next数组作用：当模式串第j个字符匹配失败时，从模式串的第next[j]开始继续往后匹配；</p>
+<p>任何模式串都一样，第一个字符不匹配时，只能匹配下一个子串，因此next[1]无脑写0；</p>
+<p>任何模式串都一样，第二个字符不匹配时，应尝试匹配模式串的第1个字符，因此next[2]无脑写1；</p>
+<p>在不匹配的位置前画分界线，模式串一步步后退，直到分界线之前完全“能对上”，或者模式串完全跨过分界线为止。此时j指向哪里，next数组值就是多少</p>
+<h3 id="nextval数组">nextval数组</h3>
+<p>next数组的思路，其中中间有很多不必要的步骤，以模式串"abaabc"为例，next[3]=1，也就是当第三个字符不匹配时，模式串回溯到第一个位置去匹配，可是模式串第三个字符和第一个字符都是a，再次匹配依旧匹配不上，所以我们可以直接从头开始。以此类推next[5]=2,可是模式串第五个字符和第二个字符都是'b',从第二个字符开始依旧匹配不上，所以可以从next[2]开始匹配，即从1开始匹配。</p>
+<p>手算解题：先求next数组，再由next数组求nextval数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nextval[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">2</span>; j &lt;= T.length; j++){</span><br><span class="line">    <span class="keyword">if</span>(T.ch[next[j]] == T.ch[j])</span><br><span class="line">        nextval[j] = nextval[next[j]];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        nextval[j] = next[j];</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">序号j</th>
+<th style="text-align: center;">next[1]</th>
+<th style="text-align: center;">next[2]</th>
+<th style="text-align: center;">next[3]</th>
+<th style="text-align: center;">next[4]</th>
+<th style="text-align: center;">next[5]</th>
+<th style="text-align: center;">next[6]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">模式串</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">b</td>
+<td style="text-align: center;">a</td>
+<td style="text-align: center;">a</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">next[j]</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">nextval[j]</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="代码计算next">代码计算next</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">get_next</span><span class="params">(String T, <span class="type">int</span> next[])</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>,j = <span class="number">0</span>;</span><br><span class="line">    next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; T.length)</span><br><span class="line">    {</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">0</span> || T.ch[i] == T.ch[j])</span><br><span class="line">        {</span><br><span class="line">            ++i;</span><br><span class="line">            ++j;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j = next[j];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -503,7 +597,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">串的定义和实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">串的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.1.</span> <span class="nav-text">顺序存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.2.</span> <span class="nav-text">链式存储</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">串的模式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">朴素模式匹配算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">KMP算法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">串的定义和实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">串的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.1.</span> <span class="nav-text">顺序存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.2.</span> <span class="nav-text">链式存储</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%B2%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">串的模式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">朴素模式匹配算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">KMP算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#next%E6%95%B0%E7%BB%84%E6%89%8B%E7%AE%97"><span class="nav-number">3.2.1.</span> <span class="nav-text">next数组手算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nextval%E6%95%B0%E7%BB%84"><span class="nav-number">3.2.2.</span> <span class="nav-text">nextval数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AE%A1%E7%AE%97next"><span class="nav-number">3.2.3.</span> <span class="nav-text">代码计算next</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -580,7 +674,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">92k</span>
+    <span title="站点总字数">94k</span>
 </div>
 
 <!--
