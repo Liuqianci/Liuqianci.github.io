@@ -49,8 +49,12 @@
 <meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%B8%AD%E5%BA%8F%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%BE%E4%B8%AD%E5%BA%8F%E5%89%8D%E9%A9%B1.png">
 <meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%85%88%E5%BA%8F%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%BE%E5%90%8E%E7%BB%A7.png">
 <meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%90%8E%E5%BA%8F%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%BE%E5%89%8D%E9%A9%B1.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A3%AE%E6%9E%97%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%A0%91.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%A3%AE%E6%9E%97.png">
 <meta property="article:published_time" content="2024-12-01T06:28:49.000Z">
-<meta property="article:modified_time" content="2024-12-16T17:48:49.026Z">
+<meta property="article:modified_time" content="2024-12-16T18:28:26.822Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -348,7 +352,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-17 01:48:49" itemprop="dateModified" datetime="2024-12-17T01:48:49+08:00">2024-12-17</time>
+                <time title="修改时间：2024-12-17 02:28:26" itemprop="dateModified" datetime="2024-12-17T02:28:26+08:00">2024-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -377,7 +381,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
+              <span>12k</span>
             </span>
 
         </div>
@@ -717,6 +721,64 @@ mjx-container[display="true"] + br {
 <p>孩子兄弟表示法与二叉树类似，采用二叉链表实现。每个结点内保存数据元素和两个指针，但两个指针的含义和二叉树不同。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">CSNode</span>{</span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">CSNode</span> *firstChild;      <span class="comment">//指向第一个孩子</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">CSNode</span> *nextsibling;     <span class="comment">//指向右兄弟</span></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>孩子兄弟表示法也可以存储森林。每棵树的树根都看成平级的关系，当作兄弟结点处理。</p>
+<p>由于存储视角上看形态和二叉树雷系，所以是重要考点：树、森林和二叉树的转换。</p>
+<h2 id="树森林转二叉树">树、森林转二叉树</h2>
+<p><strong>树转二叉树</strong></p>
+<ol type="1">
+<li>先在二叉树中，画出一个根结点；</li>
+<li>按照树的“层序”依次处理每个结点：如果当前处理的结点在树中有孩子，就把所有孩子结点“用右指针串成糖葫芦”，并在二叉树中把第一个孩子挂在当前结点的左指针下方。</li>
+</ol>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.png"></p>
+<p><strong>森林转二叉树</strong></p>
+<p>森林中各个树的根结点均视为平级的兄弟关系：</p>
+<ol type="1">
+<li>先把所有树的根结点画出来，在二叉树中用右指针串成糖葫芦</li>
+<li>按照森林的“层序”依次处理每个结点：如果当前处理的结点在树中有孩子，就把所有孩子结点“用右指针串成糖葫芦”，并在二叉树中把第一个孩子挂在当前结点的左指针下方。</li>
+</ol>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A3%AE%E6%9E%97%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91.png"></p>
+<h2 id="二叉树转树森林">二叉树转树、森林</h2>
+<p><strong>二叉树转树：</strong></p>
+<ol type="1">
+<li>先画出树的根节点；</li>
+<li>从树的根节点开始，按照树的“层序”恢复每个结点的孩子：在二叉树中，如果当前处理的结点有左孩子，就把左孩子和“一整串右指针糖葫芦”拆下来，按顺序挂在当前结点的下方；</li>
+</ol>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%A0%91.png"></p>
+<p><strong>二叉树转森林：</strong></p>
+<ol type="1">
+<li>先把二叉树的根节点和“一整串右指针糖葫芦”拆下来，作为多棵树的根节点；</li>
+<li>按照森林的“层序”恢复每个结点的孩子：在二叉树中，如果当前处理的结点有左孩子，就把左孩子和“一整串右指针糖葫芦”拆下来，按顺序挂在当前结点的下方；</li>
+</ol>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%A3%AE%E6%9E%97.png"></p>
+<h1 id="树和森林的遍历">树和森林的遍历</h1>
+<p>树的遍历分为三种：</p>
+<ol type="1">
+<li>先根遍历：若树非空，先访问根节点，再依次对每棵子树进行先根遍历(根左右)；树的先根遍历序列与这棵树相应的二叉树的先序序列相同；</li>
+<li>后根遍历：若树非空，先依次对每棵子树进行后根遍历，最后再访问根节点(左右根)。树的后根遍历序列与这棵树对应的二叉树的中序序列相同</li>
+<li>层次遍历(用辅助队列实现)：
+<ol type="1">
+<li>若树非空，则根节点入队；、</li>
+<li>若队列非空，队头元素出队并访问，同时将该元素的孩子依次入队</li>
+<li>重复2直到队列为空</li>
+</ol></li>
+</ol>
+<p>先根遍历和后根遍历是深度优先，层次遍历是广度优先</p>
+<p> </p>
+<p>森林的遍历分为两种：</p>
+<ol type="1">
+<li>先序遍历(效果等同于依次对各个树进行先根遍历，或者直接把森林转换成二叉树，看二叉树的先序遍历序列)：
+<ol type="1">
+<li>访问森林中第一棵树的根节点；</li>
+<li>先序遍历第一棵树中根节点的子树森林</li>
+<li>先序遍历除第一棵树之后剩余的树构成的森林。</li>
+</ol></li>
+<li>中序遍历(效果上等同于依次对各个树进行后根遍历，或者看对应二叉树的中序遍历序列):
+<ol type="1">
+<li>中序遍历森林中第一棵树的根节点的字数森林</li>
+<li>访问森林中第一棵树的根节点</li>
+<li>中序遍历除去第一棵树之后剩余的树</li>
+</ol></li>
+</ol>
+<h1 id="哈夫曼树">哈夫曼树</h1>
 
     </div>
 
@@ -797,7 +859,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E5%92%8C%E6%A0%91%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">结点和树的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%A0%91%E5%92%8C%E6%97%A0%E5%BA%8F%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">有序树和无序树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97"><span class="nav-number">1.3.</span> <span class="nav-text">树和森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%80%83%E6%80%A7%E8%B4%A8"><span class="nav-number">1.4.</span> <span class="nav-text">常考性质</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.1.</span> <span class="nav-text">几种特殊的二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B8%B8%E8%80%83%E6%80%A7%E8%B4%A8"><span class="nav-number">2.2.</span> <span class="nav-text">二叉树常考性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B8%B8%E8%80%83%E6%80%A7%E8%B4%A8"><span class="nav-number">2.3.</span> <span class="nav-text">完全二叉树常考性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">二叉树的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.4.1.</span> <span class="nav-text">顺序存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text">链式存储</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">3.</span> <span class="nav-text">二叉树的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E4%B8%AD%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">3.1.</span> <span class="nav-text">先中后序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">3.2.</span> <span class="nav-text">层序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B1%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.3.</span> <span class="nav-text">由遍历序列构造二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.4.</span> <span class="nav-text">线索二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%BA%BF%E7%B4%A2%E5%8C%96"><span class="nav-number">3.4.1.</span> <span class="nav-text">二叉树的线索化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%BE%E5%89%8D%E9%A9%B1%E5%90%8E%E7%BB%A7"><span class="nav-number">3.4.2.</span> <span class="nav-text">线索二叉树找前驱、后继</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">树的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">双亲表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A9%E5%AD%90%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">孩子表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A9%E5%AD%90%E5%85%84%E5%BC%9F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">孩子兄弟表示法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E7%82%B9%E5%92%8C%E6%A0%91%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">结点和树的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%A0%91%E5%92%8C%E6%97%A0%E5%BA%8F%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">有序树和无序树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97"><span class="nav-number">1.3.</span> <span class="nav-text">树和森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%80%83%E6%80%A7%E8%B4%A8"><span class="nav-number">1.4.</span> <span class="nav-text">常考性质</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.1.</span> <span class="nav-text">几种特殊的二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B8%B8%E8%80%83%E6%80%A7%E8%B4%A8"><span class="nav-number">2.2.</span> <span class="nav-text">二叉树常考性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B8%B8%E8%80%83%E6%80%A7%E8%B4%A8"><span class="nav-number">2.3.</span> <span class="nav-text">完全二叉树常考性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">2.4.</span> <span class="nav-text">二叉树的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.4.1.</span> <span class="nav-text">顺序存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text">链式存储</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">3.</span> <span class="nav-text">二叉树的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%88%E4%B8%AD%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">3.1.</span> <span class="nav-text">先中后序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">3.2.</span> <span class="nav-text">层序遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B1%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.3.</span> <span class="nav-text">由遍历序列构造二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.4.</span> <span class="nav-text">线索二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%BA%BF%E7%B4%A2%E5%8C%96"><span class="nav-number">3.4.1.</span> <span class="nav-text">二叉树的线索化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E6%89%BE%E5%89%8D%E9%A9%B1%E5%90%8E%E7%BB%A7"><span class="nav-number">3.4.2.</span> <span class="nav-text">线索二叉树找前驱、后继</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">树的存储结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">双亲表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A9%E5%AD%90%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.2.</span> <span class="nav-text">孩子表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A9%E5%AD%90%E5%85%84%E5%BC%9F%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">孩子兄弟表示法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E6%A3%AE%E6%9E%97%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">4.4.</span> <span class="nav-text">树、森林转二叉树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E8%BD%AC%E6%A0%91%E6%A3%AE%E6%9E%97"><span class="nav-number">4.5.</span> <span class="nav-text">二叉树转树、森林</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E5%92%8C%E6%A3%AE%E6%9E%97%E7%9A%84%E9%81%8D%E5%8E%86"><span class="nav-number">5.</span> <span class="nav-text">树和森林的遍历</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91"><span class="nav-number">6.</span> <span class="nav-text">哈夫曼树</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -874,7 +936,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">106k</span>
+    <span title="站点总字数">107k</span>
 </div>
 
 <!--
