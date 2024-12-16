@@ -325,7 +325,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-17 00:30:03" itemprop="dateModified" datetime="2024-12-17T00:30:03+08:00">2024-12-17</time>
+                <time title="修改时间：2024-12-17 01:48:49" itemprop="dateModified" datetime="2024-12-17T01:48:49+08:00">2024-12-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -347,7 +347,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>11k</span>
             </span>
 
         </div>
@@ -660,6 +660,33 @@ mjx-container[display="true"] + br {
 <li>若p-&gt;rtag ==
 0,则只能用土办法从头开始后序遍历，<strong>后序遍历中，左右子树中的结点只可能是根的前驱，不可能是后继</strong></li>
 </ol>
+<h1 id="树的存储结构">树的存储结构</h1>
+<p>二叉树的顺序存储，可以按照完全二叉树中的结点顺序，将各个结点存储到数组的对应位置。数组下标反映结点之间的逻辑关系。但对于普通的树，一个分支结点可以有多棵子树，没有完全树的概念。只依靠数组下标，无法反映结点之间的逻辑关系。</p>
+<h2 id="双亲表示法">双亲表示法</h2>
+<p>顺序存储。</p>
+<p>思路：用数组顺序存储各个结点。每个结点中保存数据元素、指向双亲结点的“指针”(数组下标)。非根节点的双亲指针=父节点在数组中的下标、根节点的双亲指针为-1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_TREE_SIZE 100  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//结点定义</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> struct{</span></span><br><span class="line">    ElemType data;      <span class="comment">//数据元素</span></span><br><span class="line">    <span class="type">int</span> parant;         <span class="comment">//双亲位置域</span></span><br><span class="line">}PTNode;</span><br><span class="line"></span><br><span class="line"><span class="comment">//类型定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span>{</span><br><span class="line">    PTNode nodes[MAX_TREE_SIZE];    <span class="comment">//双亲表示</span></span><br><span class="line">    <span class="type">int</span> n;                          <span class="comment">//结点数</span></span><br><span class="line">}PTree;</span><br></pre></td></tr></table></figure>
+<p>森林是m棵互不相交的数的集合。双亲表示法也可以存储森林。</p>
+<ul>
+<li>优点：找父节点很方便，直接读取parant；</li>
+<li>缺点：找孩子不方便，只能从头到尾遍历整个数组；</li>
+</ul>
+<p>适用于找父亲多，找孩子少的场景，比如“并查集”。</p>
+<h2 id="孩子表示法">孩子表示法</h2>
+<p>既使用顺序存储，也使用链式存储。</p>
+<p>思路：用数组顺序存储各个结点。每个结点中保存数据元素和孩子链表的头指针。用一个链表记录一个结点的所有孩子的编号，结点的指针域指向第一个孩子编号。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_TREE_SIZE 100  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">CTNode</span>{</span><br><span class="line">    <span class="type">int</span> child;      <span class="comment">//孩子节点在数组中的位置</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">CTNode</span> *next;   <span class="comment">//下一个孩子</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> {</span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">CTNode</span> *firstChild;      <span class="comment">//第一个孩子</span></span><br><span class="line">}CTBox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> {</span><br><span class="line">    CTBox nodes[MAX_TREE_SIZE];</span><br><span class="line">    <span class="type">int</span> n,r;   <span class="comment">//结点数和根结点位置</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>孩子表示法也可以存储森林。但需要记录多个根的位置。</p>
+<ul>
+<li>优点：找孩子很方便；</li>
+<li>缺点：找双亲不方便，只能遍历每个链表；</li>
+</ul>
+<p>使用于找孩子多，找父亲少的场景，比如服务流程树。</p>
+<h2 id="孩子兄弟表示法">孩子兄弟表示法</h2>
+<p>链式存储方式。</p>
+<p>孩子兄弟表示法与二叉树类似，采用二叉链表实现。每个结点内保存数据元素和两个指针，但两个指针的含义和二叉树不同。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">CSNode</span>{</span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">CSNode</span> *firstChild;      <span class="comment">//指向第一个孩子</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">CSNode</span> *nextsibling;     <span class="comment">//指向右兄弟</span></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>孩子兄弟表示法也可以存储森林。每棵树的树根都看成平级的关系，当作兄弟结点处理。</p>
 
       
     </div>
@@ -2811,7 +2838,7 @@ bit/s）</p>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">104k</span>
+    <span title="站点总字数">106k</span>
 </div>
 
 <!--
