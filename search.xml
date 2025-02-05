@@ -3125,7 +3125,18 @@ Service）是一种常用的策略，符合队列场景；</li>
   <entry>
     <title>1、CPU调试支持</title>
     <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/CPU%E8%B0%83%E8%AF%95%E6%94%AF%E6%8C%81/</url>
-    <content><![CDATA[
+    <content><![CDATA[<h1 id="软件断点">软件断点</h1>
+<p>软件断点就是INT3指令</p>
+<ul>
+<li>机器码为1字节，内存ASCII码为0xCC，经典的“烫烫烫烫”；</li>
+<li>IDE下断点，就是在那条指令的位置插入INT3，或者那个字节替换为0xCC;</li>
+<li>软件断点没有数量限制，很有灵活性</li>
+<li>软件断点的局限性：
+<ul>
+<li>由于软件断点是插入或者修改指令，对于在ROM(只读存储器)中执行的程序比如BIOS或者其他固件程序，无法动态增加软件断点，只能用硬件断点；</li>
+<li>属于代码类断点(可以让CPU执行到代码段内的某个地址时停下来)，所以不适用于数据段和I/O空间；</li>
+</ul></li>
+</ul>
 ]]></content>
       <categories>
         <category>软件调试</category>

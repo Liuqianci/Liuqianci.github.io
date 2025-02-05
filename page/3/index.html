@@ -282,7 +282,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-02-05 20:19:08 / 修改时间：20:22:54" itemprop="dateCreated datePublished" datetime="2025-02-05T20:19:08+08:00">2025-02-05</time>
+              <time title="创建时间：2025-02-05 20:19:08 / 修改时间：21:22:54" itemprop="dateCreated datePublished" datetime="2025-02-05T20:19:08+08:00">2025-02-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -300,7 +300,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>228</span>
             </span>
 
         </div>
@@ -312,7 +312,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="软件断点">软件断点</h1>
+<p>软件断点就是INT3指令</p>
+<ul>
+<li>机器码为1字节，内存ASCII码为0xCC，经典的“烫烫烫烫”；</li>
+<li>IDE下断点，就是在那条指令的位置插入INT3，或者那个字节替换为0xCC;</li>
+<li>软件断点没有数量限制，很有灵活性</li>
+<li>软件断点的局限性：
+<ul>
+<li>由于软件断点是插入或者修改指令，对于在ROM(只读存储器)中执行的程序比如BIOS或者其他固件程序，无法动态增加软件断点，只能用硬件断点；</li>
+<li>属于代码类断点(可以让CPU执行到代码段内的某个地址时停下来)，所以不适用于数据段和I/O空间；</li>
+</ul></li>
+</ul>
 
       
     </div>
@@ -2060,7 +2071,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">107k</span>
+    <span title="站点总字数">108k</span>
 </div>
 
 <!--
