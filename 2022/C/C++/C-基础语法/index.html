@@ -30,7 +30,7 @@
 <meta property="og:description" content="编译型语言 编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低  机器语言、汇编语言：这些语言执行效率很高，但移植性很差； 编译型语言：C&#x2F;C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度； 解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强； 脚本语言：b">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-07T02:25:18.000Z">
-<meta property="article:modified_time" content="2025-03-24T04:28:01.505Z">
+<meta property="article:modified_time" content="2025-03-24T07:49:51.145Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="C++基础">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-03-24 12:28:01" itemprop="dateModified" datetime="2025-03-24T12:28:01+08:00">2025-03-24</time>
+                <time title="修改时间：2025-03-24 15:49:51" itemprop="dateModified" datetime="2025-03-24T15:49:51+08:00">2025-03-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
+              <span>2.3k</span>
             </span>
 
         </div>
@@ -372,7 +372,7 @@ myAge;</li>
 <li>Pascal命名法：每个单词的第一个字母都大写，如int MyAge;</li>
 </ul></li>
 </ul>
-<h1 id="关键字">关键字</h1>
+<p> </p>
 <p><a
 target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
 <h1 id="变量与常量">变量与常量</h1>
@@ -400,7 +400,41 @@ m=1,n=1; int sum = m + n;</li>
 <li>使用#define，如：#define PI 3.14</li>
 <li>使用const，如：const double PI = 3.14</li>
 </ol>
-<p>尽量使用const形式定义变量，因为#define不会出现在编译时期，在编译出错时不容易排错。</p>
+<p>尽量使用const形式定义变量，因为#define不会出现在编译时期，在编译出错时不容易排错。define是C语言时期的习惯。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">宏定义</th>
+<th style="text-align: center;">const</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">宏定义相当于字符替换</td>
+<td style="text-align: center;">常量声明</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">预处理器处理</td>
+<td style="text-align: center;">编译器处理</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">无安全类型检查</td>
+<td style="text-align: center;">有安全类型检查</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">不分配内存</td>
+<td style="text-align: center;">分配内存</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">存储在代码段</td>
+<td style="text-align: center;">存储在数据段</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">可以通过#undef取消</td>
+<td style="text-align: center;">不可取消</td>
+</tr>
+</tbody>
+</table>
 <h2 id="整数常量">整数常量</h2>
 <p>整数常量可以是十进制、八进制或者十六进制的常量:</p>
 <ul>
@@ -498,7 +532,7 @@ m=1,n=1; int sum = m + n;</li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">编译型语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">3.</span> <span class="nav-text">标识符和关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">4.</span> <span class="nav-text">关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F"><span class="nav-number">5.</span> <span class="nav-text">变量与常量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">5.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">5.2.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E5%B8%B8%E9%87%8F"><span class="nav-number">5.3.</span> <span class="nav-text">整数常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E5%B8%B8%E9%87%8F"><span class="nav-number">5.4.</span> <span class="nav-text">布尔常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%B8%B8%E9%87%8F"><span class="nav-number">5.5.</span> <span class="nav-text">字符常量</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">编译型语言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6%E5%92%8C%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">3.</span> <span class="nav-text">标识符和关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">变量与常量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">4.2.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E5%B8%B8%E9%87%8F"><span class="nav-number">4.3.</span> <span class="nav-text">整数常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E5%B8%B8%E9%87%8F"><span class="nav-number">4.4.</span> <span class="nav-text">布尔常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%B8%B8%E9%87%8F"><span class="nav-number">4.5.</span> <span class="nav-text">字符常量</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
