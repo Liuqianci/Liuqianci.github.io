@@ -1,43 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C++概况</title>
-    <url>/2022/C/C++/C-%E6%A6%82%E5%86%B5/</url>
-    <content><![CDATA[<h1 id="c概况">C++概况</h1>
-<p>C++语言应用广泛，凡是要求大型的、对性能要求很高的程序，以及物联网应用上，都会用到C++语言。</p>
-<h1 id="c历史">C++历史</h1>
+    <title>C++基础句法</title>
+    <url>/2022/C/C++/C-%E5%9F%BA%E7%A1%80%E5%8F%A5%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="三种基本结构">三种基本结构</h1>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.png" /></p>
+<h2 id="分支结构">分支结构</h2>
+<h3 id="if分支语句">if分支语句</h3>
 <ul>
-<li>C++编程语言可追溯到1979年，Bjarne
-Stroustrup创立了带类的C，这就是C语言的超集。1983年，这个语言被命名为C++；</li>
-<li>C++最开始仅仅是C语言的增强版，但是后来又引入了很多功能。1998年伴随着STL标准库的诞生，一堆新功能和特性的产生，C++标准委员会发布了第一个国际标准C++
-+ ISO/IEC 1488：称为C++ 98；</li>
-<li>2011年中期，C++标准（被称作C++
-11）完成了新的标准。Boost库项目对新标准产生了相当大的影响，一些新模块直接从响应的Boost库中派生出来；</li>
-<li>C++
-11之后，每三年C++都会发布新的语言标准，每一版都在基本保留向后兼容性的同时，提供着改进和新功能；</li>
+<li>单一语句：在任何一个表达式后面加上分号；</li>
+<li>符合语句：用一对花括号{}括起来的语句块，在语法上等效一个单一的语句；</li>
+<li>if语句：if语句是最常用的一种分支语句，也称为条件语句。</li>
 </ul>
-<h1 id="c特点">C++特点</h1>
-<p>优点：</p>
+<p>if语句练习：实现一个函数：输入一个年号，判断是否是闰年。闰年判断：1、能够被400整除；2、能被4整除但不能被100整除。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isLeapYear</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> year)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 双分支if</span></span><br><span class="line">	<span class="comment">//if ( (year % 400 == 0) ||  (year%4==0 &amp;&amp; year%100 != 0) )</span></span><br><span class="line">    <span class="comment">//这里有个if的优化，因为||操作符，第一个条件满足不看后面的，&amp;&amp;操作符第一个条件不满足不看后面的</span></span><br><span class="line">    <span class="comment">//所以按下面的方式效率更高，因为涉及命中率问题，被4整除的概率更高</span></span><br><span class="line">	<span class="keyword">if</span> ((year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>) || (year % <span class="number">400</span> == <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 是否是闰年</span></span><br><span class="line">	cout &lt;&lt; <span class="built_in">isLeapYear</span>(<span class="number">2000</span>) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">isLeapYear</span>(<span class="number">2020</span>) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">isLeapYear</span>(<span class="number">2021</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if语句练习：判断一个整数是否是另一个整数的倍数 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// b是否是a的倍数</span></span><br><span class="line">	<span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">4</span>;</span><br><span class="line">    <span class="comment">//短路运算，除数不能为0</span></span><br><span class="line">	<span class="keyword">if</span> ((a != <span class="number">0</span>) &amp;&amp; b % a == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;b是a的倍数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;b不是a的倍数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="switch分支语句">switch分支语句</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> <span class="title class_">__COLOR</span></span><br><span class="line">&#123;</span><br><span class="line">	RED,</span><br><span class="line">	GREEN,</span><br><span class="line">	BLUE,</span><br><span class="line">	UNKOWN</span><br><span class="line">&#125;COLOR;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 多分支条件的if</span></span><br><span class="line">	<span class="comment">// if, else if, else</span></span><br><span class="line">	COLOR color0;</span><br><span class="line">	color0 = BLUE;</span><br><span class="line">	<span class="type">int</span> c0 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (color0 == RED) &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;red&quot; &lt;&lt; endl; </span></span><br><span class="line">		c0 += <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (color0 == GREEN) &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;green&quot; &lt;&lt; endl; </span></span><br><span class="line">		c0 += <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (color0 == BLUE) &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;blue&quot; &lt;&lt; endl;</span></span><br><span class="line">		c0 += <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;unknown color&quot; &lt;&lt; endl; </span></span><br><span class="line">		c0 += <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 多分支条件的switch</span></span><br><span class="line">	<span class="comment">// switch,case,default</span></span><br><span class="line">	COLOR color1;</span><br><span class="line">	color1 = GREEN;</span><br><span class="line">	<span class="type">int</span> c1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">switch</span> (color1)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> RED:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;red&quot; &lt;&lt; endl;</span></span><br><span class="line">		c1 += <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> GREEN:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;green&quot; &lt;&lt; endl; </span></span><br><span class="line">		c1 += <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> BLUE:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;blue&quot; &lt;&lt; endl;</span></span><br><span class="line">		c1 += <span class="number">3</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;unknown color&quot; &lt;&lt; endl;</span></span><br><span class="line">		c1 += <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了比较两种分支语句的区别，我们可以看更底层的汇编代码，拿上面例子举例：
+<figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line">// 多分支条件的if</span><br><span class="line">// if, else if, else</span><br><span class="line">	COLOR color0<span class="comment">;</span></span><br><span class="line">	color0 = BLUE<span class="comment">;</span></span><br><span class="line">001A5D85  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">2</span>  </span><br><span class="line">	<span class="keyword">int</span> c0 = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5D8C  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="number">0</span>  </span><br><span class="line">	if (color0 == RED) &#123; </span><br><span class="line">001A5D93  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">0</span>  </span><br><span class="line">001A5D97  <span class="keyword">jne</span>         main+<span class="number">164h</span> (<span class="number">01A5DA4h</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;red&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">		c0 += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">001A5D99  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5D9C  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">001A5D9F  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">001A5DA2  <span class="keyword">jmp</span>         main+<span class="number">18Ch</span> (<span class="number">01A5DCCh</span>)  </span><br><span class="line">	&#125;</span><br><span class="line">	else if (color0 == GREEN) &#123; </span><br><span class="line">001A5DA4  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">1</span>  </span><br><span class="line">001A5DA8  <span class="keyword">jne</span>         main+<span class="number">175h</span> (<span class="number">01A5DB5h</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;green&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">		c0 += <span class="number">2</span><span class="comment">;</span></span><br><span class="line">001A5DAA  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5DAD  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">2</span>  </span><br><span class="line">001A5DB0  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">001A5DB3  <span class="keyword">jmp</span>         main+<span class="number">18Ch</span> (<span class="number">01A5DCCh</span>)  </span><br><span class="line">	&#125;</span><br><span class="line">	else if (color0 == BLUE) &#123;</span><br><span class="line">001A5DB5  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">2</span>  </span><br><span class="line">001A5DB9  <span class="keyword">jne</span>         main+<span class="number">186h</span> (<span class="number">01A5DC6h</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;blue&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">		c0 += <span class="number">3</span><span class="comment">;</span></span><br><span class="line">001A5DBB  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5DBE  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">3</span>  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;blue&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">		c0 += <span class="number">3</span><span class="comment">;</span></span><br><span class="line">001A5DC1  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line">	else &#123; </span><br><span class="line">001A5DC4  <span class="keyword">jmp</span>         main+<span class="number">18Ch</span> (<span class="number">01A5DCCh</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;unknown color&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">		c0 += <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5DC6  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5DC9  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">// 多分支条件的switch</span><br><span class="line">// switch,case,<span class="meta">default</span></span><br><span class="line">	COLOR color1<span class="comment">;</span></span><br><span class="line">	color1 = GREEN<span class="comment">;</span></span><br><span class="line">001A5DCC  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color1],<span class="number">1</span>  </span><br><span class="line">	<span class="keyword">int</span> c1 = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5DD3  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="number">0</span>  </span><br><span class="line">	switch (color1) </span><br><span class="line">001A5DDA  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [color1]  </span><br><span class="line">001A5DDD  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="built_in">eax</span>  </span><br><span class="line">001A5DE3  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="number">0</span>  </span><br><span class="line">001A5DEA  <span class="keyword">je</span>          main+<span class="number">1C0h</span> (<span class="number">01A5E00h</span>)  </span><br><span class="line">001A5DEC  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="number">1</span>  </span><br><span class="line">001A5DF3  <span class="keyword">je</span>          main+<span class="number">1CBh</span> (<span class="number">01A5E0Bh</span>)  </span><br><span class="line">001A5DF5  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="number">2</span>  </span><br><span class="line">001A5DFC  <span class="keyword">je</span>          main+<span class="number">1D6h</span> (<span class="number">01A5E16h</span>)  </span><br><span class="line">001A5DFE  <span class="keyword">jmp</span>         main+<span class="number">1E1h</span> (<span class="number">01A5E21h</span>)  </span><br><span class="line">	&#123;</span><br><span class="line">		case RED:</span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;red&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">			c1 += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">001A5E00  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E03  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">001A5E06  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">001A5E09  <span class="keyword">jmp</span>         main+<span class="number">1E7h</span> (<span class="number">01A5E27h</span>)  </span><br><span class="line">		&#125;</span><br><span class="line">		case GREEN:</span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;green&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">			c1 += <span class="number">2</span><span class="comment">;</span></span><br><span class="line">001A5E0B  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E0E  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">2</span>  </span><br><span class="line">001A5E11  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">001A5E14  <span class="keyword">jmp</span>         main+<span class="number">1E7h</span> (<span class="number">01A5E27h</span>)  </span><br><span class="line">		&#125;</span><br><span class="line">		case BLUE:</span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;blue&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">			c1 += <span class="number">3</span><span class="comment">;</span></span><br><span class="line">001A5E16  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E19  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">3</span>  </span><br><span class="line">001A5E1C  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">001A5E1F  <span class="keyword">jmp</span>         main+<span class="number">1E7h</span> (<span class="number">01A5E27h</span>)  </span><br><span class="line">		&#125;</span><br><span class="line"><span class="symbol">		default:</span></span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;unknown color&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">			c1 += <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5E21  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E24  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    return <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5E27  <span class="keyword">xor</span>         <span class="built_in">eax</span>,<span class="built_in">eax</span>  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在分支不是很多的情况下，两者差异不大，但如果分支很多的话，switch的效率更高。从汇编看switch更像一个表结构，if是个树结构。</p>
+<p>使用场景的区别：</p>
 <ol type="1">
-<li>强大的抽象封装能力：这让C++语言具备了强大的开发工程能力；</li>
-<li>高性能：运行快，占用资源少；</li>
-<li>低功耗：特别适合在各种微型嵌入式设备中高效运行程序；</li>
+<li>switch只支持常量值固定相等的分支判断；</li>
+<li>if可以做区间范围判断；</li>
+<li>switch能做的if都可以，但反之不行。</li>
 </ol>
-<p>缺点：</p>
+<p>性能比较：</p>
 <ol type="1">
-<li>语法相对复杂，细节比较多；</li>
-<li>需要一些好的规范和范式，否则代码很难维护；</li>
+<li>分支少的时候，差别不是很大，分支多时，switch性能较高；</li>
+<li>if开始处几个分支效率高，之后效率递减；</li>
+<li>switch的所有case速度几乎一样。</li>
 </ol>
-<h1 id="c的应用">C++的应用</h1>
+<h2 id="循环结构">循环结构</h2>
+<p>C++中一共提供了三种循环语句：while、do while、for</p>
+<h3 id="三种循环结构">三种循环结构</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//计算1 + 2 + …… + 99 + 100的和</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">// <span class="doctag">TODO:</span> 1+2+3+4...+100</span></span><br><span class="line">	<span class="comment">// while语句</span></span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> index = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (index &lt;= <span class="number">100</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += index;</span><br><span class="line">		index += <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// for语句</span></span><br><span class="line">	index = <span class="number">1</span>;</span><br><span class="line">	sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (index = <span class="number">1</span>; index &lt;= <span class="number">100</span>; ++index)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += index;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// do-while语句</span></span><br><span class="line">	sum = <span class="number">0</span>;</span><br><span class="line">	index = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		sum += index;</span><br><span class="line">		index += <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">while</span> (index &lt;= <span class="number">100</span>);</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line">三种汇编代码的底层逻辑：</span><br><span class="line">	// while语句</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">002A17BE  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="number">0</span>  </span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A17C5  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">1</span>  </span><br><span class="line">	while (index &lt;= <span class="number">100</span>)</span><br><span class="line">002A17CC  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">64h</span>  </span><br><span class="line">002A17D0  <span class="keyword">jg</span>          main+<span class="number">46h</span> (<span class="number">02A17E6h</span>)  </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A17D2  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [sum]  </span><br><span class="line">002A17D5  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A17D8  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="built_in">eax</span>  </span><br><span class="line">		index += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A17DB  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A17DE  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">002A17E1  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line">002A17E4  <span class="keyword">jmp</span>         main+<span class="number">2Ch</span> (<span class="number">02A17CCh</span>)  </span><br><span class="line">	//cout &lt;&lt; sum &lt;&lt; endl<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	// for语句</span><br><span class="line">	//index = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">	sum = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">002A17E6  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="number">0</span>  </span><br><span class="line">	for (index = <span class="number">1</span><span class="comment">; index &lt;= 100; ++index)</span></span><br><span class="line">002A17ED  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">1</span>  </span><br><span class="line">002A17F4  <span class="keyword">jmp</span>         main+<span class="number">5Fh</span> (<span class="number">02A17FFh</span>)  </span><br><span class="line">002A17F6  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A17F9  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">002A17FC  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="built_in">eax</span>  </span><br><span class="line">002A17FF  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">64h</span>  </span><br><span class="line">002A1803  <span class="keyword">jg</span>          main+<span class="number">70h</span> (<span class="number">02A1810h</span>)  </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A1805  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [sum]  </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A1808  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A180B  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line">002A180E  <span class="keyword">jmp</span>         main+<span class="number">56h</span> (<span class="number">02A17F6h</span>)  </span><br><span class="line">	//cout &lt;&lt; sum &lt;&lt; endl<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	// <span class="built_in">do</span>-while语句</span><br><span class="line">	sum = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">002A1810  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="number">0</span>  </span><br><span class="line">	index = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A1817  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">1</span>  </span><br><span class="line">	<span class="built_in">do</span> </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A181E  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [sum]  </span><br><span class="line">002A1821  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A1824  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="built_in">eax</span>  </span><br><span class="line">		index += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A1827  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A182A  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">002A182D  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="built_in">eax</span>  </span><br><span class="line">	&#125; while (index &lt;= <span class="number">100</span>)<span class="comment">;</span></span><br><span class="line">002A1830  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">64h</span>  </span><br><span class="line">002A1834  <span class="keyword">jle</span>         main+<span class="number">7Eh</span> (<span class="number">02A181Eh</span>)  </span><br><span class="line">	//cout &lt;&lt; sum &lt;&lt; endl<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>从底层逻辑上看，do while循环的效率最高，for循环的效率最低。</p>
+<h3 id="多层循环与循环优化">多层循环与循环优化</h3>
+<p>请输出所有形如aabb的四位完全平方数： <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// aabb的完全平方数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//方法一：一个显而易见的方法</span></span><br><span class="line">	<span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">	<span class="type">double</span> m = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> a = <span class="number">1</span>; a &lt; <span class="number">10</span>; a++)</span><br><span class="line">	&#123;<span class="comment">// for1</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">size_t</span> b = <span class="number">0</span>; b &lt; <span class="number">10</span>; b++)</span><br><span class="line">		&#123;<span class="comment">// for 2</span></span><br><span class="line">			n = a * <span class="number">1100</span> + b * <span class="number">11</span>; <span class="comment">//aabb</span></span><br><span class="line">			<span class="comment">//求平方根，看是否是整数</span></span><br><span class="line">			m = <span class="built_in">sqrt</span>(n);          </span><br><span class="line">			<span class="keyword">if</span> (m - <span class="built_in">int</span>(m) &lt; <span class="number">0.00000001</span>)  <span class="comment">//当差值小于一个极小值即可，这个值和浮点数的精度有关</span></span><br><span class="line">			&#123;</span><br><span class="line">				cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="comment">// for 2</span></span><br><span class="line">	&#125;<span class="comment">// for1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//方法二：逆向思维</span></span><br><span class="line">	<span class="comment">//先保证是平方根，再看是否是aabb类型</span></span><br><span class="line">	<span class="comment">//这样做第一不需要双层循环，第二避免了开平方根造成的精度丢失和低速运算</span></span><br><span class="line">	<span class="type">int</span> high, low;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//不需要从1开始，31*31=961，32*32=1024</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> index = <span class="number">31</span>; ; index++)</span><br><span class="line">	&#123;</span><br><span class="line">		n = index * index; <span class="comment">//n就是我们要构造的完全平方数</span></span><br><span class="line">		<span class="keyword">if</span> (n &lt; <span class="number">1000</span>)</span><br><span class="line">			<span class="keyword">continue</span>;   <span class="comment">// 继续下一次循环</span></span><br><span class="line">		<span class="keyword">if</span> (n &gt; <span class="number">9999</span>)</span><br><span class="line">			<span class="keyword">break</span>;        <span class="comment">// 退出循环</span></span><br><span class="line">		high = n / <span class="number">100</span>;   <span class="comment">// 4567/100 = 45</span></span><br><span class="line">		low = n % <span class="number">100</span>;   <span class="comment">// 4567%100 = 67</span></span><br><span class="line">		<span class="keyword">if</span> ((high / <span class="number">10</span> == high % <span class="number">10</span>) &amp;&amp; (low / <span class="number">10</span> == low % <span class="number">10</span>))   <span class="comment">// 判断aa， bb</span></span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="函数">函数</h1>
+<p>一个C++程序是由若干个源程序文件构成，一个源程序是由若干函数构成，函数将一段逻辑封装起来，便于复用；
+从用户角度看，函数分成：</p>
 <ul>
-<li>大型桌面应用程序（如Google Chrome、Miscrosoft Office）</li>
-<li>大型网站的后台（Google的搜索引擎）</li>
-<li>游戏和游戏引擎（Unity）</li>
-<li>视觉库和AI引擎（Opencv和Tensorflow）</li>
-<li>数据库（Mircrosoft SQL Server）</li>
-<li>嵌入式领域</li>
+<li>库函数：标准函数，由C++系统提供；</li>
+<li>用户自定义函数：需要用户自定义后使用</li>
 </ul>
-<p>总的来说，在开发成本比较高，对于内存和CPU要求很高，低功耗并且程序被调用非常频繁等场景中，目前C++是最合适的语言。</p>
+<p>函数的组成部分：</p>
+<ol type="1">
+<li>返回类型：一个函数可以返回一个值；</li>
+<li>函数名称：函数的实际名称，函数名和参数列表一起构成了函数签名；</li>
+<li>参数：参数列表包括函数参数的类型、顺序、数量。参数是可选的，即函数可以不包含参数；</li>
+<li>函数主体：函数主体包含一组定义函数执行任务的语句。</li>
+</ol>
+<h2 id="函数重载与name-mangling">函数重载与Name Mangling</h2>
+<p>函数重载Overload，函数的名称一样，但参数列表不同： <figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">double</span> a)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a,<span class="type">double</span> b)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>程序是怎么选择调用哪个函数的呢？这就引入了Name
+Mangling，给重载的函数不同的签名，以避免调用时的二义性调用。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">double</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">int</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a, <span class="type">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> result = <span class="built_in">test</span>(<span class="number">1</span>);</span><br><span class="line">	result = <span class="built_in">test</span>(<span class="number">2.0</span>);</span><br><span class="line">	result = <span class="built_in">test</span>(<span class="number">1</span>, <span class="number">2.0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>观察编译生成的.obj中间代码，可以看到有三个test函数：
+<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">//?test@<span class="symbol">@YAHH</span><span class="symbol">@Z</span> </span><br><span class="line">//?test@<span class="symbol">@YAHN</span><span class="symbol">@Z</span> </span><br><span class="line">//?test@<span class="symbol">@YAHHN</span><span class="symbol">@Z</span></span><br></pre></td></tr></table></figure></p>
+<p>我们用VS自带的undname.exe工具，观察其中的一个可以看到： 1<a
+href="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/undname.jpg"></a></p>
+<p>即在程序中存储的是程序的签名。</p>
+<h2 id="函数与指针">函数与指针</h2>
+<p>指针的功能很强大，我们可以让指针指向任意的地址空间，所以我们可以让指针指向一个函数。
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">double</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">int</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a, <span class="type">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">int</span>(*p)(<span class="type">int</span>);  <span class="comment">//定义一个指针p，表示参数是int，返回值是int的一个函数</span></span><br><span class="line">	p = test;   <span class="comment">//指针变量赋值，此时虽然有三个同名函数，但明确指向的是参数为int的函数</span></span><br><span class="line">	<span class="type">int</span> result = (*p)(<span class="number">1</span>); <span class="comment">//函数指针的使用，此时*p是间接引用</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要注意区别指向函数的指针和返回指针的函数：</p>
+<ul>
+<li>每一个函数都占用一段内存单元，我们可以通过内存访问到函数，它们有个起始地址，我们可以用一个指针指向起始地址。指向函数入口地址的指针称为<strong>函数指针</strong>;
+一般形式：数据类型(*指针变量名)(参数表)</li>
+<li>区分与返回指针的函数的区别
+<ul>
+<li>int(*p)(int); //是指针，指向一个函数的入口地址</li>
+<li>int* p(int); //是函数，返回的值是int指针</li>
+</ul></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">MaxValue</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x &gt; y) ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">MinValue</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x &lt; y) ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ProcessNum</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span>(*p)(<span class="type">int</span> a, <span class="type">int</span> b))</span> <span class="comment">//参数中有函数指针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">p</span>(x, y) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> x = <span class="number">10</span>, y = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//直接用函数名做参数，只要保证函数的参数列表是两个int，返回值是int就可以</span></span><br><span class="line">	<span class="built_in">ProcessNum</span>(x, y, MaxValue);</span><br><span class="line">	<span class="built_in">ProcessNum</span>(x, y, MinValue);</span><br><span class="line">	<span class="built_in">ProcessNum</span>(x, y, Add);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上文的例子中，bool ProcessNum(int x, int y, int(*p)(int a, int
+b))参数有函数指针，我们把函数名传递进去，真正的调用是在这个函数体内部的。我们把这样的调用方式称为回调函数。</p>
+<h2 id="命名空间">命名空间</h2>
+<p>开发过程中，可能会出现相同的函数签名，但内部实现不一样的情况。为了解决这个问题，可以使用命名空间。
+命名空间这个概念，可作为附加信息来区分不同库中相同名称的函数、类、变量等，命名空间即定义了上下文。本质上，命名空间就是定义了一个范围。
+关键词：using和namespace的使用。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> AA</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">test</span>(<span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; AA::<span class="built_in">test</span>(<span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在开发中，命名空间的使用非常广泛，尤其是使用第三方库的时候。程序中常用的cout就属于std命名空间。</p>
+<h2 id="内联函数">内联函数</h2>
+<p>如果一个函数是内联的，那么在编译时，编译器会把该函数的代码副本放置在每个调用该函数的地方。
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">MaxValue</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x &gt; y) ? x : y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>引入内联函数的目的是为了解决程序中函数调用的效率问题，即空间换时间；
+注意：内联函数内部不能有太复杂的逻辑，比如复杂的循环判断或者递归。编译器有时会有自己的优化策略，所以内联不一定起作用。VS中记得把C/C++设置中的内联优化打开。</p>
+<h2 id="递归">递归</h2>
+<h3 id="数学归纳法">数学归纳法</h3>
+<p>数学归纳法是证明当n等于任意一个自然数时某命题成立。证明步骤分两步：</p>
+<ol type="1">
+<li>证明当n=1时命题成立；</li>
+<li>假设n=m时成立，那么可以推导出在n=m+1时命题也成立（m为任意自然数）</li>
+</ol>
+<p>递归背后的数学逻辑就是数学归纳法。 <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">斐波那契数列：<span class="number">1</span>，<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>，<span class="number">5</span>，<span class="number">8</span>，<span class="number">13</span>，<span class="number">21</span>，<span class="number">34</span>，……</span><br><span class="line"><span class="number">1</span>                                      <span class="built_in">n</span>=<span class="number">1</span>,<span class="number">2</span></span><br><span class="line">Fib(<span class="built_in">n</span>) = Fib(<span class="built_in">n</span>-<span class="number">1</span>)+Fib(<span class="built_in">n</span>-<span class="number">2</span>)             <span class="built_in">n</span>&gt;<span class="number">2</span></span><br><span class="line"></span><br><span class="line">程序实现：</span><br><span class="line"><span class="built_in">int</span> Fib(<span class="built_in">int</span> <span class="built_in">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">if</span>(<span class="built_in">n</span> == <span class="number">0</span>)</span><br><span class="line">		return <span class="number">0</span>;</span><br><span class="line">	else <span class="built_in">if</span>(<span class="built_in">n</span> == <span class="number">1</span>)</span><br><span class="line">		return <span class="number">1</span>;</span><br><span class="line">	else</span><br><span class="line">		return Fib(<span class="built_in">n</span>-<span class="number">1</span>)+Fib(<span class="built_in">n</span>-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
         <category>C++</category>
@@ -309,6 +371,136 @@ m=1,n=1; int sum = m + n;</li>
 </tr>
 </tbody>
 </table>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C++概况</title>
+    <url>/2022/C/C++/C-%E6%A6%82%E5%86%B5/</url>
+    <content><![CDATA[<h1 id="c概况">C++概况</h1>
+<p>C++语言应用广泛，凡是要求大型的、对性能要求很高的程序，以及物联网应用上，都会用到C++语言。</p>
+<h1 id="c历史">C++历史</h1>
+<ul>
+<li>C++编程语言可追溯到1979年，Bjarne
+Stroustrup创立了带类的C，这就是C语言的超集。1983年，这个语言被命名为C++；</li>
+<li>C++最开始仅仅是C语言的增强版，但是后来又引入了很多功能。1998年伴随着STL标准库的诞生，一堆新功能和特性的产生，C++标准委员会发布了第一个国际标准C++
++ ISO/IEC 1488：称为C++ 98；</li>
+<li>2011年中期，C++标准（被称作C++
+11）完成了新的标准。Boost库项目对新标准产生了相当大的影响，一些新模块直接从响应的Boost库中派生出来；</li>
+<li>C++
+11之后，每三年C++都会发布新的语言标准，每一版都在基本保留向后兼容性的同时，提供着改进和新功能；</li>
+</ul>
+<h1 id="c特点">C++特点</h1>
+<p>优点：</p>
+<ol type="1">
+<li>强大的抽象封装能力：这让C++语言具备了强大的开发工程能力；</li>
+<li>高性能：运行快，占用资源少；</li>
+<li>低功耗：特别适合在各种微型嵌入式设备中高效运行程序；</li>
+</ol>
+<p>缺点：</p>
+<ol type="1">
+<li>语法相对复杂，细节比较多；</li>
+<li>需要一些好的规范和范式，否则代码很难维护；</li>
+</ol>
+<h1 id="c的应用">C++的应用</h1>
+<ul>
+<li>大型桌面应用程序（如Google Chrome、Miscrosoft Office）</li>
+<li>大型网站的后台（Google的搜索引擎）</li>
+<li>游戏和游戏引擎（Unity）</li>
+<li>视觉库和AI引擎（Opencv和Tensorflow）</li>
+<li>数据库（Mircrosoft SQL Server）</li>
+<li>嵌入式领域</li>
+</ul>
+<p>总的来说，在开发成本比较高，对于内存和CPU要求很高，低功耗并且程序被调用非常频繁等场景中，目前C++是最合适的语言。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字符串</title>
+    <url>/2022/C/C++/%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <content><![CDATA[<h1 id="字符串变量与常量">字符串变量与常量</h1>
+<h2 id="字符串变量">字符串变量</h2>
+<ul>
+<li>字符串是一个特殊的字符数组，以空字符\0结尾</li>
+<li>空字符\0自动添加到字符串的内部表示中</li>
+<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char
+str[11] = {"helloworld"},十个字符要留11个位置</li>
+</ul>
+<h2 id="字符串常量">字符串常量</h2>
+<ul>
+<li>字符串常量就是一对双引号括起来的字符序列："helloworld"</li>
+<li>字符串常量中的每个元素可以作为一个数组元素访问</li>
+<li>字符串常量也是以'\0'结尾的</li>
+</ul>
+<h1 id="字符串的指针表示">字符串的指针表示</h1>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>表示一个char型的指针变量，指向内存中一个存储字符串“helloworld”的地址。</p>
+<p>定义字符串的两种方式，char[]和char*，要区分以下两个概念：</p>
+<ul>
+<li>区分地址本身和地址存储的信息；</li>
+<li>区分可变与不可变；</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[<span class="number">11</span>] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line">	<span class="comment">//strHello是数组变量，它本身的值是不允许改变的，但是它指向的区域的值strHello[index]是可以改变的</span></span><br><span class="line">	strHello[<span class="number">2</span>] = <span class="string">&#x27;6&#x27;</span>;    <span class="comment">//strHello = he6loworld</span></span><br><span class="line">	<span class="comment">//strHello = &#123; &quot;helloworld&quot; &#125;;    //不允许改变了，编译不通过</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//ptrHello是指针变量，它本身是可以改变的，但是ptrHello[index]指向的值可变与否要取绝与所指向的区间是否可以改变</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* ptrHello_1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//指针指向常量区(必须要加const)，ptrHello[index]不可改变，但本身指向的地址可以变。</span></span><br><span class="line">	ptrHello_1 = <span class="string">&quot;change&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> tmp[<span class="number">7</span>] = <span class="string">&quot;change&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* ptrHello_2 = strHello;      <span class="comment">//指针指向数组变量，ptrHello[index]可以改变,本身也可以变</span></span><br><span class="line">	ptrHello_2[<span class="number">2</span>] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">	ptrHello_2 = tmp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="字符串操作">字符串操作</h1>
+<p>头文件：string.h</p>
+<h2 id="字符串长度">字符串长度</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较">字符串比较</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
+<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到'\0'为止</p>
+<h2 id="字符串拷贝">字符串拷贝</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
+<p>要注意一个陷阱，一定要保证字符串s1的内存大小能存的下要拷贝的s2的大小</p>
+<h2 id="字符串拼接">字符串拼接</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
+<p>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小
+两个字符串指针不能直接相加，拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
+<h2 id="字符串查找">字符串查找</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
+<h2 id="安全函数">安全函数</h2>
+<p>以上程序都需要我们进行边界检查以防止内存问题。现在我们往往在程序中使用更加安全的API函数</p>
+<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。
+strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有\0结束标志
+。</p>
+<h1 id="字符串操作重点">字符串操作重点</h1>
+<ol type="1">
+<li>C原始字符串的操作在安全性和效率中存在一定问题： 1.
+一定要注意不要缓冲区溢出。 2.
+strlen的效率可以提升，当字符串很长的时候strlen的效率不高，我们可以用空间换时间，在定义字符串的时候用变量记住它的长度，不使用strlen函数来计算</li>
+<li>目前有一个很好的开源库Redis字符串：<a
+href="https://redis.io/">Redis库</a></li>
+</ol>
+<h1 id="string类">string类</h1>
+<p>C++标准库中提供了string类型专门表示字符串</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
+<p>使用string可以更加方便和安全的管理字符串，对性能要求不是特别高的场景可以使用。</p>
+<h2 id="定义">定义</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="字符串长度-1">字符串长度</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较-1">字符串比较</h2>
+<p>直接使用== != &lt; &gt; &gt;= &lt; = 即可，比较ASCII码来比较。</p>
+<h2 id="转换为c风格字符串">转换为C风格字符串</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="随机访问">随机访问</h2>
+<p>字符串本身可以使用下标的方式访问</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout&lt;&lt;s[<span class="number">0</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串拷贝-1">字符串拷贝</h2>
+<p>不需要使用函数，直接使用=赋值</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">string s2 = s1;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串拼接-1">字符串拼接</h2>
+<p>string重载了+和+=，不需要使用函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>C++</category>
@@ -714,317 +906,6 @@ m=1,n=1; int sum = m + n;</li>
       </tags>
   </entry>
   <entry>
-    <title>C++基础句法</title>
-    <url>/2022/C/C++/C-%E5%9F%BA%E7%A1%80%E5%8F%A5%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="三种基本结构">三种基本结构</h1>
-<p><img
-src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%B8%89%E7%A7%8D%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.png" /></p>
-<h2 id="分支结构">分支结构</h2>
-<h3 id="if分支语句">if分支语句</h3>
-<ul>
-<li>单一语句：在任何一个表达式后面加上分号；</li>
-<li>符合语句：用一对花括号{}括起来的语句块，在语法上等效一个单一的语句；</li>
-<li>if语句：if语句是最常用的一种分支语句，也称为条件语句。</li>
-</ul>
-<p>if语句练习：实现一个函数：输入一个年号，判断是否是闰年。闰年判断：1、能够被400整除；2、能被4整除但不能被100整除。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isLeapYear</span><span class="params">(<span class="type">unsigned</span> <span class="type">int</span> year)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 双分支if</span></span><br><span class="line">	<span class="comment">//if ( (year % 400 == 0) ||  (year%4==0 &amp;&amp; year%100 != 0) )</span></span><br><span class="line">    <span class="comment">//这里有个if的优化，因为||操作符，第一个条件满足不看后面的，&amp;&amp;操作符第一个条件不满足不看后面的</span></span><br><span class="line">    <span class="comment">//所以按下面的方式效率更高，因为涉及命中率问题，被4整除的概率更高</span></span><br><span class="line">	<span class="keyword">if</span> ((year % <span class="number">4</span> == <span class="number">0</span> &amp;&amp; year % <span class="number">100</span> != <span class="number">0</span>) || (year % <span class="number">400</span> == <span class="number">0</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 是否是闰年</span></span><br><span class="line">	cout &lt;&lt; <span class="built_in">isLeapYear</span>(<span class="number">2000</span>) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">isLeapYear</span>(<span class="number">2020</span>) &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">isLeapYear</span>(<span class="number">2021</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if语句练习：判断一个整数是否是另一个整数的倍数 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// b是否是a的倍数</span></span><br><span class="line">	<span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">4</span>;</span><br><span class="line">    <span class="comment">//短路运算，除数不能为0</span></span><br><span class="line">	<span class="keyword">if</span> ((a != <span class="number">0</span>) &amp;&amp; b % a == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;b是a的倍数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;b不是a的倍数&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="switch分支语句">switch分支语句</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> <span class="title class_">__COLOR</span></span><br><span class="line">&#123;</span><br><span class="line">	RED,</span><br><span class="line">	GREEN,</span><br><span class="line">	BLUE,</span><br><span class="line">	UNKOWN</span><br><span class="line">&#125;COLOR;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 多分支条件的if</span></span><br><span class="line">	<span class="comment">// if, else if, else</span></span><br><span class="line">	COLOR color0;</span><br><span class="line">	color0 = BLUE;</span><br><span class="line">	<span class="type">int</span> c0 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (color0 == RED) &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;red&quot; &lt;&lt; endl; </span></span><br><span class="line">		c0 += <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (color0 == GREEN) &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;green&quot; &lt;&lt; endl; </span></span><br><span class="line">		c0 += <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (color0 == BLUE) &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;blue&quot; &lt;&lt; endl;</span></span><br><span class="line">		c0 += <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;unknown color&quot; &lt;&lt; endl; </span></span><br><span class="line">		c0 += <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 多分支条件的switch</span></span><br><span class="line">	<span class="comment">// switch,case,default</span></span><br><span class="line">	COLOR color1;</span><br><span class="line">	color1 = GREEN;</span><br><span class="line">	<span class="type">int</span> c1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">switch</span> (color1)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> RED:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;red&quot; &lt;&lt; endl;</span></span><br><span class="line">		c1 += <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> GREEN:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;green&quot; &lt;&lt; endl; </span></span><br><span class="line">		c1 += <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">case</span> BLUE:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;blue&quot; &lt;&lt; endl;</span></span><br><span class="line">		c1 += <span class="number">3</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;unknown color&quot; &lt;&lt; endl;</span></span><br><span class="line">		c1 += <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为了比较两种分支语句的区别，我们可以看更底层的汇编代码，拿上面例子举例：
-<figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line">// 多分支条件的if</span><br><span class="line">// if, else if, else</span><br><span class="line">	COLOR color0<span class="comment">;</span></span><br><span class="line">	color0 = BLUE<span class="comment">;</span></span><br><span class="line">001A5D85  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">2</span>  </span><br><span class="line">	<span class="keyword">int</span> c0 = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5D8C  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="number">0</span>  </span><br><span class="line">	if (color0 == RED) &#123; </span><br><span class="line">001A5D93  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">0</span>  </span><br><span class="line">001A5D97  <span class="keyword">jne</span>         main+<span class="number">164h</span> (<span class="number">01A5DA4h</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;red&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">		c0 += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">001A5D99  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5D9C  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">001A5D9F  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">001A5DA2  <span class="keyword">jmp</span>         main+<span class="number">18Ch</span> (<span class="number">01A5DCCh</span>)  </span><br><span class="line">	&#125;</span><br><span class="line">	else if (color0 == GREEN) &#123; </span><br><span class="line">001A5DA4  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">1</span>  </span><br><span class="line">001A5DA8  <span class="keyword">jne</span>         main+<span class="number">175h</span> (<span class="number">01A5DB5h</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;green&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">		c0 += <span class="number">2</span><span class="comment">;</span></span><br><span class="line">001A5DAA  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5DAD  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">2</span>  </span><br><span class="line">001A5DB0  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">001A5DB3  <span class="keyword">jmp</span>         main+<span class="number">18Ch</span> (<span class="number">01A5DCCh</span>)  </span><br><span class="line">	&#125;</span><br><span class="line">	else if (color0 == BLUE) &#123;</span><br><span class="line">001A5DB5  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color0],<span class="number">2</span>  </span><br><span class="line">001A5DB9  <span class="keyword">jne</span>         main+<span class="number">186h</span> (<span class="number">01A5DC6h</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;blue&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">		c0 += <span class="number">3</span><span class="comment">;</span></span><br><span class="line">001A5DBB  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5DBE  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">3</span>  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;blue&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">		c0 += <span class="number">3</span><span class="comment">;</span></span><br><span class="line">001A5DC1  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line">	else &#123; </span><br><span class="line">001A5DC4  <span class="keyword">jmp</span>         main+<span class="number">18Ch</span> (<span class="number">01A5DCCh</span>)  </span><br><span class="line">		//cout &lt;&lt; <span class="string">&quot;unknown color&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">		c0 += <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5DC6  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c0]  </span><br><span class="line">001A5DC9  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c0],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">// 多分支条件的switch</span><br><span class="line">// switch,case,<span class="meta">default</span></span><br><span class="line">	COLOR color1<span class="comment">;</span></span><br><span class="line">	color1 = GREEN<span class="comment">;</span></span><br><span class="line">001A5DCC  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [color1],<span class="number">1</span>  </span><br><span class="line">	<span class="keyword">int</span> c1 = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5DD3  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="number">0</span>  </span><br><span class="line">	switch (color1) </span><br><span class="line">001A5DDA  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [color1]  </span><br><span class="line">001A5DDD  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="built_in">eax</span>  </span><br><span class="line">001A5DE3  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="number">0</span>  </span><br><span class="line">001A5DEA  <span class="keyword">je</span>          main+<span class="number">1C0h</span> (<span class="number">01A5E00h</span>)  </span><br><span class="line">001A5DEC  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="number">1</span>  </span><br><span class="line">001A5DF3  <span class="keyword">je</span>          main+<span class="number">1CBh</span> (<span class="number">01A5E0Bh</span>)  </span><br><span class="line">001A5DF5  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [<span class="built_in">ebp</span>-<span class="number">10Ch</span>],<span class="number">2</span>  </span><br><span class="line">001A5DFC  <span class="keyword">je</span>          main+<span class="number">1D6h</span> (<span class="number">01A5E16h</span>)  </span><br><span class="line">001A5DFE  <span class="keyword">jmp</span>         main+<span class="number">1E1h</span> (<span class="number">01A5E21h</span>)  </span><br><span class="line">	&#123;</span><br><span class="line">		case RED:</span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;red&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">			c1 += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">001A5E00  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E03  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">001A5E06  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">001A5E09  <span class="keyword">jmp</span>         main+<span class="number">1E7h</span> (<span class="number">01A5E27h</span>)  </span><br><span class="line">		&#125;</span><br><span class="line">		case GREEN:</span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;green&quot;</span> &lt;&lt; endl<span class="comment">; </span></span><br><span class="line">			c1 += <span class="number">2</span><span class="comment">;</span></span><br><span class="line">001A5E0B  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E0E  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">2</span>  </span><br><span class="line">001A5E11  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">001A5E14  <span class="keyword">jmp</span>         main+<span class="number">1E7h</span> (<span class="number">01A5E27h</span>)  </span><br><span class="line">		&#125;</span><br><span class="line">		case BLUE:</span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;blue&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">			c1 += <span class="number">3</span><span class="comment">;</span></span><br><span class="line">001A5E16  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E19  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">3</span>  </span><br><span class="line">001A5E1C  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">001A5E1F  <span class="keyword">jmp</span>         main+<span class="number">1E7h</span> (<span class="number">01A5E27h</span>)  </span><br><span class="line">		&#125;</span><br><span class="line"><span class="symbol">		default:</span></span><br><span class="line">		&#123;	</span><br><span class="line">			//cout &lt;&lt; <span class="string">&quot;unknown color&quot;</span> &lt;&lt; endl<span class="comment">;</span></span><br><span class="line">			c1 += <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5E21  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [c1]  </span><br><span class="line">001A5E24  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [c1],<span class="built_in">eax</span>  </span><br><span class="line">			break<span class="comment">;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    return <span class="number">0</span><span class="comment">;</span></span><br><span class="line">001A5E27  <span class="keyword">xor</span>         <span class="built_in">eax</span>,<span class="built_in">eax</span>  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在分支不是很多的情况下，两者差异不大，但如果分支很多的话，switch的效率更高。从汇编看switch更像一个表结构，if是个树结构。</p>
-<p>使用场景的区别：</p>
-<ol type="1">
-<li>switch只支持常量值固定相等的分支判断；</li>
-<li>if可以做区间范围判断；</li>
-<li>switch能做的if都可以，但反之不行。</li>
-</ol>
-<p>性能比较：</p>
-<ol type="1">
-<li>分支少的时候，差别不是很大，分支多时，switch性能较高；</li>
-<li>if开始处几个分支效率高，之后效率递减；</li>
-<li>switch的所有case速度几乎一样。</li>
-</ol>
-<h2 id="循环结构">循环结构</h2>
-<p>C++中一共提供了三种循环语句：while、do while、for</p>
-<h3 id="三种循环结构">三种循环结构</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//计算1 + 2 + …… + 99 + 100的和</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">// <span class="doctag">TODO:</span> 1+2+3+4...+100</span></span><br><span class="line">	<span class="comment">// while语句</span></span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> index = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (index &lt;= <span class="number">100</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += index;</span><br><span class="line">		index += <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// for语句</span></span><br><span class="line">	index = <span class="number">1</span>;</span><br><span class="line">	sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (index = <span class="number">1</span>; index &lt;= <span class="number">100</span>; ++index)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += index;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// do-while语句</span></span><br><span class="line">	sum = <span class="number">0</span>;</span><br><span class="line">	index = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">	&#123;</span><br><span class="line">		sum += index;</span><br><span class="line">		index += <span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">while</span> (index &lt;= <span class="number">100</span>);</span><br><span class="line">	cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight x86asm"><table><tr><td class="code"><pre><span class="line">三种汇编代码的底层逻辑：</span><br><span class="line">	// while语句</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">002A17BE  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="number">0</span>  </span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A17C5  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">1</span>  </span><br><span class="line">	while (index &lt;= <span class="number">100</span>)</span><br><span class="line">002A17CC  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">64h</span>  </span><br><span class="line">002A17D0  <span class="keyword">jg</span>          main+<span class="number">46h</span> (<span class="number">02A17E6h</span>)  </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A17D2  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [sum]  </span><br><span class="line">002A17D5  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A17D8  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="built_in">eax</span>  </span><br><span class="line">		index += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A17DB  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A17DE  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">002A17E1  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line">002A17E4  <span class="keyword">jmp</span>         main+<span class="number">2Ch</span> (<span class="number">02A17CCh</span>)  </span><br><span class="line">	//cout &lt;&lt; sum &lt;&lt; endl<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	// for语句</span><br><span class="line">	//index = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">	sum = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">002A17E6  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="number">0</span>  </span><br><span class="line">	for (index = <span class="number">1</span><span class="comment">; index &lt;= 100; ++index)</span></span><br><span class="line">002A17ED  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">1</span>  </span><br><span class="line">002A17F4  <span class="keyword">jmp</span>         main+<span class="number">5Fh</span> (<span class="number">02A17FFh</span>)  </span><br><span class="line">002A17F6  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A17F9  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">002A17FC  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="built_in">eax</span>  </span><br><span class="line">002A17FF  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">64h</span>  </span><br><span class="line">002A1803  <span class="keyword">jg</span>          main+<span class="number">70h</span> (<span class="number">02A1810h</span>)  </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A1805  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [sum]  </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A1808  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A180B  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="built_in">eax</span>  </span><br><span class="line">	&#125;</span><br><span class="line">002A180E  <span class="keyword">jmp</span>         main+<span class="number">56h</span> (<span class="number">02A17F6h</span>)  </span><br><span class="line">	//cout &lt;&lt; sum &lt;&lt; endl<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">	// <span class="built_in">do</span>-while语句</span><br><span class="line">	sum = <span class="number">0</span><span class="comment">;</span></span><br><span class="line">002A1810  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="number">0</span>  </span><br><span class="line">	index = <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A1817  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">1</span>  </span><br><span class="line">	<span class="built_in">do</span> </span><br><span class="line">	&#123;</span><br><span class="line">		sum += index<span class="comment">;</span></span><br><span class="line">002A181E  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [sum]  </span><br><span class="line">002A1821  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A1824  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [sum],<span class="built_in">eax</span>  </span><br><span class="line">		index += <span class="number">1</span><span class="comment">;</span></span><br><span class="line">002A1827  <span class="keyword">mov</span>         <span class="built_in">eax</span>,<span class="built_in">dword</span> <span class="built_in">ptr</span> [index]  </span><br><span class="line">002A182A  <span class="keyword">add</span>         <span class="built_in">eax</span>,<span class="number">1</span>  </span><br><span class="line">002A182D  <span class="keyword">mov</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="built_in">eax</span>  </span><br><span class="line">	&#125; while (index &lt;= <span class="number">100</span>)<span class="comment">;</span></span><br><span class="line">002A1830  <span class="keyword">cmp</span>         <span class="built_in">dword</span> <span class="built_in">ptr</span> [index],<span class="number">64h</span>  </span><br><span class="line">002A1834  <span class="keyword">jle</span>         main+<span class="number">7Eh</span> (<span class="number">02A181Eh</span>)  </span><br><span class="line">	//cout &lt;&lt; sum &lt;&lt; endl<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>从底层逻辑上看，do while循环的效率最高，for循环的效率最低。</p>
-<h3 id="多层循环与循环优化">多层循环与循环优化</h3>
-<p>请输出所有形如aabb的四位完全平方数： <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// aabb的完全平方数</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//方法一：一个显而易见的方法</span></span><br><span class="line">	<span class="type">int</span> n = <span class="number">0</span>;</span><br><span class="line">	<span class="type">double</span> m = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> a = <span class="number">1</span>; a &lt; <span class="number">10</span>; a++)</span><br><span class="line">	&#123;<span class="comment">// for1</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">size_t</span> b = <span class="number">0</span>; b &lt; <span class="number">10</span>; b++)</span><br><span class="line">		&#123;<span class="comment">// for 2</span></span><br><span class="line">			n = a * <span class="number">1100</span> + b * <span class="number">11</span>; <span class="comment">//aabb</span></span><br><span class="line">			<span class="comment">//求平方根，看是否是整数</span></span><br><span class="line">			m = <span class="built_in">sqrt</span>(n);          </span><br><span class="line">			<span class="keyword">if</span> (m - <span class="built_in">int</span>(m) &lt; <span class="number">0.00000001</span>)  <span class="comment">//当差值小于一个极小值即可，这个值和浮点数的精度有关</span></span><br><span class="line">			&#123;</span><br><span class="line">				cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="comment">// for 2</span></span><br><span class="line">	&#125;<span class="comment">// for1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//方法二：逆向思维</span></span><br><span class="line">	<span class="comment">//先保证是平方根，再看是否是aabb类型</span></span><br><span class="line">	<span class="comment">//这样做第一不需要双层循环，第二避免了开平方根造成的精度丢失和低速运算</span></span><br><span class="line">	<span class="type">int</span> high, low;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//不需要从1开始，31*31=961，32*32=1024</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> index = <span class="number">31</span>; ; index++)</span><br><span class="line">	&#123;</span><br><span class="line">		n = index * index; <span class="comment">//n就是我们要构造的完全平方数</span></span><br><span class="line">		<span class="keyword">if</span> (n &lt; <span class="number">1000</span>)</span><br><span class="line">			<span class="keyword">continue</span>;   <span class="comment">// 继续下一次循环</span></span><br><span class="line">		<span class="keyword">if</span> (n &gt; <span class="number">9999</span>)</span><br><span class="line">			<span class="keyword">break</span>;        <span class="comment">// 退出循环</span></span><br><span class="line">		high = n / <span class="number">100</span>;   <span class="comment">// 4567/100 = 45</span></span><br><span class="line">		low = n % <span class="number">100</span>;   <span class="comment">// 4567%100 = 67</span></span><br><span class="line">		<span class="keyword">if</span> ((high / <span class="number">10</span> == high % <span class="number">10</span>) &amp;&amp; (low / <span class="number">10</span> == low % <span class="number">10</span>))   <span class="comment">// 判断aa， bb</span></span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="函数">函数</h1>
-<p>一个C++程序是由若干个源程序文件构成，一个源程序是由若干函数构成，函数将一段逻辑封装起来，便于复用；
-从用户角度看，函数分成：</p>
-<ul>
-<li>库函数：标准函数，由C++系统提供；</li>
-<li>用户自定义函数：需要用户自定义后使用</li>
-</ul>
-<p>函数的组成部分：</p>
-<ol type="1">
-<li>返回类型：一个函数可以返回一个值；</li>
-<li>函数名称：函数的实际名称，函数名和参数列表一起构成了函数签名；</li>
-<li>参数：参数列表包括函数参数的类型、顺序、数量。参数是可选的，即函数可以不包含参数；</li>
-<li>函数主体：函数主体包含一组定义函数执行任务的语句。</li>
-</ol>
-<h2 id="函数重载与name-mangling">函数重载与Name Mangling</h2>
-<p>函数重载Overload，函数的名称一样，但参数列表不同： <figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">double</span> a)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a,<span class="type">double</span> b)</span></span>;</span><br></pre></td></tr></table></figure></p>
-<p>程序是怎么选择调用哪个函数的呢？这就引入了Name
-Mangling，给重载的函数不同的签名，以避免调用时的二义性调用。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">double</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">int</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a, <span class="type">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> result = <span class="built_in">test</span>(<span class="number">1</span>);</span><br><span class="line">	result = <span class="built_in">test</span>(<span class="number">2.0</span>);</span><br><span class="line">	result = <span class="built_in">test</span>(<span class="number">1</span>, <span class="number">2.0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>观察编译生成的.obj中间代码，可以看到有三个test函数：
-<figure class="highlight autoit"><table><tr><td class="code"><pre><span class="line">//?test@<span class="symbol">@YAHH</span><span class="symbol">@Z</span> </span><br><span class="line">//?test@<span class="symbol">@YAHN</span><span class="symbol">@Z</span> </span><br><span class="line">//?test@<span class="symbol">@YAHHN</span><span class="symbol">@Z</span></span><br></pre></td></tr></table></figure></p>
-<p>我们用VS自带的undname.exe工具，观察其中的一个可以看到： 1<a
-href="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/undname.jpg"></a></p>
-<p>即在程序中存储的是程序的签名。</p>
-<h2 id="函数与指针">函数与指针</h2>
-<p>指针的功能很强大，我们可以让指针指向任意的地址空间，所以我们可以让指针指向一个函数。
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">double</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">int</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a, <span class="type">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">int</span>(*p)(<span class="type">int</span>);  <span class="comment">//定义一个指针p，表示参数是int，返回值是int的一个函数</span></span><br><span class="line">	p = test;   <span class="comment">//指针变量赋值，此时虽然有三个同名函数，但明确指向的是参数为int的函数</span></span><br><span class="line">	<span class="type">int</span> result = (*p)(<span class="number">1</span>); <span class="comment">//函数指针的使用，此时*p是间接引用</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>要注意区别指向函数的指针和返回指针的函数：</p>
-<ul>
-<li>每一个函数都占用一段内存单元，我们可以通过内存访问到函数，它们有个起始地址，我们可以用一个指针指向起始地址。指向函数入口地址的指针称为<strong>函数指针</strong>;
-一般形式：数据类型(*指针变量名)(参数表)</li>
-<li>区分与返回指针的函数的区别
-<ul>
-<li>int(*p)(int); //是指针，指向一个函数的入口地址</li>
-<li>int* p(int); //是函数，返回的值是int指针</li>
-</ul></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">MaxValue</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x &gt; y) ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">MinValue</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x &lt; y) ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">ProcessNum</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span>(*p)(<span class="type">int</span> a, <span class="type">int</span> b))</span> <span class="comment">//参数中有函数指针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">p</span>(x, y) &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> x = <span class="number">10</span>, y = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//直接用函数名做参数，只要保证函数的参数列表是两个int，返回值是int就可以</span></span><br><span class="line">	<span class="built_in">ProcessNum</span>(x, y, MaxValue);</span><br><span class="line">	<span class="built_in">ProcessNum</span>(x, y, MinValue);</span><br><span class="line">	<span class="built_in">ProcessNum</span>(x, y, Add);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上文的例子中，bool ProcessNum(int x, int y, int(*p)(int a, int
-b))参数有函数指针，我们把函数名传递进去，真正的调用是在这个函数体内部的。我们把这样的调用方式称为回调函数。</p>
-<h2 id="命名空间">命名空间</h2>
-<p>开发过程中，可能会出现相同的函数签名，但内部实现不一样的情况。为了解决这个问题，可以使用命名空间。
-命名空间这个概念，可作为附加信息来区分不同库中相同名称的函数、类、变量等，命名空间即定义了上下文。本质上，命名空间就是定义了一个范围。
-关键词：using和namespace的使用。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> AA</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">test</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="built_in">test</span>(<span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; AA::<span class="built_in">test</span>(<span class="number">1</span>) &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在开发中，命名空间的使用非常广泛，尤其是使用第三方库的时候。程序中常用的cout就属于std命名空间。</p>
-<h2 id="内联函数">内联函数</h2>
-<p>如果一个函数是内联的，那么在编译时，编译器会把该函数的代码副本放置在每个调用该函数的地方。
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">MaxValue</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x &gt; y) ? x : y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>引入内联函数的目的是为了解决程序中函数调用的效率问题，即空间换时间；
-注意：内联函数内部不能有太复杂的逻辑，比如复杂的循环判断或者递归。编译器有时会有自己的优化策略，所以内联不一定起作用。VS中记得把C/C++设置中的内联优化打开。</p>
-<h2 id="递归">递归</h2>
-<h3 id="数学归纳法">数学归纳法</h3>
-<p>数学归纳法是证明当n等于任意一个自然数时某命题成立。证明步骤分两步：</p>
-<ol type="1">
-<li>证明当n=1时命题成立；</li>
-<li>假设n=m时成立，那么可以推导出在n=m+1时命题也成立（m为任意自然数）</li>
-</ol>
-<p>递归背后的数学逻辑就是数学归纳法。 <figure class="highlight excel"><table><tr><td class="code"><pre><span class="line">斐波那契数列：<span class="number">1</span>，<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>，<span class="number">5</span>，<span class="number">8</span>，<span class="number">13</span>，<span class="number">21</span>，<span class="number">34</span>，……</span><br><span class="line"><span class="number">1</span>                                      <span class="built_in">n</span>=<span class="number">1</span>,<span class="number">2</span></span><br><span class="line">Fib(<span class="built_in">n</span>) = Fib(<span class="built_in">n</span>-<span class="number">1</span>)+Fib(<span class="built_in">n</span>-<span class="number">2</span>)             <span class="built_in">n</span>&gt;<span class="number">2</span></span><br><span class="line"></span><br><span class="line">程序实现：</span><br><span class="line"><span class="built_in">int</span> Fib(<span class="built_in">int</span> <span class="built_in">n</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">if</span>(<span class="built_in">n</span> == <span class="number">0</span>)</span><br><span class="line">		return <span class="number">0</span>;</span><br><span class="line">	else <span class="built_in">if</span>(<span class="built_in">n</span> == <span class="number">1</span>)</span><br><span class="line">		return <span class="number">1</span>;</span><br><span class="line">	else</span><br><span class="line">		return Fib(<span class="built_in">n</span>-<span class="number">1</span>)+Fib(<span class="built_in">n</span>-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>自定义结构</title>
-    <url>/2022/C/C++/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84/</url>
-    <content><![CDATA[<h1 id="枚举">枚举</h1>
-<p>使用#define和const创建符号常量，使用enum不仅可以创建符号常量，还能定义新的数据类型。</p>
-<p>枚举类型的声明和定义： <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">wT</span>&#123;</span><br><span class="line">    Monday,</span><br><span class="line">    Tuseday,</span><br><span class="line">    Wednesday,</span><br><span class="line">    Thursday,</span><br><span class="line">    Firday,</span><br><span class="line">    Saturday,</span><br><span class="line">    Sunday</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义</span></span><br><span class="line">wT weekday;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">wT</span>&#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;; <span class="comment">// 声明wT类型</span></span><br><span class="line">	wT weekday;</span><br><span class="line">	weekday = Monday;</span><br><span class="line">	weekday = Tuesday;</span><br><span class="line">	<span class="comment">//weekday = 1;             // 错误 不能直接给int值，只能赋值成wT定义好的类型值</span></span><br><span class="line">    <span class="comment">//可以写成weekday = wT(1),但是涉及类型转换的写法不推荐</span></span><br><span class="line">	cout &lt;&lt; weekday &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//Monday = 0;             // 错误 类型值不能做左值，不是有存储空间的变量</span></span><br><span class="line">	<span class="type">int</span> a = Wednesday;</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用细节：</p>
-<ul>
-<li>枚举值不能做左值；</li>
-<li>非枚举变量不可以赋值给枚举变量；</li>
-<li>枚举变量可以赋值给非枚举变量；</li>
-</ul>
-<h1 id="结构体和联合体">结构体和联合体</h1>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    Score s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Score</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> sc;</span><br><span class="line">    <span class="type">char</span> level;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="存储结构与结构体数据对齐">存储结构与结构体数据对齐</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> <span class="title class_">Score</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> ds;    <span class="comment">//8字节</span></span><br><span class="line">		<span class="type">char</span> level;   <span class="comment">//1字节</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> name[<span class="number">6</span>];      <span class="comment">//6字节                           </span></span><br><span class="line">		<span class="type">int</span> age;           <span class="comment">//32位环境 4字节</span></span><br><span class="line">		Score s;               </span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Score) &lt;&lt; endl;      <span class="comment">// 8</span></span><br><span class="line">	</span><br><span class="line">	Student s1;</span><br><span class="line">	<span class="built_in">strcpy_s</span>(s1.name, <span class="string">&quot;lili&quot;</span>);</span><br><span class="line">	s1.age = <span class="number">16</span>;</span><br><span class="line">	s1.s.ds = <span class="number">95.5</span>;</span><br><span class="line">	s1.s.level = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Student) &lt;&lt; endl;    <span class="comment">// 24     </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">s1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s1) = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">s2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s2) = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png" /></p>
-<h2 id="数据对齐原则--缺省对齐">数据对齐原则--缺省对齐</h2>
-<ul>
-<li>32位CPU
-<ul>
-<li>char：任何地址</li>
-<li>short：偶数倍地址</li>
-<li>int：4的整数倍</li>
-<li>double：8的整数倍</li>
-</ul></li>
-</ul>
-<p>程序是可以修改默认编译选项的，修改结构体内存分配： <figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">Visual C++：</span><br><span class="line"><span class="selector-id">#pragma</span> <span class="built_in">pack</span>(n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g++:</span><br><span class="line"><span class="built_in">__attribute__</span>(<span class="built_in">aligned</span>(n))</span><br><span class="line"><span class="built_in">__attribute__</span>(__packed__)</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数组</title>
-    <url>/2022/C/C++/%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="数组">数组</h1>
-<h2 id="声明和数组下标">声明和数组下标</h2>
-<p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。
-int arr[10] = {1,2,3,4,5,6,7,8};</p>
-<p>数组声明：</p>
-<ul>
-<li>int arr[10];</li>
-<li>类型名int表示数组里所有元素的类型</li>
-<li>整数10表示数组里包含的元素个数</li>
-<li>数组元素个数不可以改变，是常量</li>
-</ul>
-<p>使用注意：</p>
-<ul>
-<li>每个元素都有下标，标识一个元素在当前数组容器中的位置。通过下标可以直接访问数组内任意元素</li>
-<li>下标从零开始</li>
-<li>超过范围的下标不可以使用，会内存错误。一定要注意，内存溢出是程序中经常出现的BUG</li>
-<li>数组名和下标可以表示数组里的元素，如a[2]表示第三个元素</li>
-</ul>
-<p>数组优点：</p>
-<ul>
-<li>可以编写循环程序，依次处理数组里的所有元素</li>
-<li>循环变量依次代表所有元素</li>
-</ul>
-<h2
-id="数组使用常见错误off-by-one-error差一错误">数组使用常见错误：off-by-one
-error(差一错误)</h2>
-<p>考虑一个问题，假定整数x满足边界条件x&gt;=16且x&lt;=37，那么此范围内的整数x可能的取值有多少？</p>
-<ol type="1">
-<li>首先考虑最简单的情况（特例），然后将结果外推</li>
-<li>仔细计算边界问题</li>
-</ol>
-<p>特例：x的上界与下界重合，即x&gt;=16与x&lt;=16，显然其中的x个数为1；那么假定下界位low，上界位high；当low与high重合，个数为1，即共有high-low+1个元素。那么外推，这里共有37-16+1=22个元素。
-最容易出错的地方就是+1，很容易就仅仅计算high-low。</p>
-<p>编程技巧：</p>
-<ul>
-<li>用数学上的左闭右开[,)区间表示，上述问题可以看作[16,38)，即38-16=22</li>
-<li>C++中，我们编程也遵循这个原则，从0开始，使用非对称区间，让下界可以取到值，上界取不到值。这样设计程序，可以直接用上界-下界来取得范围大小；当取值范围为空的时候，上界值=下界值；即使取值范围为空，上界值也永远不可能小于下界值。</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//推荐的方式：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt; <span class="number">10</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不推荐的方式</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt;= <span class="number">9</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="增删改查">增删改查</h2>
-<ul>
-<li><p>在尾部添加和删除操作，时间复杂度为O(1)。只需要操作尾部元素即可，对与其他元素没有干扰。</p></li>
-<li><p>在数组中间进行添加和删除操作，时间复杂度为O(n)。在中间操作，会对其他元素造成影响，操作元素后面的每一个元素都需要进一步操作</p></li>
-<li><p>数组的访问用遍历很高效，时间复杂度为O(1)；</p></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下标访问</span></span><br><span class="line">a[<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针访问</span></span><br><span class="line"><span class="type">int</span>* p = a;</span><br><span class="line">*(p+<span class="number">2</span>) = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<p>数组的查找时间复杂度并不低，一般取绝与数组自身容量(数组容量很大的时候并不适合遍历查找，时间复杂度太高，可以用二分查找)：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找a[]中第一个值为3的目标：</span></span><br><span class="line"><span class="type">int</span> len = <span class="built_in">sizeof</span>(a)/<span class="built_in">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index&lt;len;++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[index] == <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二维数组">二维数组</h2>
-<p>二维数组包含了两个维度的数组。</p>
-<p>二维数组访问：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row=<span class="number">0</span>;row&lt;<span class="number">2</span>;++row)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>;col&lt;<span class="number">4</span>;++col)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；即我们一般把时间最长的循环放在内层，最短的循环放在外层，以减少CPU跨切循环的次数。</p>
-<h1 id="stdvector">std::vector</h1>
-<p>Vector是面向对象方式的动态数组。</p>
-<p>我们经常使用的简单的数组，因为定义的时候就有固定容量，无法实现动态扩容插入元素。</p>
-<p>使用vector容器，可以轻松实现动态扩容添加元素。</p>
-<h2 id="添加">添加</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; vec = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾添加</span></span><br><span class="line">	vec.<span class="built_in">push_back</span>(<span class="number">5</span>);  <span class="comment">//尾添加，不会出现下标越界 &#123;1,2,3,4,5&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定位置添加</span></span><br><span class="line">	<span class="comment">//insert方法，传入位置和值</span></span><br><span class="line">	vec.<span class="built_in">insert</span>(--vec.<span class="built_in">end</span>(), <span class="number">4</span>);   <span class="comment">//&#123;1,2,3,4,4,5&#125;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="遍历">遍历</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index &lt; vec.<span class="built_in">size</span>();++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;vec[index]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们可以使用vector中的capacity()方法来查看vector当前的容量，用size()的方法来查看已经存储的元素的个数。这两者有区别。</p>
-<h2 id="删除">删除</h2>
-<ul>
-<li>vec.pop_back(); //尾删除</li>
-<li>vec.eraser(pos); //指定位置删除</li>
-</ul>
-<p>要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line">vec.<span class="built_in">eraser</span>(vec.<span class="built_in">end</span>()<span class="number">-1</span>);   <span class="comment">//这两者等价</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字符串</title>
-    <url>/2022/C/C++/%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h1 id="字符串变量与常量">字符串变量与常量</h1>
-<h2 id="字符串变量">字符串变量</h2>
-<ul>
-<li>字符串是一个特殊的字符数组，以空字符\0结尾</li>
-<li>空字符\0自动添加到字符串的内部表示中</li>
-<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char
-str[11] = {"helloworld"},十个字符要留11个位置</li>
-</ul>
-<h2 id="字符串常量">字符串常量</h2>
-<ul>
-<li>字符串常量就是一对双引号括起来的字符序列："helloworld"</li>
-<li>字符串常量中的每个元素可以作为一个数组元素访问</li>
-<li>字符串常量也是以'\0'结尾的</li>
-</ul>
-<h1 id="字符串的指针表示">字符串的指针表示</h1>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p>表示一个char型的指针变量，指向内存中一个存储字符串“helloworld”的地址。</p>
-<p>定义字符串的两种方式，char[]和char*，要区分以下两个概念：</p>
-<ul>
-<li>区分地址本身和地址存储的信息；</li>
-<li>区分可变与不可变；</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[<span class="number">11</span>] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line">	<span class="comment">//strHello是数组变量，它本身的值是不允许改变的，但是它指向的区域的值strHello[index]是可以改变的</span></span><br><span class="line">	strHello[<span class="number">2</span>] = <span class="string">&#x27;6&#x27;</span>;    <span class="comment">//strHello = he6loworld</span></span><br><span class="line">	<span class="comment">//strHello = &#123; &quot;helloworld&quot; &#125;;    //不允许改变了，编译不通过</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//ptrHello是指针变量，它本身是可以改变的，但是ptrHello[index]指向的值可变与否要取绝与所指向的区间是否可以改变</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* ptrHello_1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//指针指向常量区(必须要加const)，ptrHello[index]不可改变，但本身指向的地址可以变。</span></span><br><span class="line">	ptrHello_1 = <span class="string">&quot;change&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> tmp[<span class="number">7</span>] = <span class="string">&quot;change&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* ptrHello_2 = strHello;      <span class="comment">//指针指向数组变量，ptrHello[index]可以改变,本身也可以变</span></span><br><span class="line">	ptrHello_2[<span class="number">2</span>] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">	ptrHello_2 = tmp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="字符串操作">字符串操作</h1>
-<p>头文件：string.h</p>
-<h2 id="字符串长度">字符串长度</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较">字符串比较</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
-<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到'\0'为止</p>
-<h2 id="字符串拷贝">字符串拷贝</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
-<p>要注意一个陷阱，一定要保证字符串s1的内存大小能存的下要拷贝的s2的大小</p>
-<h2 id="字符串拼接">字符串拼接</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
-<p>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小
-两个字符串指针不能直接相加，拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
-<h2 id="字符串查找">字符串查找</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
-<h2 id="安全函数">安全函数</h2>
-<p>以上程序都需要我们进行边界检查以防止内存问题。现在我们往往在程序中使用更加安全的API函数</p>
-<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。
-strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有\0结束标志
-。</p>
-<h1 id="字符串操作重点">字符串操作重点</h1>
-<ol type="1">
-<li>C原始字符串的操作在安全性和效率中存在一定问题： 1.
-一定要注意不要缓冲区溢出。 2.
-strlen的效率可以提升，当字符串很长的时候strlen的效率不高，我们可以用空间换时间，在定义字符串的时候用变量记住它的长度，不使用strlen函数来计算</li>
-<li>目前有一个很好的开源库Redis字符串：<a
-href="https://redis.io/">Redis库</a></li>
-</ol>
-<h1 id="string类">string类</h1>
-<p>C++标准库中提供了string类型专门表示字符串</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
-<p>使用string可以更加方便和安全的管理字符串，对性能要求不是特别高的场景可以使用。</p>
-<h2 id="定义">定义</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="字符串长度-1">字符串长度</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较-1">字符串比较</h2>
-<p>直接使用== != &lt; &gt; &gt;= &lt; = 即可，比较ASCII码来比较。</p>
-<h2 id="转换为c风格字符串">转换为C风格字符串</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="随机访问">随机访问</h2>
-<p>字符串本身可以使用下标的方式访问</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout&lt;&lt;s[<span class="number">0</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拷贝-1">字符串拷贝</h2>
-<p>不需要使用函数，直接使用=赋值</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">string s2 = s1;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拼接-1">字符串拼接</h2>
-<p>string重载了+和+=，不需要使用函数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>指针与引用</title>
     <url>/2022/C/C++/%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<h1 id="指针">指针</h1>
@@ -1332,40 +1213,83 @@ by reference to const)。</p>
       </tags>
   </entry>
   <entry>
-    <title>调试技巧——assert()</title>
-    <url>/2022/C/C++/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
-    <content><![CDATA[<p>  编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
-<p>  举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
-<p><img
-src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" /></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
-<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
-<p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
-<p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
-<p>注意assert()不是函数，而是一个宏定义。</p>
+    <title>数组</title>
+    <url>/2022/C/C++/%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<h1 id="数组">数组</h1>
+<h2 id="声明和数组下标">声明和数组下标</h2>
+<p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。
+int arr[10] = {1,2,3,4,5,6,7,8};</p>
+<p>数组声明：</p>
+<ul>
+<li>int arr[10];</li>
+<li>类型名int表示数组里所有元素的类型</li>
+<li>整数10表示数组里包含的元素个数</li>
+<li>数组元素个数不可以改变，是常量</li>
+</ul>
+<p>使用注意：</p>
+<ul>
+<li>每个元素都有下标，标识一个元素在当前数组容器中的位置。通过下标可以直接访问数组内任意元素</li>
+<li>下标从零开始</li>
+<li>超过范围的下标不可以使用，会内存错误。一定要注意，内存溢出是程序中经常出现的BUG</li>
+<li>数组名和下标可以表示数组里的元素，如a[2]表示第三个元素</li>
+</ul>
+<p>数组优点：</p>
+<ul>
+<li>可以编写循环程序，依次处理数组里的所有元素</li>
+<li>循环变量依次代表所有元素</li>
+</ul>
+<h2
+id="数组使用常见错误off-by-one-error差一错误">数组使用常见错误：off-by-one
+error(差一错误)</h2>
+<p>考虑一个问题，假定整数x满足边界条件x&gt;=16且x&lt;=37，那么此范围内的整数x可能的取值有多少？</p>
+<ol type="1">
+<li>首先考虑最简单的情况（特例），然后将结果外推</li>
+<li>仔细计算边界问题</li>
+</ol>
+<p>特例：x的上界与下界重合，即x&gt;=16与x&lt;=16，显然其中的x个数为1；那么假定下界位low，上界位high；当low与high重合，个数为1，即共有high-low+1个元素。那么外推，这里共有37-16+1=22个元素。
+最容易出错的地方就是+1，很容易就仅仅计算high-low。</p>
+<p>编程技巧：</p>
+<ul>
+<li>用数学上的左闭右开[,)区间表示，上述问题可以看作[16,38)，即38-16=22</li>
+<li>C++中，我们编程也遵循这个原则，从0开始，使用非对称区间，让下界可以取到值，上界取不到值。这样设计程序，可以直接用上界-下界来取得范围大小；当取值范围为空的时候，上界值=下界值；即使取值范围为空，上界值也永远不可能小于下界值。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//推荐的方式：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt; <span class="number">10</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不推荐的方式</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt;= <span class="number">9</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="增删改查">增删改查</h2>
+<ul>
+<li><p>在尾部添加和删除操作，时间复杂度为O(1)。只需要操作尾部元素即可，对与其他元素没有干扰。</p></li>
+<li><p>在数组中间进行添加和删除操作，时间复杂度为O(n)。在中间操作，会对其他元素造成影响，操作元素后面的每一个元素都需要进一步操作</p></li>
+<li><p>数组的访问用遍历很高效，时间复杂度为O(1)；</p></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下标访问</span></span><br><span class="line">a[<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针访问</span></span><br><span class="line"><span class="type">int</span>* p = a;</span><br><span class="line">*(p+<span class="number">2</span>) = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>数组的查找时间复杂度并不低，一般取绝与数组自身容量(数组容量很大的时候并不适合遍历查找，时间复杂度太高，可以用二分查找)：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找a[]中第一个值为3的目标：</span></span><br><span class="line"><span class="type">int</span> len = <span class="built_in">sizeof</span>(a)/<span class="built_in">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index&lt;len;++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[index] == <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二维数组">二维数组</h2>
+<p>二维数组包含了两个维度的数组。</p>
+<p>二维数组访问：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row=<span class="number">0</span>;row&lt;<span class="number">2</span>;++row)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>;col&lt;<span class="number">4</span>;++col)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；即我们一般把时间最长的循环放在内层，最短的循环放在外层，以减少CPU跨切循环的次数。</p>
+<h1 id="stdvector">std::vector</h1>
+<p>Vector是面向对象方式的动态数组。</p>
+<p>我们经常使用的简单的数组，因为定义的时候就有固定容量，无法实现动态扩容插入元素。</p>
+<p>使用vector容器，可以轻松实现动态扩容添加元素。</p>
+<h2 id="添加">添加</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; vec = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾添加</span></span><br><span class="line">	vec.<span class="built_in">push_back</span>(<span class="number">5</span>);  <span class="comment">//尾添加，不会出现下标越界 &#123;1,2,3,4,5&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定位置添加</span></span><br><span class="line">	<span class="comment">//insert方法，传入位置和值</span></span><br><span class="line">	vec.<span class="built_in">insert</span>(--vec.<span class="built_in">end</span>(), <span class="number">4</span>);   <span class="comment">//&#123;1,2,3,4,4,5&#125;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历">遍历</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index &lt; vec.<span class="built_in">size</span>();++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;vec[index]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以使用vector中的capacity()方法来查看vector当前的容量，用size()的方法来查看已经存储的元素的个数。这两者有区别。</p>
+<h2 id="删除">删除</h2>
+<ul>
+<li>vec.pop_back(); //尾删除</li>
+<li>vec.eraser(pos); //指定位置删除</li>
+</ul>
+<p>要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line">vec.<span class="built_in">eraser</span>(vec.<span class="built_in">end</span>()<span class="number">-1</span>);   <span class="comment">//这两者等价</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>C++</category>
       </categories>
       <tags>
         <tag>C++基础</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CMD/DOS命令行与批处理</title>
-    <url>/2025/Windows/dos%E8%84%9A%E6%9C%AC/Windows/dos%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<h1 id="内部命令和外部命令">内部命令和外部命令</h1>
-]]></content>
-      <categories>
-        <category>Windows</category>
-        <category>dos脚本</category>
-      </categories>
-      <tags>
-        <tag>脚本编程</tag>
       </tags>
   </entry>
   <entry>
@@ -1435,64 +1359,42 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
       </tags>
   </entry>
   <entry>
-    <title>多台电脑同步提交博客</title>
-    <url>/2022/Hexo/hexo/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%90%8C%E6%AD%A5%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>由于Hexo属于静态博客，文章内容都是本地存储，只有静态页面（public文件夹）会push到git上面。如果我们更换电脑的话，配置相同的环境、依赖和博客文件，如果用U盘拷贝就太low了。所以我们可以利用Github远程仓库来实现多台终端的博客更新部署。</p>
-<p>主要思路是利用git的分支，把静态博客页面文件放在master主分支，把hexo的部署环境文件和博客原文放在新建的Hexo分支上。</p>
-<p># 一、Hexo的原理和依赖</p>
-<h2 id="环境">1、环境</h2>
-<p>Hexo需要有Node.js环境和Git环境，这在哪个电脑都必须有的。</p>
-<h2 id="资源配置依赖">2、资源配置依赖</h2>
-<p>首先要安装Hexo <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure></p>
-<p>hexo所需要的包信息都已经存储在package.json文件中了，我们可以直接利用这个文件，执行命令行安装所需资源：
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
-<h2 id="博客内容">3、博客内容</h2>
-<p>博客的内容主要就是主题文件和博客文件</p>
+    <title>自定义结构</title>
+    <url>/2022/C/C++/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="枚举">枚举</h1>
+<p>使用#define和const创建符号常量，使用enum不仅可以创建符号常量，还能定义新的数据类型。</p>
+<p>枚举类型的声明和定义： <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//声明</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">wT</span>&#123;</span><br><span class="line">    Monday,</span><br><span class="line">    Tuseday,</span><br><span class="line">    Wednesday,</span><br><span class="line">    Thursday,</span><br><span class="line">    Firday,</span><br><span class="line">    Saturday,</span><br><span class="line">    Sunday</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义</span></span><br><span class="line">wT weekday;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">wT</span>&#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;; <span class="comment">// 声明wT类型</span></span><br><span class="line">	wT weekday;</span><br><span class="line">	weekday = Monday;</span><br><span class="line">	weekday = Tuesday;</span><br><span class="line">	<span class="comment">//weekday = 1;             // 错误 不能直接给int值，只能赋值成wT定义好的类型值</span></span><br><span class="line">    <span class="comment">//可以写成weekday = wT(1),但是涉及类型转换的写法不推荐</span></span><br><span class="line">	cout &lt;&lt; weekday &lt;&lt; endl;</span><br><span class="line">	<span class="comment">//Monday = 0;             // 错误 类型值不能做左值，不是有存储空间的变量</span></span><br><span class="line">	<span class="type">int</span> a = Wednesday;</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用细节：</p>
 <ul>
-<li>node_modules: hexo所需要的文件，这个文件不需要上传git</li>
-<li>themes：主题文件</li>
-<li>source：博文的md文件</li>
-<li>public：生成的静态页面，这个一般都clean掉</li>
-<li>_config.yml：全局配置文件</li>
-<li>.gitignore：hexo自动生成的，里面一般会记录node_modules，我们不许要改，这个文件就会被忽略掉</li>
+<li>枚举值不能做左值；</li>
+<li>非枚举变量不可以赋值给枚举变量；</li>
+<li>枚举变量可以赋值给非枚举变量；</li>
 </ul>
-<h1 id="二git仓库修改">二、Git仓库修改</h1>
-<p>对我们之前创建的username.github.io仓库，创建一个新的hexo分支，并在仓库-&gt;Settings-&gt;Branches-&gt;Default
-branch中把这个分支设置为默认分支。clone到本地，此时本地应该是Hexo分支。</p>
-<p>之后我们把我们之前写的博客目录下的文件，全部拷贝到这个本地仓库中【注意要把之前themes目录中的.git文件删掉。因为一个git目录下不能有另一个git仓库。如果我们需要更新主题文件，只能把主题clone到本地后进行拷贝覆盖】。然后提交git到Hexo分支：
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
-<p>此时我们观察github，可以看到，master分支里面保存着静态博客资源（在_config.yml中的Deployment配置的），Hexo分支备份博客部署文件，供我们维护更新。两者在一个仓库中互不干扰。</p>
-<h1 id="三新的提交操作">三、新的提交操作</h1>
-<p>目前我们在写博客时，就要在提交前做git更新了 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git pull     <span class="comment">//提交前最好更新最新</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>1、CPU调试支持</title>
-    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/CPU%E8%B0%83%E8%AF%95%E6%94%AF%E6%8C%81/</url>
-    <content><![CDATA[<h1 id="软件断点">软件断点</h1>
-<p>软件断点就是INT3指令</p>
+<h1 id="结构体和联合体">结构体和联合体</h1>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    Score s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Score</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> sc;</span><br><span class="line">    <span class="type">char</span> level;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="存储结构与结构体数据对齐">存储结构与结构体数据对齐</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> <span class="title class_">Score</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> ds;    <span class="comment">//8字节</span></span><br><span class="line">		<span class="type">char</span> level;   <span class="comment">//1字节</span></span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> name[<span class="number">6</span>];      <span class="comment">//6字节                           </span></span><br><span class="line">		<span class="type">int</span> age;           <span class="comment">//32位环境 4字节</span></span><br><span class="line">		Score s;               </span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Score) &lt;&lt; endl;      <span class="comment">// 8</span></span><br><span class="line">	</span><br><span class="line">	Student s1;</span><br><span class="line">	<span class="built_in">strcpy_s</span>(s1.name, <span class="string">&quot;lili&quot;</span>);</span><br><span class="line">	s1.age = <span class="number">16</span>;</span><br><span class="line">	s1.s.ds = <span class="number">95.5</span>;</span><br><span class="line">	s1.s.level = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Student) &lt;&lt; endl;    <span class="comment">// 24     </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">s1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s1) = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">s2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s2) = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png" /></p>
+<h2 id="数据对齐原则--缺省对齐">数据对齐原则--缺省对齐</h2>
 <ul>
-<li>机器码为1字节，内存ASCII码为0xCC，经典的“烫烫烫烫”；</li>
-<li>IDE下断点，就是在那条指令的位置插入INT3，或者那个字节替换为0xCC;</li>
-<li>软件断点没有数量限制，很有灵活性</li>
-<li>软件断点的局限性：
+<li>32位CPU
 <ul>
-<li>由于软件断点是插入或者修改指令，对于在ROM(只读存储器)中执行的程序比如BIOS或者其他固件程序，无法动态增加软件断点，只能用硬件断点；</li>
-<li>属于代码类断点(可以让CPU执行到代码段内的某个地址时停下来)，所以不适用于数据段和I/O空间；</li>
+<li>char：任何地址</li>
+<li>short：偶数倍地址</li>
+<li>int：4的整数倍</li>
+<li>double：8的整数倍</li>
 </ul></li>
 </ul>
+<p>程序是可以修改默认编译选项的，修改结构体内存分配： <figure class="highlight scss"><table><tr><td class="code"><pre><span class="line">Visual C++：</span><br><span class="line"><span class="selector-id">#pragma</span> <span class="built_in">pack</span>(n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g++:</span><br><span class="line"><span class="built_in">__attribute__</span>(<span class="built_in">aligned</span>(n))</span><br><span class="line"><span class="built_in">__attribute__</span>(__packed__)</span><br></pre></td></tr></table></figure></p>
 ]]></content>
       <categories>
-        <category>软件调试</category>
+        <category>C++</category>
       </categories>
       <tags>
-        <tag>软件调试</tag>
+        <tag>C++基础</tag>
       </tags>
   </entry>
   <entry>
@@ -1603,6 +1505,104 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
       </tags>
   </entry>
   <entry>
+    <title>CMD/DOS命令行与批处理</title>
+    <url>/2025/Windows/dos%E8%84%9A%E6%9C%AC/Windows/dos%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<h1 id="内部命令和外部命令">内部命令和外部命令</h1>
+]]></content>
+      <categories>
+        <category>Windows</category>
+        <category>dos脚本</category>
+      </categories>
+      <tags>
+        <tag>脚本编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多台电脑同步提交博客</title>
+    <url>/2022/Hexo/hexo/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%90%8C%E6%AD%A5%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>由于Hexo属于静态博客，文章内容都是本地存储，只有静态页面（public文件夹）会push到git上面。如果我们更换电脑的话，配置相同的环境、依赖和博客文件，如果用U盘拷贝就太low了。所以我们可以利用Github远程仓库来实现多台终端的博客更新部署。</p>
+<p>主要思路是利用git的分支，把静态博客页面文件放在master主分支，把hexo的部署环境文件和博客原文放在新建的Hexo分支上。</p>
+<p># 一、Hexo的原理和依赖</p>
+<h2 id="环境">1、环境</h2>
+<p>Hexo需要有Node.js环境和Git环境，这在哪个电脑都必须有的。</p>
+<h2 id="资源配置依赖">2、资源配置依赖</h2>
+<p>首先要安装Hexo <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli </span><br></pre></td></tr></table></figure></p>
+<p>hexo所需要的包信息都已经存储在package.json文件中了，我们可以直接利用这个文件，执行命令行安装所需资源：
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<h2 id="博客内容">3、博客内容</h2>
+<p>博客的内容主要就是主题文件和博客文件</p>
+<ul>
+<li>node_modules: hexo所需要的文件，这个文件不需要上传git</li>
+<li>themes：主题文件</li>
+<li>source：博文的md文件</li>
+<li>public：生成的静态页面，这个一般都clean掉</li>
+<li>_config.yml：全局配置文件</li>
+<li>.gitignore：hexo自动生成的，里面一般会记录node_modules，我们不许要改，这个文件就会被忽略掉</li>
+</ul>
+<h1 id="二git仓库修改">二、Git仓库修改</h1>
+<p>对我们之前创建的username.github.io仓库，创建一个新的hexo分支，并在仓库-&gt;Settings-&gt;Branches-&gt;Default
+branch中把这个分支设置为默认分支。clone到本地，此时本地应该是Hexo分支。</p>
+<p>之后我们把我们之前写的博客目录下的文件，全部拷贝到这个本地仓库中【注意要把之前themes目录中的.git文件删掉。因为一个git目录下不能有另一个git仓库。如果我们需要更新主题文件，只能把主题clone到本地后进行拷贝覆盖】。然后提交git到Hexo分支：
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>此时我们观察github，可以看到，master分支里面保存着静态博客资源（在_config.yml中的Deployment配置的），Hexo分支备份博客部署文件，供我们维护更新。两者在一个仓库中互不干扰。</p>
+<h1 id="三新的提交操作">三、新的提交操作</h1>
+<p>目前我们在写博客时，就要在提交前做git更新了 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">git pull     <span class="comment">//提交前最好更新最新</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&#x27;update&#x27;</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1、CPU调试支持</title>
+    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/CPU%E8%B0%83%E8%AF%95%E6%94%AF%E6%8C%81/</url>
+    <content><![CDATA[<h1 id="软件断点">软件断点</h1>
+<p>软件断点就是INT3指令</p>
+<ul>
+<li>机器码为1字节，内存ASCII码为0xCC，经典的“烫烫烫烫”；</li>
+<li>IDE下断点，就是在那条指令的位置插入INT3，或者那个字节替换为0xCC;</li>
+<li>软件断点没有数量限制，很有灵活性</li>
+<li>软件断点的局限性：
+<ul>
+<li>由于软件断点是插入或者修改指令，对于在ROM(只读存储器)中执行的程序比如BIOS或者其他固件程序，无法动态增加软件断点，只能用硬件断点；</li>
+<li>属于代码类断点(可以让CPU执行到代码段内的某个地址时停下来)，所以不适用于数据段和I/O空间；</li>
+</ul></li>
+</ul>
+]]></content>
+      <categories>
+        <category>软件调试</category>
+      </categories>
+      <tags>
+        <tag>软件调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>调试技巧——assert()</title>
+    <url>/2022/C/C++/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
+    <content><![CDATA[<p>  编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
+<p>  举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" /></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
+<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
+<p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
+<p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
+<p>注意assert()不是函数，而是一个宏定义。</p>
+]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>9、内核调试</title>
     <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[
@@ -1617,6 +1617,18 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
   <entry>
     <title>5、可调试性</title>
     <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%8F%AF%E8%B0%83%E5%BC%8F%E6%80%A7/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>软件调试</category>
+      </categories>
+      <tags>
+        <tag>软件调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>7、堆调试</title>
+    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%A0%86%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[
 ]]></content>
       <categories>
@@ -1651,8 +1663,8 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
       </tags>
   </entry>
   <entry>
-    <title>7、堆调试</title>
-    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%A0%86%E8%B0%83%E8%AF%95/</url>
+    <title>6、栈调试</title>
+    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E6%A0%88%E8%B0%83%E8%AF%95/</url>
     <content><![CDATA[
 ]]></content>
       <categories>
@@ -1663,8 +1675,20 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
       </tags>
   </entry>
   <entry>
-    <title>6、栈调试</title>
-    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E6%A0%88%E8%B0%83%E8%AF%95/</url>
+    <title>4、调试器</title>
+    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%B0%83%E8%AF%95%E5%99%A8/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>软件调试</category>
+      </categories>
+      <tags>
+        <tag>软件调试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>10、高级调试技巧</title>
+    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E9%AB%98%E7%BA%A7%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[
 ]]></content>
       <categories>
@@ -1772,30 +1796,6 @@ Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
       <tags>
         <tag>算法</tag>
         <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>10、高级调试技巧</title>
-    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E9%AB%98%E7%BA%A7%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[
-]]></content>
-      <categories>
-        <category>软件调试</category>
-      </categories>
-      <tags>
-        <tag>软件调试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>4、调试器</title>
-    <url>/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%B0%83%E8%AF%95%E5%99%A8/</url>
-    <content><![CDATA[
-]]></content>
-      <categories>
-        <category>软件调试</category>
-      </categories>
-      <tags>
-        <tag>软件调试</tag>
       </tags>
   </entry>
 </search>
