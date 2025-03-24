@@ -260,51 +260,51 @@ m=1,n=1; int sum = m + n;</li>
 <td style="text-align: left;">\ 字符</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">'</td>
+<td style="text-align: left;">\'</td>
 <td style="text-align: left;">'字符</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">"</td>
+<td style="text-align: left;">\"</td>
 <td style="text-align: left;">"字符</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">?</td>
+<td style="text-align: left;">\?</td>
 <td style="text-align: left;">?字符</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
+<td style="text-align: left;">\a</td>
 <td style="text-align: left;">警报铃</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">\b</td>
 <td style="text-align: left;">退格键</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">\f</td>
 <td style="text-align: left;">换页符</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
+<td style="text-align: left;">\n</td>
 <td style="text-align: left;">换行符</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">\r</td>
 <td style="text-align: left;">换行符</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">\t</td>
 <td style="text-align: left;">水平制表符</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">\v</td>
 <td style="text-align: left;">垂直制表符</td>
-<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
+<td style="text-align: left;">\ooo</td>
 <td style="text-align: left;">一到三位的八进制数</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">...</td>
+<td style="text-align: left;">\xhh...</td>
 <td style="text-align: left;">一个或多个数字的十六进制数</td>
 </tr>
 </tbody>
