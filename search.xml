@@ -547,7 +547,7 @@ href="https://redis.io/">Redis库</a></li>
 <tr class="even">
 <td>-</td>
 <td>第一个操作数减去第二个操作数</td>
-<td>A-B=10</td>
+<td>A-B=-10</td>
 </tr>
 <tr class="odd">
 <td>*</td>
@@ -576,9 +576,10 @@ href="https://redis.io/">Redis库</a></li>
 </tr>
 </tbody>
 </table>
-<p>除法运算中整数和浮点数的运算结果不太一样，整数除的话结果就是整数，要想输出完整整型数:需要用浮点数去除：
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> A = <span class="number">10</span>;</span><br><span class="line">cout&lt;&lt;<span class="number">15</span>/A&lt;&lt;endl;   <span class="comment">//输出1</span></span><br><span class="line">cout&lt;&lt;<span class="number">15.0</span>/A&lt;&lt;endl;  <span class="comment">//输出1.5</span></span><br></pre></td></tr></table></figure></p>
-<p>自增/自减运算符放在变量的前面和后面是不一样的。放在变量前面就是先做运算再出结果；放在后面就是先出结果再运算。</p>
+<p>  除法运算中整数和浮点数的运算结果不太一样，整数除的话结果就是整数，要想输出完整整型数:需要用浮点数去除：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> A = <span class="number">10</span>;</span><br><span class="line">cout &lt;&lt; <span class="number">15</span> / A &lt;&lt; endl;   <span class="comment">//输出1</span></span><br><span class="line">cout &lt;&lt; <span class="number">15.0</span> / A &lt;&lt; endl;  <span class="comment">//输出1.5</span></span><br></pre></td></tr></table></figure>
+<p>  自增/自减运算符放在变量的前面和后面是不一样的。放在变量前面就是先做运算再出结果；放在后面就是先出结果再运算。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> A = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> B = <span class="number">10</span>;</span><br><span class="line">cout &lt;&lt; ++A &lt;&lt; endl;   <span class="comment">//输出11</span></span><br><span class="line">cout &lt;&lt; B++ &lt;&lt; endl;  <span class="comment">//输出10（但是B变为11）</span></span><br></pre></td></tr></table></figure>
 <h1 id="关系运算符">关系运算符</h1>
 <p>A=10 ；B=20</p>
 <table>
@@ -624,7 +625,7 @@ href="https://redis.io/">Redis库</a></li>
 </table>
 <p>关系运算符返回的都是bool类型的值。</p>
 <h1 id="逻辑运算符">逻辑运算符</h1>
-<p>A = 1； B = 0;</p>
+<p>A = true； B = false;</p>
 <table>
 <colgroup>
 <col style="width: 33%" />
@@ -651,13 +652,19 @@ href="https://redis.io/">Redis库</a></li>
 </tr>
 <tr class="odd">
 <td>!</td>
-<td>逻辑非运算，用来逆转操作数的逻辑状态</td>
+<td>逻辑非运算，用来逆转操作数的逻辑状态，是单目运算符</td>
 <td>!(A &amp;&amp; B)为真</td>
 </tr>
 </tbody>
 </table>
+<p>可以用逻辑运算符来表示德摩根律：<span class="math inline">\(\neg(A
+\land B)\)</span> 等价于 <span class="math inline">\(\neg A \lor \neg
+B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
+<span class="math inline">\(\neg A \land \neg B\)</span></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout &lt;&lt; (!(A || B) == (!A &amp;&amp; !B)) &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; (!(A &amp;&amp; B) == (!A || !B)) &lt;&lt;endl;</span><br></pre></td></tr></table></figure>
 <p>逻辑运算符本身也是有优先级的 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">auto</span> a = <span class="literal">true</span> || <span class="literal">true</span> &amp;&amp; <span class="literal">false</span>;     <span class="comment">//true</span></span><br><span class="line"><span class="keyword">auto</span> b = (<span class="literal">true</span> || <span class="literal">true</span>) &amp;&amp; <span class="literal">false</span>;   <span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
 <h1 id="赋值运算符">赋值运算符</h1>
+<p>把右侧的值赋给左侧。注意左侧的值一定要是一个变量。</p>
 <table>
 <thead>
 <tr class="header">
@@ -707,7 +714,7 @@ href="https://redis.io/">Redis库</a></li>
 <td>按位异或且赋值运算符</td>
 </tr>
 <tr class="odd">
-<td>\=</td>
+<td>|=</td>
 <td>按位或且赋值运算符</td>
 </tr>
 </tbody>
@@ -720,9 +727,8 @@ href="https://redis.io/">Redis库</a></li>
 <th>p</th>
 <th>q</th>
 <th>p&amp;q</th>
-<th>p|q</th>
+<th>p | q</th>
 <th>p^q</th>
-<th></th>
 </tr>
 </thead>
 <tbody>
@@ -732,7 +738,6 @@ href="https://redis.io/">Redis库</a></li>
 <td>0</td>
 <td>0</td>
 <td>0</td>
-<td></td>
 </tr>
 <tr class="even">
 <td>0</td>
@@ -740,7 +745,6 @@ href="https://redis.io/">Redis库</a></li>
 <td>0</td>
 <td>1</td>
 <td>1</td>
-<td></td>
 </tr>
 <tr class="odd">
 <td>1</td>
@@ -748,7 +752,6 @@ href="https://redis.io/">Redis库</a></li>
 <td>1</td>
 <td>1</td>
 <td>0</td>
-<td></td>
 </tr>
 <tr class="even">
 <td>1</td>
@@ -756,12 +759,13 @@ href="https://redis.io/">Redis库</a></li>
 <td>0</td>
 <td>1</td>
 <td>1</td>
-<td></td>
 </tr>
 </tbody>
 </table>
+<p>位运算符还包括取反操作~和移位运算&lt;<和>&gt;，都是以bit为单位运算。</p>
 <p>与、或、异或都是双目运算符，结合性从左到右，优先级高于逻辑运算符，低于关系运算符，且从高到低为&amp;、^、|</p>
-<h1 id="其他运算符">其他运算符</h1>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 位运算</span></span><br><span class="line"><span class="type">int</span> A = <span class="number">10</span>,B = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A&amp;B) &lt;&lt; endl;      <span class="comment">//  01010 &amp; 10100  = 00000  ==&gt; 0</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A | B) &lt;&lt; endl;       <span class="comment">//  01010 | 10100  = 11110  ==&gt; 30</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A^B) &lt;&lt; endl;     <span class="comment">//  01010 ^ 10100  = 11110 ==&gt; 30</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//取反运算需要补码的知识，计算机中都是用补码表示的</span></span><br><span class="line">cout &lt;&lt; (~A) &lt;&lt; endl;       <span class="comment">//  ~0000000000001010 = 11111111111110101 ==&gt; 0000000000001011==-11</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A &lt;&lt; <span class="number">2</span>) &lt;&lt; endl;  <span class="comment">//  00001010 &lt;&lt; 2 ==&gt; 00101000 ==&gt; 40</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A &gt;&gt; <span class="number">2</span>) &lt;&lt; endl;<span class="comment">// 00001010 &gt;&gt; 2 ==&gt; 00000010 ==&gt; 2</span></span><br></pre></td></tr></table></figure>
+<h1 id="杂项运算符">杂项运算符</h1>
 <table>
 <colgroup>
 <col style="width: 50%" />
@@ -780,7 +784,7 @@ href="https://redis.io/">Redis库</a></li>
 </tr>
 <tr class="even">
 <td>Condition ?X:Y</td>
-<td>条件运算符。如果Condition为真，则值为C，否则值为Y</td>
+<td>条件运算符，唯一的三目运算符。如果Condition为真，则值为X，否则值为Y</td>
 </tr>
 <tr class="odd">
 <td>，</td>
@@ -1581,15 +1585,14 @@ branch中把这个分支设置为默认分支。clone到本地，此时本地应
   <entry>
     <title>调试技巧——assert()</title>
     <url>/2022/C/C++/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E2%80%94%E2%80%94assert/</url>
-    <content><![CDATA[<p>  编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
-<p>  举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
-<p><img
-src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" /></p>
+    <content><![CDATA[<p>&emsp;&emsp;编写代码时，我们总会做出一些假设，断言就是用在代码中捕获这些假设。断言表示为一些布尔表达式，我们相信在程序中的某个特定点该表达式的值为真，可以在任意时刻启用和禁用断言来验证。</p>
+<p>&emsp;&emsp;举个例子，在离散数学中有个德摩根定律，我们在C++语言中可以验证：</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%A9%E6%A0%B9%E5%AE%9A%E5%BE%8B.png" alt=""></p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	cout&lt;&lt;(!(A || B) == (!A &amp;&amp; !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">	cout&lt;&lt;(!(A &amp;&amp; B) == (!A || !B))&lt;&lt;endl;  <span class="comment">//输出1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种代码方式在开发中并不常见，而是使用以下断言的方式：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">bool</span> A = <span class="literal">false</span>;</span><br><span class="line">	<span class="type">bool</span> B= <span class="literal">true</span>;</span><br><span class="line">	<span class="comment">//德摩根率：</span></span><br><span class="line">	<span class="built_in">assert</span>( !(A || B) == (!A &amp;&amp; !B) );  </span><br><span class="line">	<span class="built_in">assert</span>( !(A &amp;&amp; B) == (!A || !B) );  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在这个程序中，并不会有任何输出结果，但是程序正常运行。</p>
-<p>假如assert()函数中表达式出错，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
+<p>假如assert()函数中表达式出错(非真)，整个程序在运行的时候就会报错，并指出哪里出了问题。</p>
 <p>所以今后在我们开发的时候可以运用这一特性，完成开发测试用例的编写：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">assert</span>(函数返回值 == 预期结果);</span><br></pre></td></tr></table></figure>
 <p>只要函数运行符合预期结果，程序正常运行，一旦不符合就会出错。</p>
