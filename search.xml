@@ -180,6 +180,92 @@ Two`s-complement的缩写，长度为w）来表示：<span class="math inline"><
 <li>小端法（Little Endian）:Inter兼容机</li>
 </ol>
 <p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/SmallEndian.png"></p>
+<p>个人机器基本上都是小端表示法。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E8%B0%83%E8%AF%95.png"></p>
+<h1 id="补码的意义">补码的意义</h1>
+<p>  我们在设计软件系统时总是希望软件系统尽可能的简单通用。于是人们希望在只有加法运算器的情况下设计一种方法能实现减法运算。</p>
+<p>  以时间为例：表盘一圈12个小时，现在是8点，那么3小时前是5点，9小时以后还是5点(8+9-12)，这里进行的是模12的操作。所以8-3和8+9的结果是一样的；我们就可以用9来表示-3，如果想计算8-3，那么就用加法器计算8+9；</p>
+<p>  当然单纯的这么想是有问题的，以时间为例我们可以得到一个对照表，遇见12就清零：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">-1</th>
+<th style="text-align: left;">-2</th>
+<th style="text-align: left;">-3</th>
+<th style="text-align: left;">-4</th>
+<th style="text-align: left;">-5</th>
+<th style="text-align: left;">-6</th>
+<th style="text-align: left;">-7</th>
+<th style="text-align: left;">-8</th>
+<th style="text-align: left;">-9</th>
+<th style="text-align: left;">-10</th>
+<th style="text-align: left;">-11</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>5-3 ==&gt; (5+9)%12=2</li>
+<li>3-5 ==&gt; (3+7)%12 = 10 ==&gt;-2</li>
+</ul>
+<p>  我们计算3-5的时候，得到的值是10，我们可以在对照表中得到10对应的值是-2，但我们计算5-3的时候，得到的值是2，我们却不需要找对应的值。计算机如何区分什么时候要找对应的值，什么时候不需要呢？</p>
+<p>  可以对表进行一些修改：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">-1</th>
+<th style="text-align: left;">-2</th>
+<th style="text-align: left;">-3</th>
+<th style="text-align: left;">-4</th>
+<th style="text-align: left;">-5</th>
+<th style="text-align: left;">-6</th>
+<th style="text-align: left;">5</th>
+<th style="text-align: left;">4</th>
+<th style="text-align: left;">3</th>
+<th style="text-align: left;">2</th>
+<th style="text-align: left;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>5-3 ==&gt; (5+9)%12=2 ==&gt;2</li>
+<li>3-5 ==&gt; (3+7)%12 = 10 ==&gt;-2</li>
+</ul>
+<p>  表格修改后，每次计算完都在表格中进行对照，这样操作统一，得到的值也是正确的了。其实在计算机内部，补码的用处就是构造这张映射表的。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%A1%A5%E7%A0%81%E5%B1%95%E7%A4%BA.png"></p>
 ]]></content>
       <categories>
         <category>C++</category>
@@ -1297,6 +1383,7 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
 </table>
 <p>位运算符还包括取反操作~和移位运算&lt;<和>&gt;，都是以bit为单位运算。</p>
 <p>与、或、异或都是双目运算符，结合性从左到右，优先级高于逻辑运算符，低于关系运算符，且从高到低为&amp;、^、|</p>
+<p>使用移位运算符需要注意，左移运算还比较简单，移走的位自动填充0，但右移运算有两种情况，逻辑右移时移走的位填充0，但算数右移时移走的位与符号位有关。底层到底是逻辑右移还是算数右移取决于编译器，而不是程序员，所以对于有符号数，<strong>尽可能不要使用右移运算</strong>！！！</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 位运算</span></span><br><span class="line"><span class="type">int</span> A = <span class="number">10</span>,B = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A&amp;B) &lt;&lt; endl;      <span class="comment">//  01010 &amp; 10100  = 00000  ==&gt; 0</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A | B) &lt;&lt; endl;       <span class="comment">//  01010 | 10100  = 11110  ==&gt; 30</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A^B) &lt;&lt; endl;     <span class="comment">//  01010 ^ 10100  = 11110 ==&gt; 30</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//取反运算需要补码的知识，计算机中都是用补码表示的</span></span><br><span class="line">cout &lt;&lt; (~A) &lt;&lt; endl;       <span class="comment">//  ~0000000000001010 = 11111111111110101 ==&gt; 0000000000001011==-11</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A &lt;&lt; <span class="number">2</span>) &lt;&lt; endl;  <span class="comment">//  00001010 &lt;&lt; 2 ==&gt; 00101000 ==&gt; 40</span></span><br><span class="line"></span><br><span class="line">cout &lt;&lt; (A &gt;&gt; <span class="number">2</span>) &lt;&lt; endl;<span class="comment">// 00001010 &gt;&gt; 2 ==&gt; 00000010 ==&gt; 2</span></span><br></pre></td></tr></table></figure>
 <h1 id="杂项运算符">杂项运算符</h1>
 <table>
