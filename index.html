@@ -453,6 +453,114 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/C%E5%88%B0C++%E7%9A%84%E6%94%B9%E8%BF%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/C%E5%88%B0C++%E7%9A%84%E6%94%B9%E8%BF%9B/" class="post-title-link" itemprop="url">C到C++的改进</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-04-02 15:51:49" itemprop="dateCreated datePublished" datetime="2025-04-02T15:51:49+08:00">2025-04-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-09 16:28:43" itemprop="dateModified" datetime="2025-04-09T16:28:43+08:00">2025-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="c语言字符的语法陷阱">C语言字符的语法陷阱</h1>
+<p>先看C语言中常见的词法、语法问题：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c1 = <span class="string">'yes'</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 不符合常理，但这样定义没有错误</span></span><br><span class="line"><span class="comment">* 编译器会截断</span></span><br><span class="line"><span class="comment">* 至于是保留第一个还是最后一个，这个和编译器有关</span></span><br><span class="line"><span class="comment">* 虽然没报错，但编译器会有warning</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">	</span><br><span class="line"><span class="type">char</span> c2 = <span class="string">"yes"</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 编译器报错</span></span><br><span class="line"><span class="comment">* "yes"是一个字符串，c2只是一个字符变量，不能存储字符串</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* slash = <span class="string">"/"</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">字符串的正确定义方法</span></span><br><span class="line"><span class="comment">slash中存放两个字符：'/'、'\0'</span></span><br><span class="line"><span class="comment">这样其实就是把字符串的首地址给了指针变量</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* slash2 = <span class="string">'/'</span>;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">编译器报错</span></span><br><span class="line"><span class="comment">字符的类型不能给指针，两个变量类型不匹配</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* slash3 = &amp;c1;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">正确</span></span><br><span class="line"><span class="comment">slash3指针变量存放c1单个字符的地址</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>  从上面的例子可以看到，C语言是高级语言中的低级语言，优点是小巧、高效、接近底层，比如上面的例子就把字符和字符串区分的很细，但缺点就是细节和陷阱比较多。为了更好的解决这个问题，C++在兼容C语言的同时，推出了既高效又易于大规模开发的机制：string类的使用:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">s1</span><span class="params">(<span class="number">1</span>,<span class="string">'yes'</span>)</span></span>;  <span class="comment">//s</span></span><br><span class="line"><span class="function">string <span class="title">s2</span><span class="params">(<span class="number">3</span>,<span class="string">'yes'</span>)</span></span>;  <span class="comment">//sss</span></span><br><span class="line"><span class="function">string <span class="title">s3</span><span class="params">(<span class="number">1</span>,<span class="string">'y'</span>)</span></span>;    <span class="comment">//y</span></span><br><span class="line"><span class="function">string <span class="title">s4</span><span class="params">(<span class="string">"/"</span>)</span></span>;      <span class="comment">// /</span></span><br><span class="line"><span class="function">string <span class="title">s5</span><span class="params">(<span class="number">1</span>,<span class="string">'/'</span>)</span></span>;    <span class="comment">// /</span></span><br><span class="line"><span class="function">string <span class="title">s6</span><span class="params">(<span class="string">"yes"</span>)</span></span>;    <span class="comment">//yes</span></span><br></pre></td></tr></table></figure>
+<h1 id="c语言指针和数组的关系问题">C语言指针和数组的关系问题</h1>
+<p>c预言数组在作为参数时的退化行为，退化为一个指针。</p>
+<p>给定一个数组，计算数组中的数据的平均数，有以下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计算平均数</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">average1</span><span class="params">(<span class="type">int</span> arr[<span class="number">10</span>])</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">double</span> result = <span class="number">0.0</span>;</span><br><span class="line">	<span class="type">int</span> len = <span class="built_in">sizeof</span>(arr) / <span class="built_in">sizeof</span>(arr[<span class="number">0</span>]);</span><br><span class="line">	std::cout &lt;&lt; <span class="string">"In average1 : "</span> &lt;&lt; len &lt;&lt; std::endl;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	{</span><br><span class="line">		result += arr[i];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result / len;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">int</span> array1[] = { <span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span> };</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数组长度最好是用变量这样来求，不要写成常量</span></span><br><span class="line">	<span class="comment">//这样方便扩展</span></span><br><span class="line">	<span class="type">int</span> len = <span class="built_in">sizeof</span>(array1) / <span class="built_in">sizeof</span>(array1[<span class="number">0</span>]);</span><br><span class="line">	std::cout &lt;&lt; <span class="string">"len : "</span> &lt;&lt; len &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">average1</span>(array1) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/c%E9%99%B7%E9%98%B11.png"></p>
+<p>  可以看到输出的值并不是平均数，通过输出中间数据可以知道，main函数中的长度是10，而average1中的数组长度是1；</p>
+<p>  出现这个的原因就是C预言数组在作为函数参数传递时会退化为一个指针，average1中的入参实际上只是函数的首地址，sizeof(arr)输出的只是单个元素的长度。</p>
+<p>  可以进行如下优化，通过外部把数组长度先行计算出来然后传递给函数。需要注意，如果传递的是字符数组的话就不需要这么麻烦了，因为字符数组往往是通过'\0'结尾的，函数内部有办法知道数组的长度。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//直接把数组长度传递进来</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">average2</span><span class="params">(<span class="type">int</span> arr[<span class="number">10</span>], <span class="type">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">double</span> result = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	{</span><br><span class="line">		result += arr[i];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result / len;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">int</span> array1[] = { <span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span> };</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> len = <span class="built_in">sizeof</span>(array1) / <span class="built_in">sizeof</span>(array1[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">average2</span>(array1,len) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  </p>
+<p>  其实知道数组当作函数参数传递时会发生退化时，就可以不传递数组，而是只传递指针：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">average2</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">double</span> result = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	{</span><br><span class="line">		result += arr[i];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result / len;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  </p>
+<p>  C语言之所以要这么做，是和c语言发展分不开的。c语言早期是伴随着unix操作系统，是非常底层的，对空间要求非常高的语言。如果函数传参时传递了一个非常大的数据容器，空间转移的效率是非常低的。所以C语言设计者就通过传递指针和容器尺寸这样一种传递方式从而达到节省空间的目的。</p>
+<p>  </p>
+<p>  C++的解决方案就是引入STL容器，实现底层包装，保证效率的同时也保证简单安全。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这里传递的是引用</span></span><br><span class="line"><span class="comment">//如果传递的是vector本身，c++这里会产生一个副本，如果容器很大会得不偿失</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">average3</span><span class="params">(std::vector&lt;<span class="type">int</span>&gt;&amp; v)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">double</span> result = <span class="number">0.0</span>;</span><br><span class="line">	std::vector&lt;<span class="type">int</span>&gt;::iterator it = v.<span class="built_in">begin</span>();</span><br><span class="line">	<span class="keyword">for</span> (;it!=v.<span class="built_in">end</span>();++it)</span><br><span class="line">	{</span><br><span class="line">		result += *it;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result / v.<span class="built_in">size</span>();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; vt = { <span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span> };</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">average3</span>(vt) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  使用stl容器后，哪怕是二维数组，处理起来也很方便了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">average2DV</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; vv)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">double</span> result = <span class="number">0.0</span>;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> size = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; vv.<span class="built_in">size</span>(); ++i)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">int</span> j = <span class="number">0</span>; j &lt; vv[i].<span class="built_in">size</span>(); ++j)</span><br><span class="line">		{</span><br><span class="line">			result += vv[i][j];</span><br><span class="line">			size += <span class="number">1</span>;</span><br><span class="line">			cout &lt;&lt; vv[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">		}</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result / size;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; vv2D{<span class="number">8</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(<span class="number">12</span>,<span class="number">3</span>) }; <span class="comment">//8个vector，每个包含12个3</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">average2DV</span>(vv2D);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h1 id="c语言的移位问题">C语言的移位问题</h1>
+<h1 id="c语言强制类型转换问题">C语言强制类型转换问题</h1>
+<h1 id="c语言的整数溢出问题">C语言的整数溢出问题</h1>
+<h1 id="c语言字符串的典型缺陷">C语言字符串的典型缺陷</h1>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E8%A1%A5%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1291,81 +1399,6 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%B0%83%E8%AF%95%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%B0%83%E8%AF%95%E5%99%A8/" class="post-title-link" itemprop="url">4、调试器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-02-05 20:19:48 / 修改时间：20:23:52" itemprop="dateCreated datePublished" datetime="2025-02-05T20:19:48+08:00">2025-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">软件调试</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1436,7 +1469,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1498,7 +1531,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">55k</span>
+    <span title="站点总字数">58k</span>
 </div>
 
 <!--
