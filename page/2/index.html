@@ -1400,7 +1400,7 @@ target="_blank" rel="noopener" href="https://redis.io/">Redis库</a></li>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/C/C++/%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">数组</a>
+            <a href="/2022/C/C++/%E6%95%B0%E7%BB%84/" class="post-title-link" itemprop="url">基础容器--数组</a>
         </h2>
 
         <div class="post-meta">
@@ -1417,7 +1417,7 @@ target="_blank" rel="noopener" href="https://redis.io/">Redis库</a></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 03:07:40" itemprop="dateModified" datetime="2024-06-01T03:07:40+08:00">2024-06-01</time>
+                <time title="修改时间：2025-04-21 17:58:42" itemprop="dateModified" datetime="2025-04-21T17:58:42+08:00">2025-04-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1448,9 +1448,9 @@ target="_blank" rel="noopener" href="https://redis.io/">Redis库</a></li>
 
       
           <h1 id="数组">数组</h1>
-<h2 id="声明和数组下标">声明和数组下标</h2>
-<p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。
-int arr[10] = {1,2,3,4,5,6,7,8};</p>
+<h2 id="序列型容器">序列型容器</h2>
+<p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。比如：int
+arr[10] = {1,2,3,4,5,6,7,8};</p>
 <p>数组声明：</p>
 <ul>
 <li>int arr[10];</li>
@@ -1467,8 +1467,8 @@ int arr[10] = {1,2,3,4,5,6,7,8};</p>
 </ul>
 <p>数组优点：</p>
 <ul>
-<li>可以编写循环程序，依次处理数组里的所有元素</li>
-<li>循环变量依次代表所有元素</li>
+<li>可以编写循环程序，依次处理数组里的所有元素；</li>
+<li>循环变量依次代表所有有效下标；</li>
 </ul>
 <h2
 id="数组使用常见错误off-by-one-error差一错误">数组使用常见错误：off-by-one
