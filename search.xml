@@ -1042,24 +1042,19 @@ by reference to const)。</p>
       </tags>
   </entry>
   <entry>
-    <title>字符串</title>
+    <title>基础容器--字符串</title>
     <url>/2022/C/C++/%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h1 id="字符串变量与常量">字符串变量与常量</h1>
-<h2 id="字符串变量">字符串变量</h2>
-<ul>
-<li>字符串是一个特殊的字符数组，以空字符\0结尾</li>
-<li>空字符\0自动添加到字符串的内部表示中</li>
-<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char
-str[11] = {"helloworld"},十个字符要留11个位置</li>
+    <content><![CDATA[<h1 id="字符串变量与常量"><a href="#字符串变量与常量" class="headerlink" title="字符串变量与常量"></a>字符串变量与常量</h1><h2 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h2><ul>
+<li>字符串是一个特殊的字符数组，以空字符&#92;0结尾</li>
+<li>空字符&#92;0自动添加到字符串的内部表示中</li>
+<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char str[11] = {“helloworld”},十个字符要留11个位置</li>
 </ul>
-<h2 id="字符串常量">字符串常量</h2>
-<ul>
-<li>字符串常量就是一对双引号括起来的字符序列："helloworld"</li>
+<h2 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h2><ul>
+<li>字符串常量就是一对双引号括起来的字符序列：”helloworld”</li>
 <li>字符串常量中的每个元素可以作为一个数组元素访问</li>
-<li>字符串常量也是以'\0'结尾的</li>
+<li>字符串常量也是以’\0’结尾的</li>
 </ul>
-<h1 id="字符串的指针表示">字符串的指针表示</h1>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="字符串的指针表示"><a href="#字符串的指针表示" class="headerlink" title="字符串的指针表示"></a>字符串的指针表示</h1><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
 <p>表示一个char型的指针变量，指向内存中一个存储字符串“helloworld”的地址。</p>
 <p>定义字符串的两种方式，char[]和char*，要区分以下两个概念：</p>
 <ul>
@@ -1067,57 +1062,36 @@ str[11] = {"helloworld"},十个字符要留11个位置</li>
 <li>区分可变与不可变；</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[<span class="number">11</span>] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line">	<span class="comment">//strHello是数组变量，它本身的值是不允许改变的，但是它指向的区域的值strHello[index]是可以改变的</span></span><br><span class="line">	strHello[<span class="number">2</span>] = <span class="string">&#x27;6&#x27;</span>;    <span class="comment">//strHello = he6loworld</span></span><br><span class="line">	<span class="comment">//strHello = &#123; &quot;helloworld&quot; &#125;;    //不允许改变了，编译不通过</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//ptrHello是指针变量，它本身是可以改变的，但是ptrHello[index]指向的值可变与否要取绝与所指向的区间是否可以改变</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* ptrHello_1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//指针指向常量区(必须要加const)，ptrHello[index]不可改变，但本身指向的地址可以变。</span></span><br><span class="line">	ptrHello_1 = <span class="string">&quot;change&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> tmp[<span class="number">7</span>] = <span class="string">&quot;change&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* ptrHello_2 = strHello;      <span class="comment">//指针指向数组变量，ptrHello[index]可以改变,本身也可以变</span></span><br><span class="line">	ptrHello_2[<span class="number">2</span>] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">	ptrHello_2 = tmp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="字符串操作">字符串操作</h1>
-<p>头文件：string.h</p>
-<h2 id="字符串长度">字符串长度</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较">字符串比较</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
-<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到'\0'为止</p>
-<h2 id="字符串拷贝">字符串拷贝</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
+<h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><p>头文件：string.h</p>
+<h2 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
+<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到’\0’为止</p>
+<h2 id="字符串拷贝"><a href="#字符串拷贝" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
 <p>要注意一个陷阱，一定要保证字符串s1的内存大小能存的下要拷贝的s2的大小</p>
-<h2 id="字符串拼接">字符串拼接</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
-<p>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小
-两个字符串指针不能直接相加，拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
-<h2 id="字符串查找">字符串查找</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
-<h2 id="安全函数">安全函数</h2>
-<p>以上程序都需要我们进行边界检查以防止内存问题。现在我们往往在程序中使用更加安全的API函数</p>
-<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。
-strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有\0结束标志
-。</p>
-<h1 id="字符串操作重点">字符串操作重点</h1>
-<ol type="1">
-<li>C原始字符串的操作在安全性和效率中存在一定问题： 1.
-一定要注意不要缓冲区溢出。 2.
-strlen的效率可以提升，当字符串很长的时候strlen的效率不高，我们可以用空间换时间，在定义字符串的时候用变量记住它的长度，不使用strlen函数来计算</li>
-<li>目前有一个很好的开源库Redis字符串：<a
-href="https://redis.io/">Redis库</a></li>
+<h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
+<p>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小<br>两个字符串指针不能直接相加，拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
+<h2 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
+<h2 id="安全函数"><a href="#安全函数" class="headerlink" title="安全函数"></a>安全函数</h2><p>以上程序都需要我们进行边界检查以防止内存问题。现在我们往往在程序中使用更加安全的API函数</p>
+<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。<br>strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有\0结束标志 。</p>
+<h1 id="字符串操作重点"><a href="#字符串操作重点" class="headerlink" title="字符串操作重点"></a>字符串操作重点</h1><ol>
+<li>C原始字符串的操作在安全性和效率中存在一定问题：<pre><code> 1. 一定要注意不要缓冲区溢出。
+ 2. strlen的效率可以提升，当字符串很长的时候strlen的效率不高，我们可以用空间换时间，在定义字符串的时候用变量记住它的长度，不使用strlen函数来计算
+</code></pre></li>
+<li>目前有一个很好的开源库Redis字符串：<a href="https://redis.io/">Redis库</a></li>
 </ol>
-<h1 id="string类">string类</h1>
-<p>C++标准库中提供了string类型专门表示字符串</p>
+<h1 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h1><p>C++标准库中提供了string类型专门表示字符串</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
 <p>使用string可以更加方便和安全的管理字符串，对性能要求不是特别高的场景可以使用。</p>
-<h2 id="定义">定义</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="字符串长度-1">字符串长度</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较-1">字符串比较</h2>
-<p>直接使用== != &lt; &gt; &gt;= &lt; = 即可，比较ASCII码来比较。</p>
-<h2 id="转换为c风格字符串">转换为C风格字符串</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="随机访问">随机访问</h2>
-<p>字符串本身可以使用下标的方式访问</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="字符串长度-1"><a href="#字符串长度-1" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较-1"><a href="#字符串比较-1" class="headerlink" title="字符串比较"></a>字符串比较</h2><p>直接使用&#61;&#61;&emsp;&#33;&#61;&emsp;&#60;&emsp;&#62;&emsp;&#62;&#61;&emsp;&#60; &#61; 即可，比较ASCII码来比较。</p>
+<h2 id="转换为C风格字符串"><a href="#转换为C风格字符串" class="headerlink" title="转换为C风格字符串"></a>转换为C风格字符串</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="随机访问"><a href="#随机访问" class="headerlink" title="随机访问"></a>随机访问</h2><p>字符串本身可以使用下标的方式访问</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout&lt;&lt;s[<span class="number">0</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拷贝-1">字符串拷贝</h2>
-<p>不需要使用函数，直接使用=赋值</p>
+<h2 id="字符串拷贝-1"><a href="#字符串拷贝-1" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><p>不需要使用函数，直接使用=赋值</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">string s2 = s1;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拼接-1">字符串拼接</h2>
-<p>string重载了+和+=，不需要使用函数</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>
-]]></content>
+<h2 id="字符串拼接-1"><a href="#字符串拼接-1" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><p>string重载了+和+=，不需要使用函数</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>C++</category>
       </categories>
@@ -1128,10 +1102,7 @@ href="https://redis.io/">Redis库</a></li>
   <entry>
     <title>基础容器--数组</title>
     <url>/2022/C/C++/%E6%95%B0%E7%BB%84/</url>
-    <content><![CDATA[<h1 id="数组">数组</h1>
-<h2 id="序列型容器">序列型容器</h2>
-<p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。比如：int
-arr[10] = {1,2,3,4,5,6,7,8};</p>
+    <content><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="序列型容器"><a href="#序列型容器" class="headerlink" title="序列型容器"></a>序列型容器</h2><p>数组代表内存里一组<u>连续的同类型</u>的存储区，可以用来把多个存储区合并成一个整体。比如：int arr[10] = {1,2,3,4,5,6,7,8};</p>
 <p>数组声明：</p>
 <ul>
 <li>int arr[10];</li>
@@ -1144,62 +1115,58 @@ arr[10] = {1,2,3,4,5,6,7,8};</p>
 <li>每个元素都有下标，标识一个元素在当前数组容器中的位置。通过下标可以直接访问数组内任意元素</li>
 <li>下标从零开始</li>
 <li>超过范围的下标不可以使用，会内存错误。一定要注意，内存溢出是程序中经常出现的BUG</li>
-<li>数组名和下标可以表示数组里的元素，如a[2]表示第三个元素</li>
-</ul>
+<li><p>数组名和下标可以表示数组里的元素，如a[2]表示第三个元素</p>
 <p>数组优点：</p>
-<ul>
-<li>可以编写循环程序，依次处理数组里的所有元素；</li>
+</li>
+<li><p>可以编写循环程序，依次处理数组里的所有元素；</p>
+</li>
 <li>循环变量依次代表所有有效下标；</li>
 </ul>
-<h2
-id="数组使用常见错误off-by-one-error差一错误">数组使用常见错误：off-by-one
-error(差一错误)</h2>
-<p>考虑一个问题，假定整数x满足边界条件x&gt;=16且x&lt;=37，那么此范围内的整数x可能的取值有多少？这个问题思考有两个基本原则：</p>
-<ol type="1">
+<h2 id="数组使用常见错误：off-by-one-error-差一错误"><a href="#数组使用常见错误：off-by-one-error-差一错误" class="headerlink" title="数组使用常见错误：off-by-one error(差一错误)"></a>数组使用常见错误：off-by-one error(差一错误)</h2><p>考虑一个问题，假定整数x满足边界条件x&gt;=16且x&lt;=37，那么此范围内的整数x可能的取值有多少？这个问题思考有两个基本原则：</p>
+<ol>
 <li>首先考虑最简单的情况（特例），然后将结果外推；</li>
 <li>仔细计算边界问题；</li>
 </ol>
-<p>特例：x的上界与下界重合，即x&gt;=16与x&lt;=16，显然其中的x个数为1；那么假定下界位low，上界位high；当low与high重合，个数为1，即共有high-low+1个元素。那么外推，这里共有37-16+1=22个元素。
-最容易出错的地方就是+1，很容易就仅仅计算high-low。</p>
-<p>  我们可以抽象出一个编程技巧来规避这个错误：用数学上的左闭右开[,)区间表示，上述问题可以看作[16,38)，即38-16=22。C++中，我们编程也遵循这个原则，从0开始，使用非对称区间，让下界可以取到值，上界取不到值。这样设计程序，可以直接用上界-下界来取得范围大小；当取值范围为空的时候，上界值=下界值；即使取值范围为空，上界值也永远不可能小于下界值。</p>
+<p> 特例：x的上界与下界重合，即x&gt;=16与x&lt;=16，显然其中的x个数为1；那么假定下界位low，上界位high；当low与high重合，个数为1，即共有high-low+1个元素。那么外推，这里共有37-16+1=22个元素。<br>最容易出错的地方就是+1，很容易就仅仅计算high-low。</p>
+<p>&emsp;&emsp;我们可以抽象出一个编程技巧来规避这个错误：用数学上的左闭右开[,)区间表示，上述问题可以看作[16,38)，即38-16=22。C++中，我们编程也遵循这个原则，从0开始，使用非对称区间，让下界可以取到值，上界取不到值。这样设计程序，可以直接用上界-下界来取得范围大小；当取值范围为空的时候，上界值=下界值；即使取值范围为空，上界值也永远不可能小于下界值。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//推荐的方式：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt; <span class="number">10</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不推荐的方式</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index=<span class="number">0</span>;index &lt;= <span class="number">9</span>;++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;a[index]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  </p>
-<p>结论--C语言设计数组下标的原则：从0开始，使用非对称区间[,);让下界
-可以取到值，上界取不到值；这样设计的好处：</p>
-<ol type="1">
+<p>&emsp;&emsp;</p>
+<p>结论—C语言设计数组下标的原则：从0开始，使用非对称区间[,)；让下界可以取到值，上界取不到值；这样设计的好处：</p>
+<ol>
 <li>取值的范围大小可以直接上界-下界；</li>
 <li>如果这个取值范围为空，上界值=下界值；</li>
 <li>即使取值范围为空，上界值永远不可能小于下界值；</li>
 </ol>
-<h2 id="增删改查">增删改查</h2>
-<ul>
+<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><ul>
 <li>在尾部添加和删除操作，时间复杂度为O(1)。只需要操作尾部元素即可，对与其他元素没有干扰。</li>
 <li>在数组中间进行添加和删除操作，时间复杂度为O(n)。在中间操作，会对其他元素造成影响，操作元素后面的每一个元素都需要进一步操作</li>
 <li>数组的访问用遍历很高效，时间复杂度为O(1)；</li>
+<li>数组的查找复杂度一般为O(n)，取决于数组的容量(数组容量很大的时候并不适合遍历查找，时间复杂度太高，可以用二分查找)；</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下标访问</span></span><br><span class="line">a[<span class="number">2</span>] = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//指针访问</span></span><br><span class="line"><span class="type">int</span>* p = a;</span><br><span class="line">*(p+<span class="number">2</span>) = <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
-<p>数组的查找时间复杂度并不低，一般取绝与数组自身容量(数组容量很大的时候并不适合遍历查找，时间复杂度太高，可以用二分查找)：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找a[]中第一个值为3的目标：</span></span><br><span class="line"><span class="type">int</span> len = <span class="built_in">sizeof</span>(a)/<span class="built_in">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index&lt;len;++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[index] == <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="二维数组">二维数组</h2>
-<p>二维数组包含了两个维度的数组。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//寻找a[]中第一个值为3的目标：</span></span><br><span class="line"><span class="type">int</span> len = <span class="built_in">sizeof</span>(a)/<span class="built_in">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>; index &lt; len; ++index)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(a[index] == <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;</p>
+<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><p>二维数组是包含行列两个维度的数组。</p>
 <p>二维数组访问：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row=<span class="number">0</span>;row&lt;<span class="number">2</span>;++row)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>;col&lt;<span class="number">4</span>;++col)</span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；即我们一般把时间最长的循环放在内层，最短的循环放在外层，以减少CPU跨切循环的次数。</p>
-<h1 id="动态数组vector">动态数组vector</h1>
-<p>Vector是面向对象方式的动态数组。</p>
-<p>我们经常使用的简单的数组，因为定义的时候就有固定容量，无法实现动态扩容插入元素。</p>
-<p>使用vector容器，可以轻松实现动态扩容添加元素。</p>
-<h2 id="添加">添加</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; vec = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾添加</span></span><br><span class="line">	vec.<span class="built_in">push_back</span>(<span class="number">5</span>);  <span class="comment">//尾添加，不会出现下标越界 &#123;1,2,3,4,5&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定位置添加</span></span><br><span class="line">	<span class="comment">//insert方法，传入位置和值</span></span><br><span class="line">	vec.<span class="built_in">insert</span>(--vec.<span class="built_in">end</span>(), <span class="number">4</span>);   <span class="comment">//&#123;1,2,3,4,4,5&#125;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="遍历">遍历</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index &lt; vec.<span class="built_in">size</span>();++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;vec[index]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们可以使用vector中的capacity()方法来查看vector当前的容量，用size()的方法来查看已经存储的元素的个数。这两者有区别。</p>
-<h2 id="删除">删除</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row = <span class="number">0</span>; row &lt; <span class="number">2</span>; ++row)  <span class="comment">//行</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>; col &lt; <span class="number">4</span>; ++col) <span class="comment">//列</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为循环需要满足“空间局部性”：在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；也就是说我们一般把最长的循环放在内层，最短的循环放在最外层，以减少CPU跨切循环的次数。</p>
+<p>&emsp;&emsp;</p>
+<h1 id="C-新型数组—vector"><a href="#C-新型数组—vector" class="headerlink" title="C++新型数组—vector"></a>C++新型数组—vector</h1><p>Vector是<strong>面向对象</strong>方式的<strong>动态</strong>数组。</p>
+<p>动态是指容量不固定：我们经常使用的简单的数组，因为定义的时候就有固定容量，所以无法实现动态扩容插入元素。使用vector容器，可以轻松实现动态扩容添加元素。</p>
+<p>面向对象是C++的特性，vector封装了一系列的方法，我们创建vecor的对象可以方便的使用。</p>
+<h2 id="添加"><a href="#添加" class="headerlink" title="添加"></a>添加</h2><p>&emsp;&emsp;使用vector容器，可以轻松实现动态扩容插入元素，传统的C数组容量有限，vector可以动态管理扩容。</p>
 <ul>
-<li>vec.pop_back(); //尾删除</li>
-<li>vec.eraser(pos); //指定位置删除</li>
+<li>push_back，尾添加</li>
+<li>insert，任意位置添加（效率不高）</li>
 </ul>
-<p>要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="type">int</span>&gt; vec = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//尾添加</span></span><br><span class="line">	vec.<span class="built_in">push_back</span>(<span class="number">5</span>);  <span class="comment">//尾添加，不会出现下标越界 &#123;1,2,3,4,5&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定位置添加</span></span><br><span class="line">	<span class="comment">//insert方法，传入位置和值</span></span><br><span class="line">	vec.<span class="built_in">insert</span>(--vec.<span class="built_in">end</span>(), <span class="number">6</span>);   <span class="comment">//&#123;1,2,3,4,6,5&#125;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> index = <span class="number">0</span>;index &lt; vec.<span class="built_in">size</span>(); ++index)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;vec[index]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;我们可以使用vector中的capacity()方法来查看vector当前的容量，用size()的方法来查看已经存储的元素的个数。这两者有区别，容量是指容器可以容纳元素的个数，数量是已经存储的数据个数；</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><ul>
+<li>vec.pop_back();    //尾删除</li>
+<li>vec.eraser(pos);          //指定位置删除</li>
+</ul>
+<p>&emsp;&emsp;要注意如果打算使用eraser的方法进行尾删除，要注意end()的位置。数组的区间往往是左闭右开，end()指向的是尾元素的后面的地址，并不是尾元素自身。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line">vec.<span class="built_in">eraser</span>(vec.<span class="built_in">end</span>()<span class="number">-1</span>);   <span class="comment">//这两者等价</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
