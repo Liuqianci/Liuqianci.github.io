@@ -478,7 +478,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-05-09 16:43:40 / 修改时间：16:46:19" itemprop="dateCreated datePublished" datetime="2025-05-09T16:43:40+08:00">2025-05-09</time>
+              <time title="创建时间：2025-05-09 16:43:40 / 修改时间：18:21:22" itemprop="dateCreated datePublished" datetime="2025-05-09T16:43:40+08:00">2025-05-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -496,7 +496,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>43</span>
+              <span>741</span>
             </span>
 
         </div>
@@ -509,7 +509,45 @@ mjx-container[display="true"] + br {
 
       
           <h1 id="与0">0，'\0'与0</h1>
-<p>C++中字符串是以'\0'结尾的，需要区分字符中的0、'\0'和'0'</p>
+<p>C++中字符串是以'\0'结尾的，需要区分字符中的0、'\0'和'0':</p>
+<ul>
+<li>char c1 = 0 -&gt; 0x00</li>
+<li>char c2 = '\0' -&gt; 0x00</li>
+<li>char c3 = '0' -&gt; 0x30</li>
+</ul>
+<p>  </p>
+<h1 id="ascii码表">ASCII码表</h1>
+<p>  ASCII(American Standard Code for Information
+Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是最通用的信息交换标准，并等同于国际标准ISO/IEC
+646。</p>
+<p>  
+ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。</p>
+<p>  </p>
+<h1 id="unicode编码">Unicode编码</h1>
+<p>  ASCII可表示的字符数太少了，为了把世界上的文字都映射到一套字符空间中，诞生了Unicode编码。为了表示Unicode字符集，有3种Unicode的编码方式：</p>
+<ol type="1">
+<li>UTF-8：用1byte来表示字符，可以兼容ASCII码；
+<ol type="1">
+<li>特点是存储效率高，变长（不方便内部随机访问）;</li>
+<li>无字节序问题，可以作为外部编码；</li>
+</ol></li>
+<li>UTF-16：用2bytes表示一个字符，可以分为UTF-16BE(big
+endian)和UTF-16LE(little endian)
+<ol type="1">
+<li>特点是定长的，方便内部随机访问；</li>
+<li>有字节序问题，不可以作为外部编码；</li>
+</ol></li>
+<li>UTF-32：用4bytes表示一个字符，可以分为UTF-32BE(big
+endian)和UTF-32LE(little endian)
+<ol type="1">
+<li>特点是定长的，方便内部随机访问；</li>
+<li>有字节序问题，不可以作为外部编码；</li>
+</ol></li>
+</ol>
+<p>注意：如果使用的Windows系统，Windows文件可能有BOM(byte order
+mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者忽略掉。</p>
+<p>  </p>
+<p><strong><u>程序中编码错误的根本原因在于编码方式和解码方式的不统一。</u></strong></p>
 
       
     </div>
@@ -1594,7 +1632,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">65k</span>
+    <span title="站点总字数">66k</span>
 </div>
 
 <!--
