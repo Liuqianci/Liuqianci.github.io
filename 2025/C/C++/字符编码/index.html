@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="0，&#39;\0&#39;与0 C++中字符串是以&#39;\0&#39;结尾的，需要区分字符中的0、&#39;\0&#39;和&#39;0&#39;:  char c1 &#x3D; 0 -&gt; 0x00 char c2 &#x3D; &#39;\0&#39; -&gt; 0x00 char c3 &#x3D; &#39;0&#39; -&gt; 0x30     ASCII码表   ASCII(American Standard Code for Information Interchang">
+  <meta name="description" content="ASCII码表   ASCII(American Standard Code for Information Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是最通用的信息交换标准，并等同于国际标准ISO&#x2F;IEC 646。    ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。美国一开始设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符编码">
 <meta property="og:url" content="https://liu-fb.com/2025/C/C++/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="0，&#39;\0&#39;与0 C++中字符串是以&#39;\0&#39;结尾的，需要区分字符中的0、&#39;\0&#39;和&#39;0&#39;:  char c1 &#x3D; 0 -&gt; 0x00 char c2 &#x3D; &#39;\0&#39; -&gt; 0x00 char c3 &#x3D; &#39;0&#39; -&gt; 0x30     ASCII码表   ASCII(American Standard Code for Information Interchang">
+<meta property="og:description" content="ASCII码表   ASCII(American Standard Code for Information Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是最通用的信息交换标准，并等同于国际标准ISO&#x2F;IEC 646。    ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。美国一开始设">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-09T08:43:40.000Z">
-<meta property="article:modified_time" content="2025-05-09T10:21:22.844Z">
+<meta property="article:modified_time" content="2025-05-10T18:16:58.706Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="C++基础">
 <meta name="twitter:card" content="summary">
@@ -79,7 +79,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container">
@@ -207,10 +319,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-05-09 16:43:40 / 修改时间：18:21:22" itemprop="dateCreated datePublished" datetime="2025-05-09T16:43:40+08:00">2025-05-09</time>
+              <time title="创建时间：2025-05-09 16:43:40" itemprop="dateCreated datePublished" datetime="2025-05-09T16:43:40+08:00">2025-05-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-11 02:16:58" itemprop="dateModified" datetime="2025-05-11T02:16:58+08:00">2025-05-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,7 +352,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>741</span>
+              <span>2.2k</span>
             </span>
 
         </div>
@@ -246,27 +364,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="与0">0，'\0'与0</h1>
-<p>C++中字符串是以'\0'结尾的，需要区分字符中的0、'\0'和'0':</p>
-<ul>
-<li>char c1 = 0 -&gt; 0x00</li>
-<li>char c2 = '\0' -&gt; 0x00</li>
-<li>char c3 = '0' -&gt; 0x30</li>
-</ul>
-<p>  </p>
-<h1 id="ascii码表">ASCII码表</h1>
+        <h1 id="ascii码表">ASCII码表</h1>
 <p>  ASCII(American Standard Code for Information
 Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是最通用的信息交换标准，并等同于国际标准ISO/IEC
 646。</p>
 <p>  
-ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。</p>
+ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。美国一开始设计的是128位，包含95个可见字符和33个控制字符，后期扩展到8位，称为扩展ASCII码。</p>
 <p>  </p>
-<h1 id="unicode编码">Unicode编码</h1>
-<p>  ASCII可表示的字符数太少了，为了把世界上的文字都映射到一套字符空间中，诞生了Unicode编码。为了表示Unicode字符集，有3种Unicode的编码方式：</p>
+<h1 id="国标编码">国标编码</h1>
+<p>  中国也有自己的编码，用于表示中文字符。设计编码首先要确定字符集。国标使用分区管理，共计分为94个区，每个区含94位，共8836个码位。1<sub>9区收录除汉字外的682个字符；10</sub>15区为空白区，没有使用；16<sub>55区收录3755个一级汉字，按照拼音排序；56</sub>87区收录3008个二级汉字，按照部首/笔画排序；剩余的88~94区为空白区，没有使用。这套字符集称为<strong>GB2312</strong>字符集。按照这个字符集来编码，比如3区的6行7列字符，编码0367。</p>
+<p>  ASCII是直接把码位按照二进制存储，但国标编码不是。比如5709编码的汉字(侃)，把6709按照前两位和后两位分开，并分别转为16进制：0x39和0x09；然后两个数分别加上0xA0得到0xD9和0xA9，将两数合并，0xD90xA9就是汉字侃的GB2312码。</p>
+<p>  GB2312编码之所以要加0xA0，是为了要兼容ASCII码。GB2312是双字节编码，为了与ASCII编码区分，每个单字节的第八位必须是1，所以GB2312编码最少要从0x80(1000
+0000)开始。但是根据规定，0x80~0x9F需要留给控制块，所以只能从0xA0开始。</p>
+<p>  计算机判断字符是ASCII码还是GB2312编码的方式就是通过字符大小，ASCII码是7个字节，如果小于127就是ASCII码，如果连续碰到两个大于127的8位就把两个组合起来当作GB2312编码。</p>
+<p>  GB2312编码只能表示6763个汉字，后期也不够用了，所以对GB2312做了扩展为<strong>GBK字符集</strong>。GB2312的高位和地位都要求必须大于127，GBK不再规定低位大于127，只保证高位大于127。把之前没用上的码位都用上，扩充了将近20000个汉字和符号。计算机只要碰到一个大于127的字节，就表示一个汉字的开始。</p>
+<p>  后期还扩展了GB18030字符集，新增了少数民族的字符。</p>
+<p>  </p>
+<h1 id="unicode">Unicode</h1>
+<p>  ASCII可表示的字符数太少了，但如果每个国家都设计一套自己的编码就太乱了，为了把世界上的文字都映射到一套字符空间中，诞生了Unicode。Unicode是一个标准，规定了字符集和编码。</p>
+<p>  最开始的Unicode字符集称为UCS-2字符集，和ASCII码一样，把用到的字符按顺序罗列并标上对应的码位。存储方式和ASCII一样，直接把码位按照二进制方式存储。一共可以表示<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>即65536个字符。后期发现不够用后出现了UCS-4字符集，可以表示<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>将近43亿个字符，但由于这个编码占用的存储空间太大了，并没有被广泛接受。</p>
+<p>  互连网时代后，对Unicode做了优化，目前有3种Unicode的编码方式：</p>
 <ol type="1">
 <li>UTF-8：用1byte来表示字符，可以兼容ASCII码；
 <ol type="1">
-<li>特点是存储效率高，变长（不方便内部随机访问）;</li>
+<li>特点是存储效率高，可变长（不方便内部随机访问）;</li>
 <li>无字节序问题，可以作为外部编码；</li>
 </ol></li>
 <li>UTF-16：用2bytes表示一个字符，可以分为UTF-16BE(big
@@ -282,8 +403,20 @@ endian)和UTF-32LE(little endian)
 <li>有字节序问题，不可以作为外部编码；</li>
 </ol></li>
 </ol>
-<p>注意：如果使用的Windows系统，Windows文件可能有BOM(byte order
-mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者忽略掉。</p>
+<p>   注意：如果使用的Windows系统，Windows文件可能有BOM(byte order
+mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者忽略掉。BOM在文本文件头部，FEFF(十进制为254
+255)表示大端，FFFE(十进制为255 254)表示小端。</p>
+<p>  </p>
+<p>  UTF-8编码原理：UTF-8将UCS-4字符集的码位划分为4个区间(0x00000000<sub>0x0000007F；0x00000080</sub>0x000007FF；0x00000800<sub>0x0000FFFF；0x00010000</sub>0x0010FFFF)，第一个区间的编码样式为0XXXXXXX，第二个区间的编码样式为110XXXXX
+10XXXXXX，第三个区间的编码样式为1110XXXX 10XXXXXX
+10XXXXXX，第四个区间的编码样式为11110XXX 10XXXXXX 10XXXXXX
+10XXXXXX。</p>
+<p>  汉字“王”在UCS-4中的编码为0x0000738B，转换为二进制就是“0000 0000
+0000 0000 0111 0011 1000
+1011”。0x0000738B属于UCS-4的第三区间，这个区间的编码样式是“1110XXXX
+10XXXXXX
+10XXXXXX”。此时我们得到了“王”这个字符的二进制形式和编码样式，把二进制形式从高到低依次插入到编码样式中，得到了“王”对应的UTF-8编码：“11100111
+10001110 10001011”，十六进制为“0xe7 0x8e 0x8b”。</p>
 <p>  </p>
 <p><strong><u>程序中编码错误的根本原因在于编码方式和解码方式的不统一。</u></strong></p>
 
@@ -366,7 +499,7 @@ mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8E0"><span class="nav-number">1.</span> <span class="nav-text">0，&#39;\0&#39;与0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ascii%E7%A0%81%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">ASCII码表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unicode%E7%BC%96%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">Unicode编码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ascii%E7%A0%81%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">ASCII码表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BD%E6%A0%87%E7%BC%96%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">国标编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unicode"><span class="nav-number">3.</span> <span class="nav-text">Unicode</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,7 +576,7 @@ mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">66k</span>
+    <span title="站点总字数">67k</span>
 </div>
 
 <!--
