@@ -804,47 +804,55 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
     <title>指针与引用</title>
     <url>/2022/C/C++/%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/</url>
     <content><![CDATA[<h1 id="指针">指针</h1>
-<p>  内存由很多内存单元组成。这些内存单元用于存放各种类型的数据。为了标识内存单元，计算机对内存的每个单元都进行了编号，这个编号就称为内存地址，内存地址决定了内存单元在内存中的位置。程序员并不需要记住这些内存地址，C++的编译器让我们可以通过名字来访问这些内存位置。</p>
+<p>  内存由很多内存单元组成。这些内存单元用于存放各种类型的数据。为了标识内存单元，计算机对内存的每个单元都进行了编号，这个编号就称为<strong>内存地址</strong>，内存地址决定了内存单元在内存中的位置。程序员并不需要记住这些内存地址，C++的编译器让我们可以通过名字来访问这些内存位置。</p>
 <p>  指针本身就是一个变量，其符合变量定义的基本形式，它存储的值是内存地址。对于一个基本类型T，T*
 是“到T的指针”类型，一个类型为T*的变量能够保存一个类型为T的对象的地址。</p>
-<p>  通过一个指针访问它所指向的地址的过程称为间接访问或者引用指针。这个用于执行间接访问的操作符是单目操作符*。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="type">float</span> b = <span class="number">3.14</span>;</span><br><span class="line">	<span class="comment">//指针定义</span></span><br><span class="line">	<span class="type">int</span>* c = &amp;a;  <span class="comment">//c存储a的内存地址</span></span><br><span class="line">	<span class="type">float</span>* d = &amp;b;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; c &lt;&lt; endl;   <span class="comment">//输出a变量的地址</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//间接访问</span></span><br><span class="line">	cout &lt;&lt; (*c) &lt;&lt; endl; <span class="comment">//等同于cout&lt;&lt;a&lt;&lt;endl;</span></span><br><span class="line">	cout &lt;&lt; (*d) &lt;&lt; endl;<span class="comment">//等同于cout&lt;&lt;b&lt;&lt;endl;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  通过一个指针访问它所指向的地址的过程称为<strong>间接访问</strong>(indirection)或者<strong>引用指针</strong>(dereferencing
+the point)。这个用于执行间接访问的操作符是单目操作符*。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="type">float</span> b = <span class="number">3.14f</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//指针变量定义</span></span><br><span class="line">	<span class="type">int</span>* c = &amp;a;  <span class="comment">//c存储a的内存地址</span></span><br><span class="line">	<span class="type">float</span>* d = &amp;b; <span class="comment">//d存储b的地址</span></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; c &lt;&lt; endl;   <span class="comment">//输出a变量的地址</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//间接访问</span></span><br><span class="line">	cout &lt;&lt; (*c) &lt;&lt; endl; <span class="comment">//等同于cout&lt;&lt;a&lt;&lt;endl;</span></span><br><span class="line">	cout &lt;&lt; (*d) &lt;&lt; endl;<span class="comment">//等同于cout&lt;&lt;b&lt;&lt;endl;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>变量、地址和指针变量总结：</p>
+<p>一个变量具有三个重要的信息：</p>
+<ol type="1">
+<li>变量的类型；</li>
+<li>变量所存储的信息；</li>
+<li>变量的地址位置</li>
+</ol>
+<p>指针变量是一个专门用来记录变量地址的变量，通过指针变量可以间接访问另一个变量的值，这里的另一个变量也可以是个指针，这就是多级指针的问题；</p>
 <h1 id="左值与右值">左值与右值</h1>
-<p>字符串本身就是一个字符数组，但是字符串还可以用指针来表示：
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//两种字符串表示</span></span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;hello&quot;</span> &#125;;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* pStrHello = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">	pStrHello = strHello;   <span class="comment">//正确，指针变量的值可以改变</span></span><br><span class="line">	strHello = pStrHello;   <span class="comment">//错误，数组变量的值不允许改变</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> strHello不可改变，strHello[index]的值可以改变
-pStrHello可以改变，pStrHello[index]的值能否改变取决于所指的存储区域是否可变
-这里就涉及到了左值与右值的概念</p>
+<p>字符串可以用字符数组表示，也可以用指针来表示：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//两种字符串表示</span></span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;hello&quot;</span> &#125;;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* pStrHello = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">	pStrHello = strHello;   <span class="comment">//正确，指针变量的值可以改变</span></span><br><span class="line">	strHello = pStrHello;   <span class="comment">//编译器报错，数组变量的值不允许改变</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>strHello不可改变，strHello[index]的值可以改变；pStrHello可以改变，pStrHello[index]的值能否改变取决于所指的存储区域是否可变。这里就涉及到了左值与右值的概念。</p>
 <ul>
-<li><strong>左值：编译器为其单独分配了一块存储空间，可以取其地址的，左值可以放在赋值运算符左边；</strong></li>
-<li><strong>右值：指的是数据本身，不能取到自身地址，右值只能放在赋值运算符右边</strong></li>
+<li><strong>左值：编译器为其单独分配了一块存储空间，可以取其地址的，左值可以放在赋值运算符左边（也可以放右边）；</strong></li>
+<li><strong>右值：指的是数据本身；编译器没有分配存储空间，不能取到自身地址，右值只能放在赋值运算符右边</strong></li>
 </ul>
-<p>左值最常见的情况就是函数和数据成员的名字。
-右值是没有标识符、不可取地址的表达式，一般也称为“临时对象”。</p>
-<p>a = b + c; &amp;a是允许的操作，a是一个左值
-&amp;(b+c)不能通过编译，b+c是一个右值</p>
+<p>左值最常见的情况就是函数和数据成员变量的名字；右值是没有标识符、不可取地址的表达式，一般也称为“临时对象”。</p>
+<p>比如：a = b +
+c;&amp;a是允许的操作而&amp;(b+c)不能通过编译，因此a是一个左值，(b+c)是一个右值；</p>
 <h1 id="c原始指针">C++原始指针</h1>
 <h2 id="一般类型指针t">一般类型指针T*</h2>
 <p>T是一个泛型，泛指任何一种类型</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span>* iP = &amp;i;</span><br><span class="line">cout&lt;&lt;(*iP)&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">double</span>* dP =&amp;d;</span><br><span class="line">cout&lt;&lt;(*dP)&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span>* iP = &amp;i;</span><br><span class="line">cout&lt;&lt;(*iP)&lt;&lt;endl; <span class="comment">//这俩的*含义不一样，一个是指针，一个是间接引用</span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">double</span>* dP =&amp;d;</span><br><span class="line">cout&lt;&lt;(*dP)&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
 <p>不论T是什么类型，T*这个指针的内存空间都是一样的，为<strong>4个字节</strong></p>
 <h2 id="指针的数组-与-数组的指针">指针的数组 与 数组的指针</h2>
-<p>指针的数组 T*t[]：指针的数组仍然是数组，里面每个值是个指针(arrao of
-pointers) 数组的指针 T(*t)[] :一个指针，指向一个数组(a pointer to an
-array)</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* a[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> c[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">int</span>(*b)[<span class="number">4</span>];</span><br><span class="line">b = &amp;c;  <span class="comment">//数组的个数一定要匹配</span></span><br><span class="line"><span class="comment">//注意，[]的优先级比较高</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">	a[i] = &amp;(c[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cout&lt;&lt;*(a[<span class="number">0</span>])&lt;&lt;endl;  <span class="comment">//先取数组下标得到地址，然后做间接访问</span></span><br><span class="line">cout&lt;&lt;(*b)[<span class="number">3</span>]&lt;&lt;endl;  <span class="comment">//b是指针，先间接访问取值得到数组，然后取数组下标</span></span><br></pre></td></tr></table></figure>
-<h2 id="const-pointer-pointer-to-const">const pointer &amp;&amp; pointer
-to const</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* pStr1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//修饰char，指针指向的地址可变，但是存储的区域中的内容不可变</span></span><br><span class="line">	<span class="type">char</span>* <span class="type">const</span> pStr2 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//修饰char*，指针指向的地址不可变。在最新的VS中编译不过，因为&quot;helloworld&quot;是常量，必须要用const指针</span></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* <span class="type">const</span> pStr3 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//地址和空间中的内容都不允许改变</span></span><br><span class="line"></span><br><span class="line">	pStr1 = strHello;</span><br><span class="line">	<span class="comment">//pStr2 = strHello;   //错误，pStr2地址不可改</span></span><br><span class="line">	<span class="comment">//pStr3 = strHello;   //错误，pStr3地址不可改 </span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//pStr1[1] = &#x27;a&#x27;;   //错误，存储区内的char不可改变</span></span><br><span class="line">	pStr2[<span class="number">1</span>] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="comment">//pStr3[1] = &#x27;a&#x27;;   //错误，存储区内的char不可变</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>关于const修饰:</p>
+<p>指针的数组 T* t[]：指针的数组仍然是数组，里面每个值是个指针(array of
+pointers)</p>
+<p>数组的指针 T(*t)[] :一个指针，指向一个数组(a pointer to an array)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* a[<span class="number">4</span>];  <span class="comment">//一个数组，每个元素都是int指针</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> c[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">int</span>(*b)[<span class="number">4</span>];  <span class="comment">//声明一个数组指针，可以指向包含4个int元素的数组</span></span><br><span class="line">b = &amp;c;  <span class="comment">//数组的个数一定要匹配！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将数组c中的元素赋值给数组a：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	a[i] = &amp;(c[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//输出数组内容：</span></span><br><span class="line">cout&lt;&lt;*(a[<span class="number">0</span>])&lt;&lt;endl;  <span class="comment">//先取数组下标得到地址，然后做间接访问</span></span><br><span class="line">cout&lt;&lt;(*b)[<span class="number">3</span>]&lt;&lt;endl;  <span class="comment">//b是指针，先间接访问取值得到数组，然后取数组下标</span></span><br></pre></td></tr></table></figure>
+<h2 id="const与指针">const与指针</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* pStr1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//修饰char，指针指向的地址可变，但是存储的区域中的内容不可变</span></span><br><span class="line">	<span class="type">char</span>* <span class="type">const</span> pStr2 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//修饰char*，指针指向的地址不可变。在最新的VS中编译不过，因为&quot;helloworld&quot;是常量，必须要用const指针</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* <span class="type">const</span> pStr3 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//地址和空间中的内容都不允许改变</span></span><br><span class="line"></span><br><span class="line">	pStr1 = strHello;</span><br><span class="line">	<span class="comment">//pStr2 = strHello;   //错误，pStr2地址不可改</span></span><br><span class="line">	<span class="comment">//pStr3 = strHello;   //错误，pStr3地址不可改 </span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//pStr1[1] = &#x27;a&#x27;;   //错误，存储区内的char不可改变</span></span><br><span class="line">	pStr2[<span class="number">1</span>] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="comment">//pStr3[1] = &#x27;a&#x27;;   //错误，存储区内的char不可变</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如何确定const修饰的内容:</p>
 <ul>
 <li>看左侧最近的部分</li>
 <li>如果左侧没有，则看右侧</li>
 </ul>
-<h2 id="pointer-to-pointer">pointer to pointer</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="type">int</span>* b = &amp;a;</span><br><span class="line"><span class="type">int</span>** c = &amp;b;</span><br></pre></td></tr></table></figure>
+<h2 id="指向指针的指针">指向指针的指针</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="type">int</span>* b = &amp;a;</span><br><span class="line"><span class="type">int</span>** c = &amp;b; <span class="comment">//二级指针</span></span><br></pre></td></tr></table></figure>
 <p>*操作符具有从右向左的结合性，**c 这个表达式相当于
-*(*c)，必须从里向外逐层求值 *c得到的是c指向的位置，即b **c相当于
-*b，得到变量a的值</p>
+*(*c)，必须从里向外逐层求值 *c得到的是c指向的位置，即b的地址；**c相当于
+*b，间接引用得到变量a的值。</p>
+<p>下表是上面例子的一些变量表示：</p>
 <table>
 <thead>
 <tr class="header">
@@ -880,9 +888,9 @@ to const</h2>
 </tbody>
 </table>
 <h2 id="未初始化指针和非法指针">未初始化指针和非法指针</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* a;</span><br><span class="line">*a = <span class="number">12</span>;<span class="comment">//错误！！</span></span><br></pre></td></tr></table></figure>
-<p>  上述操作并没有对指针a进行初始化，也就是说我们并不知道a最终会指向哪里。运气好的话定位到一个非法地址（程序不能访问的地址），程序会出错从而终止。最坏的情况下，a定位到了一个可以访问的地址，这样我们就无意间修改了它，这样的错误难以捕捉，引发的错误与原先用来操作的代码毫不相干，我们根本无法定位。</p>
-<p><strong>用指针进行间接访问之前，一定要确保它已经初始化，并且被恰当的赋值。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* a;  <span class="comment">//只声明不赋值,a指向哪里完全不知道</span></span><br><span class="line">*a = <span class="number">12</span>;<span class="comment">//错误！！</span></span><br></pre></td></tr></table></figure>
+<p>  上述操作并没有对指针a进行初始化，也就是说我们并不知道a最终会指向哪里。运气好的话定位到一个非法地址（程序不能访问的地址），程序会出错从而崩溃终止。最坏的情况下，a定位到了一个可以访问的地址，这样我们就无意间修改了它，这样的错误难以捕捉，引发的错误与原先用来操作的代码毫不相干，我们根本无法定位。</p>
+<p><strong><u>用指针进行间接访问之前，一定要确保它已经初始化，并且被恰当的赋值。</u></strong></p>
 <h2 id="null指针">NULL指针</h2>
 <p>NULL指针是一个特殊的指针变量，表示不指向任何东西。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>* a = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
