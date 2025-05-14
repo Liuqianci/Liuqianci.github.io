@@ -453,6 +453,96 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">面向对象编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-05-14 10:29:14 / 修改时间：11:03:28" itemprop="dateCreated datePublished" datetime="2025-05-14T10:29:14+08:00">2025-05-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.1k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="类">类</h1>
+<p>  C++使用struct、class来定义一个类：struct的默认成员权限是public，class的默认成员权限是private；除此之外，二者基本无差别。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>{</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string name;</span><br><span class="line">    <span class="type">double</span> score;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">GetSorce</span><span class="params">()</span></span>{</span><br><span class="line">        <span class="keyword">return</span> score;</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<p>上面学生的类并不是真实世界中的学生，只是一个抽象的概念，并不包含真实世界中学生的所有属性，只是把一些属性抽象出来。</p>
+<p>  </p>
+<p>  面向对象的误区：对象是对现实世界中具体物体的反映，继承是对物体分类的反映？这个观念是错误的。举个例子，现实生活中我们往往把正方形看作是长和宽都相等的特殊的长方形，如果把这个思想引入到C++中，可能会这么设计继承关系：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">rectangle</span>  <span class="comment">//长方形</span></span><br><span class="line">{</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">SetLength</span><span class="params">(<span class="type">double</span> a)</span></span></span><br><span class="line"><span class="function">    </span>{</span><br><span class="line">        ……</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">square</span> : <span class="keyword">public</span> rectangle  <span class="comment">//正方形，继承长方形类</span></span><br><span class="line">{</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">SetLength</span><span class="params">(<span class="type">double</span> a)</span></span></span><br><span class="line"><span class="function">    </span>{</span><br><span class="line">        ……</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  上面设计了两个类，一个长方形类，一个正方形类，其中正方形类继承了长方形类以及内部的方法SetLength。当我们调用长方形类SetLength的方法时，我们只是修改了长方形的长，长方形的宽不受影响；但是如果我们调用了正方形对象的SetLength方法，不仅长会受到影响，宽也会受到影响。这个从面向对象的继承体系来说就有很大的问题了。所以我们不要把现实世界中的关系代入到面向对象编程中。</p>
+<p>  </p>
+<h1 id="抽象法则1具体类型的抽象">抽象法则1——具体类型的抽象</h1>
+<ul>
+<li><strong>让自定义的类像内置类型一样</strong></li>
+</ul>
+<p>  一个普通的int型变量，可以完成加、减、乘、除、比较、输出、自增等等一系列操作；如果现在有一个自定义的复数类型，我们自然也希望可以像使用int型变量一样使用它，同时它对我们是一个黑盒，一种抽象，我们不需要关心内部是如何实现的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//complex.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Complex</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Complex</span>();                                    <span class="comment">// 默认构造函数</span></span><br><span class="line">	<span class="built_in">Complex</span>(<span class="type">double</span> r,  <span class="type">double</span> i);      <span class="comment">// 构造函数</span></span><br><span class="line">	<span class="keyword">virtual</span> ~<span class="built_in">Complex</span>();                      <span class="comment">// 析构函数</span></span><br><span class="line">	<span class="built_in">Complex</span>(<span class="type">const</span> Complex&amp; x);      <span class="comment">// 拷贝构造</span></span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>=(<span class="type">const</span> Complex &amp;c); <span class="comment">// =号运算符</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">double</span> <span class="title">GetReal</span><span class="params">( )</span> <span class="type">const</span> </span>{ <span class="keyword">return</span> _real; }</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">SetReal</span><span class="params">(<span class="type">double</span> d)</span> </span>{ _real = d; }</span><br><span class="line">	<span class="function"><span class="type">double</span> <span class="title">GetImage</span><span class="params">()</span> <span class="type">const</span> </span>{ <span class="keyword">return</span> _image; }</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">SetImage</span><span class="params">(<span class="type">double</span> i)</span> </span>{ _image = i; }</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 运算符重载</span></span><br><span class="line">	Complex <span class="keyword">operator</span>+(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>+=(<span class="type">const</span> Complex &amp;c);</span><br><span class="line">	Complex <span class="keyword">operator</span>-(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>-=(<span class="type">const</span> Complex &amp;c);</span><br><span class="line">	Complex <span class="keyword">operator</span>*(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>*=(<span class="type">const</span> Complex &amp;c);</span><br><span class="line">	Complex <span class="keyword">operator</span>/(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>/=(<span class="type">const</span> Complex &amp;c);</span><br><span class="line"></span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>==(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>!=(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>&gt;(<span class="type">const</span> Complex &amp;c)  <span class="type">const</span>;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>&gt;=(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>&lt;=(<span class="type">const</span> Complex &amp;c) <span class="type">const</span>;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 前置和后置++</span></span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>++();   <span class="comment">//前置++</span></span><br><span class="line">	Complex <span class="keyword">operator</span>++(<span class="type">int</span>); <span class="comment">//后置++</span></span><br><span class="line">	Complex&amp; <span class="keyword">operator</span>--();   <span class="comment">//前置--</span></span><br><span class="line">	Complex <span class="keyword">operator</span>--(<span class="type">int</span>); <span class="comment">//后置--</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//protected:</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="type">const</span> Complex &amp;x);</span><br><span class="line">	<span class="keyword">friend</span> istream&amp; <span class="keyword">operator</span>&gt;&gt;(istream&amp; is, Complex &amp;x);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">double</span> _real;             <span class="comment">// 复数的实部</span></span><br><span class="line">	<span class="type">double</span> _image;         <span class="comment">// 复数的虚部</span></span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//complex.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"stdafx.h"</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"complex.h"</span></span></span><br><span class="line"></span><br><span class="line">Complex::<span class="built_in">Complex</span>()</span><br><span class="line">{</span><br><span class="line">	_real = <span class="number">0.0</span>;</span><br><span class="line">	_image = <span class="number">0.0</span>;</span><br><span class="line">	<span class="comment">//cout &lt;&lt; "Complex::Complex()" &lt;&lt; endl;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex::<span class="built_in">Complex</span>(<span class="type">double</span> r, <span class="type">double</span> i)</span><br><span class="line">{</span><br><span class="line">	_real = r;</span><br><span class="line">	_image = i;</span><br><span class="line">	<span class="comment">//cout &lt;&lt; "Complex::Complex(double r, double i)" &lt;&lt; endl;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex::<span class="built_in">Complex</span>(<span class="type">const</span> Complex&amp; c)</span><br><span class="line">{</span><br><span class="line">	_real = c._real;</span><br><span class="line">	_image = c._image;</span><br><span class="line">	<span class="comment">//cout &lt;&lt; "Complex::Complex(const Complex&amp; c)" &lt;&lt; endl;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>= (<span class="type">const</span> Complex&amp; c)</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> != &amp;c)</span><br><span class="line">	{</span><br><span class="line">		_real = c._real;</span><br><span class="line">		_image = c._image;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex::~<span class="built_in">Complex</span>()</span><br><span class="line">{</span><br><span class="line">	_real = _image = <span class="number">0.0</span>;</span><br><span class="line">	<span class="comment">//cout &lt;&lt; "Complex::~Complex()" &lt;&lt; endl;</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>+ (<span class="type">const</span> Complex&amp; c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="comment">//Complex tmp;</span></span><br><span class="line">	<span class="comment">//tmp._real = _real + x._real;</span></span><br><span class="line">	<span class="comment">//tmp._image = _image + x._image;</span></span><br><span class="line">	<span class="comment">//return tmp;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(_real + c._real, _image + c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>+= (<span class="type">const</span> Complex&amp; c)</span><br><span class="line">{</span><br><span class="line">	_real += c._real;</span><br><span class="line">	_image += c._image;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>-(<span class="type">const</span> Complex &amp;c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(_real - c._real, _image - c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>-=(<span class="type">const</span> Complex &amp;c)</span><br><span class="line">{</span><br><span class="line">	_real -= c._real;</span><br><span class="line">	_image -= c._image;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>*(<span class="type">const</span> Complex &amp;c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(_real*c._real - _image*c._image, _real*c._image + _image*c._real);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>*=(<span class="type">const</span> Complex &amp;c)</span><br><span class="line">{</span><br><span class="line">	Complex <span class="built_in">tmp</span>(*<span class="keyword">this</span>);  <span class="comment">//拷贝构造函数</span></span><br><span class="line">	_real = tmp._real*c._real - _image*c._image;</span><br><span class="line">	_image = tmp._real*c._image + tmp._image*c._real;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>/(<span class="type">const</span> Complex &amp;c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="type">double</span> t = c._real*c._real + c._image*c._image;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>((_real*c._real - _image*(-c._image)) / t, (_real*(-c._image) + _image*c._real) / t);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>/=(<span class="type">const</span> Complex &amp;c)</span><br><span class="line">{</span><br><span class="line">	Complex <span class="built_in">tmp</span>(*<span class="keyword">this</span>);  <span class="comment">//拷贝构造函数</span></span><br><span class="line">	<span class="type">double</span> t = c._real*c._real + c._image*c._image;</span><br><span class="line">	_real = (tmp._real*c._real - tmp._image*(-c._image)) / t;</span><br><span class="line">	_image = (tmp._real*(-c._image) + tmp._image*c._real) / t;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Complex::<span class="keyword">operator</span>==(<span class="type">const</span> Complex&amp; c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="built_in">return</span> (_real == c._real) &amp;&amp; (_image == c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Complex::<span class="keyword">operator</span>!=(<span class="type">const</span> Complex&amp; c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">return</span> !( (_real == c._real) &amp;&amp; (_image == c._image) );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Complex::<span class="keyword">operator</span>&gt;(<span class="type">const</span> Complex &amp;c)  <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">return</span> (_real &gt; c._real) &amp;&amp; (_image &gt; c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Complex::<span class="keyword">operator</span>&gt;=(<span class="type">const</span> Complex &amp;c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="built_in">return</span> (_real &gt;= c._real) &amp;&amp; (_image &gt;= c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Complex::<span class="keyword">operator</span>&lt;(<span class="type">const</span> Complex &amp;c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">return</span> (_real &lt; c._real) &amp;&amp; (_image &lt; c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Complex::<span class="keyword">operator</span>&lt;=(<span class="type">const</span> Complex &amp;c) <span class="type">const</span></span><br><span class="line">{</span><br><span class="line">	<span class="built_in">return</span> (_real &lt;= c._real) &amp;&amp; (_image &lt;= c._image);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>++ () <span class="comment">// 前置++</span></span><br><span class="line">{</span><br><span class="line">	_real++;</span><br><span class="line">	_image++;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>++ (<span class="type">int</span>) <span class="comment">// 后置++</span></span><br><span class="line">{</span><br><span class="line">	<span class="comment">//Complex tmp(*this);</span></span><br><span class="line">	<span class="comment">//_real++;</span></span><br><span class="line">	<span class="comment">//_image++;</span></span><br><span class="line">	<span class="comment">//return tmp;</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(_real++, _image++);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex&amp; Complex::<span class="keyword">operator</span>--()   <span class="comment">//前置--</span></span><br><span class="line">{</span><br><span class="line">	_real--;</span><br><span class="line">	_image--;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Complex Complex::<span class="keyword">operator</span>--(<span class="type">int</span>) <span class="comment">//后置--</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">Complex</span>(_real--, _image--);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="type">const</span> Complex &amp;x)</span><br><span class="line">{</span><br><span class="line">	os &lt;&lt; <span class="string">"real value is  "</span> &lt;&lt; x._real &lt;&lt; <span class="string">"  image value is "</span> &lt;&lt; x._image;</span><br><span class="line">	<span class="keyword">return</span> os;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">istream&amp; <span class="keyword">operator</span> &gt;&gt; (istream&amp; is, Complex &amp;x)</span><br><span class="line">{</span><br><span class="line">	is &gt;&gt; x._real &gt;&gt; x._image;</span><br><span class="line">	<span class="keyword">return</span> is;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1446,81 +1536,6 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E6%A0%88%E8%B0%83%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E6%A0%88%E8%B0%83%E8%AF%95/" class="post-title-link" itemprop="url">6、栈调试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-02-05 20:20:06 / 修改时间：20:24:14" itemprop="dateCreated datePublished" datetime="2025-02-05T20:20:06+08:00">2025-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">软件调试</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1591,7 +1606,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1653,7 +1668,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">68k</span>
+    <span title="站点总字数">74k</span>
 </div>
 
 <!--
