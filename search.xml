@@ -131,7 +131,61 @@
   <entry>
     <title>文件操作</title>
     <url>/2025/C/C++/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[
+    <content><![CDATA[<p>  计算机程序的输入流起点和输出流的终点都可以是磁盘文件。C++把每个文件都看成是一个有序的字节序列，每个文件都以文件结束标志结束。</p>
+<p>  按照文件中数据的组织形式可以把文件分为：</p>
+<ol type="1">
+<li>文本文件：文件中信息形式为ASCII码文件，每个字符占用一个字节；</li>
+<li>二进制文件：文件中信息的形式与其在内存中的形式相同；</li>
+</ol>
+<p>  </p>
+<p>文件操作步骤：</p>
+<ol type="1">
+<li>打开文件open；</li>
+<li>检查打开是否成功；</li>
+<li>读或写read\write；</li>
+<li>检查是否读完EOF（end of file）；</li>
+<li>使用完文件后关闭文件close;</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//把输入的字符信息写入文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">fstream <span class="title">fout</span><span class="params">(<span class="string">"test.txt"</span>)</span></span>; <span class="comment">//输出到指定文件中</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    //上面的写法会自动帮我们打开文件</span></span><br><span class="line"><span class="comment">    //也可以按照真实的流程来写：</span></span><br><span class="line"><span class="comment">    fstream fout;</span></span><br><span class="line"><span class="comment">    fout.open("test.txt");</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; a)</span><br><span class="line">    {</span><br><span class="line">        fout &lt;&lt; <span class="string">"The numbers are:"</span> &lt;&lt; a &lt;&lt; endl; <span class="comment">//用定义的fout输出到文件</span></span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">5</span>)</span><br><span class="line">        {</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    fout.<span class="built_in">close</span>();  <span class="comment">//关闭文件</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  </p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">文件打开方式</th>
+<th style="text-align: left;">行为</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ios::in</td>
+<td style="text-align: left;">ifstream的默认模式，打开文件进行读操作</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ios::out</td>
+<td style="text-align: left;">ofstream的默认方式，打开文件进行写操作</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ios::ate</td>
+<td style="text-align: left;">打开一个已经有输入或输出文件并查找到文件尾</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ios::app</td>
+<td style="text-align: left;">打开文件以便在文件的尾部添加数据</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ios::nocreate</td>
+<td style="text-align: left;">如果文件不存在，则打开操作失败</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ios::trunc</td>
+<td style="text-align: left;">如果文件存在，清除文件原有内容(默认)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ios::binary</td>
+<td style="text-align: left;">以二进制方式打开</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       <categories>
         <category>C++</category>
