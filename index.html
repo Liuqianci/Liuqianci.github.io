@@ -478,7 +478,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-05-20 11:59:24 / 修改时间：12:11:25" itemprop="dateCreated datePublished" datetime="2025-05-20T11:59:24+08:00">2025-05-20</time>
+              <time title="创建时间：2025-05-20 11:59:24 / 修改时间：12:34:55" itemprop="dateCreated datePublished" datetime="2025-05-20T11:59:24+08:00">2025-05-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -496,7 +496,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>194</span>
+              <span>1k</span>
             </span>
 
         </div>
@@ -517,6 +517,20 @@ f =
 <li>显示类型转换：(类型说明符)(表达式)，比如<kbd>double f =
 double(1)/double(2);</kbd></li>
 </ul>
+<p>  </p>
+<p>C语言的类型转换很灵活，但存在一些问题：</p>
+<ol type="1">
+<li>任意类型之间都可以转换，编译器无法判断其准确性；</li>
+<li>难于定位，在源码中无法快速定位转换位置；</li>
+</ol>
+<h1 id="c的类型转换">C++的类型转换</h1>
+<h2 id="const_case">const_case</h2>
+<p>  用于转换指针或引用，去掉类型的const属性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//const_case使用</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// C++ const_cast</span></span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="comment">//int* pA = &amp;a;  //const int*类型不能用于初始化int*类型实体</span></span><br><span class="line">	<span class="type">int</span>* pA = <span class="built_in">const_cast</span>&lt;<span class="type">int</span>*&gt;(&amp;a);</span><br><span class="line">	*pA = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//需要注意，虽然我们用指针把a的值改变了，实际上也确实改变了</span></span><br><span class="line"><span class="comment">//但假如我们要使用a的值，比如cout一下，那么a原来的值（10）会直接赋值到行为上</span></span><br><span class="line"><span class="comment">//cout&lt;&lt;a&lt;&lt;endl；输出的结果是10，而不是100</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="reinterpret_cast">reinterpret_cast</h2>
+<p>  这是一种很危险的类型转换。既不检查指向的内容，也不检查指针类型本身，只是做了类型的重新解释。但是reinterpret_cast需要保证转换前后的类型所占用的内存大小一致，否则将引发编译时错误。</p>
+<p>  虽然危险，但工程中的使用常见还是比较广泛，比如void*和其他类型的转换。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//reinterpret_cast使用</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// C++ reinterpret_cast</span></span><br><span class="line">	<span class="function"><span class="keyword">typedef</span> <span class="title">void</span><span class="params">(*FuncPtr)</span> <span class="params">()</span></span>; <span class="comment">//定义函数指针，返回值void，参数也是void</span></span><br><span class="line"></span><br><span class="line">	FuncPtr funcPtr;</span><br><span class="line">	<span class="comment">//funcPtr = &amp;Test;  //两个函数模型不匹配，不能赋值</span></span><br><span class="line">	funcPtr = <span class="built_in">reinterpret_cast</span>&lt;FuncPtr&gt;(&amp;Test);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1546,7 +1560,7 @@ mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">92k</span>
+    <span title="站点总字数">93k</span>
 </div>
 
 <!--
