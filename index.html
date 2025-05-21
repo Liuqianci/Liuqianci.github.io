@@ -236,7 +236,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -434,6 +434,114 @@ mjx-container[display="true"] + br {
 <p>  考虑这个问题：当push到临界点时resize一倍空间，然后立即pop，此时又resize为一半，然后立即push，这种极端场景下时间复杂度无法均摊，会退化为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>。</p>
 <p>  如果想避免这种场景，可以不再临界点处resize，当pop操作到达capacity的1/4处时，resize为1/2</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 平均复杂度为 O(1)</span></span><br><span class="line">T <span class="title function_">pop_back</span><span class="params">()</span>{</span><br><span class="line"></span><br><span class="line">    assert(size &gt; <span class="number">0</span>);</span><br><span class="line">    T ret = data[size<span class="number">-1</span>]; <span class="comment">//这里一定要提前拿出来，resize操作会修改data</span></span><br><span class="line">    size --;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在size达到静态数组最大容量的1/4时才进行resize</span></span><br><span class="line">    <span class="comment">// resize的容量是当前最大容量的1/2</span></span><br><span class="line">    <span class="comment">// 防止复杂度的震荡</span></span><br><span class="line">    <span class="keyword">if</span>(size == capacity / <span class="number">4</span>)</span><br><span class="line">        resize(capacity / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/STL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/STL/" class="post-title-link" itemprop="url">STL基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-05-21 11:30:40 / 修改时间：20:21:08" itemprop="dateCreated datePublished" datetime="2025-05-21T11:30:40+08:00">2025-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.7k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="stl标准模板库">STL标准模板库</h1>
+<p>  STL全称Standard Template
+Library，标准模板库。STL算法是泛型的(generic)，不与任何特定数据结构和对象绑定，不必再环境类似的情况下重写代码。STL算法可以量身定做，并且具有很高的效率。STL可以进行扩充，我们可以编写自己的组件并且能够与STL标准的组件进行很好的配合。</p>
+<p>  STL标准库有六大组件：</p>
+<ul>
+<li>空间配置器：allocator；</li>
+<li>容器：string、vector、list、deque、map、set、multimap、multiset；</li>
+<li>适配器：stack、queue、priority_queue；</li>
+<li>仿函数：greater、less等；</li>
+<li>算法：find、swap、reverse、sort、merge等；</li>
+<li>迭代器：iterator、const_iterator、reverse_iterator、const_reverse_iterator;</li>
+</ul>
+<p>  空间配置器帮助我们管理分配内存的事情，从而来给容器分配内存；容器存储数据；迭代器帮助算法处理容器中的数据；仿函数辅助算法实现。</p>
+<p>  </p>
+<h1 id="容器container">容器(container)</h1>
+<p>STL容器的作用用于存放数据，STL容器分为两大类：</p>
+<ul>
+<li>序列式容器：其中的元素都是可排序的，STL提供了vector、list、deque等序列式容器，而stack、queue、priority_queue则是容器适配器；</li>
+<li>关联式容器：每个数据元素都是由一个键(key)和值(value)组成，当元素被插入到容器时，按照其键以某种特定规则放入适当位置，key必须是唯一的；常见的STL关联容器有set、multiset、map、multimap；</li>
+</ul>
+<h2 id="序列型容器的基本使用">序列型容器的基本使用</h2>
+<ul>
+<li>vector：数组</li>
+<li>list：双向链表</li>
+<li>deque：双端队列</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;utility&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结构体中重载了函数调用运算符operator()，可以让其像函数一样被调用</span></span><br><span class="line"><span class="comment">//常用于STL算法中的回调</span></span><br><span class="line"><span class="comment">//这样写可以让函数以一个类对象的形式被调用</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Display</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">int</span> i)</span>  </span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; i &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">int</span> iArr[] = { <span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> };</span><br><span class="line"></span><br><span class="line">	<span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">iVector</span><span class="params">(iArr, iArr + <span class="number">4</span>)</span></span>;  <span class="comment">//传递首地址和尾地址，用一个数组初始化vector</span></span><br><span class="line">	<span class="function">list&lt;<span class="type">int</span>&gt; <span class="title">iList</span><span class="params">(iArr, iArr + <span class="number">4</span>)</span></span>;</span><br><span class="line">	<span class="function">deque&lt;<span class="type">int</span>&gt; <span class="title">iDeque</span><span class="params">(iArr, iArr + <span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//下面三个是容器适配器，不是容器</span></span><br><span class="line">	<span class="function">queue&lt;<span class="type">int</span>&gt; <span class="title">iQueue</span><span class="params">(iDeque)</span></span>;     <span class="comment">// 队列 先进先出</span></span><br><span class="line">	<span class="function">stack&lt;<span class="type">int</span>&gt; <span class="title">iStack</span><span class="params">(iDeque)</span></span>;         <span class="comment">// 栈 先进后出</span></span><br><span class="line">	<span class="function">priority_queue&lt;<span class="type">int</span>&gt; <span class="title">iPQueue</span><span class="params">(iArr, iArr + <span class="number">4</span>)</span></span>;  <span class="comment">// 优先队列，按优先权，默认从大到小</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//序列型容器的遍历</span></span><br><span class="line">	<span class="comment">//for_each:遍历，传递首尾和一个函数，对于遍历的每一个元素都调用一次函数</span></span><br><span class="line">	for_each( iVector.<span class="built_in">begin</span>(), iVector.<span class="built_in">end</span>(), <span class="built_in">Display</span>() );</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	for_each(iList.<span class="built_in">begin</span>(), iList.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	for_each(iDeque.<span class="built_in">begin</span>(), iDeque.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//容器适配器的遍历：</span></span><br><span class="line">	<span class="keyword">while</span> ( !iQueue.<span class="built_in">empty</span>() )</span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; iQueue.<span class="built_in">front</span>() &lt;&lt; <span class="string">" "</span>;  <span class="comment">//输出队首 1 2 3 4</span></span><br><span class="line">		iQueue.<span class="built_in">pop</span>();  <span class="comment">//弹出队首</span></span><br><span class="line">	}</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!iStack.<span class="built_in">empty</span>())</span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; iStack.<span class="built_in">top</span>() &lt;&lt; <span class="string">" "</span>;    <span class="comment">// 输出栈顶 4 3 2 1</span></span><br><span class="line">		iStack.<span class="built_in">pop</span>();  <span class="comment">//弹出栈顶</span></span><br><span class="line">	}</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (!iPQueue.<span class="built_in">empty</span>())</span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; iPQueue.<span class="built_in">top</span>() &lt;&lt; <span class="string">" "</span>; <span class="comment">// 不设置的话默认从大到小4 3 2 1</span></span><br><span class="line">		iPQueue.<span class="built_in">pop</span>();</span><br><span class="line">	}</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="关联式容器的基本使用">关联式容器的基本使用</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Display</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">(pair&lt;string, <span class="type">double</span>&gt; info)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; info.first &lt;&lt; <span class="string">": "</span> &lt;&lt; info.second &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">cmpMap</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(pair&lt;string, <span class="type">double</span>&gt; a, pair&lt;string, <span class="type">double</span>&gt; b)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">return</span> a.first.<span class="built_in">length</span>() &lt; b.first.<span class="built_in">length</span>();</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	map&lt;string, <span class="type">double</span>&gt; studentSocres;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//map可以用类似数组的方式来添加</span></span><br><span class="line">	studentSocres[<span class="string">"LiMing"</span>] = <span class="number">95.0</span>;</span><br><span class="line">	studentSocres[<span class="string">"LiHong"</span>] = <span class="number">98.5</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//map也可以用pair来添加</span></span><br><span class="line">	studentSocres.<span class="built_in">insert</span>( <span class="built_in">pair</span>&lt;string, <span class="type">double</span>&gt;(<span class="string">"zhangsan"</span>, <span class="number">100.0</span>) );</span><br><span class="line">	studentSocres.<span class="built_in">insert</span>(<span class="built_in">pair</span>&lt;string, <span class="type">double</span>&gt;(<span class="string">"Lisi"</span>, <span class="number">98.6</span>));</span><br><span class="line">	studentSocres.<span class="built_in">insert</span>(<span class="built_in">pair</span>&lt;string, <span class="type">double</span>&gt;(<span class="string">"wangwu"</span>, <span class="number">94.5</span>));</span><br><span class="line">	studentSocres.<span class="built_in">insert</span>(<span class="built_in">pair</span>&lt;string, <span class="type">double</span>&gt;(<span class="string">"wangwu"</span>, <span class="number">96.5</span>)); <span class="comment">//这是失败的操作，因为key值重复了</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//map还可以用value_type来添加，是泛型编程的方式</span></span><br><span class="line">	studentSocres.<span class="built_in">insert</span>(map&lt;string, <span class="type">double</span>&gt;::<span class="built_in">value_type</span>(<span class="string">"zhaoliu"</span>, <span class="number">95.5</span>) );</span><br><span class="line">	studentSocres[<span class="string">"wangwu"</span>] = <span class="number">88.5</span>;  <span class="comment">//想修改已经存在的key值的操作，要用这个方式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// map用for_each遍历</span></span><br><span class="line">	for_each(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// map用find查找，查找结果会返回一个迭代器</span></span><br><span class="line">	map&lt;string, <span class="type">double</span>&gt;::iterator iter;</span><br><span class="line">	iter = studentSocres.<span class="built_in">find</span>(<span class="string">"zhaoliu"</span>);</span><br><span class="line">	<span class="keyword">if</span> (iter != studentSocres.<span class="built_in">end</span>())</span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; <span class="string">"Found the score is: "</span> &lt;&lt; iter-&gt;second &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; <span class="string">"Didn't find the key."</span> &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用迭代器完成遍历查找的过程</span></span><br><span class="line">	iter = studentSocres.<span class="built_in">begin</span>();</span><br><span class="line">	<span class="keyword">while</span> (iter != studentSocres.<span class="built_in">end</span>())</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span> (iter-&gt;second &lt; <span class="number">98.0</span>)  <span class="comment">// 去除不是优秀的同学</span></span><br><span class="line">		{</span><br><span class="line">			studentSocres.<span class="built_in">erase</span>(iter++);  <span class="comment">// 注意：迭代器失效问题</span></span><br><span class="line">			<span class="comment">// erase后，当前传递的迭代器参数就失效了，所以必须要++指向后一个元素</span></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		{</span><br><span class="line">			iter++;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	for_each(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> (iter = studentSocres.<span class="built_in">begin</span>(); iter != studentSocres.<span class="built_in">end</span>(); iter++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span> (iter-&gt;second &lt;= <span class="number">98.5</span>)</span><br><span class="line">		{</span><br><span class="line">			iter = studentSocres.<span class="built_in">erase</span>(iter);  <span class="comment">// 注意：迭代器失效问题</span></span><br><span class="line">			<span class="comment">// erase的返回值指向迭代器的下一个元素，如果不想在参数里做iter++，就把返回值获取下</span></span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">	for_each(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// find得到并删除元素</span></span><br><span class="line">	iter = studentSocres.<span class="built_in">find</span>(<span class="string">"LiHong"</span>);</span><br><span class="line">	studentSocres.<span class="built_in">erase</span>(iter);  <span class="comment">//这里最好做个判空操作</span></span><br><span class="line">	for_each(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> n = studentSocres.<span class="built_in">erase</span>(<span class="string">"LiHong1"</span>); <span class="comment">//返回的是去除元素的计数值，不为零就是成功</span></span><br><span class="line">	cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">	for_each(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 一次性清空所有元素</span></span><br><span class="line">	studentSocres.<span class="built_in">erase</span>(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>());</span><br><span class="line">	for_each(studentSocres.<span class="built_in">begin</span>(), studentSocres.<span class="built_in">end</span>(), <span class="built_in">Display</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h1 id="仿函数functor">仿函数(functor)</h1>
+<p>  仿函数一般不会单独使用，主要是为了搭配STL算法。STL主要是为了提高代码的复用性，早期C++为了提高复用性一般使用函数指针，但是函数指针不能满足STL对抽象性的要求，不能满足软件积木的要求，无法和其他STL组件搭配。仿函数的本质就是一个重载了operator()的类，创建一个行为类似函数的对象。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不同方式实现对数组元素的排序</span></span><br><span class="line"><span class="comment">// sort是C++中的一个排序算法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++函数</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">MySort</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> a &lt; b;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Display</span><span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 泛型编程</span></span><br><span class="line"><span class="comment">// 定义为const&amp;是为了优化，如果将来传递进来的是个对象，只需要传引用即可</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">MySortT</span><span class="params">(T <span class="type">const</span>&amp; a, T <span class="type">const</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> a &lt; b;</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">DisplayT</span><span class="params">(T <span class="type">const</span>&amp; a)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	cout &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仿函数</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SortF</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">return</span> a &lt; b;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">DisplayF</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">int</span> a)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// C++仿函数模板</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SortTF</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(T <span class="type">const</span>&amp; a, T <span class="type">const</span>&amp; b)</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">return</span> a &lt; b;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">DisplayTF</span></span><br><span class="line">{</span><br><span class="line">	<span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(T <span class="type">const</span>&amp; a)</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; a &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="comment">// C++方式</span></span><br><span class="line">	<span class="comment">// 缺点是不通用，不同的数据类型要写不同的MySort函数</span></span><br><span class="line">	<span class="type">int</span> arr[] = { <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">7</span> };</span><br><span class="line">	<span class="built_in">sort</span>(arr, arr + <span class="number">5</span>, MySort); <span class="comment">//传递排序函数</span></span><br><span class="line">	for_each(arr, arr + <span class="number">5</span>, Display);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// C++泛型</span></span><br><span class="line">	<span class="type">int</span> arr2[] = { <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">7</span> };</span><br><span class="line">	<span class="built_in">sort</span>(arr2, arr2 + <span class="number">5</span>, MySortT&lt;<span class="type">int</span>&gt;);</span><br><span class="line">	for_each(arr2, arr2 + <span class="number">5</span>, DisplayT&lt;<span class="type">int</span>&gt;);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// C++仿函数</span></span><br><span class="line">	<span class="type">int</span> arr3[] = { <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">7</span> };</span><br><span class="line">	<span class="built_in">sort</span>(arr3, arr3 + <span class="number">5</span>, <span class="built_in">SortTF</span>&lt;<span class="type">int</span>&gt;() );</span><br><span class="line">	for_each(arr3, arr3 + <span class="number">5</span>, <span class="built_in">DisplayTF</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// C++仿函数模板</span></span><br><span class="line">	<span class="type">int</span> arr4[] = { <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">7</span> };</span><br><span class="line">	<span class="built_in">sort</span>(arr4, arr4 + <span class="number">5</span>, <span class="built_in">SortF</span>());</span><br><span class="line">	for_each(arr4, arr4 + <span class="number">5</span>, <span class="built_in">DisplayF</span>());</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1317,141 +1425,6 @@ metadelim)方法来清空缓冲区，第一个参数是要清空多少缓冲区�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">字符编码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-05-09 16:43:40" itemprop="dateCreated datePublished" datetime="2025-05-09T16:43:40+08:00">2025-05-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-11 02:16:58" itemprop="dateModified" datetime="2025-05-11T02:16:58+08:00">2025-05-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ascii码表">ASCII码表</h1>
-<p>  ASCII(American Standard Code for Information
-Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是最通用的信息交换标准，并等同于国际标准ISO/IEC
-646。</p>
-<p>  
-ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。美国一开始设计的是128位，包含95个可见字符和33个控制字符，后期扩展到8位，称为扩展ASCII码。</p>
-<p>  </p>
-<h1 id="国标编码">国标编码</h1>
-<p>  中国也有自己的编码，用于表示中文字符。设计编码首先要确定字符集。国标使用分区管理，共计分为94个区，每个区含94位，共8836个码位。1<sub>9区收录除汉字外的682个字符；10</sub>15区为空白区，没有使用；16<sub>55区收录3755个一级汉字，按照拼音排序；56</sub>87区收录3008个二级汉字，按照部首/笔画排序；剩余的88~94区为空白区，没有使用。这套字符集称为<strong>GB2312</strong>字符集。按照这个字符集来编码，比如3区的6行7列字符，编码0367。</p>
-<p>  ASCII是直接把码位按照二进制存储，但国标编码不是。比如5709编码的汉字(侃)，把6709按照前两位和后两位分开，并分别转为16进制：0x39和0x09；然后两个数分别加上0xA0得到0xD9和0xA9，将两数合并，0xD90xA9就是汉字侃的GB2312码。</p>
-<p>  GB2312编码之所以要加0xA0，是为了要兼容ASCII码。GB2312是双字节编码，为了与ASCII编码区分，每个单字节的第八位必须是1，所以GB2312编码最少要从0x80(1000
-0000)开始。但是根据规定，0x80~0x9F需要留给控制块，所以只能从0xA0开始。</p>
-<p>  计算机判断字符是ASCII码还是GB2312编码的方式就是通过字符大小，ASCII码是7个字节，如果小于127就是ASCII码，如果连续碰到两个大于127的8位就把两个组合起来当作GB2312编码。</p>
-<p>  GB2312编码只能表示6763个汉字，后期也不够用了，所以对GB2312做了扩展为<strong>GBK字符集</strong>。GB2312的高位和地位都要求必须大于127，GBK不再规定低位大于127，只保证高位大于127。把之前没用上的码位都用上，扩充了将近20000个汉字和符号。计算机只要碰到一个大于127的字节，就表示一个汉字的开始。</p>
-<p>  后期还扩展了GB18030字符集，新增了少数民族的字符。</p>
-<p>  </p>
-<h1 id="unicode">Unicode</h1>
-<p>  ASCII可表示的字符数太少了，但如果每个国家都设计一套自己的编码就太乱了，为了把世界上的文字都映射到一套字符空间中，诞生了Unicode。Unicode是一个标准，规定了字符集和编码。</p>
-<p>  最开始的Unicode字符集称为UCS-2字符集，和ASCII码一样，把用到的字符按顺序罗列并标上对应的码位。存储方式和ASCII一样，直接把码位按照二进制方式存储。一共可以表示<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>即65536个字符。后期发现不够用后出现了UCS-4字符集，可以表示<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>将近43亿个字符，但由于这个编码占用的存储空间太大了，并没有被广泛接受。</p>
-<p>  互连网时代后，对Unicode做了优化，目前有3种Unicode的编码方式：</p>
-<ol type="1">
-<li>UTF-8：用1byte来表示字符，可以兼容ASCII码；
-<ol type="1">
-<li>特点是存储效率高，可变长（不方便内部随机访问）;</li>
-<li>无字节序问题，可以作为外部编码；</li>
-</ol></li>
-<li>UTF-16：用2bytes表示一个字符，可以分为UTF-16BE(big
-endian)和UTF-16LE(little endian)
-<ol type="1">
-<li>特点是定长的，方便内部随机访问；</li>
-<li>有字节序问题，不可以作为外部编码；</li>
-</ol></li>
-<li>UTF-32：用4bytes表示一个字符，可以分为UTF-32BE(big
-endian)和UTF-32LE(little endian)
-<ol type="1">
-<li>特点是定长的，方便内部随机访问；</li>
-<li>有字节序问题，不可以作为外部编码；</li>
-</ol></li>
-</ol>
-<p>   注意：如果使用的Windows系统，Windows文件可能有BOM(byte order
-mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者忽略掉。BOM在文本文件头部，FEFF(十进制为254
-255)表示大端，FFFE(十进制为255 254)表示小端。</p>
-<p>  </p>
-<p>  UTF-8编码原理：UTF-8将UCS-4字符集的码位划分为4个区间(0x00000000<sub>0x0000007F；0x00000080</sub>0x000007FF；0x00000800<sub>0x0000FFFF；0x00010000</sub>0x0010FFFF)，第一个区间的编码样式为0XXXXXXX，第二个区间的编码样式为110XXXXX
-10XXXXXX，第三个区间的编码样式为1110XXXX 10XXXXXX
-10XXXXXX，第四个区间的编码样式为11110XXX 10XXXXXX 10XXXXXX
-10XXXXXX。</p>
-<p>  汉字“王”在UCS-4中的编码为0x0000738B，转换为二进制就是“0000 0000
-0000 0000 0111 0011 1000
-1011”。0x0000738B属于UCS-4的第三区间，这个区间的编码样式是“1110XXXX
-10XXXXXX
-10XXXXXX”。此时我们得到了“王”这个字符的二进制形式和编码样式，把二进制形式从高到低依次插入到编码样式中，得到了“王”对应的UTF-8编码：“11100111
-10001110 10001011”，十六进制为“0xe7 0x8e 0x8b”。</p>
-<p>  </p>
-<p><strong><u>程序中编码错误的根本原因在于编码方式和解码方式的不统一。</u></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1522,7 +1495,7 @@ mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1535,7 +1508,7 @@ mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1584,7 +1557,7 @@ mark)来表示字节序，如果要在其他平台使用，可以去掉BOM或者
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">99k</span>
+    <span title="站点总字数">105k</span>
 </div>
 
 <!--
