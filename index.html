@@ -453,6 +453,360 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E8%B0%83%E8%AF%95%E5%88%9D%E6%AD%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/%E5%86%85%E5%AD%98%E8%B0%83%E8%AF%95%E5%88%9D%E6%AD%A5/" class="post-title-link" itemprop="url">内存调试初步</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-05-27 16:49:09" itemprop="dateCreated datePublished" datetime="2025-05-27T16:49:09+08:00">2025-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-29 12:00:20" itemprop="dateModified" datetime="2025-05-29T12:00:20+08:00">2025-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>856</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="汇编语言">汇编语言</h1>
+<p>  用汇编语言翻译机器语言，对人类更友好。要理解汇编语言，需要知道寄存器、基本指令、中断等基础知识。由于汇编语言偏向底层，所以不同的系统上汇编语言是不一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 用汇编语言实现对话框弹出helloworld</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">extern MessageBoxA  // 引入MessageBox</span><br><span class="line"></span><br><span class="line">//代码段</span><br><span class="line">section .text    </span><br><span class="line">golbal main</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">    push dword 0</span><br><span class="line">    push dword title</span><br><span class="line">    push dword text</span><br><span class="line">    push dword 0       // 传递四个参数</span><br><span class="line">    call MessageBoxA   //调用MessageBoxA</span><br><span class="line">    ret     //返回</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//数据段</span><br><span class="line">section .data    </span><br><span class="line">text:   db 'Hello World',0</span><br><span class="line">title:  db 'MessageBox',0</span><br></pre></td></tr></table></figure>
+<h2 id="常见寄存器">常见寄存器</h2>
+<ul>
+<li>通用寄存器：
+<ul>
+<li>数据寄存器：EAX、EBX、ECX、EDX</li>
+<li>变址寄存器：ESI、EDI</li>
+<li>指针寄存器：ESP、EBP</li>
+</ul></li>
+<li>段寄存器：CS、DS、ES、SS、GS</li>
+<li>指令寄存器：EIP</li>
+<li>标志寄存器：CF、PF、AF、ZF、SF、OF</li>
+</ul>
+<h2 id="常见基本语句">常见基本语句</h2>
+<ul>
+<li>基本运算：INC(加法)、ADD(加法)、DEC(减法)、SUB(减法)、mul(乘法)、div(除法)</li>
+<li>循环、跳转：loop(循环)、call(函数调用)、jmp(跳转)、ret(返回)</li>
+<li>数据移动：mov、lea</li>
+<li>栈操作：PUSH、POP</li>
+<li>逻辑运算：AND、OR、XOR(异或)、NOT</li>
+<li>比较运算：cmp、test</li>
+</ul>
+<h2 id="中断">中断</h2>
+<p>  汇编语言需要和底层打交道，这里就需要有中断机制</p>
+<ul>
+<li>内中断：和cpu直接交互</li>
+<li>int指令</li>
+<li>端口：对应硬件设备的交互</li>
+<li>外中断：来自外设的中断</li>
+</ul>
+<p>  </p>
+<h1 id="从汇编看函数栈">从汇编看函数栈</h1>
+<p>  在编程语言中函数是以栈结构来设计的，先调用的函数后返回。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">firstCall</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> z = x + y;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">firstCall</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E6%A0%88.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/Linux_C++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/Linux_C++/" class="post-title-link" itemprop="url">Linux_CPP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-05-27 16:34:02" itemprop="dateCreated datePublished" datetime="2025-05-27T16:34:02+08:00">2025-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-29 10:30:30" itemprop="dateModified" datetime="2025-05-29T10:30:30+08:00">2025-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="linux开发环境搭建">Linux开发环境搭建</h1>
+<h2 id="gccg的安装">gcc、g++的安装</h2>
+<p>gcc和g++是GUN的C&amp;C++编译器，这两个本质上区别不大，gcc默认下使用C编译器，g++默认使用C++编译器。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum <span class="keyword">install</span> gcc</span><br><span class="line"></span><br><span class="line">yum <span class="keyword">install</span> gcc-c++</span><br></pre></td></tr></table></figure>
+<h2 id="编译流程">编译流程</h2>
+<ul>
+<li>源文件生存可执行程序：</li>
+</ul>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="symbol">$</span> g++ helloworld.cpp -o helloworld</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果用gcc编译器，不会包含标准库信息，需要在命令行中包含</span></span><br><span class="line">&gt;<span class="symbol">$</span> gcc -lstdc++ helloworld.cpp -o helloworld</span><br><span class="line"></span><br><span class="line"><span class="comment">//-wall可以看到警告信息</span></span><br><span class="line">&gt;<span class="symbol">$</span> g++ -Wall helloworld.cpp -o helloworld</span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>GCC命令的编译选项：</p>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">-ansi</td>
+<td style="text-align: left;">只支持ANSI标准的C语法。这一选项将进制GNU
+C的某些特色，例如asm或者typeof关键字</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-S</td>
+<td style="text-align: left;">只激活预处理和编译，就是指把文件编译成为汇编代码</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-c</td>
+<td style="text-align: left;">只编译并生成目标文件</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-g</td>
+<td style="text-align: left;">生成调试信息。GNU调试器可利用该信息</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-o FILENAME</td>
+<td style="text-align: left;">生成指定的输出文件。用在生成可执行文件时</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-O0</td>
+<td style="text-align: left;">不进行优化处理</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-O或-O1</td>
+<td style="text-align: left;">优化生成代码</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-O2或-O3</td>
+<td style="text-align: left;">进一步优化</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-shared</td>
+<td style="text-align: left;">生成共享目标文件。通常用在建立共享库时</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-static</td>
+<td style="text-align: left;">禁止使用共享连接</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-w</td>
+<td style="text-align: left;">不生成任何警告信息</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-Wall</td>
+<td style="text-align: left;">生成所有警告信息</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-IDIRECTORY</td>
+<td style="text-align: left;">指定额外的头文件搜索路径DIRECTORY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-LDIRECTORY</td>
+<td style="text-align: left;">指定额外的函数库搜索路径DIRECTORY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-ILIBRARY</td>
+<td style="text-align: left;">链接时搜索指定的函数库LIBRARY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-m486</td>
+<td style="text-align: left;">针对486进行代码优化</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-E</td>
+<td style="text-align: left;">只运行C预编译器</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h1 id="make和makefile">make和Makefile</h1>
+<p>  make是一个批处理工具，本身其实没什么功能。make工具就根据Makefile中的命令进行编译和链接。其实Windows系统中也有这些步骤，只不过微软已经把这些嵌入到了编译器中，不需要程序员去关心。Linux系统也有一些IDE可以帮助我们完成这些工作，比如CMake。</p>
+<h2 id="makefile的作用">makefile的作用</h2>
+<p>工程中可执行文件的产生过程如下：</p>
+<ol type="1">
+<li>配置环境(系统环境)</li>
+<li>确定标准库和头文件的位置</li>
+<li>确定依赖关系（源代码之间编译的依赖关系）</li>
+<li>头文件预编译</li>
+<li>预处理</li>
+<li>编译</li>
+<li>链接</li>
+<li>安装</li>
+<li>和操作系统建立联系</li>
+<li>生成安装包</li>
+</ol>
+<p>  大型工程中需要确定代码之间的依赖关系(第三步)，当依赖关系复杂的时候，make命令工具诞生了，而Makefile文件正是为make工具所使用的。<u><strong>Makefile描述了整个工程文件的编译顺序、编译规则。</strong></u></p>
+<h2 id="make流程">make流程</h2>
+<p>  假设我们有一个简单的demo，reply.h、reply.cpp两个文件定义了一个类，输出“helloworld”，main.cpp是主函数文件，生成类对象。这三个文件有依赖关系。我们编译的步骤如下：</p>
+<ol type="1">
+<li><strong>写Makefile文件</strong></li>
+</ol>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">main</span>: reply<span class="selector-class">.o</span> <span class="selector-tag">main</span><span class="selector-class">.o</span>    <span class="comment">//左侧main是目标，依赖右侧的两个文件</span></span><br><span class="line">    g++ reply<span class="selector-class">.o</span> <span class="selector-tag">main</span><span class="selector-class">.o</span> -o <span class="selector-tag">main</span>  <span class="comment">//使用g++命令，用reply.o、main.o生成main</span></span><br><span class="line">reply<span class="selector-class">.o</span>: reply<span class="selector-class">.cpp</span>  <span class="comment">//reply.o,依赖reply.cpp</span></span><br><span class="line">    g++ -c reply<span class="selector-class">.cpp</span>  -o reply<span class="selector-class">.o</span>  <span class="comment">//用g++命令生成reply.o,只编译</span></span><br><span class="line"><span class="selector-tag">main</span><span class="selector-class">.o</span>: <span class="selector-tag">main</span><span class="selector-class">.cpp</span>  <span class="comment">//main.o,依赖main.cpp</span></span><br><span class="line">    g++ -c <span class="selector-tag">main</span><span class="selector-class">.cpp</span>  -o <span class="selector-tag">main</span><span class="selector-class">.o</span>  <span class="comment">//用g++命令生成main.o,只编译</span></span><br></pre></td></tr></table></figure>
+<p>  可以看到，先表明最终生成文件的依赖关系，然后生成。其次挨个写被依赖文件自身的依赖关系。从上往下是倒置的依赖关系。</p>
+<p> </p>
+<ol start="2" type="1">
+<li><strong>用make命令</strong></li>
+</ol>
+<p><code>$ make</code></p>
+<p>  类似于批处理，make命令会去调用makefile文件，完成Makefile文件中的各项命令。</p>
+<p> </p>
+<h2 id="makefile文件格式">makefile文件格式</h2>
+<ul>
+<li>makefile的基本规则：</li>
+</ul>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标<span class="comment">(target)</span>...: 依赖<span class="comment">(prerequisites)</span></span><br><span class="line">    命令<span class="comment">(command)</span></span><br></pre></td></tr></table></figure>
+<p>注意：每个命令前必须是Tab字符。</p>
+<p> </p>
+<ul>
+<li><p>makefile的简化规则：</p>
+<ol type="1">
+<li>变量定义： 变量 = 字符串</li>
+<li>变量使用： $(变量名)</li>
+</ol></li>
+</ul>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//上面的makefile文件可以做如下简化：</span></span><br><span class="line"></span><br><span class="line">TARGET = <span class="selector-tag">main</span></span><br><span class="line">OBJS = reply<span class="selector-class">.o</span> <span class="selector-tag">main</span><span class="selector-class">.o</span></span><br><span class="line">$(TARGET): $(OBJS)</span><br><span class="line">    g++ $(OBJS) -o $(TARGET)</span><br><span class="line">reply<span class="selector-class">.o</span>: reply<span class="selector-class">.cpp</span>  </span><br><span class="line"><span class="selector-tag">main</span><span class="selector-class">.o</span>: <span class="selector-tag">main</span><span class="selector-class">.cpp</span>  </span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">    rm $(TARGET) $(OBJS)   <span class="comment">//生成完成后</span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<ul>
+<li>清空操作</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//在makefile文件中可以加上清理操作：</span><br><span class="line"></span><br><span class="line">TARGET = main</span><br><span class="line">OBJS = reply.o main.o</span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean  //<span class="keyword">.PHONY</span>关键字，表示clean不存在，否则目录下存在"clean"同名文件的话，clean会失败</span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm <span class="variable">$(TARGET)</span> <span class="variable">$(OBJS)</span>   </span><br></pre></td></tr></table></figure>
+<p>执行<code>$ make clean</code>命令后，可以根据makefile中定义的删除操作把文件删掉。</p>
+<h2 id="makefile的扩展用法">makefile的扩展用法</h2>
+<ol type="1">
+<li>make工程的安装和卸载</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">TARGET = main</span><br><span class="line">OBJS = reply.o main.o</span><br><span class="line"></span><br><span class="line"><span class="regexp">//</span>安装可以简化为拷贝操作</span><br><span class="line"><span class="regexp">//</span>把main拷贝到<span class="regexp">/user/</span>local<span class="regexp">/bin/m</span>ainTest </span><br><span class="line">install:</span><br><span class="line">    cp .<span class="regexp">/main /u</span>ser<span class="regexp">/local/</span>bin/mainTest </span><br><span class="line"></span><br><span class="line">uninstall:</span><br><span class="line">    rm <span class="regexp">/user/</span>local<span class="regexp">/bin/m</span>ainTest </span><br></pre></td></tr></table></figure>
+<p> </p>
+<ol start="2" type="1">
+<li>Makefile中的变量</li>
+</ol>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">一、用户自定义变量</span><br><span class="line"> 变量 = 字符串，使用的时候就用$()括起来。就类似于C++中的宏定义。注意变量的大小写敏感。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">二、变量中的变量</span><br><span class="line">  变量可以先使用再声明：</span><br><span class="line">foo = <span class="variable">$(bar)</span>  //还没声明bar，但可以先直接用</span><br><span class="line">bar = <span class="variable">$(ugh)</span></span><br><span class="line">ugh = Hug   </span><br><span class="line"></span><br><span class="line">  这样可以使变量定义更加灵活，但如果工程过于复杂不建议用，因为这样定义需要make来推导</span><br><span class="line">  定义的层级过多，会导致编译速度很慢。</span><br><span class="line"></span><br><span class="line">  如果希望只能使用声明过的变量，那么可以使用<span class="string">":="</span>来替换<span class="string">"="</span></span><br><span class="line">  <span class="string">":="</span>如果使用了还没有声明的变量，会失效</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">三、追加变量</span><br><span class="line">  可以使用<span class="string">"+="</span>来追加变量</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">四、多行变量</span><br><span class="line">  <span class="keyword">define</span> two-lines</span><br><span class="line">  第一行命令</span><br><span class="line">  第二行命令</span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">五、环境变量</span><br><span class="line">  就是操作系统的环境变量，Windows和Linux下都有</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">六、自动变量</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">七、模式变量</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">八、自动匹配</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/C++%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1228,247 +1582,6 @@ Singleton::This为空，只有我们主动调用Singleton::getInstance()-&gt;DoS
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">文件操作</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-05-14 11:27:17" itemprop="dateCreated datePublished" datetime="2025-05-14T11:27:17+08:00">2025-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-19 01:40:24" itemprop="dateModified" datetime="2025-05-19T01:40:24+08:00">2025-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  计算机程序的输入流起点和输出流的终点都可以是磁盘文件。C++把每个文件都看成是一个有序的字节序列，每个文件都以文件结束标志结束。</p>
-<p>  按照文件中数据的组织形式可以把文件分为：</p>
-<ol type="1">
-<li>文本文件：文件中信息形式为ASCII码文件，每个字符占用一个字节；</li>
-<li>二进制文件：文件中信息的形式与其在内存中的形式相同；</li>
-</ol>
-<p>  </p>
-<p>文件操作步骤：</p>
-<ol type="1">
-<li>打开文件open；</li>
-<li>检查打开是否成功；</li>
-<li>读或写read\write；</li>
-<li>检查是否读完EOF（end of file）；</li>
-<li>使用完文件后关闭文件close;</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//把输入的字符信息写入文件</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    fstream fout;</span><br><span class="line">    fout.<span class="built_in">open</span>(<span class="string">"test.txt"</span>, ios::app);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    //可以直接这么写，程序会默认打开</span></span><br><span class="line"><span class="comment">    fstream fout("test.txt");   </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(fout.<span class="built_in">fail</span>())  <span class="comment">//也可以判断fout是否非空：if(!fout)</span></span><br><span class="line">    {</span><br><span class="line">        cout &lt;&lt; <span class="string">"open fail"</span> &lt;&lt; endl;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; a)</span><br><span class="line">    {</span><br><span class="line">        fout &lt;&lt; <span class="string">"The numbers are:"</span> &lt;&lt; a &lt;&lt; endl; <span class="comment">//用定义的fout输出到文件</span></span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">5</span>)</span><br><span class="line">        {</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    fout.<span class="built_in">close</span>();  <span class="comment">//关闭文件</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>  </p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">文件打开方式</th>
-<th style="text-align: left;">行为</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ios::in</td>
-<td style="text-align: left;">ifstream的默认模式，打开文件进行读操作</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ios::out</td>
-<td style="text-align: left;">ofstream的默认方式，打开文件进行写操作</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ios::ate</td>
-<td style="text-align: left;">打开一个已经有输入或输出文件并查找到文件尾</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ios::app</td>
-<td style="text-align: left;">打开文件以便在文件的尾部添加数据</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ios::nocreate</td>
-<td style="text-align: left;">如果文件不存在，则打开操作失败</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ios::trunc</td>
-<td style="text-align: left;">如果文件存在，清除文件原有内容(默认)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ios::binary</td>
-<td style="text-align: left;">以二进制方式打开</td>
-</tr>
-</tbody>
-</table>
-<p>  </p>
-<p>  文件的默认打开方式是ASCII，如果需要以二进制方式打开，需要设置ios::binary：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二进制的方式拷贝一个文件：</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">int</span> bufferLen = <span class="number">2048</span>;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">CopyFile</span><span class="params">(<span class="type">const</span> string&amp; src, <span class="type">const</span> string&amp; dst)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="comment">// 打开源文件和目标文件</span></span><br><span class="line">	<span class="comment">// 源文件以二进制读的方式打开</span></span><br><span class="line">	<span class="comment">// 目标文件以二进制写的方式打开</span></span><br><span class="line">	<span class="function">ifstream <span class="title">in</span><span class="params">(src.c_str(), ios::in | ios::binary)</span></span>;</span><br><span class="line">	<span class="function">ofstream <span class="title">out</span><span class="params">(dst.c_str(), ios::out | ios::binary | ios::trunc)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 判断文件打开是否成功，失败返回false</span></span><br><span class="line">	<span class="keyword">if</span> (!in || !out)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 从源文件中读取数据，写到目标文件中</span></span><br><span class="line">	<span class="comment">// 通过读取源文件的EOF来判断读写是否结束</span></span><br><span class="line">	<span class="comment">// 分块读取，不要一下全读进来，防止缓冲区不够用</span></span><br><span class="line">	<span class="type">char</span> temp[bufferLen];</span><br><span class="line">	<span class="keyword">while</span> (!in.<span class="built_in">eof</span>())</span><br><span class="line">	{</span><br><span class="line">		in.<span class="built_in">read</span>(temp, bufferLen);</span><br><span class="line">		streamsize count = in.<span class="built_in">gcount</span>(); <span class="comment">//实际读的大小</span></span><br><span class="line">		out.<span class="built_in">write</span>(temp, count);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 关闭源文件和目标文件</span></span><br><span class="line">	<span class="comment">// 如果不关闭会导致资源泄露</span></span><br><span class="line">	in.<span class="built_in">close</span>();</span><br><span class="line">	out.<span class="built_in">close</span>();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">CopyFile</span>(<span class="string">"AA.mp3"</span>, <span class="string">"BB.mp3"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/IO%E6%B5%81%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/IO%E6%B5%81%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">IO流基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-05-14 11:24:14" itemprop="dateCreated datePublished" datetime="2025-05-14T11:24:14+08:00">2025-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-17 11:29:56" itemprop="dateModified" datetime="2025-05-17T11:29:56+08:00">2025-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="io流">I/O流</h1>
-<p>  传统的C语言中I/O处理有printf，scanf，getch，gets等函数，他们的问题是不可编程，仅仅能识别内置的数据类型，无法识别自定义的数据类型；而且代码移植性差，有很多坑。</p>
-<p>  C++中有I/O流istream，ostream等处理方式，可编程，对于类库的设计者来说很有用；而且还能简化编程，使I/O的风格保持一致。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/IO%E6%B5%811.png"></p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/IO%E6%B5%812.png"></p>
-<p> </p>
-<h1 id="io缓存区">IO缓存区</h1>
-<p>  计算机发展过程中，需要实现外部的设备可以用统一的标准和计算机程序进行交互。最早的UNIX系统是以文件的方式进行交互。这个思想发展到现在就是IO缓存区。因为外部设备和内存的速度是不一样的，缓存区的存在可以让我们的信息读取更加高效。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/IO%E6%B5%813.png"></p>
-<p>标准的IO提供三种类型的缓存模式：</p>
-<ol type="1">
-<li>按块缓存：如文件系统，一次性加载到内存中</li>
-<li>按行缓存：以''区分行</li>
-<li>不缓存</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; a)</span><br><span class="line">    {</span><br><span class="line">        cout &lt;&lt; <span class="string">"The numbers are:"</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">5</span>)</span><br><span class="line">        {</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    cin &gt;&gt; ch;</span><br><span class="line">    cout &lt;&lt; <span class="string">"the last char is:"</span> &lt;&lt; ch &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/IO%E6%B5%814.png"></p>
-<p>  上面代码一连输入6个int，内部接收完5个数字后循环结束，但可以看到6还是读入了，并且以char的形式输出，后面的ch还没来得及输入程序就退出了。这是程序中面临的一个问题，输入的6被暂存到缓冲区中成为了脏数据，在我们不之情的情况下把后面的输入给覆盖掉了。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/IO%E6%B5%815.png"></p>
-<p> </p>
-<p>我们可以使用cin::ignore(int count,type
-metadelim)方法来清空缓冲区，第一个参数是要清空多少缓冲区信息，第二个参数表达以什么符号作为结尾</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清空缓冲区</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="type">int</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; a)</span><br><span class="line">    {</span><br><span class="line">        cout &lt;&lt; <span class="string">"The numbers are:"</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span>(index == <span class="number">5</span>)</span><br><span class="line">        {</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">//清空缓冲区脏数据</span></span><br><span class="line">    <span class="comment">//numeric_limits&lt;std::streamsize&gt;::max()表示缓冲区的最大范围</span></span><br><span class="line">    cin.<span class="built_in">ignore</span>(numeric_limits&lt;std::streamsize&gt;::<span class="built_in">max</span>(), <span class="string">'\n'</span>); </span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> ch;</span><br><span class="line">    cin &gt;&gt; ch;</span><br><span class="line">    cout &lt;&lt; <span class="string">"the last char is:"</span> &lt;&lt; ch &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1539,7 +1652,7 @@ metadelim)方法来清空缓冲区，第一个参数是要清空多少缓冲区�
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1601,7 +1714,7 @@ metadelim)方法来清空缓冲区，第一个参数是要清空多少缓冲区�
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">112k</span>
+    <span title="站点总字数">115k</span>
 </div>
 
 <!--

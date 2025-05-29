@@ -22,20 +22,22 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="如果说面向对象是一种通过间接层来调用函数以换取一种抽象（创建一个接口类），那么泛型编程则是更直接的抽象，它不会因为间接层而损失效率。不同于面向对象的动态期多态，泛型编程是一种静态期多态，通过编译器生成最直接的代码。泛型编程可以将算法与特定类型、结构剥离，尽可能复用代码。 123456789101112131415161718192021&#x2F;&#x2F;通过函数的方法实现输出最大值&#x2F;&#x2F;需要针对不同的输入参">
+  <meta name="description" content="汇编语言   用汇编语言翻译机器语言，对人类更友好。要理解汇编语言，需要知道寄存器、基本指令、中断等基础知识。由于汇编语言偏向底层，所以不同的系统上汇编语言是不一样的。 1234567891011121314151617181920212223&#x2F;&#x2F; 用汇编语言实现对话框弹出helloworldextern MessageBoxA  &#x2F;&#x2F; 引入MessageBox&#x2F;&#x2F;代码段section .te">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编程思想——泛型编程">
-<meta property="og:url" content="https://liu-fb.com/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:title" content="内存调试初步">
+<meta property="og:url" content="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E8%B0%83%E8%AF%95%E5%88%9D%E6%AD%A5/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="如果说面向对象是一种通过间接层来调用函数以换取一种抽象（创建一个接口类），那么泛型编程则是更直接的抽象，它不会因为间接层而损失效率。不同于面向对象的动态期多态，泛型编程是一种静态期多态，通过编译器生成最直接的代码。泛型编程可以将算法与特定类型、结构剥离，尽可能复用代码。 123456789101112131415161718192021&#x2F;&#x2F;通过函数的方法实现输出最大值&#x2F;&#x2F;需要针对不同的输入参">
+<meta property="og:description" content="汇编语言   用汇编语言翻译机器语言，对人类更友好。要理解汇编语言，需要知道寄存器、基本指令、中断等基础知识。由于汇编语言偏向底层，所以不同的系统上汇编语言是不一样的。 1234567891011121314151617181920212223&#x2F;&#x2F; 用汇编语言实现对话框弹出helloworldextern MessageBoxA  &#x2F;&#x2F; 引入MessageBox&#x2F;&#x2F;代码段section .te">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-14T03:29:26.000Z">
-<meta property="article:modified_time" content="2025-05-21T03:29:38.834Z">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E6%A0%88.png">
+<meta property="article:published_time" content="2025-05-27T08:49:09.000Z">
+<meta property="article:modified_time" content="2025-05-29T04:00:20.538Z">
 <meta property="article:author" content="Fabian">
-<meta property="article:tag" content="C++基础">
+<meta property="article:tag" content="C++进阶">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E6%A0%88.png">
 
-<link rel="canonical" href="https://liu-fb.com/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/">
+<link rel="canonical" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E8%B0%83%E8%AF%95%E5%88%9D%E6%AD%A5/">
 
 
 <script id="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>编程思想——泛型编程 | Fabian备忘录</title>
+  <title>内存调试初步 | Fabian备忘录</title>
   
 
 
@@ -297,7 +299,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E8%B0%83%E8%AF%95%E5%88%9D%E6%AD%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
@@ -310,7 +312,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          编程思想——泛型编程
+          内存调试初步
         </h1>
 
         <div class="post-meta">
@@ -320,14 +322,14 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-05-14 11:29:26" itemprop="dateCreated datePublished" datetime="2025-05-14T11:29:26+08:00">2025-05-14</time>
+              <time title="创建时间：2025-05-27 16:49:09" itemprop="dateCreated datePublished" datetime="2025-05-27T16:49:09+08:00">2025-05-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-21 11:29:38" itemprop="dateModified" datetime="2025-05-21T11:29:38+08:00">2025-05-21</time>
+                <time title="修改时间：2025-05-29 12:00:20" itemprop="dateModified" datetime="2025-05-29T12:00:20+08:00">2025-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -352,7 +354,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
+              <span>856</span>
             </span>
 
         </div>
@@ -364,17 +366,43 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>  如果说面向对象是一种通过间接层来调用函数以换取一种抽象（创建一个接口类），那么泛型编程则是更直接的抽象，它不会因为间接层而损失效率。不同于面向对象的动态期多态，泛型编程是一种静态期多态，通过编译器生成最直接的代码。泛型编程可以将算法与特定类型、结构剥离，尽可能复用代码。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过函数的方法实现输出最大值</span></span><br><span class="line"><span class="comment">//需要针对不同的输入参数写不同的代码</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a: b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">max</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a: b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1.3</span>, <span class="number">2.4</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过泛型编程的方法实现输出两数的最大值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 模板函数</span></span><br><span class="line"><span class="comment">//class不是面向对象的class，这个class表示T是个泛型</span></span><br><span class="line"><span class="comment">//T可以表示任何类型，具体代表哪个数据类型取决于编译期代码生成的是什么类型</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;  </span></span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a:b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    <span class="comment">//编译期时，编译器自动生成不同类型的方法</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1.3</span>, <span class="number">2.4</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="string">'a'</span>, <span class="string">'b'</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">泛型编程的主要工作不是程序员，而是编译器</span></span><br><span class="line"><span class="comment">编译器会在编译期间根据代码自动生成方法</span></span><br><span class="line"><span class="comment">由于大量工作是编译器操作，可能通用的泛型函数并不能满足我们的需求</span></span><br><span class="line"><span class="comment">所以我们通常还需要“特化”处理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//特化</span></span><br><span class="line"><span class="comment">//如果是字符串的话特殊处理</span></span><br><span class="line"><span class="comment">//其余的输入可以让输入类型不相同，返回值统一为int</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">max</span><span class="params">(<span class="type">char</span>* a, <span class="type">char</span>* b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> (<span class="built_in">strcmp</span>(a, b) &gt; <span class="number">0</span> ?  (a) : (b));</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(T1 a, T2 b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(a &gt; b ? a : b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    <span class="type">char</span>* s1 = <span class="string">"hello"</span>;</span><br><span class="line">    <span class="type">char</span>* s2 = <span class="string">"world"</span>;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(s1, s2) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">4.5</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>  泛型编程是把算法和具体的数据结构分开了，我们不需要考虑类型本身是什么，直接用一套逻辑把所有的类型都涵盖了，如果需要针对某些特殊类型做处理，我们就进行单独的“特化”。这里比较复杂的操作是编译器的推理过程，程序员所做的工作无非是把该定义好的类型通知编译器，让编译器帮助我们做处理。</p>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">泛型编程的思想可以做一些算法优化，比如下面的等差数列求和</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1+2+3...+100 ==&gt; n*(n+1)/2 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这里用泛型不是用泛型编程可以传递广泛类型的属性，这里直接定义了int</span></span><br><span class="line"><span class="comment">//这里是借用泛型编程的另一个特征：编译期推理，让程序自动生成代码</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="type">int</span> n&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sum</span></span><br><span class="line">{</span><br><span class="line"><span class="comment">// 递推的思路，求前n个数的和可以表示为前(n-1)个数的和+n</span></span><br><span class="line"><span class="comment">// Sum(n) = Sum(n-1)+n</span></span><br><span class="line"><span class="comment">// 这里声明一个enum的成员，内部的枚举值是N，N的计算方法是递归求和</span></span><br><span class="line"><span class="comment">// 利用泛型编程的自动推理完成编译期计算</span></span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Value</span> {</span><br><span class="line">        N = Sum&lt;n<span class="number">-1</span>&gt;::N+n</span><br><span class="line">	};</span><br><span class="line">};</span><br><span class="line"><span class="comment">//下面这个就是递推的基准点，n=1的特化</span></span><br><span class="line"><span class="comment">// 如果不设置，那么就会无穷递归</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sum</span>&lt;<span class="number">1</span>&gt;</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Value</span> {N = <span class="number">1</span>};    <span class="comment">// n=1</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//这里只需要输出结果就行，运算过程中在编译期就完成了</span></span><br><span class="line">    cout &lt;&lt; Sum&lt;<span class="number">100</span>&gt;::N &lt;&lt; endl; <span class="comment">//计算1+2+……+99+100</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p> </p>
-<p>  <strong>模板编程的难点很大程度上在于对编译器的理解，我们需要直到怎么帮助编译器提供需要生成代码的信息。</strong></p>
+        <h1 id="汇编语言">汇编语言</h1>
+<p>  用汇编语言翻译机器语言，对人类更友好。要理解汇编语言，需要知道寄存器、基本指令、中断等基础知识。由于汇编语言偏向底层，所以不同的系统上汇编语言是不一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 用汇编语言实现对话框弹出helloworld</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">extern MessageBoxA  // 引入MessageBox</span><br><span class="line"></span><br><span class="line">//代码段</span><br><span class="line">section .text    </span><br><span class="line">golbal main</span><br><span class="line"></span><br><span class="line">main:</span><br><span class="line">    push dword 0</span><br><span class="line">    push dword title</span><br><span class="line">    push dword text</span><br><span class="line">    push dword 0       // 传递四个参数</span><br><span class="line">    call MessageBoxA   //调用MessageBoxA</span><br><span class="line">    ret     //返回</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//数据段</span><br><span class="line">section .data    </span><br><span class="line">text:   db 'Hello World',0</span><br><span class="line">title:  db 'MessageBox',0</span><br></pre></td></tr></table></figure>
+<h2 id="常见寄存器">常见寄存器</h2>
+<ul>
+<li>通用寄存器：
+<ul>
+<li>数据寄存器：EAX、EBX、ECX、EDX</li>
+<li>变址寄存器：ESI、EDI</li>
+<li>指针寄存器：ESP、EBP</li>
+</ul></li>
+<li>段寄存器：CS、DS、ES、SS、GS</li>
+<li>指令寄存器：EIP</li>
+<li>标志寄存器：CF、PF、AF、ZF、SF、OF</li>
+</ul>
+<h2 id="常见基本语句">常见基本语句</h2>
+<ul>
+<li>基本运算：INC(加法)、ADD(加法)、DEC(减法)、SUB(减法)、mul(乘法)、div(除法)</li>
+<li>循环、跳转：loop(循环)、call(函数调用)、jmp(跳转)、ret(返回)</li>
+<li>数据移动：mov、lea</li>
+<li>栈操作：PUSH、POP</li>
+<li>逻辑运算：AND、OR、XOR(异或)、NOT</li>
+<li>比较运算：cmp、test</li>
+</ul>
+<h2 id="中断">中断</h2>
+<p>  汇编语言需要和底层打交道，这里就需要有中断机制</p>
+<ul>
+<li>内中断：和cpu直接交互</li>
+<li>int指令</li>
+<li>端口：对应硬件设备的交互</li>
+<li>外中断：来自外设的中断</li>
+</ul>
+<p>  </p>
+<h1 id="从汇编看函数栈">从汇编看函数栈</h1>
+<p>  在编程语言中函数是以栈结构来设计的，先调用的函数后返回。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">firstCall</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> z = x + y;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">firstCall</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E6%A0%88.png"></p>
 
     </div>
 
@@ -384,7 +412,7 @@ mjx-container[display="true"] + br {
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C-%E5%9F%BA%E7%A1%80/" rel="tag"># C++基础</a>
+              <a href="/tags/C-%E8%BF%9B%E9%98%B6/" rel="tag"># C++进阶</a>
           </div>
 
         
@@ -393,13 +421,10 @@ mjx-container[display="true"] + br {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/C/C++/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="prev" title="编程思想——设计模式">
-      <i class="fa fa-chevron-left"></i> 编程思想——设计模式
+    <a href="/2025/C/C++/Linux_C++/" rel="prev" title="Linux_CPP">
+      <i class="fa fa-chevron-left"></i> Linux_CPP
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/C/C++/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="next" title="C++面试问题">
-      C++面试问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -458,6 +483,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">汇编语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.1.</span> <span class="nav-text">常见寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%9F%BA%E6%9C%AC%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.2.</span> <span class="nav-text">常见基本语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD"><span class="nav-number">1.3.</span> <span class="nav-text">中断</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%B1%87%E7%BC%96%E7%9C%8B%E5%87%BD%E6%95%B0%E6%A0%88"><span class="nav-number">2.</span> <span class="nav-text">从汇编看函数栈</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
