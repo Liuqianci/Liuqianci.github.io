@@ -182,6 +182,182 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2022/Hexo/hexo/Markdown%E6%A0%BC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/Hexo/hexo/Markdown%E6%A0%BC%E5%BC%8F/" class="post-title-link" itemprop="url">Markdown格式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-06 16:21:09" itemprop="dateCreated datePublished" datetime="2022-02-06T16:21:09+08:00">2022-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-06-01 00:36:20" itemprop="dateModified" datetime="2024-06-01T00:36:20+08:00">2024-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Hexo博客要求必须使用Github风格的Markdown语言编辑。所以需要了解具体的编写格式。</p>
+<h1 id="一编辑器">一、编辑器</h1>
+<p>市面上有很多的Markdown编辑器，之前很多人喜欢用Typora，但目前这个已经没有免费版可以用了。干脆直接用VSCode。</p>
+<p>使用VSCode需要下载两个插件，第一个是【Markdown All in
+One】，是一个组合包，把最常用的markdown优化都安装好；第二个是【Markdown
+Preview Github
+Styling】,是Github使用的Markdown渲染样式。使用这个样式，在本地就能预览Markdown文件最终在Github
+Pages中显示的效果。</p>
+<h1 id="二常用语法">二、常用语法</h1>
+<h2 id="标题">标题</h2>
+<p>利用<code>#</code>设置标题，一个表示一级，两个表示二级，依次类推
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#      一级标题</span><br><span class="line">##     二级标题</span><br><span class="line">……………… 以此类推</span><br></pre></td></tr></table></figure></p>
+<h2 id="引用">引用</h2>
+<p>利用<code>&gt;</code>可以创建引用块</p>
+<h2 id="文本高亮">文本高亮</h2>
+<p>利用一组反引号`来把文本包起来。 <figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`这里面是需要高亮的字符`</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="代码块">代码块</h2>
+<p>利用三个反引号`把内容扩起来即可。在上面的那个反引号后面还可以加上语言名称来进行自适应。</p>
+<h2 id="斜体">斜体</h2>
+<p>可以用一组<code>*</code>号来把文字包起来，也可以直接用快捷键<code>Ctrl+I</code>。</p>
+<h2 id="加粗">加粗</h2>
+<p>k可以用一组<code>**</code>来把文字包起来，也可以用快捷键<code>Ctrl+B</code>。</p>
+<h2 id="删除线">删除线</h2>
+<p>用一组<code>~~</code>把文字<del>包起来</del>。</p>
+<h2 id="下划线">下划线</h2>
+<p>下划线可以用<code>&lt;u&gt;  &lt;/u&gt;</code><u>把文字包起来</u>。</p>
+<h2 id="按键效果">按键效果</h2>
+<p><kbd>可以用一组</kbd><code>&lt;kbd&gt;  &lt;/kbd&gt;</code>把文字包起来，实现按键效果。</p>
+<h2 id="列表">列表</h2>
+<p>列表分为有序列表和无序列表 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">无序列表：用-加空格</span><br><span class="line"><span class="bullet">-</span> 第一</span><br><span class="line"><span class="bullet">-</span> 第二</span><br><span class="line"></span><br><span class="line">有序列表：用数字加.加空格</span><br><span class="line"><span class="bullet">1.</span> 第一</span><br><span class="line"><span class="bullet">2.</span> 第二</span><br></pre></td></tr></table></figure></p>
+<h1 id="三链接与图片">三、链接与图片</h1>
+<p>图片其实是一种超链接，所以把图片归类为链接里面。</p>
+<h2 id="跳转链接">1、跳转链接</h2>
+<p>普通的网站跳转都属于跳转链接，语法很简单： <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="name">网站说明</span>](<span class="name">跳转链接</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="图片链接">2、图片链接</h2>
+<p>图片链接的markdown语法和跳转链接类似： <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!<span class="selector-attr">[]</span>(图片链接)</span><br></pre></td></tr></table></figure></p>
+<h2 id="图片存储">3、图片存储</h2>
+<p>网上很多教程都是利用相对路径来存储图片，操作如下： 1. 安装图片插件
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-<span class="built_in">image</span> --<span class="built_in">save</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2" type="1">
+<li>_config.yml配置文件中，修改为 post_asset_folder: true</li>
+</ol>
+<p>其中第二步可以忽略，第二步的意义在于我们新建文章的时候，会在soruce目录下生成文章同名文件夹供我们存储图片，我们也可以手动创建文件夹。</p>
+<p>但是对于GitPages或者云服务器来说，其提供的免费存储空间都是有上限的，这样操作只适用于图片较少的情况。我们可以利用云服务器对象存储功能实现图床。</p>
+<p>我的域名使用的是腾讯的，那就用腾讯的COS来操作，并且腾讯提供可视化工具COSBrowser，很方便。
+参考博客： <a
+target="_blank" rel="noopener" href="https://blog.csdn.net/as403045314/article/details/101337257">Hexo
+博客图片添加至图床---腾讯云COS图床使用</a></p>
+<p>一个图片测试：</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/0880c08b0110e397da10.jpg" /></p>
+<h1 id="四公式">四、公式</h1>
+<p>公式使用的是Latex语法。但需要注意，Hexo并不支持Laxte语法，所以我们需要开启相关的开关。有些主题就自带这个功能。
+Markdown使用$包裹实现行内公式，使用$$包裹实现行间公式。
+Latex语法可以不掌握，借助工具即可： <a
+target="_blank" rel="noopener" href="http://www.hostmath.com/">HostMath</a>
+不过Hexo显示数学公式还需要一些其他设置，Hexo默认使用
+hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown
+符号转换为相应的 html 标签，导致公式不显示。</p>
+<h1 id="五表格">五、表格</h1>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|     <span class="number">1</span>   |      <span class="title class_">T2</span>       |  <span class="title class_">T3</span>   |</span><br><span class="line">|----------|<span class="symbol">:-------------</span><span class="symbol">:|------</span><span class="symbol">:|</span></span><br><span class="line">|   <span class="number">1</span>      |  <span class="number">1</span>            |  <span class="number">1</span>    |</span><br><span class="line">|   <span class="number">22</span>     |  <span class="number">22</span>           | <span class="number">22</span>    |</span><br><span class="line">|   <span class="number">333</span>    |  <span class="number">333</span>          | <span class="number">333</span>   |</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr class="header">
+<th>1</th>
+<th style="text-align: center;">T2</th>
+<th style="text-align: right;">T3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td>333</td>
+<td style="text-align: center;">333</td>
+<td style="text-align: right;">333</td>
+</tr>
+</tbody>
+</table>
+<p><code>------</code>表示左对齐，<code>:------：</code>表示居中，<code>-----:</code>表示右对齐
+Hexo的表格必须和正文之间有空行，否则不能正常显示</p>
+<h1 id="六流程图">六、流程图</h1>
+<p>Hexo里流程图限制多多，直接在其他软件画完截图吧。我也懒得学了。【流汗黄豆】</p>
+<h1 id="七特殊字符">七、特殊字符</h1>
+<p>常见转义如下：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">! &amp;<span class="variable">#33</span><span class="comment">; — 惊叹号 Exclamation mark</span></span><br><span class="line">” &amp;<span class="variable">#34</span><span class="comment">; &amp;quot; 双引号 Quotation mark</span></span><br><span class="line"># &amp;<span class="variable">#35</span><span class="comment">; — 数字标志 Number sign</span></span><br><span class="line">$ &amp;<span class="variable">#36</span><span class="comment">; — 美元标志 Dollar sign</span></span><br><span class="line">% &amp;<span class="variable">#37</span><span class="comment">; — 百分号 Percent sign</span></span><br><span class="line">&amp; &amp;<span class="variable">#38</span><span class="comment">; &amp;amp; Ampersand</span></span><br><span class="line">‘ &amp;<span class="variable">#39</span><span class="comment">; — 单引号 Apostrophe</span></span><br><span class="line">( &amp;<span class="variable">#40</span><span class="comment">; — 小括号左边部分 Left parenthesis</span></span><br><span class="line">) &amp;<span class="variable">#41</span><span class="comment">; — 小括号右边部分 Right parenthesis</span></span><br><span class="line">* &amp;<span class="variable">#42</span><span class="comment">; — 星号 Asterisk</span></span><br><span class="line">+ &amp;<span class="variable">#43</span><span class="comment">; — 加号 Plus sign</span></span><br><span class="line">&lt; &amp;<span class="variable">#60</span><span class="comment">; &amp;lt; 小于号 Less than</span></span><br><span class="line"><span class="operator">=</span> &amp;<span class="variable">#61</span><span class="comment">; — 等于符号 Equals sign</span></span><br><span class="line">- &amp;<span class="variable">#45</span><span class="comment">; &amp;minus; — 减号</span></span><br><span class="line">&gt; &amp;<span class="variable">#62</span><span class="comment">; &amp;gt; 大于号 Greater than</span></span><br><span class="line">? &amp;<span class="variable">#63</span><span class="comment">; — 问号 Question mark</span></span><br><span class="line">@ &amp;<span class="variable">#64</span><span class="comment">; — Commercial at</span></span><br><span class="line">[ &amp;<span class="variable">#91</span><span class="comment">; --- 中括号左边部分 Left square bracket</span></span><br><span class="line">\ &amp;<span class="variable">#92</span><span class="comment">; --- 反斜杠 Reverse solidus (backslash)</span></span><br><span class="line">] &amp;<span class="variable">#93</span><span class="comment">; — 中括号右边部分 Right square bracket</span></span><br><span class="line">&#123; &amp;<span class="variable">#123</span><span class="comment">; — 大括号左边部分 Left curly brace</span></span><br><span class="line">| &amp;<span class="variable">#124</span><span class="comment">; — 竖线Vertical bar</span></span><br><span class="line">&#125; &amp;<span class="variable">#125</span><span class="comment">; — 大括号右边部分 Right curly brace</span></span><br></pre></td></tr></table></figure>
+<h1 id="八hexo模板">八、hexo模板</h1>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># ！！！！！！！！！！</span></span><br><span class="line"><span class="meta"># 每一项的 : 后面均有一个空格</span></span><br><span class="line"><span class="meta"># 且 : 为英文符号</span></span><br><span class="line"><span class="meta"># ！！！！！！！！！！</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">title:</span></span><br><span class="line"><span class="meta"># 文章标题，可以为中文</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">date:</span></span><br><span class="line"><span class="meta"># 建立日期，如果自己手动添加，请按固定格式</span></span><br><span class="line"><span class="meta"># 就算不写，页面每篇文章顶部的发表于……也能显示</span></span><br><span class="line"><span class="meta"># 只要在主题配置文件中，配置了 created_at 就行</span></span><br><span class="line"><span class="meta"># 那为什么还要自己加上？</span></span><br><span class="line"><span class="meta"># 自定义文章发布的时间</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">updated:</span></span><br><span class="line"><span class="meta"># 更新日期，其它与上面的建立日期类似</span></span><br><span class="line"><span class="meta"># 不过在页面每篇文章顶部，是更新于……</span></span><br><span class="line"><span class="meta"># 在主题配置文件中，是 updated_at</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">permalink:</span></span><br><span class="line"><span class="meta"># 若站点配置文件下的 permalink 配置了 title</span></span><br><span class="line"><span class="meta"># 则可以替换文章 URL 里面的 title（文章标题）</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">categories:</span></span><br><span class="line"><span class="meta"># 分类，支持多级，比如：</span></span><br><span class="line"><span class="meta"># - technology</span></span><br><span class="line"><span class="meta"># - computer</span></span><br><span class="line"><span class="meta"># - computer-aided-art</span></span><br><span class="line"><span class="meta"># 则为 technology/computer/computer-aided-art</span></span><br><span class="line"><span class="meta"># （不适用于 layout: page）</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">tags:</span></span><br><span class="line"><span class="meta"># 标签</span></span><br><span class="line"><span class="meta"># 多个可以这样写 [标签1,标签2,标签3]</span></span><br><span class="line"><span class="meta"># （不适用于 layout: page）</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">description:</span></span><br><span class="line"><span class="meta"># 文章的描述，在每篇文章标题下方显示</span></span><br><span class="line"><span class="meta"># 并且作为网页的 description 元数据</span></span><br><span class="line"><span class="meta"># 如果不写，则自动取 &lt;!-- more --&gt;</span></span><br><span class="line"><span class="meta"># 之前的文字作为网页的 description 元数据</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">keywords:</span></span><br><span class="line"><span class="meta"># 关键字，并且作为网页的 keywords 元数据</span></span><br><span class="line"><span class="meta"># 如果不写，则自动取 tags 里的项</span></span><br><span class="line"><span class="meta"># 作为网页的 keywords 元数据</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">comments:</span></span><br><span class="line"><span class="meta"># 是否开启评论</span></span><br><span class="line"><span class="meta"># 默认值是 true</span></span><br><span class="line"><span class="meta"># 要关闭写 false</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">layout:</span></span><br><span class="line"><span class="meta"># 页面布局，默认值是 post，默认值可以在</span></span><br><span class="line"><span class="meta"># 站点配置文件中修改 default_layout</span></span><br><span class="line"><span class="meta"># 另：404 页面可能用到，将其值改为 false</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">type:</span></span><br><span class="line"><span class="meta"># categories，目录页面</span></span><br><span class="line"><span class="meta"># tags，标签页面</span></span><br><span class="line"><span class="meta"># picture，用来生成 group-pictures</span></span><br><span class="line"><span class="meta"># quote？</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//io-oi.me/tech/test/</span></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">photos:</span></span><br><span class="line"><span class="meta"># Gallery support，用来支持画廊╱相册，用法如下：</span></span><br><span class="line"><span class="meta"># - photo_url_1</span></span><br><span class="line"><span class="meta"># - photo_url_2</span></span><br><span class="line"><span class="meta"># - photo_url_3</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//io-oi.me/tech/test/</span></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">link:</span></span><br><span class="line"><span class="meta"># 文章的外部链接</span></span><br><span class="line"><span class="meta"># https:<span class="comment">//io-oi.me/tech/test/</span></span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">image:</span></span><br><span class="line"><span class="meta"># 自定义的文章摘要图片，只在页面展示，文章内消失</span></span><br><span class="line"><span class="meta"># 此项只有参考本文 5.14 节配置好，否则请勿添加！</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">sticky:</span></span><br><span class="line"><span class="meta"># 文章置顶</span></span><br><span class="line"><span class="meta"># 此项只有参考本文 5.15 节配置好，否则请勿添加！</span></span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">password:</span></span><br><span class="line"><span class="meta"># 文章密码，此项只有参考教程：</span></span><br><span class="line"><span class="meta"># http:<span class="comment">//shenzekun.cn/hexo的next主题个性化配置教程.html</span></span></span><br><span class="line"><span class="meta"># 第 24 节，配置好，否则请勿添加！</span></span><br><span class="line"><span class="meta"># 发现还是有 bug 的，就是右键在新标签中打开</span></span><br><span class="line"><span class="meta"># 然后无论是否输入密码，都能看到内容</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2022/Hexo/hexo/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%90%8C%E6%AD%A5%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -490,7 +666,7 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -552,7 +728,7 @@ Domain为我们的自定义域名。我们可以勾选Enforce HTTPS来开启http
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">118k</span>
+    <span title="站点总字数">120k</span>
 </div>
 
 <!--

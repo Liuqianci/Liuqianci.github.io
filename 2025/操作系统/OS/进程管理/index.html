@@ -22,20 +22,25 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="为了避免一个文件被多次include，有两种方式：  使用宏来防止同一个文件被多次包含  优点：可移植性好 缺点：无法防止宏名重复，难以排错   1234#ifndef _SOMEFILE_H_#define _SOMEFILE_H_#endif     使用编译器来防止同一个文件被多次包含  优点：可以防止宏名重复，易排错 缺点：可移植性不好，windows支持，">
+  <meta name="description" content="进程 进程概念   在没有操作系统之前，计算机只能运行一个程序，全部的资源都属于当前运行的程序。配置了操作系统后，引入了多道程序设计的概念，进程可以合理的隔离资源和运行环境、提升资源利用率。  进程是系统进行资源分配和调度的基本单位； 进程作为程序独立运行的载体保障程序正常执行； 进程的存在使得操作系统资源的利用率大幅提升；    进程实体   主存中的进程是一个连续的存储空间">
 <meta property="og:type" content="article">
-<meta property="og:title" content="避免头文件重复包含">
-<meta property="og:url" content="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/index.html">
+<meta property="og:title" content="进程管理">
+<meta property="og:url" content="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="为了避免一个文件被多次include，有两种方式：  使用宏来防止同一个文件被多次包含  优点：可移植性好 缺点：无法防止宏名重复，难以排错   1234#ifndef _SOMEFILE_H_#define _SOMEFILE_H_#endif     使用编译器来防止同一个文件被多次包含  优点：可以防止宏名重复，易排错 缺点：可移植性不好，windows支持，">
+<meta property="og:description" content="进程 进程概念   在没有操作系统之前，计算机只能运行一个程序，全部的资源都属于当前运行的程序。配置了操作系统后，引入了多道程序设计的概念，进程可以合理的隔离资源和运行环境、提升资源利用率。  进程是系统进行资源分配和调度的基本单位； 进程作为程序独立运行的载体保障程序正常执行； 进程的存在使得操作系统资源的利用率大幅提升；    进程实体   主存中的进程是一个连续的存储空间">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-18T17:09:01.000Z">
-<meta property="article:modified_time" content="2025-05-18T17:14:54.073Z">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-2_%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-3_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-4_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B2.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-5_%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90.png">
+<meta property="article:published_time" content="2025-06-03T16:46:47.000Z">
+<meta property="article:modified_time" content="2025-06-03T18:19:01.732Z">
 <meta property="article:author" content="Fabian">
-<meta property="article:tag" content="C++基础">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-2_%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B.png">
 
-<link rel="canonical" href="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/">
+<link rel="canonical" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -48,7 +53,7 @@
   };
 </script>
 
-  <title>避免头文件重复包含 | Fabian备忘录</title>
+  <title>进程管理 | Fabian备忘录</title>
   
 
 
@@ -297,7 +302,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
@@ -310,7 +315,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          避免头文件重复包含
+          进程管理
         </h1>
 
         <div class="post-meta">
@@ -321,7 +326,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-05-19 01:09:01 / 修改时间：01:14:54" itemprop="dateCreated datePublished" datetime="2025-05-19T01:09:01+08:00">2025-05-19</time>
+              <time title="创建时间：2025-06-04 00:46:47 / 修改时间：02:19:01" itemprop="dateCreated datePublished" datetime="2025-06-04T00:46:47+08:00">2025-06-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -329,7 +334,7 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
                 </span>
             </span>
 
@@ -346,7 +351,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>184</span>
+              <span>2.3k</span>
             </span>
 
         </div>
@@ -358,24 +363,138 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>  为了避免一个文件被多次include，有两种方式：</p>
+        <h1 id="进程">进程</h1>
+<h2 id="进程概念">进程概念</h2>
+<p>  在没有操作系统之前，计算机只能运行一个程序，全部的资源都属于当前运行的程序。配置了操作系统后，引入了<strong>多道程序设计</strong>的概念，进程可以合理的隔离资源和运行环境、提升资源利用率。</p>
 <ul>
-<li>使用宏来防止同一个文件被多次包含
-<ul>
-<li>优点：可移植性好</li>
-<li>缺点：无法防止宏名重复，难以排错</li>
-</ul></li>
+<li><strong>进程是系统进行资源分配和调度的基本单位；</strong></li>
+<li>进程作为程序独立运行的载体保障程序正常执行；</li>
+<li>进程的存在使得操作系统资源的利用率大幅提升；</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _SOMEFILE_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _SOMEFILE_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>  </p>
+<p> </p>
+<h2 id="进程实体">进程实体</h2>
+<p>  主存中的进程是一个连续的存储空间，称为<strong>进程控制块(PCB)</strong>。进程控制块是用于描述和控制进程运行的通用数据结构。进程控制块中存有进程状态、优先级、程序计数器、内存指针、上下文数据、IO状态信息、记账信息等多个进程当前状态和控制进程的信息：</p>
 <ul>
-<li>使用编译器来防止同一个文件被多次包含
-<ul>
-<li>优点：可以防止宏名重复，易排错</li>
-<li>缺点：可移植性不好，windows支持，其他平台未必</li>
-</ul></li>
+<li>标识符：唯一标记一个进程，用于区别其他进程；</li>
+<li>状态：标记进程的运行状态</li>
+<li>程序计数器：指向进程即将被执行的下一条指令的地址；</li>
+<li>内存指针：程序代码、进程数据相关的指针；</li>
+<li>上下文数据：存储进程执行时处理器中的数据；</li>
+<li>IO状态信息：被进程IO操作所占用的文件列表；</li>
+<li>记账信息：存储进程使用处理器的时间、时钟数总和等信息；</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
+<p>  除了上面的内容，进程还有一些其他信息。所有信息可以分为四大类：进程标识符、处理机状态、进程调度信息、进程控制信息。进程控制块使得进程是能够独立运行的基本单位，操作系统通过进程控制块信息来调度和控制进程。进程控制块是常驻内存的，存放在系统专门开辟的PCB区域内。</p>
+<p> </p>
+<h2 id="进程与线程">进程与线程</h2>
+<p>  进程(Process)和线程(Thread)是一对多的关系，一个进程内可以有一个或多个线程。</p>
+<p>  进程是系统进行资源分配和调度的基本单位，而<strong>线程是操作系统进行运行调度的最小单位</strong>。线程包含在进程之中，是进程中实际运行工作的单位。一个进程可以并发多个线程，每个线程执行不同的任务。</p>
+<p>  进程拥有资源，而线程不拥有资源，进程内部的线程共享进程资源。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">进程</th>
+<th style="text-align: center;">线程</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>资源</strong></td>
+<td style="text-align: center;">资源分配的基本单位</td>
+<td style="text-align: center;">不拥有资源</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>调度</strong></td>
+<td style="text-align: center;">独立调度的基本单位</td>
+<td style="text-align: center;">独立调度的最小单位</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>系统开销</strong></td>
+<td style="text-align: center;">进程系统开销大</td>
+<td style="text-align: center;">线程系统开销小</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>通信</strong></td>
+<td style="text-align: center;">进程IPC</td>
+<td style="text-align: center;">读写同一进程数据通信</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h1 id="五状态模型">五状态模型</h1>
+<ul>
+<li><strong>就绪状态</strong>：</li>
+</ul>
+<p>  当进程被分配到除CPU以外的所有必要资源后，就处于就绪状态。只要再获得CPU的使用权，就可以立即运行。在一个系统中多个处于就绪状态的进程通常排成一个队列，称为就绪队列。</p>
+<p> </p>
+<ul>
+<li><strong>执行状态</strong>：</li>
+</ul>
+<p>  进程获得CPU，其程序开始执行，这个状态为执行状态。在单处理机中，某个时刻只能有一个进程是处于执行状态。</p>
+<p> </p>
+<ul>
+<li><strong>阻塞状态</strong>：</li>
+</ul>
+<p>  进程因为某种原因，比如其他设备未就绪而无法执行，从而放弃CPU的状态称为阻塞状态。和就绪队列一样，操作系统也有阻塞队列，存放所有阻塞的进程。</p>
+<p> </p>
+<ul>
+<li><strong>创建状态</strong>：</li>
+</ul>
+<p>  进程创建分为两步，第一步分配PCB，第二步插入就绪队列。创建进程时拥有PCB但其他资源尚未就绪的状态称为创建状态。无论是系统创建的进程还是用户创建的进程都是一样的，操作系统提供fork接口创建进程。</p>
+<p> </p>
+<ul>
+<li><strong>终止状态</strong>：</li>
+</ul>
+<p>  进程终止也分为两步：首先进行系统清理，然后进行PCB归还。进程结束由系统清理或者归还PCB的状态称为终止状态。</p>
+<p> </p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-2_%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B.png"></p>
+<h1 id="进程同步">进程同步</h1>
+<h2 id="生产者-消费者模型">生产者-消费者模型</h2>
+<p>  有一群生产者进程在生产产品，并将这些产品提供给消费者进程进行消费。生产者进程和消费者进程可以并发执行，在两者之间设置了一个具有n个可缓冲区的缓冲池，生产者进程需要将所生产的产品放到其中一个缓冲区中，消费者进程可以从缓冲区中取走产品进行消费。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-3_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B.png"></p>
+<p>  生产者消费者模型在宏观上是没有问题的，当生产一个产品时缓冲区+1，当消费一个产品时缓冲区-1。但是计算机系统中是有问题的。计算机中的缓冲区位于高速缓存Cache上，生产者或消费者如果要操作缓冲区需要三个步骤：</p>
+<ol type="1">
+<li>把缓冲区中的信息取出来放入寄存器：register = count</li>
+<li>如果生产register+1；如果消费register-1</li>
+<li>把寄存器信息放回缓冲区里：count = register</li>
+</ol>
+<p>  这三个步骤但从生产者或消费者程序看没有问题，但两者并发执行时就会出差错:</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-4_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B2.png"></p>
+<p> </p>
+<h2 id="哲学家进餐问题">哲学家进餐问题</h2>
+<p>  有五个哲学家，他们的生活方式是交替的进行思考和进餐。哲学家们共同使用一张圆桌，分别坐在周围的五张椅子上，在圆桌上有五个碗和五支筷子。平时哲学家们只进行思考，饥饿时则试图取靠近他们的左、右两支筷子，只有两支筷子都被拿到时才能进餐，进餐完毕后分别放下左、右的筷子继续思考。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-5_%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90.png"></p>
+<p>  通常的情况下，假设一个哲学家饿了，首先拿起左边的筷子，如果发现右边的筷子被拿走，则需要等待右边的筷子释放，释放后才能拿起筷子吃饭。但有一种极端情况：五个哲学家同时拿起左边的筷子，此时发现他们右边的筷子都被拿走，所以五个哲学家都需要等待右边筷子释放，最终的结果就是五个哲学家被饿死。</p>
+<p> </p>
+<h2 id="进程同步-1">进程同步</h2>
+<p>  上面两个问题是操作系统中的经典问题，问题的根源在于：彼此之间没有通信。如果生产者通知消费者已经完成了一件生产，或者哲学家向旁边的哲学家说我要进餐了，就可以避免这些问题。</p>
+<p>  进程的同步用于解决这种<strong>对竞争资源在多进程间进行使用次序的协调，使得并发的多个进程之间可以有效使用资源和相互合作</strong>。</p>
+<p> </p>
+<h2 id="进程同步原则">进程同步原则</h2>
+<p>  临界资源指的是一些虽然作为共享资源却无法同时被多个线程共同访问的共享资源。当有进程在使用临界资源时，其他进程必须依据操作系统的同步机制等待占用进程释放该共享资源才可重新竞争使用共享资源。为了对临界资源进行约束，提出了进程同步的四个原则：</p>
+<ol type="1">
+<li>空闲让进：资源无占用时允许进程使用；</li>
+<li>忙则等待：资源有占用，其他请求进程需要等待；</li>
+<li>有限等待：保证有限等待时间能够使用资源；</li>
+<li>让权等待：进程等待时，需要让出CPU；</li>
+</ol>
+<p> </p>
+<h2 id="线程同步">线程同步</h2>
+<p>  和进程同步一样，一个进程内有多个线程并发使用，也会产生生产者-消费者问题和哲学家进餐问题，所以进程内的多线程也需要同步。</p>
+<h1 id="linux的进程管理">Linux的进程管理</h1>
+<p>进程同步方法</p>
+<ul>
+<li>消息队列</li>
+<li>共享存储</li>
+<li>信号量</li>
+</ul>
+<p>线程同步的方法：</p>
+<ol type="1">
+<li>互斥量</li>
+<li>读写锁</li>
+<li>自旋锁</li>
+<li>条件变量</li>
+</ol>
 
     </div>
 
@@ -385,7 +504,7 @@ mjx-container[display="true"] + br {
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C-%E5%9F%BA%E7%A1%80/" rel="tag"># C++基础</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
           </div>
 
         
@@ -394,13 +513,10 @@ mjx-container[display="true"] + br {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/C/C++/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="prev" title="C++面试问题">
-      <i class="fa fa-chevron-left"></i> C++面试问题
+    <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" rel="prev" title="操作系统概述">
+      <i class="fa fa-chevron-left"></i> 操作系统概述
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/C/C++/%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2/" rel="next" title="类型转换">
-      类型转换 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -459,6 +575,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">进程概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%AE%9E%E4%BD%93"><span class="nav-number">1.2.</span> <span class="nav-text">进程实体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">进程与线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">五状态模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">3.</span> <span class="nav-text">进程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">生产者-消费者模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90%E9%97%AE%E9%A2%98"><span class="nav-number">3.2.</span> <span class="nav-text">哲学家进餐问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5-1"><span class="nav-number">3.3.</span> <span class="nav-text">进程同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5%E5%8E%9F%E5%88%99"><span class="nav-number">3.4.</span> <span class="nav-text">进程同步原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">3.5.</span> <span class="nav-text">线程同步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">Linux的进程管理</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
