@@ -236,12 +236,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -290,6 +290,207 @@ mjx-container[display="true"] + br {
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">编程思想——泛型编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-05-14 11:29:26" itemprop="dateCreated datePublished" datetime="2025-05-14T11:29:26+08:00">2025-05-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-21 11:29:38" itemprop="dateModified" datetime="2025-05-21T11:29:38+08:00">2025-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>  如果说面向对象是一种通过间接层来调用函数以换取一种抽象（创建一个接口类），那么泛型编程则是更直接的抽象，它不会因为间接层而损失效率。不同于面向对象的动态期多态，泛型编程是一种静态期多态，通过编译器生成最直接的代码。泛型编程可以将算法与特定类型、结构剥离，尽可能复用代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过函数的方法实现输出最大值</span></span><br><span class="line"><span class="comment">//需要针对不同的输入参数写不同的代码</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a: b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">max</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a: b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1.3</span>, <span class="number">2.4</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过泛型编程的方法实现输出两数的最大值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 模板函数</span></span><br><span class="line"><span class="comment">//class不是面向对象的class，这个class表示T是个泛型</span></span><br><span class="line"><span class="comment">//T可以表示任何类型，具体代表哪个数据类型取决于编译期代码生成的是什么类型</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;  </span></span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? a:b;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    <span class="comment">//编译期时，编译器自动生成不同类型的方法</span></span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1</span>, <span class="number">2</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">1.3</span>, <span class="number">2.4</span>) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="string">'a'</span>, <span class="string">'b'</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p> </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">泛型编程的主要工作不是程序员，而是编译器</span></span><br><span class="line"><span class="comment">编译器会在编译期间根据代码自动生成方法</span></span><br><span class="line"><span class="comment">由于大量工作是编译器操作，可能通用的泛型函数并不能满足我们的需求</span></span><br><span class="line"><span class="comment">所以我们通常还需要“特化”处理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//特化</span></span><br><span class="line"><span class="comment">//如果是字符串的话特殊处理</span></span><br><span class="line"><span class="comment">//其余的输入可以让输入类型不相同，返回值统一为int</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">max</span><span class="params">(<span class="type">char</span>* a, <span class="type">char</span>* b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> (<span class="built_in">strcmp</span>(a, b) &gt; <span class="number">0</span> ?  (a) : (b));</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(T1 a, T2 b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(a &gt; b ? a : b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    <span class="type">char</span>* s1 = <span class="string">"hello"</span>;</span><br><span class="line">    <span class="type">char</span>* s2 = <span class="string">"world"</span>;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(s1, s2) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">4.5</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  泛型编程是把算法和具体的数据结构分开了，我们不需要考虑类型本身是什么，直接用一套逻辑把所有的类型都涵盖了，如果需要针对某些特殊类型做处理，我们就进行单独的“特化”。这里比较复杂的操作是编译器的推理过程，程序员所做的工作无非是把该定义好的类型通知编译器，让编译器帮助我们做处理。</p>
+<p> </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">泛型编程的思想可以做一些算法优化，比如下面的等差数列求和</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1+2+3...+100 ==&gt; n*(n+1)/2 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这里用泛型不是用泛型编程可以传递广泛类型的属性，这里直接定义了int</span></span><br><span class="line"><span class="comment">//这里是借用泛型编程的另一个特征：编译期推理，让程序自动生成代码</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="type">int</span> n&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sum</span></span><br><span class="line">{</span><br><span class="line"><span class="comment">// 递推的思路，求前n个数的和可以表示为前(n-1)个数的和+n</span></span><br><span class="line"><span class="comment">// Sum(n) = Sum(n-1)+n</span></span><br><span class="line"><span class="comment">// 这里声明一个enum的成员，内部的枚举值是N，N的计算方法是递归求和</span></span><br><span class="line"><span class="comment">// 利用泛型编程的自动推理完成编译期计算</span></span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Value</span> {</span><br><span class="line">        N = Sum&lt;n<span class="number">-1</span>&gt;::N+n</span><br><span class="line">	};</span><br><span class="line">};</span><br><span class="line"><span class="comment">//下面这个就是递推的基准点，n=1的特化</span></span><br><span class="line"><span class="comment">// 如果不设置，那么就会无穷递归</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sum</span>&lt;<span class="number">1</span>&gt;</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Value</span> {N = <span class="number">1</span>};    <span class="comment">// n=1</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//这里只需要输出结果就行，运算过程中在编译期就完成了</span></span><br><span class="line">    cout &lt;&lt; Sum&lt;<span class="number">100</span>&gt;::N &lt;&lt; endl; <span class="comment">//计算1+2+……+99+100</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>  <strong>模板编程的难点很大程度上在于对编译器的理解，我们需要直到怎么帮助编译器提供需要生成代码的信息。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">编程思想——设计模式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-05-14 11:28:34" itemprop="dateCreated datePublished" datetime="2025-05-14T11:28:34+08:00">2025-05-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-05-20 20:18:16" itemprop="dateModified" datetime="2025-05-20T20:18:16+08:00">2025-05-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.3k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="设计模式">设计模式</h1>
+<p>  一个模式描述了一个不断发生问题及这个问题的解决方案；模式是前人的设计经验上总结出来的对于一些普遍存在的问题提供的通用解决方案，比如单例模式、观察者模式等；</p>
+<p>  软件工程中有很多模式，面向对象常见的有23种设计模式，可以分为创建型(单例)，结构型(适配器)和行为型(观察者)模型。设计模式不是万能的，它建立在系统变化点上，哪里有变化哪里就可以用。设计模式是为了解耦合，为了扩展，它通常是演变过来的，需要演变才能准确定位。设计模式是一种软件设计方法，不是标准，面目前大部分框架中都包含了大量的设计模式思想。</p>
+<p>  </p>
+<h1 id="单例模式">单例模式</h1>
+<p>  有些时候，我们需要整个程序中有且只有一个实例，比如系统日志、Windows资源管理器窗口，数据库分配主键等操作。单例的实现思路：</p>
+<ol type="1">
+<li>Singleton拥有一个私有的构造函数，确保用户无法通过new直接实例它；</li>
+<li>包含一个静态私有成员变量instance与静态公有方法Instance()，让外部通过Instance()来获取实例；</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Singleton.h</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Singleton</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="comment">//只有静态的方法才能访问静态的变量</span></span><br><span class="line">	<span class="function"><span class="type">static</span> <span class="type">const</span> Singleton* <span class="title">getInstance</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="type">static</span> <span class="type">void</span> <span class="title">DoSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; <span class="string">"Do Something"</span> &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"><span class="comment">// 将构造和析构函数私有化，防止外部访问</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="built_in">Singleton</span>();</span><br><span class="line">	~<span class="built_in">Singleton</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用静态变量帮助解决资源的分配和释放</span></span><br><span class="line"><span class="comment">// 肯定不能使用栈上的对象，不然会销毁</span></span><br><span class="line"><span class="comment">// 如果使用堆上的对象，在getInstance()方法中new出来，那就涉及到资源释放问题</span></span><br><span class="line"><span class="comment">// 析构函数是private的，外部是无法直接释放的</span></span><br><span class="line"><span class="comment">// 静态变量在程序中属于全局区，但声明了private后可见区域只在类内</span></span><br><span class="line"><span class="comment">// 所以可以让这个实例随着程序的产生而产生，随着程序的灭亡而灭亡</span></span><br><span class="line">	<span class="type">static</span> Singleton* This; </span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Singleton.cpp</span></span><br><span class="line"></span><br><span class="line">Singleton* Singleton::This = <span class="literal">nullptr</span>;  <span class="comment">//静态变量需要显式声明</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">const</span> Singleton* <span class="title">Singleton::getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//这里只是简化了，还需要考虑多线程的情况</span></span><br><span class="line">	<span class="keyword">if</span> (!This)</span><br><span class="line">	{</span><br><span class="line">		This = <span class="keyword">new</span> Singleton;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> This;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Singleton::<span class="built_in">Singleton</span>()</span><br><span class="line">{</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Singleton::~<span class="built_in">Singleton</span>()</span><br><span class="line">{</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	Singleton::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">DoSomething</span>();</span><br><span class="line"></span><br><span class="line">	Singleton::<span class="built_in">getInstance</span>()-&gt;<span class="built_in">DoSomething</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  </p>
+<p>  上面的单例模式实现，程序开始时全局实例Singleton*
+Singleton::This为空，只有我们主动调用Singleton::getInstance()-&gt;DoSomething()方法时才会产生这个对象的实例。我们也可以采用饿汉的方式，程序启动时就创建实例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Singleton.cpp</span></span><br><span class="line"></span><br><span class="line">Singleton* Singleton::This = <span class="keyword">new</span> <span class="built_in">Singleton</span>();  <span class="comment">//这里直接new</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">const</span> Singleton* <span class="title">Singleton::getInstance</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//这里只是简化了，还需要考虑多线程的情况</span></span><br><span class="line">	<span class="keyword">if</span> (!This)</span><br><span class="line">	{</span><br><span class="line">		This = <span class="keyword">new</span> Singleton;</span><br><span class="line">	}</span><br><span class="line">	<span class="keyword">return</span> This;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Singleton::<span class="built_in">Singleton</span>()</span><br><span class="line">{</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Singleton::~<span class="built_in">Singleton</span>()</span><br><span class="line">{</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  </p>
+<h1 id="观察者模式">观察者模式</h1>
+<p>  在观察者模式中，观察者需要直接订阅目标事件；在目标发出内容改变的事件后，直接接收事件并作出相应；对象通常是一对多关系。常见于各种MVC的框架中，Model的变化通知各种类型的View时几乎都存在这种模式。</p>
+<p>  观察者模式的实现思路：把问题的职责解耦合，将Observable和Observer抽象开，分清抽象和实体。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//观察者类</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Observer</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Observer</span>() { ; }</span><br><span class="line">	<span class="keyword">virtual</span> ~<span class="built_in">Observer</span>() { ; }</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 当被观察对象发生变化时，通知被观察者调用这个方法</span></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">void</span>* pArg)</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br></pre></td></tr></table></figure>
+<p><strong>用list列表来存储被观察清单。</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//被观察对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Observer</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Observerable</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Observerable</span>();</span><br><span class="line">	<span class="keyword">virtual</span> ~<span class="built_in">Observerable</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 注册观察者(加入被观察列表)</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Attach</span><span class="params">(Observer* pOb)</span></span>;</span><br><span class="line">	<span class="comment">// 反注册观察者</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Detach</span><span class="params">(Observer* pOb)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetObseverCount</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">return</span> _Obs.<span class="built_in">size</span>();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">DetachAll</span><span class="params">()</span>  <span class="comment">//清理所有订阅者</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		_Obs.<span class="built_in">clear</span>();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">GetSomeNews</span><span class="params">(string str)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">SetChange</span>(str);</span><br><span class="line">	}</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="function"><span class="type">void</span>  <span class="title">SetChange</span><span class="params">(string news)</span></span>;   <span class="comment">// 有变化，需要通知</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">// 通知观察者</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Notify</span><span class="params">(<span class="type">void</span>* pArg)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">bool</span> _bChange;</span><br><span class="line">	list&lt;Observer*&gt; _Obs;  <span class="comment">//观察对象列表</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册观察者</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Observerable::Attach</span><span class="params">(Observer* pOb)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span> (pOb == <span class="literal">NULL</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 看看当前列表中是否有这个观察者</span></span><br><span class="line">	<span class="keyword">auto</span> it = _Obs.<span class="built_in">begin</span>();</span><br><span class="line">	<span class="keyword">for</span> (; it != _Obs.<span class="built_in">end</span>(); it++)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span> (*it == pOb)</span><br><span class="line">		{</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	_Obs.<span class="built_in">push_back</span>(pOb);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反注册观察者</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Observerable::Detach</span><span class="params">(Observer* pOb)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span> ((pOb == <span class="literal">NULL</span>) || (_Obs.<span class="built_in">empty</span>() == <span class="literal">true</span>))</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	_Obs.<span class="built_in">remove</span>(pOb);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Observerable::SetChange</span><span class="params">(string news)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	_bChange = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">Notify</span>( ( (<span class="type">void</span>*)news.<span class="built_in">c_str</span>() ));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Observerable::Notify</span><span class="params">(<span class="type">void</span>* pArg)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">if</span> (_bChange == <span class="literal">false</span>)</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 看看当前列表中是否有这个观察者</span></span><br><span class="line">	<span class="keyword">auto</span> it = _Obs.<span class="built_in">begin</span>();</span><br><span class="line">	<span class="keyword">for</span> (; it != _Obs.<span class="built_in">end</span>(); it++)</span><br><span class="line">	{</span><br><span class="line">		(*it)-&gt;<span class="built_in">Update</span>(pArg);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	_bChange = <span class="literal">false</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//被观察对象</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">News</span> : <span class="keyword">public</span> Observerable</span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">GetSomeNews</span><span class="params">(string str)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">SetChange</span>(<span class="string">"News: "</span> + str);</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">//两个观察者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User1</span>:<span class="keyword">public</span> Observer</span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">void</span>* pArg)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; <span class="string">"User1 Got News: "</span> &lt;&lt; <span class="built_in">reinterpret_cast</span>&lt;<span class="type">char</span>*&gt;(pArg) &lt;&lt;endl;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">User2</span> :<span class="keyword">public</span> Observer</span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Update</span><span class="params">(<span class="type">void</span>* pArg)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; <span class="string">"User2 Got News: "</span> &lt;&lt; <span class="built_in">reinterpret_cast</span>&lt;<span class="type">char</span>*&gt;(pArg) &lt;&lt;endl;</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    User1 u1;</span><br><span class="line">    User2 u2;</span><br><span class="line"></span><br><span class="line">    News n1;</span><br><span class="line">    n1.<span class="built_in">GetSomeNews</span>(<span class="string">"t0"</span>); <span class="comment">//此时没人订阅，什么事情都不会发生</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//订阅</span></span><br><span class="line">    n1.<span class="built_in">Attach</span>(&amp;u1);</span><br><span class="line">    n1.<span class="built_in">Attach</span>(&amp;u2);</span><br><span class="line">    n1.<span class="built_in">GetSomeNews</span>(<span class="string">"t1"</span>);</span><br><span class="line"></span><br><span class="line">    n1.<span class="built_in">Detach</span>(&amp;u2);</span><br><span class="line">    n1.<span class="built_in">GetSomeNews</span>(<span class="string">"t2"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  观察者模式帮助我们把职责关系梳理清晰了，我们如果要增加一个新的观察者，直接继承一个Observer类，实现一下消息更新的虚方法即可。</p>
+<p> </p>
+<h1 id="适配器adapter模式">适配器(Adapter)模式</h1>
+<p>  适配器模式可以理解为一个插口转换器，去不同国家旅游时可以适配不同的插座接口。适配器将类接口转换为客户端期望的另一个接口，让接口更兼容。适配器模式的动机是：如果可以更改接口，则可以重用现有的软件。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//适配器模式</span></span><br><span class="line"><span class="comment">//场景：</span></span><br><span class="line"><span class="comment">// 已经有一个矩形处理类LegacyRectangle，可以画一个矩形</span></span><br><span class="line"><span class="comment">// 此时收到需求，在画矩形之前需要额外输入一些别的东西，原有的LegacyRectangle类不能满足需求</span></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//原始的矩形处理类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LegacyRectangle</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">LegacyRectangle</span>(<span class="type">double</span> x1, <span class="type">double</span> y1, <span class="type">double</span> x2, <span class="type">double</span> y2)</span><br><span class="line">	{</span><br><span class="line">		_x1 = x1;</span><br><span class="line">		_y1 = y1;</span><br><span class="line">		_x2 = x2;</span><br><span class="line">		_y2 = y2;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">LegacyDraw</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; <span class="string">"LegacyRectangle:: LegacyDraw()"</span> &lt;&lt; _x1 &lt;&lt; <span class="string">" "</span> &lt;&lt; _y1 &lt;&lt; <span class="string">" "</span> &lt;&lt; _x2 &lt;&lt; <span class="string">" "</span> &lt;&lt; _y2 &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">double</span> _x1;</span><br><span class="line">	<span class="type">double</span> _y1;</span><br><span class="line">	<span class="type">double</span> _x2;</span><br><span class="line">	<span class="type">double</span> _y2;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个抽象类和外部对接，让外部去调用这个接口</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Rectangle</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Draw</span><span class="params">(string str)</span> </span>= <span class="number">0</span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建内部接口，来实现对原始LegacyRectangle代码的复用</span></span><br><span class="line"><span class="comment">//有两种方式：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一种适配的方式：使用多重继承，把原始的类一并继承</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RectangleAdapter</span>: <span class="keyword">public</span> Rectangle, <span class="keyword">public</span> LegacyRectangle</span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">RectangleAdapter</span>(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> w, <span class="type">double</span> h) :</span><br><span class="line">		<span class="built_in">LegacyRectangle</span>(x, y, x + w, y + h)</span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; <span class="string">"RectangleAdapter(int x, int y, int w, int h)"</span> &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Draw</span><span class="params">(string str)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; <span class="string">"RectangleAdapter::Draw()"</span> &lt;&lt; endl;</span><br><span class="line">		<span class="built_in">LegacyDraw</span>();  <span class="comment">//实际使用的还是原始的方法</span></span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第二种适配的方式：组合方式的Adapter，把原始的类当作成员变量</span></span><br><span class="line"><span class="comment">// 这种方式更常见，因为可以避免多重继承方式的强耦合性</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RectangleAdapter2</span> :<span class="keyword">public</span> Rectangle</span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">RectangleAdapter2</span>(<span class="type">double</span> x, <span class="type">double</span> y, <span class="type">double</span> w, <span class="type">double</span> h) :</span><br><span class="line">		_lRect(x, y, x + w, y + h)</span><br><span class="line">	{</span><br><span class="line">		cout &lt;&lt; <span class="string">"RectangleAdapter2(int x, int y, int w, int h)"</span> &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Draw</span><span class="params">(string str)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		cout &lt;&lt; <span class="string">"RectangleAdapter2::Draw()"</span> &lt;&lt; endl;</span><br><span class="line">		_lRect.<span class="built_in">LegacyDraw</span>();</span><br><span class="line">	}</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	LegacyRectangle _lRect;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">double</span> x = <span class="number">20.0</span>, y = <span class="number">50.0</span>, w = <span class="number">300.0</span>, h = <span class="number">200.0</span>;</span><br><span class="line">	<span class="comment">//实际创建的是适配器对象，但接口调用用的是Rectangle接口类</span></span><br><span class="line">	<span class="function">RectangleAdapter <span class="title">ra</span><span class="params">(x, y, w, h)</span></span>;  </span><br><span class="line">	Rectangle* pR = &amp;ra;    </span><br><span class="line">	pR-&gt;<span class="built_in">Draw</span>(<span class="string">"Testing Adapter"</span>);</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="function">RectangleAdapter2 <span class="title">ra2</span><span class="params">(x, y, w, h)</span></span>;</span><br><span class="line">	Rectangle* pR2 = &amp;ra2;</span><br><span class="line">	pR2-&gt;<span class="built_in">Draw</span>(<span class="string">"Testing2 Adapter"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1429,160 +1630,10 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95/" class="post-title-link" itemprop="url">9、内核调试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-02-05 20:20:26 / 修改时间：20:25:00" itemprop="dateCreated datePublished" datetime="2025-02-05T20:20:26+08:00">2025-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">软件调试</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%B0%83%E8%AF%95/" class="post-title-link" itemprop="url">8、多线程调试</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-02-05 20:20:19 / 修改时间：20:24:47" itemprop="dateCreated datePublished" datetime="2025-02-05T20:20:19+08:00">2025-02-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">软件调试</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1649,20 +1700,20 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1711,7 +1762,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/git/git%E6%96%8
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">117k</span>
+    <span title="站点总字数">118k</span>
 </div>
 
 <!--
