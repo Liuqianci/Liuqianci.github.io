@@ -182,6 +182,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/CPU%E8%B0%83%E8%AF%95%E6%94%AF%E6%8C%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/CPU%E8%B0%83%E8%AF%95%E6%94%AF%E6%8C%81/" class="post-title-link" itemprop="url">1、CPU调试支持</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-05 20:19:08 / 修改时间：21:22:54" itemprop="dateCreated datePublished" datetime="2025-02-05T20:19:08+08:00">2025-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%B0%83%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">软件调试</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>228</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="软件断点">软件断点</h1>
+<p>软件断点就是INT3指令</p>
+<ul>
+<li>机器码为1字节，内存ASCII码为0xCC，经典的“烫烫烫烫”；</li>
+<li>IDE下断点，就是在那条指令的位置插入INT3，或者那个字节替换为0xCC;</li>
+<li>软件断点没有数量限制，很有灵活性</li>
+<li>软件断点的局限性：
+<ul>
+<li>由于软件断点是插入或者修改指令，对于在ROM(只读存储器)中执行的程序比如BIOS或者其他固件程序，无法动态增加软件断点，只能用硬件断点；</li>
+<li>属于代码类断点(可以让CPU执行到代码段内的某个地址时停下来)，所以不适用于数据段和I/O空间；</li>
+</ul></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/Windows/dos%E8%84%9A%E6%9C%AC/Windows/dos%E8%84%9A%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -292,7 +378,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-16 10:49:23" itemprop="dateModified" datetime="2025-05-16T10:49:23+08:00">2025-05-16</time>
+                <time title="修改时间：2025-06-04 18:02:16" itemprop="dateModified" datetime="2025-06-04T18:02:16+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -310,7 +396,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.9k</span>
+              <span>3.1k</span>
             </span>
 
         </div>
@@ -322,10 +408,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="枚举">枚举</h1>
-<p>使用#define和const可以创建符号常量，使用enum不仅可以创建符号常量，还能定义新的数据类型。</p>
+          <h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><p>enum提供了创建常量的方式，可以替代const。使用#define和const可以创建符号常量，使用enum不仅可以创建符号常量，还能定义新的数据类型。</p>
 <p>枚举类型的声明和定义：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明，创建一个数据类型，还没有分配存储空间</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">wT</span>&#123;</span><br><span class="line">    Monday,</span><br><span class="line">    Tuseday,</span><br><span class="line">    Wednesday,</span><br><span class="line">    Thursday,</span><br><span class="line">    Firday,</span><br><span class="line">    Saturday,</span><br><span class="line">    Sunday</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义，创建一个对象</span></span><br><span class="line">wT weekday;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明，创建一个数据类型，还没有分配存储空间</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">wT</span>&#123;</span><br><span class="line">    Monday,</span><br><span class="line">    Tuseday,</span><br><span class="line">    Wednesday,</span><br><span class="line">    Thursday,</span><br><span class="line">    Firday,</span><br><span class="line">    Saturday,</span><br><span class="line">    Sunday</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果不给枚举常量赋初值，编译器会为每个枚举常量赋一个不同的整形值，从0开始。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义，创建一个对象</span></span><br><span class="line">wT weekday;</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">wT</span>&#123;Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday&#125;; <span class="comment">// 声明wT类型</span></span><br><span class="line">	wT weekday;</span><br><span class="line">	weekday = Monday;</span><br><span class="line">	weekday = Tuesday;</span><br><span class="line">	<span class="comment">//weekday = 1;             // 错误 不能直接给int值，只能赋值成wT定义好的类型值</span></span><br><span class="line">    <span class="comment">//可以写成weekday = wT(1),但是涉及类型转换的写法不推荐</span></span><br><span class="line">	cout &lt;&lt; weekday &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Monday = 0;             // 错误 类型值不能做左值，不是有存储空间的变量</span></span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> a = Wednesday; <span class="comment">//内部有类型转换</span></span><br><span class="line">	cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用细节：</p>
 <ul>
@@ -333,28 +418,34 @@
 <li>非枚举变量不可以赋值给枚举变量；</li>
 <li>枚举变量可以赋值给非枚举变量；</li>
 </ul>
-<h1 id="结构体和联合体">结构体和联合体</h1>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结构体</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    Score s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//联合体</span></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Score</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> sc;</span><br><span class="line">    <span class="type">char</span> level;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="存储结构与结构体数据对齐">存储结构与结构体数据对齐</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> <span class="title class_">Score</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> ds;    <span class="comment">//8字节</span></span><br><span class="line">		<span class="type">char</span> level;   <span class="comment">//1字节</span></span><br><span class="line">	&#125;;                  <span class="comment">//按照最大值，占用8字节</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> name[<span class="number">6</span>];       <span class="comment">//6字节                           </span></span><br><span class="line">		<span class="type">int</span> age;            <span class="comment">//32位环境 4字节</span></span><br><span class="line">		Score s;            <span class="comment">//8字节对齐</span></span><br><span class="line">	&#125;;                      <span class="comment">//整体按照8字节对齐，整体占用24字节</span></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Score) &lt;&lt; endl;      <span class="comment">// 8</span></span><br><span class="line">	</span><br><span class="line">	Student s1;</span><br><span class="line">    <span class="comment">//注意s1.name=“lili”写法是错误的，编译不过</span></span><br><span class="line">    <span class="comment">//数组名不能当左值</span></span><br><span class="line">	<span class="built_in">strcpy_s</span>(s1.name, <span class="string">&quot;lili&quot;</span>);</span><br><span class="line">	s1.age = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//联合体占用同一块内存空间</span></span><br><span class="line">	s1.s.ds = <span class="number">95.5</span>;</span><br><span class="line">	s1.s.level = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Student) &lt;&lt; endl;    <span class="comment">// 24     </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>  联合体内部公用一块内存空间，所以内部占用空间按照最大的数据类型来存储，联合体适合内存受限的场景，比如嵌入式系统。也因为这个原因，同一时间只有一个成员有效，写入一个成员时会覆盖其他成员。</p>
+<p>&emsp;&emsp;enum只是定义了一个常量集合，里面没有元素，在内存中是当作int存储的。sizeof的值为4.</p>
+<h1 id="结构体和联合体"><a href="#结构体和联合体" class="headerlink" title="结构体和联合体"></a>结构体和联合体</h1><p>&emsp;&emsp;结构体与数组有两点不同：结构体可以在一个结构中声明不同的数据类型；相同的结构体可以相互赋值，但数组不行。</p>
+<p>&emsp;&emsp;联合体(共用体)都是由不同的数据类型成员组成，但联合体同一时间只存放一个被选中的成员。如果对联合体的不同成员赋值，将会对其他成员重写。共用体的用途是当数据项使用多种格式单不会同时使用时，可以节省空间。</p>
+<p>&emsp;&emsp;结构体和联合体的在内存中是小端存储的，从低地址开始存放。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//结构体</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">6</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    Score s;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//联合体</span></span><br><span class="line"><span class="keyword">union</span> <span class="title class_">Score</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> sc;</span><br><span class="line">    <span class="type">char</span> level;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//结构体不允许对结构体本身进行递归定义，但可以使用指针类型指向本类型</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">person</span>* per;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结构体变量可以在定义时进行初始化赋值，赋值必须按顺序</span></span><br><span class="line"><span class="comment">//如果只定义前面的变量，后面未初始化的成员中，数值型和字符型的自动赋零</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">person</span>&#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">&#125;boy1 = &#123;<span class="string">&quot;xiaoming&quot;</span>, <span class="string">&#x27;M&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="结构体中的位字段"><a href="#结构体中的位字段" class="headerlink" title="结构体中的位字段"></a>结构体中的位字段</h2><p>&emsp;&emsp;有些信息在存储时，并不需要占用一个完整的字节，只需要占用几个或一个二进制位。位了节省存储空间，C预言提供了一种数据结构，称为“位域”或“位段”。</p>
+<p>&emsp;&emsp;C/C++允许指定占用特定位数的结构成员。字段的类型应该为<strong>整形或枚举</strong>，接下来是冒号，冒号后面指定使用的位数，且可以使用没有名称的字段来提供间距。每个成员都被称为位字段。赋值时不能超过位域的允许范围，如果超过，仅将等号右侧值的低位赋给位域。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">reg</span>&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> SN:<span class="number">4</span>;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> :<span class="number">4</span>;</span><br><span class="line">    <span class="type">bool</span> good:<span class="number">4</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以像通常那样初始化这些字段，也可以使用标准的结构体表示法来访问位字段：</span></span><br><span class="line">reg r = &#123;<span class="number">14</span>, <span class="literal">true</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="存储结构与结构体数据对齐"><a href="#存储结构与结构体数据对齐" class="headerlink" title="存储结构与结构体数据对齐"></a>存储结构与结构体数据对齐</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">union</span> <span class="title class_">Score</span> </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">double</span> ds;    <span class="comment">//8字节</span></span><br><span class="line">		<span class="type">char</span> level;   <span class="comment">//1字节</span></span><br><span class="line">	&#125;;                  <span class="comment">//按照最大值，占用8字节</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">Student</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">char</span> name[<span class="number">6</span>];       <span class="comment">//6字节                           </span></span><br><span class="line">		<span class="type">int</span> age;            <span class="comment">//32位环境 4字节</span></span><br><span class="line">		Score s;            <span class="comment">//8字节对齐</span></span><br><span class="line">	&#125;;                      <span class="comment">//整体按照8字节对齐，整体占用24字节</span></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Score) &lt;&lt; endl;      <span class="comment">// 8</span></span><br><span class="line">	</span><br><span class="line">	Student s1;</span><br><span class="line">    <span class="comment">//注意s1.name=“lili”写法是错误的，编译不过</span></span><br><span class="line">    <span class="comment">//数组名不能当左值</span></span><br><span class="line">	<span class="built_in">strcpy_s</span>(s1.name, <span class="string">&quot;lili&quot;</span>);</span><br><span class="line">	s1.age = <span class="number">16</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//联合体占用同一块内存空间</span></span><br><span class="line">	s1.s.ds = <span class="number">95.5</span>;</span><br><span class="line">	s1.s.level = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; <span class="built_in">sizeof</span>(Student) &lt;&lt; endl;    <span class="comment">// 24     </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;<strong>联合体内部公用一块内存空间，所以内部占用空间按照最大的数据类型来存储</strong>，联合体适合内存受限的场景，比如嵌入式系统。也因为这个原因，同一时间只有一个成员有效，写入一个成员时会覆盖其他成员。</p>
+<p>&emsp;&emsp;空结构体（不含数据成员）的大小是1，不是0。编译器必须要为其分配一个存储空间用于占位。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">s1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s1) = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">s2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> x;</span><br><span class="line">    <span class="type">short</span> y;</span><br><span class="line">    <span class="type">int</span> z;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s2) = <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
-<p><img
-src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png" /></p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.png" alt=""></p>
 <ul>
-<li>结构体的每个成员在内存中的起始地址必须满足其类型的对其要求，32位系统要求如下：
-<ul>
+<li>结构体的每个成员在内存中的起始地址必须满足其类型的对其要求，32位系统要求如下：<ul>
 <li>char：任何地址</li>
 <li>short：偶数倍地址</li>
 <li>int：4的整数倍、</li>
 <li>float：4的整数倍</li>
 <li>double：8的整数倍</li>
 <li>指针：4的整数倍</li>
-</ul></li>
 </ul>
-<p>  可以看到，如果结构体中存在一个double，则会按照8字节来对齐。然后所有成员按照顺序依次分配内存，编译器会在成员之间插入填充字节，确保下一个成员满足对齐要求。如果存在结构体嵌套，也按照这个对齐规则，所有结构体中的最大成员值来进行内存对齐。结构体的总大小波许是最大成员对齐值的整数倍。</p>
-<p>  程序是可以修改默认编译选项的，修改结构体内存分配，如果设置为1，那就是连续的内存分配布局：</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Visual C++：</span><br><span class="line"><span class="selector-id">#pragma</span> <span class="built_in">pack</span>(n)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g++:</span><br><span class="line"><span class="built_in">__attribute__</span>(<span class="built_in">aligned</span>(n))</span><br><span class="line"><span class="built_in">__attribute__</span>(__packed__)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;可以看到，如果结构体中存在一个double，则会按照8字节来对齐。然后所有成员按照顺序依次分配内存，编译器会在成员之间插入填充字节，确保下一个成员满足对齐要求。如果存在结构体嵌套，也按照这个对齐规则，所有结构体中的最大成员值来进行内存对齐。结构体的总大小波许是最大成员对齐值的整数倍。</p>
+<p>&emsp;&emsp;有一点需要注意，如果结构体中存放了一个数组，数组是按照单个变量一个一个摆放的，不要把数组视为一个整体。</p>
+<p>&emsp;&emsp;程序是可以修改默认编译选项的，修改结构体内存分配，如果设置为1，那就是连续的内存分配布局：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Visual C++：</span><br><span class="line"><span class="selector-id">#pragma</span> <span class="built_in">pack</span>(push)  <span class="comment">//将当前pack设置压栈保存（不一定需要）</span></span><br><span class="line"><span class="selector-id">#pragma</span> <span class="built_in">pack</span>(n)</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#pragma</span> <span class="built_in">pack</span>(pop)  <span class="comment">//如果之前压栈了，这里需要恢复</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">g++:</span><br><span class="line"><span class="built_in">__attribute__</span>(<span class="built_in">aligned</span>(n))</span><br><span class="line"><span class="built_in">__attribute__</span>(__packed__)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -611,7 +702,7 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 15:58:07" itemprop="dateModified" datetime="2025-06-04T15:58:07+08:00">2025-06-04</time>
+                <time title="修改时间：2025-06-04 16:08:10" itemprop="dateModified" datetime="2025-06-04T16:08:10+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -641,20 +732,24 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><p>&emsp;&emsp;内存由很多内存单元组成。这些内存单元用于存放各种类型的数据。为了标识内存单元，计算机对内存的每个单元都进行了编号，这个编号就称为<strong>内存地址</strong>，内存地址决定了内存单元在内存中的位置。程序员并不需要记住这些内存地址，C++的编译器让我们可以通过名字来访问这些内存位置。</p>
-<p>&emsp;&emsp;指针本身就是一个变量，其符合变量定义的基本形式，它存储的值是内存地址。对于一个基本类型T，T&#42; 是“到T的指针”类型，一个类型为T&#42;的变量能够保存一个类型为T的对象的地址。</p>
-<p>&emsp;&emsp;通过一个指针访问它所指向的地址的过程称为<strong>间接访问</strong>(indirection)或者<strong>引用指针</strong>(dereferencing the point)。这个用于执行间接访问的操作符是单目操作符*。</p>
+          <h1 id="指针">指针</h1>
+<p>  内存由很多内存单元组成。这些内存单元用于存放各种类型的数据。为了标识内存单元，计算机对内存的每个单元都进行了编号，这个编号就称为<strong>内存地址</strong>，内存地址决定了内存单元在内存中的位置。程序员并不需要记住这些内存地址，C++的编译器让我们可以通过名字来访问这些内存位置。</p>
+<p>  指针本身就是一个变量，其符合变量定义的基本形式，它存储的值是内存地址。对于一个基本类型T，T*
+是“到T的指针”类型，一个类型为T*的变量能够保存一个类型为T的对象的地址。</p>
+<p>  通过一个指针访问它所指向的地址的过程称为<strong>间接访问</strong>(indirection)或者<strong>引用指针</strong>(dereferencing
+the point)。这个用于执行间接访问的操作符是单目操作符*。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> a = <span class="number">1</span>;</span><br><span class="line">	<span class="type">float</span> b = <span class="number">3.14f</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//指针变量定义</span></span><br><span class="line">	<span class="type">int</span>* c = &amp;a;  <span class="comment">//c存储a的内存地址</span></span><br><span class="line">	<span class="type">float</span>* d = &amp;b; <span class="comment">//d存储b的地址</span></span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; c &lt;&lt; endl;   <span class="comment">//输出a变量的地址</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//间接访问</span></span><br><span class="line">	cout &lt;&lt; (*c) &lt;&lt; endl; <span class="comment">//等同于cout&lt;&lt;a&lt;&lt;endl;</span></span><br><span class="line">	cout &lt;&lt; (*d) &lt;&lt; endl;<span class="comment">//等同于cout&lt;&lt;b&lt;&lt;endl;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;</p>
+<p> </p>
 <p>变量、地址和指针变量总结：</p>
 <p>一个变量具有三个重要的信息：</p>
-<ol>
+<ol type="1">
 <li>变量的类型；</li>
 <li>变量所存储的信息；</li>
 <li>变量的地址位置</li>
 </ol>
 <p>指针变量是一个专门用来记录变量地址的变量，通过指针变量可以间接访问另一个变量的值，这里的另一个变量也可以是个指针，这就是多级指针的问题；</p>
-<h1 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h1><p>字符串可以用字符数组表示，也可以用指针来表示：</p>
+<h1 id="左值与右值">左值与右值</h1>
+<p>字符串可以用字符数组表示，也可以用指针来表示：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//两种字符串表示</span></span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;hello&quot;</span> &#125;;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* pStrHello = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line">	pStrHello = strHello;   <span class="comment">//正确，指针变量的值可以改变</span></span><br><span class="line">	strHello = pStrHello;   <span class="comment">//编译器报错，数组变量的值不允许改变</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>strHello不可改变，strHello[index]的值可以改变；pStrHello可以改变，pStrHello[index]的值能否改变取决于所指的存储区域是否可变。这里就涉及到了左值与右值的概念。</p>
 <ul>
@@ -662,62 +757,71 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
 <li><strong>右值：指的是数据本身；编译器没有分配存储空间，不能取到自身地址，右值只能放在赋值运算符右边</strong></li>
 </ul>
 <p>左值最常见的情况就是函数和数据成员变量的名字；右值是没有标识符、不可取地址的表达式，一般也称为“临时对象”。</p>
-<p>比如：a = b + c;&amp;a是允许的操作而&amp;(b+c)不能通过编译，因此a是一个左值，(b+c)是一个右值；</p>
-<h1 id="C-原始指针"><a href="#C-原始指针" class="headerlink" title="C++原始指针"></a>C++原始指针</h1><h2 id="一般类型指针T"><a href="#一般类型指针T" class="headerlink" title="一般类型指针T*"></a>一般类型指针T*</h2><p>T是一个泛型，泛指任何一种类型</p>
+<p>比如：a = b +
+c;&amp;a是允许的操作而&amp;(b+c)不能通过编译，因此a是一个左值，(b+c)是一个右值；</p>
+<h1 id="c原始指针">C++原始指针</h1>
+<h2 id="一般类型指针t">一般类型指针T*</h2>
+<p>T是一个泛型，泛指任何一种类型</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span>* iP = &amp;i;</span><br><span class="line">cout&lt;&lt;(*iP)&lt;&lt;endl; <span class="comment">//这俩的*含义不一样，一个是指针，一个是间接引用</span></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> d = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">double</span>* dP =&amp;d;</span><br><span class="line">cout&lt;&lt;(*dP)&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<p>不论T是什么类型，T&#42;这个指针的内存空间都是一样的，为<strong>4个字节</strong></p>
-<h2 id="指针的数组-与-数组的指针"><a href="#指针的数组-与-数组的指针" class="headerlink" title="指针的数组 与 数组的指针"></a>指针的数组 与 数组的指针</h2><p>指针的数组 T&#42; t[]：指针的数组仍然是数组，里面每个值是个指针(array of pointers)</p>
-<p>数组的指针 T(&#42;t)[] :一个指针，指向一个数组(a pointer to an array)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* a[<span class="number">4</span>];  <span class="comment">//一个数组，每个元素都是int指针</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> c[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">int</span>(*b)[<span class="number">4</span>];  <span class="comment">//声明一个数组指针，可以指向包含4个int元素的数组</span></span><br><span class="line">b = &amp;c;  <span class="comment">//数组的个数一定要匹配！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将数组c中的元素赋值给数组a：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	a[i] = &amp;(c[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//输出数组内容：</span></span><br><span class="line">cout&lt;&lt;*(a[<span class="number">0</span>])&lt;&lt;endl;  <span class="comment">//先取数组下标得到地址，然后做间接访问</span></span><br><span class="line">cout&lt;&lt;(*b)[<span class="number">3</span>]&lt;&lt;endl;  <span class="comment">//b是指针，先间接访问取值得到数组，然后取数组下标</span></span><br></pre></td></tr></table></figure>
-<h2 id="const与指针"><a href="#const与指针" class="headerlink" title="const与指针"></a>const与指针</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* pStr1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//修饰char，指针指向的地址可变，但是存储的区域中的内容不可变</span></span><br><span class="line">	<span class="type">char</span>* <span class="type">const</span> pStr2 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//修饰char*，指针指向的地址不可变。在最新的VS中编译不过，因为&quot;helloworld&quot;是常量，必须要用const指针</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* <span class="type">const</span> pStr3 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//地址和空间中的内容都不允许改变</span></span><br><span class="line"></span><br><span class="line">	pStr1 = strHello;</span><br><span class="line">	<span class="comment">//pStr2 = strHello;   //错误，pStr2地址不可改</span></span><br><span class="line">	<span class="comment">//pStr3 = strHello;   //错误，pStr3地址不可改 </span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//pStr1[1] = &#x27;a&#x27;;   //错误，存储区内的char不可改变</span></span><br><span class="line">	pStr2[<span class="number">1</span>] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="comment">//pStr3[1] = &#x27;a&#x27;;   //错误，存储区内的char不可变</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不论T是什么类型，T*这个指针的内存空间都是一样的，为<strong>4个字节</strong></p>
+<h2 id="指针的数组-与-数组的指针">指针的数组 与 数组的指针</h2>
+<p>指针的数组 T* t[]：指针的数组仍然是数组，里面每个值是个指针(array of
+pointers)</p>
+<p>数组的指针 T(*t)[] :一个指针，指向一个数组(a pointer to an array)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* a[<span class="number">4</span>];  <span class="comment">//一个数组，每个元素都是int指针</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> c[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="built_in">int</span>(*b)[<span class="number">4</span>];  <span class="comment">//声明一个数组指针，可以指向包含4个int元素的数组</span></span><br><span class="line">b = &amp;c;  <span class="comment">//数组的个数一定要匹配！这里是&amp;c,c的类型是int*,&amp;c的类型是int(*)[4]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将数组c中的元素赋值给数组a：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">unsigned</span> <span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	a[i] = &amp;(c[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> *p = a;  <span class="comment">//p是指向a数组首元素的指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//输出数组内容：</span></span><br><span class="line">cout&lt;&lt;*(a[<span class="number">0</span>])&lt;&lt;endl;  <span class="comment">//先取数组下标得到地址，然后做间接访问</span></span><br><span class="line">cout&lt;&lt;(*b)[<span class="number">3</span>]&lt;&lt;endl;  <span class="comment">//b是指针，先间接访问取值得到数组，然后取数组下标</span></span><br></pre></td></tr></table></figure>
+<h2 id="const与指针">const与指针</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> <span class="type">const</span>* pStr1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//修饰char，指针指向的地址可变，但是存储的区域中的内容不可变</span></span><br><span class="line">	<span class="type">char</span>* <span class="type">const</span> pStr2 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//修饰char*，指针指向的地址不可变。在最新的VS中编译不过，因为&quot;helloworld&quot;是常量，必须要用const指针</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* <span class="type">const</span> pStr3 = <span class="string">&quot;helloworld&quot;</span>; <span class="comment">//地址和空间中的内容都不允许改变</span></span><br><span class="line"></span><br><span class="line">	pStr1 = strHello;</span><br><span class="line">	<span class="comment">//pStr2 = strHello;   //错误，pStr2地址不可改</span></span><br><span class="line">	<span class="comment">//pStr3 = strHello;   //错误，pStr3地址不可改 </span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//pStr1[1] = &#x27;a&#x27;;   //错误，存储区内的char不可改变</span></span><br><span class="line">	pStr2[<span class="number">1</span>] = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="comment">//pStr3[1] = &#x27;a&#x27;;   //错误，存储区内的char不可变</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如何确定const修饰的内容:</p>
 <ul>
 <li>看左侧最近的部分</li>
 <li>如果左侧没有，则看右侧</li>
 </ul>
-<h2 id="指向指针的指针"><a href="#指向指针的指针" class="headerlink" title="指向指针的指针"></a>指向指针的指针</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="type">int</span>* b = &amp;a;</span><br><span class="line"><span class="type">int</span>** c = &amp;b; <span class="comment">//二级指针</span></span><br></pre></td></tr></table></figure>
-<p>&#42;操作符具有从右向左的结合性，&#42;&#42;c 这个表达式相当于 &#42;(&#42;c)，必须从里向外逐层求值<br>&#42;c得到的是c指向的位置，即b的地址；&#42;&#42;c相当于 &#42;b，间接引用得到变量a的值。</p>
+<h2 id="指向指针的指针">指向指针的指针</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="type">int</span>* b = &amp;a;</span><br><span class="line"><span class="type">int</span>** c = &amp;b; <span class="comment">//二级指针</span></span><br></pre></td></tr></table></figure>
+<p>*操作符具有从右向左的结合性，**c 这个表达式相当于
+*(*c)，必须从里向外逐层求值 *c得到的是c指向的位置，即b的地址；**c相当于
+*b，间接引用得到变量a的值。</p>
 <p>下表是上面例子的一些变量表示：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>表达式</th>
 <th>值</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>a</td>
 <td>123</td>
 </tr>
-<tr>
+<tr class="even">
 <td>b</td>
-<td>&#38;a</td>
+<td>&amp;a</td>
 </tr>
-<tr>
-<td>&#42;b</td>
+<tr class="odd">
+<td>*b</td>
 <td>a,123</td>
 </tr>
-<tr>
+<tr class="even">
 <td>c</td>
-<td>&#38;b</td>
+<td>&amp;b</td>
 </tr>
-<tr>
-<td>&#42;c</td>
-<td>b，&#38;a</td>
+<tr class="odd">
+<td>*c</td>
+<td>b，&amp;a</td>
 </tr>
-<tr>
-<td>&#42;&#42;c</td>
-<td>&#42;b，a，123</td>
+<tr class="even">
+<td>**c</td>
+<td>*b，a，123</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="未初始化指针和非法指针"><a href="#未初始化指针和非法指针" class="headerlink" title="未初始化指针和非法指针"></a>未初始化指针和非法指针</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* a;  <span class="comment">//只声明不赋值,a指向哪里完全不知道</span></span><br><span class="line">*a = <span class="number">12</span>;<span class="comment">//错误！！</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;上述操作并没有对指针a进行初始化，也就是说我们并不知道a最终会指向哪里。运气好的话定位到一个非法地址（程序不能访问的地址），程序会出错从而崩溃终止。最坏的情况下，a定位到了一个可以访问的地址，这样我们就无意间修改了它，这样的错误难以捕捉，引发的错误与原先用来操作的代码毫不相干，我们根本无法定位。</p>
+<h2 id="未初始化指针和非法指针">未初始化指针和非法指针</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* a;  <span class="comment">//只声明不赋值,a指向哪里完全不知道</span></span><br><span class="line">*a = <span class="number">12</span>;<span class="comment">//错误！！</span></span><br></pre></td></tr></table></figure>
+<p>  上述操作并没有对指针a进行初始化，也就是说我们并不知道a最终会指向哪里。运气好的话定位到一个非法地址（程序不能访问的地址），程序会出错从而崩溃终止。最坏的情况下，a定位到了一个可以访问的地址，这样我们就无意间修改了它，这样的错误难以捕捉，引发的错误与原先用来操作的代码毫不相干，我们根本无法定位。</p>
 <p><strong><u>用指针进行间接访问之前，一定要确保它已经初始化，并且被恰当的赋值。</u></strong></p>
-<h2 id="NULL、nullptr和void"><a href="#NULL、nullptr和void" class="headerlink" title="NULL、nullptr和void*"></a>NULL、nullptr和void*</h2><p>NULL指针是一个特殊的指针变量，表示不指向任何东西。</p>
+<h2 id="nullnullptr和void">NULL、nullptr和void*</h2>
+<p>NULL指针是一个特殊的指针变量，表示不指向任何东西。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* a = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
 <p>NULL指针的概念非常有用，它给了一种方法，来表示特定的指针目前未指向任何东西。</p>
 <ul>
@@ -725,188 +829,230 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
 <li>在对一个指针间接引用前，先判断这个指针的值是否为NULL；</li>
 <li>指针使用完成后也请重新赋值为NULL；</li>
 </ul>
-<p>&emsp;&emsp;</p>
-<p>&emsp;&emsp;在早期的C语言中，编译器定义：<kbd>#define NULL ((void*)0)</kbd>。void&#42;是一个很万能的指针，可以转换任意的类型。参数传递时经常用到，函数编写时无法预测将来要传递什么信息，就用void&#42;代替。</p>
-<p>&emsp;&emsp;C++语言诞生时没有把NULL定义为void&#42;，而是定义为了0：</p>
+<p>  </p>
+<p>  在早期的C语言中，编译器定义：<kbd>#define NULL
+((void*)0)</kbd>。void*是一个很万能的指针，可以转换任意的类型。参数传递时经常用到，函数编写时无法预测将来要传递什么信息，就用void*代替。</p>
+<p>  C++语言诞生时没有把NULL定义为void*，而是定义为了0：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> NULL</span></span><br><span class="line">  <span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> NULL 0</span></span><br><span class="line">  <span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> NULL ((void*)0)</span></span><br><span class="line">  <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;C++中NULL表示为int而不是指针，和C语言的差异会导致问题，所以C++11中用nullptr来代替(void&#42;)0，NULL只表示0。在新的C++标准中，空指针尽量使用nullptr来表示。</p>
+<p>  C++中NULL表示为int而不是指针，和C语言的差异会导致问题，所以C++11中用nullptr来代替(void*)0，NULL只表示0。在新的C++标准中，空指针尽量使用nullptr来表示。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">void</span>* i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func(void* i)&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;func(int i)&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span>* pi = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">int</span>* pi2 = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="type">char</span>* pc = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="type">char</span>* pc2 = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="built_in">func</span>(<span class="literal">NULL</span>);                   <span class="comment">// func(int i)</span></span><br><span class="line">	<span class="built_in">func</span>(<span class="literal">nullptr</span>);                 <span class="comment">// func(void* i)</span></span><br><span class="line">	<span class="built_in">func</span>(pi);                         <span class="comment">// func(void* i)</span></span><br><span class="line">	<span class="built_in">func</span>(pi2);                       <span class="comment">// func(void* i)</span></span><br><span class="line">	<span class="built_in">func</span>(pc);                        <span class="comment">// func(void* i)</span></span><br><span class="line">	<span class="built_in">func</span>(pc2);                      <span class="comment">// func(void* i)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="野指针"><a href="#野指针" class="headerlink" title="野指针"></a>野指针</h2><p>野指针是指向“垃圾”内存的指针。if等判断对它们不起作用，因为没有置为NULL，它存有值，但是我们用不了；</p>
-<p>一般情况下有三种情况被称为野指针：</p>
-<ol>
-<li>指针变量没有初始化；</li>
-<li>已经释放不用的指针没有置为NULL，如delete和free之后的指针；</li>
-<li>指针操作超越了变量的作用域范围（指针指向具有一定生命周期的空间）；</li>
-</ol>
+<h2 id="野指针">野指针</h2>
+<p>野指针是指向“垃圾”内存的指针。if等判断对它们不起作用，因为没有置为NULL，它存有值，但是我们用不了；</p>
+<p>一般情况下有三种情况被称为野指针： 1. 指针变量没有初始化； 2.
+已经释放不用的指针没有置为NULL，如delete和free之后的指针； 3.
+指针操作超越了变量的作用域范围（指针指向具有一定生命周期的空间）；</p>
 <p><strong><u>没有初始化的，不用的或者超出范围的指针，请一定置为NULL</u></strong></p>
-<h1 id="指针的基本运算"><a href="#指针的基本运算" class="headerlink" title="指针的基本运算"></a>指针的基本运算</h1><p>&emsp;&emsp;C/C++常常把地址当作整数处理，但不意味着程序员可以对地址进行各种算术操作。指针可以做的运算有限，像指针与其他变量的乘除、两个指针之间的乘除、两个指针相加都是没有意义、不被编译器接受的。</p>
-<h2 id="算数运算"><a href="#算数运算" class="headerlink" title="算数运算"></a>算数运算</h2><p>&emsp;&emsp;指针加上一个整数的结果是另一个指针。当一个指针和一个整数量进行算术运算时，整数在执行加法运算前始终会根据合适的大小进行调整，这个“合适的大小”指的是指针所指向的类型的大小。假设某台机器float占据4字节，则float类型指针+3时，这个3将根据float的大小变为12，即指针增加3个floag的大小。</p>
-<p>&emsp;&emsp;也可以进行指针之间的算数运算，但只有两个指针指向同一个数组中的元素时才允许这种运算，如果不是同一个数组中的元素，相减的结果是未定义的。减法的运算表示的是两个指针在内存中的距离，以数组元素的长度为单位，而不是以字节为单位</p>
-<h2 id="amp-与-操作符"><a href="#amp-与-操作符" class="headerlink" title="&amp;与*操作符"></a>&amp;与*操作符</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="type">char</span>* cP = &amp;ch;</span><br></pre></td></tr></table></figure>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C1.png" alt=""></p>
-<p>&emsp;&emsp;&amp;操作符不能做左值，&amp;操作编译器做是事情是把变量的地址位置取出来，然后放在内存空间中。但是他本身并不是变量自身，仅仅是一块空间存储着变量地址，这块空间的地址我们的程序是没办法获取到的。就像上图，&amp;ch操作拿到的是ch变量的地址，但取出的信息不会像cp这个变量一样有一块能获取地址的内存空间来存储。一定要注意，虽然cp是ch的地址，&amp;ch也是ch的地址，但这俩不是一个概念，只是恰好存的东西一样。</p>
-<p>&emsp;&emsp;</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C2.png" alt=""></p>
+<h1 id="指针的基本运算">指针的基本运算</h1>
+<p>  C/C++常常把地址当作整数处理，但不意味着程序员可以对地址进行各种算术操作。指针可以做的运算有限，像指针与其他变量的乘除、两个指针之间的乘除、两个指针相加都是没有意义、不被编译器接受的。</p>
+<h2 id="算数运算">算数运算</h2>
+<p>  指针加上一个整数的结果是另一个指针。当一个指针和一个整数量进行算术运算时，整数在执行加法运算前始终会根据合适的大小进行调整，这个“合适的大小”指的是指针所指向的类型的大小。假设某台机器float占据4字节，则float类型指针+3时，这个3将根据float的大小变为12，即指针增加3个floag的大小。</p>
+<p>  也可以进行指针之间的算数运算，但只有两个指针指向同一个数组中的元素时才允许这种运算，如果不是同一个数组中的元素，相减的结果是未定义的。减法的运算表示的是两个指针在内存中的距离，以数组元素的长度为单位，而不是以字节为单位</p>
+<h2 id="与操作符">&amp;与*操作符</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="type">char</span>* cP = &amp;ch;</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C1.png" /></p>
+<p>  &amp;操作符不能做左值，&amp;操作编译器做是事情是把变量的地址位置取出来，然后放在内存空间中。但是他本身并不是变量自身，仅仅是一块空间存储着变量地址，这块空间的地址我们的程序是没办法获取到的。就像上图，&amp;ch操作拿到的是ch变量的地址，但取出的信息不会像cp这个变量一样有一块能获取地址的内存空间来存储。一定要注意，虽然cp是ch的地址，&amp;ch也是ch的地址，但这俩不是一个概念，只是恰好存的东西一样。</p>
+<p>  </p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C2.png" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*cp = <span class="string">&#x27;b&#x27;</span>;  <span class="comment">//左值，取的是空间</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> tmp = *cp; <span class="comment">//右值，取的是内容</span></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;间接引用操作当用作左值的时候，实际的操作是把变量ch当前的位置取出来（取空间），这种操作我们可以对这块空间进行操作，比如赋值操作；当我们把他当作右值时，实际的操作取的就不是存储空间，而是存储空间中的值。</p>
-<p>&emsp;&emsp;</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C3.png" alt=""></p>
-<p>&emsp;&emsp;&#42;cp + 1首先得到cp中的值，得到a，做+1操作就是对ASCII码进行操作，得到b。但是这个操作还是由编译器创造一块空间取值，我们得不到这个变量的地址，不能做左值。这个+1的操作是按照cp的类型来做加法的，移动的是cp这个类型的大小。</p>
-<p>&emsp;&emsp;&#42;(cp+1)操作我们先做了+1，而cp本身是个指针，我们做的是指针的加法，得到的是ch这个变量的地址的后面那个地址（做这个操作前要确定cp指向的地址后面的内容是可以访问的）。这个操作也是可以用作左值和右值，左值就是取地址，右值就是取空间中存储的值。</p>
+<p>  间接引用操作当用作左值的时候，实际的操作是把变量ch当前的位置取出来（取空间），这种操作我们可以对这块空间进行操作，比如赋值操作；当我们把他当作右值时，实际的操作取的就不是存储空间，而是存储空间中的值。</p>
+<p>  </p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C3.png" /></p>
+<p>  *cp +
+1首先得到cp中的值，得到a，做+1操作就是对ASCII码进行操作，得到b。但是这个操作还是由编译器创造一块空间取值，我们得不到这个变量的地址，不能做左值。这个+1的操作是按照cp的类型来做加法的，移动的是cp这个类型的大小。</p>
+<p>  *(cp+1)操作我们先做了+1，而cp本身是个指针，我们做的是指针的加法，得到的是ch这个变量的地址的后面那个地址（做这个操作前要确定cp指向的地址后面的内容是可以访问的）。这个操作也是可以用作左值和右值，左值就是取地址，右值就是取空间中存储的值。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> ch = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//&amp;操作符</span></span><br><span class="line">	<span class="comment">//&amp;ch = 97;      //错误，&amp;ch左值不合法</span></span><br><span class="line">	<span class="type">char</span>* cp = &amp;ch; <span class="comment">//&amp;ch做右值</span></span><br><span class="line">	<span class="comment">//&amp;cp = 97;		//错误，&amp;左值不合法</span></span><br><span class="line">	<span class="type">char</span>** cpp = &amp;cp;		<span class="comment">//&amp;cp右值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//*操作符</span></span><br><span class="line">	*cp = <span class="string">&#x27;a&#x27;</span>;				<span class="comment">//*cp左值取变量ch的位置</span></span><br><span class="line">	<span class="type">char</span> ch2 = *cp;			<span class="comment">//*cp右值取变量ch存储的值</span></span><br><span class="line">	<span class="comment">//*cp + 1 = &#x27;a&#x27;;			//错误，*cp+1左值不合法的位置</span></span><br><span class="line">	ch2 = *cp + <span class="number">1</span>;			<span class="comment">//*cp+1右值取到的字符做ASCII码+1操作</span></span><br><span class="line">	*(cp + <span class="number">1</span>) = <span class="string">&#x27;a&#x27;</span>;			<span class="comment">//左值，语法上合法，访问到cp后面的位置，赋值为a.一定要保证这个位置是可以访问的，这种操作有风险</span></span><br><span class="line">	ch2 = *(cp + <span class="number">1</span>);			<span class="comment">//右值操作，取ch后面的位置的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的-与-45-45"><a href="#指针的-与-45-45" class="headerlink" title="指针的++ 与 &#45;&#45;"></a>指针的++ 与 &#45;&#45;</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* cp2 = ++cp;</span><br><span class="line"><span class="comment">//汇编代码：</span></span><br><span class="line">mov		eax,dword ptr [cp]		<span class="comment">//eax是寄存器，dwptr存储cp指针。把指针内容放置寄存器内</span></span><br><span class="line">add		eax,<span class="number">1</span>					<span class="comment">//寄存器数据+1</span></span><br><span class="line">mov		dword ptr [cp],eax		<span class="comment">//把寄存器内容存回cp中</span></span><br><span class="line">mov 	ecx,dword ptr [cp]		<span class="comment">//把cp的内容放置在ecx寄存器</span></span><br><span class="line">mov		dword ptr [cp2],ecx		<span class="comment">//把寄存器ecx内容放置在cp2中</span></span><br></pre></td></tr></table></figure>
+<h2 id="指针的-与---">指针的++ 与 --</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* cp2 = ++cp;</span><br><span class="line"><span class="comment">//汇编代码：</span></span><br><span class="line">mov		eax,dword ptr [cp]		<span class="comment">//eax是寄存器，dwptr存储cp指针。把指针内容放置寄存器内</span></span><br><span class="line">add		eax,<span class="number">1</span>					<span class="comment">//寄存器数据+1</span></span><br><span class="line">mov		dword ptr [cp],eax		<span class="comment">//把寄存器内容存回cp中</span></span><br><span class="line">mov 	ecx,dword ptr [cp]		<span class="comment">//把cp的内容放置在ecx寄存器</span></span><br><span class="line">mov		dword ptr [cp2],ecx		<span class="comment">//把寄存器ecx内容放置在cp2中</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* cp3 = cp++;</span><br><span class="line"><span class="comment">//汇编代码：</span></span><br><span class="line">mov		eax,dword ptr[cp]		<span class="comment">//把cp指针内容放置在eax寄存器中</span></span><br><span class="line">mov		dword ptr[cp3],eax		<span class="comment">//把eax内容直接放在cp3指针</span></span><br><span class="line">mov		ecx,dword ptr[cp]		<span class="comment">//把cp信息放置在exc寄存器中</span></span><br><span class="line">add		ecx,<span class="number">1</span>					<span class="comment">//ecx+1操作</span></span><br><span class="line">mov		dword ptr[cp],ecx		<span class="comment">//ecx内容写入cp指针</span></span><br></pre></td></tr></table></figure>
 <p>前置操作先做加法再赋值，后置操作先赋值后做加法操作。自减操作符和自增操作符相同，前置操作先做减法再赋值，后置操作先赋值再做减法。</p>
-<p>&emsp;&emsp;</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C4.png" alt=""></p>
-<p> 自增/自减操作获得的地址不能当作左值，它得到的只是个地址的副本，没有明确的变量来存储它的位置。</p>
-<p> &emsp;&emsp;</p>
-<p> <img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C5.png" alt=""></p>
-<p> ++操作符优先级高于*，先计算地址偏移；</p>
-<h2 id="和-45-45-45-45-等运算符连续"><a href="#和-45-45-45-45-等运算符连续" class="headerlink" title="++++和&#45;&#45;&#45;&#45;等运算符连续"></a>++++和&#45;&#45;&#45;&#45;等运算符连续</h2><p>&emsp;&emsp;编译器程序分解符号的方法是：一个字符一个字符的读入，如果该字符可能组成一个符号，那么读入下一个字符，一直到读入的字符不能组成一个有意义的符号。这个处理过程称为“贪心法”。</p>
+<p>  </p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C4.png" /></p>
+<p>自增/自减操作获得的地址不能当作左值，它得到的只是个地址的副本，没有明确的变量来存储它的位置。</p>
+<p>  </p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C5.png" /></p>
+<p>++操作符优先级高于*，先计算地址偏移；</p>
+<h2 id="和----等运算符连续">++++和----等运算符连续</h2>
+<p>  编译器程序分解符号的方法是：一个字符一个字符的读入，如果该字符可能组成一个符号，那么读入下一个字符，一直到读入的字符不能组成一个有意义的符号。这个处理过程称为“贪心法”。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">1</span>,b=<span class="number">2</span>；</span><br><span class="line"><span class="type">int</span> c;</span><br><span class="line"><span class="type">int</span> d;</span><br><span class="line">c = a+++b;   <span class="comment">//相当于a++ +b。连续读取，当读取到两个+号时不能再组成新符号了</span></span><br><span class="line">d = a++++b;	<span class="comment">//相当于a++ ++b。这个是错误的 ，两个表达式之间不构成任何运算</span></span><br></pre></td></tr></table></figure>
-<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2><p>&emsp;&emsp;指针可以进行&lt;、&lt;=、&gt;、&gt;=运算，不过前提是它们都指向同一个数组中的元素。根据所使用的操作符，比较表达式将告诉我们哪个指针位于数组中更前或更后的元素。</p>
-<h1 id="C-程序的存储区域划分"><a href="#C-程序的存储区域划分" class="headerlink" title="C++程序的存储区域划分"></a>C++程序的存储区域划分</h1><h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97.png" alt=""></p>
-<p>&emsp;&emsp;数据结构中有两种常见的结构，一种是栈结构，先进入的数据会被压在栈底，后进入的数据会被放在栈顶，是一种先进后出的结构；还有一种是队列结构，和栈相反，类似于生活中的队列，先进入的数据会先出队列。</p>
-<p>&emsp;&emsp;在C++中，栈是一种很常见的结构，我们一般性的变量都在栈上，函数也会在栈上处理。</p>
-<h2 id="存储区域划分"><a href="#存储区域划分" class="headerlink" title="存储区域划分"></a>存储区域划分</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>  a = <span class="number">0</span>;                       <span class="comment">//GVAR全局初始化区</span></span><br><span class="line"><span class="type">int</span>* p1;						  <span class="comment">//BSS全局未初始化区</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span>						 <span class="comment">//text 代码区</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">1</span>;					<span class="comment">//stack栈区</span></span><br><span class="line">	<span class="type">char</span> s[] = <span class="string">&quot;abc&quot;</span>;			<span class="comment">//stack栈区</span></span><br><span class="line">	<span class="type">int</span>* p2 = <span class="literal">NULL</span>;				<span class="comment">//stack栈区</span></span><br><span class="line"></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* p3 = <span class="string">&quot;123456&quot;</span>;	<span class="comment">//&quot;123456\0&quot;在常量区，p3在stack栈区</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	char* p3 = &quot;123456&quot;;这条语句“123456”在内存中只有一份拷贝，p3只是个指针变量</span></span><br><span class="line"><span class="comment">	char s[] = &quot;abc&quot;;这条语句，“abc”在内存中有两份拷贝，一份在字符常量区，一份在s所在的栈区</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> c = <span class="number">0</span>;			<span class="comment">//GVAR全局(静态)初始化区</span></span><br><span class="line"></span><br><span class="line">	p1 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">10</span>);			<span class="comment">//heap堆区变量</span></span><br><span class="line">	p2 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">20</span>);			<span class="comment">//heap堆区变量</span></span><br><span class="line"></span><br><span class="line">	<span class="type">char</span>* p4 = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">7</span>];		<span class="comment">//heap堆区变量</span></span><br><span class="line">	<span class="built_in">strcpy_s</span>(p4, <span class="number">7</span>, <span class="string">&quot;123456&quot;</span>);	<span class="comment">//text代码区</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p1 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span> p1;</span><br><span class="line">		p1 = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p2 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span> p2;</span><br><span class="line">		p2 = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//p3指向常量区，由内存接管</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p4 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span>[] p4;</span><br><span class="line">		p4 = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="关系运算符">关系运算符</h2>
+<p>  指针可以进行&lt;、&lt;=、&gt;、&gt;=运算，不过前提是它们都指向同一个数组中的元素。根据所使用的操作符，比较表达式将告诉我们哪个指针位于数组中更前或更后的元素。</p>
+<h1 id="c程序的存储区域划分">C++程序的存储区域划分</h1>
+<h2 id="栈和队列">栈和队列</h2>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97.png" /></p>
+<p>  数据结构中有两种常见的结构，一种是栈结构，先进入的数据会被压在栈底，后进入的数据会被放在栈顶，是一种先进后出的结构；还有一种是队列结构，和栈相反，类似于生活中的队列，先进入的数据会先出队列。</p>
+<p>  在C++中，栈是一种很常见的结构，我们一般性的变量都在栈上，函数也会在栈上处理。</p>
+<h2 id="存储区域划分">存储区域划分</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span>  a = <span class="number">0</span>;                       <span class="comment">//GVAR全局初始化区</span></span><br><span class="line"><span class="type">int</span>* p1;						  <span class="comment">//BSS全局未初始化区</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span>						 <span class="comment">//text 代码区</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">1</span>;					<span class="comment">//stack栈区</span></span><br><span class="line">	<span class="type">char</span> s[] = <span class="string">&quot;abc&quot;</span>;			<span class="comment">//stack栈区</span></span><br><span class="line">	<span class="type">int</span>* p2 = <span class="literal">NULL</span>;				<span class="comment">//stack栈区</span></span><br><span class="line"></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* p3 = <span class="string">&quot;123456&quot;</span>;	<span class="comment">//&quot;123456\0&quot;在常量区，p3在stack栈区</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	char* p3 = &quot;123456&quot;;这条语句“123456”在内存中只有一份拷贝，p3只是个指针变量</span></span><br><span class="line"><span class="comment">	char s[] = &quot;abc&quot;;这条语句，“abc”在内存中有两份拷贝，一份在字符常量区，一份在s所在的栈区</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> c = <span class="number">0</span>;			<span class="comment">//GVAR全局(静态)初始化区</span></span><br><span class="line"></span><br><span class="line">	p1 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">10</span>);			<span class="comment">//heap堆区变量</span></span><br><span class="line">	p2 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">20</span>);			<span class="comment">//heap堆区变量</span></span><br><span class="line"></span><br><span class="line">	<span class="type">char</span>* p4 = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">7</span>];		<span class="comment">//heap堆区变量</span></span><br><span class="line">	<span class="built_in">strcpy_s</span>(p4, <span class="number">7</span>, <span class="string">&quot;123456&quot;</span>);	<span class="comment">//text代码区</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p1 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span> p1;</span><br><span class="line">		p1 = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p2 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span> p2;</span><br><span class="line">		p2 = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//p3指向常量区，由内存接管</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (p4 != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">delete</span>[] p4;</span><br><span class="line">		p4 = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过调试上面的代码，可以观察到一些程序中的地址分布：</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%A0%88.png" alt=""></p>
-<p>&emsp;&emsp;上图是栈区变量b,s,p2的地址空间，可以看到虽然我们定义变量的顺序是b,s,p2，但是内存空间的地址位置是从高地址到低地址变化的，越早分配的变量，拿到的地址位置越高。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%9C%B0%E5%9D%80%E5%88%86%E9%85%8D.png" alt=""></p>
-<p>&emsp;&emsp;再观察p3变量。看p3本身的地址可以观察到它的地址分配再p2的上面，因为都是栈区变量，但是内部存储的一个地址并不是在栈区，是在常量区。在常量区中的内容，我们是无法修改的。这就是指针变量的特点，可以指向不同的位置。如果p2指向的是一个字符数组，那么指向的就是栈区空间，是可以改变的。</p>
-<p>&emsp;&emsp;继续观察p1，p1是在函数之外声明的，看地址也可以观察到，它的地址和b，s相差很大，可知它并不在栈区。这种定义在函数外的变量属于全局的区域。</p>
-<p>&emsp;&emsp;当p1和p2执行完new操作后，观察p1和p2指向的地址空间，发现两个区域相邻。而且p1先new,p2后new，地址空间p2指向的地址也比p1要高。new操作会产生新的区域，我们称为堆区，和栈区相反，内存分配方式由低地址向高地址分配。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%A0%86%E5%8C%BA%E7%9A%84%E4%BF%A9%E5%8F%98%E9%87%8F.png" alt=""></p>
-<p>&emsp;&emsp;再看p4，p4本身是在main函数中定义的，是栈区变量。它new的是一个char型的数组，new出的地址和p1和p2指向的地址也很接近，可知也是堆区内。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%A0%88.png" /></p>
+<p>  上图是栈区变量b,s,p2的地址空间，可以看到虽然我们定义变量的顺序是b,s,p2，但是内存空间的地址位置是从高地址到低地址变化的，越早分配的变量，拿到的地址位置越高。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%9C%B0%E5%9D%80%E5%88%86%E9%85%8D.png" /></p>
+<p>  再观察p3变量。看p3本身的地址可以观察到它的地址分配再p2的上面，因为都是栈区变量，但是内部存储的一个地址并不是在栈区，是在常量区。在常量区中的内容，我们是无法修改的。这就是指针变量的特点，可以指向不同的位置。如果p2指向的是一个字符数组，那么指向的就是栈区空间，是可以改变的。</p>
+<p>  继续观察p1，p1是在函数之外声明的，看地址也可以观察到，它的地址和b，s相差很大，可知它并不在栈区。这种定义在函数外的变量属于全局的区域。</p>
+<p>  当p1和p2执行完new操作后，观察p1和p2指向的地址空间，发现两个区域相邻。而且p1先new,p2后new，地址空间p2指向的地址也比p1要高。new操作会产生新的区域，我们称为堆区，和栈区相反，内存分配方式由低地址向高地址分配。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%A0%86%E5%8C%BA%E7%9A%84%E4%BF%A9%E5%8F%98%E9%87%8F.png" /></p>
+<p>  再看p4，p4本身是在main函数中定义的，是栈区变量。它new的是一个char型的数组，new出的地址和p1和p2指向的地址也很接近，可知也是堆区内。</p>
 <p>对存储区域做一个总结，如下图：</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%80%BB%E7%BB%93.png" alt=""></p>
-<h2 id="动态分配资源—堆区"><a href="#动态分配资源—堆区" class="headerlink" title="动态分配资源—堆区"></a>动态分配资源—堆区</h2><ol>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%80%BB%E7%BB%93.png" /></p>
+<h2 id="动态分配资源--堆区">动态分配资源--堆区</h2>
+<ol type="1">
 <li>从现代编程语言的观点来看，使用堆，或者说使用动态内存分配，是一件很自然的事情；</li>
 <li>动态内存带来了不确定性：内存分配耗时需要多久(分配大空间不好控制)？分配失败了怎么办？在实时性要求很高的场合，如嵌入式控制器和电信设备，这些不确定性是很严重的；</li>
 <li>一般而言，当我们在堆上分配内存时，很多语言会使用new这样的关键字，也有些语言是隐式分配，不使用new的语义，但使用的是new的方式。在C++中new对应词是delete，因为C++是允许程序员完全接管内存的分配释放的。</li>
 </ol>
-<h2 id="分配和回收动态内存的原则"><a href="#分配和回收动态内存的原则" class="headerlink" title="分配和回收动态内存的原则"></a>分配和回收动态内存的原则</h2><p>程序通常需要牵扯到三个内存管理器的操作：</p>
-<ol>
+<h2 id="分配和回收动态内存的原则">分配和回收动态内存的原则</h2>
+<p>程序通常需要牵扯到三个内存管理器的操作：</p>
+<ol type="1">
 <li>分配一个某大小的内存块；</li>
 <li>释放一个之前分配的内存块；</li>
 <li>垃圾收集操作，寻找不再使用的内存块并给予释放；</li>
 </ol>
 <p>这个回收策略需要实现性能、实时性、额外开销等各方面的平衡，很难有统一和高效的做法。C++语言使用了1和2；Java使用了1和3。</p>
-<h2 id="资源管理方案-45-45-RAII（Resource-Acquisition-Is-Initization）"><a href="#资源管理方案-45-45-RAII（Resource-Acquisition-Is-Initization）" class="headerlink" title="资源管理方案&#45;&#45;RAII（Resource Acquisition Is Initization）"></a>资源管理方案&#45;&#45;RAII（Resource Acquisition Is Initization）</h2><ul>
+<h2
+id="资源管理方案--raiiresource-acquisition-is-initization">资源管理方案--RAII（Resource
+Acquisition Is Initization）</h2>
+<ul>
 <li>这是C++特有的资源管理方式，主流的编程语言中，C++是唯一一个依赖RAII来做资源管理的,核心思想是分配资源的时候就可以管理资源；</li>
-<li>RAII依托<strong>栈</strong>和<strong>析构函数</strong>，来对所有的资源&#45;&#45;包括堆内存在内进行管理。比如一个对象在构造和析构中就把资源管理起来，当对象生存空间超出后进入析构状态，我们就可以进行资源的释放。RAII的使用，使得C++不需要类似于Java哪样的垃圾收集方法也能有效管理内存。</li>
+<li>RAII依托<strong>栈</strong>和<strong>析构函数</strong>，来对所有的资源--包括堆内存在内进行管理。比如一个对象在构造和析构中就把资源管理起来，当对象生存空间超出后进入析构状态，我们就可以进行资源的释放。RAII的使用，使得C++不需要类似于Java哪样的垃圾收集方法也能有效管理内存。</li>
 <li>RAII有些比较成熟的智能指针代表，如std::auto_ptr和boost::stared_ptr。</li>
 </ul>
-<h2 id="C-的几种变量的对比"><a href="#C-的几种变量的对比" class="headerlink" title="C++的几种变量的对比"></a>C++的几种变量的对比</h2><div class="table-container">
+<h2 id="c的几种变量的对比">C++的几种变量的对比</h2>
 <table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 45%" />
+<col style="width: 22%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
-<th style="text-align:left">stack</th>
-<th style="text-align:left">heap</th>
+<th style="text-align: left;">stack</th>
+<th style="text-align: left;">heap</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>作用域</td>
-<td style="text-align:left">函数体内，语句块&#123;&#125;作用域，超出后被系统回收</td>
-<td style="text-align:left">整个程序范围内，由new、malloc开始，delete、free结束</td>
+<td
+style="text-align: left;">函数体内，语句块{}作用域，超出后被系统回收</td>
+<td
+style="text-align: left;">整个程序范围内，由new、malloc开始，delete、free结束</td>
 </tr>
-<tr>
+<tr class="even">
 <td>编译期间大小确定</td>
-<td style="text-align:left">变量大小范围确定</td>
-<td style="text-align:left">需要运行期间才能确定</td>
+<td style="text-align: left;">变量大小范围确定</td>
+<td style="text-align: left;">需要运行期间才能确定</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>大小范围</td>
-<td style="text-align:left">Windows默认1M，Linux默认8M或10M，注意空间很小，不要分配大内存变量</td>
-<td style="text-align:left">所有系统的堆空间上限接近内存&#40;虚拟内存&#41;总大小&#40;有一部分被OS占用&#41;</td>
+<td
+style="text-align: left;">Windows默认1M，Linux默认8M或10M，注意空间很小，不要分配大内存变量</td>
+<td
+style="text-align: left;">所有系统的堆空间上限接近内存(虚拟内存)总大小(有一部分被OS占用)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>内存分配方式</td>
-<td style="text-align:left">地址由高到底减少</td>
-<td style="text-align:left">地址由低到高增加</td>
+<td style="text-align: left;">地址由高到底减少</td>
+<td style="text-align: left;">地址由低到高增加</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>内容是否可变</td>
-<td style="text-align:left">可变</td>
-<td style="text-align:left">可变</td>
+<td style="text-align: left;">可变</td>
+<td style="text-align: left;">可变</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
-<th style="text-align:center">全局静态存储区</th>
-<th style="text-align:center">常量存储区</th>
+<th style="text-align: center;">全局静态存储区</th>
+<th style="text-align: center;">常量存储区</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>存储内容</td>
-<td style="text-align:center">全局变量，静态变量</td>
-<td style="text-align:center">常量</td>
+<td style="text-align: center;">全局变量，静态变量</td>
+<td style="text-align: center;">常量</td>
 </tr>
-<tr>
+<tr class="even">
 <td>编译期间大小是否确定</td>
-<td style="text-align:center">确定</td>
-<td style="text-align:center">确定</td>
+<td style="text-align: center;">确定</td>
+<td style="text-align: center;">确定</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>内容是否可变</td>
-<td style="text-align:center">可变</td>
-<td style="text-align:center">不可变</td>
+<td style="text-align: center;">可变</td>
+<td style="text-align: center;">不可变</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="内存泄漏-Memory-Leak-问题"><a href="#内存泄漏-Memory-Leak-问题" class="headerlink" title="内存泄漏(Memory Leak)问题"></a>内存泄漏(Memory Leak)问题</h2><p>&emsp;&emsp;内存泄漏指的是程序中已经动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果；</p>
-<p>&emsp;&emsp;内存泄漏主要发生在堆内存分配方式中，即“配置了内存后，所有指向该内存的指针都遗失了”。如果缺乏垃圾回收机制，这样的内存片就无法归还系统；</p>
-<p>&emsp;&emsp;因为内存泄漏属于程序运行中的问题，无法通过编译识别，所以只能在程序运行过程中来判别和诊断。</p>
-<h1 id="比指针更安全的解决方案"><a href="#比指针更安全的解决方案" class="headerlink" title="比指针更安全的解决方案"></a>比指针更安全的解决方案</h1><p>&emsp;&emsp;使用指针是非常危险的行为，可能存在空指针，野指针的问题，并可能造成内存泄漏问题。可是指针又非常高效，所以我们希望以更安全的方式来使用指针。一般有两种典型方案：</p>
+<h2 id="内存泄漏memory-leak问题">内存泄漏(Memory Leak)问题</h2>
+<p>  内存泄漏指的是程序中已经动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果；</p>
+<p>  内存泄漏主要发生在堆内存分配方式中，即“配置了内存后，所有指向该内存的指针都遗失了”。如果缺乏垃圾回收机制，这样的内存片就无法归还系统；</p>
+<p>  因为内存泄漏属于程序运行中的问题，无法通过编译识别，所以只能在程序运行过程中来判别和诊断。</p>
+<h1 id="比指针更安全的解决方案">比指针更安全的解决方案</h1>
+<p>  使用指针是非常危险的行为，可能存在空指针，野指针的问题，并可能造成内存泄漏问题。可是指针又非常高效，所以我们希望以更安全的方式来使用指针。一般有两种典型方案：</p>
 <ul>
 <li>使用更安全的指针：智能指针；</li>
 <li>不使用指针，使用更安全的方式：引用；</li>
 </ul>
-<h2 id="C-的智能指针"><a href="#C-的智能指针" class="headerlink" title="C++的智能指针"></a>C++的智能指针</h2><p>&emsp;&emsp;C++推出了四种常见的智能指针：unique_ptr、shared_ptr、weak_ptr和C++11中已经废弃(deprecated)的auto+ptr，C++17中auto+ptr已经被正式删除。</p>
-<h3 id="auto-ptr"><a href="#auto-ptr" class="headerlink" title="auto_ptr"></a>auto_ptr</h3><p>&emsp;&emsp;auto_ptr是一种简单直接的智能指针，可以指向一个泛型对象。我们由new获得的对象在堆区中，如果auto_ptr指向这个对象，那么在auto_ptr对象销毁的时候，它所管理的对象也会一并delete掉，这不是一个特别合理的行为，因为指针指向对象不是一种强关联的关系。</p>
-<p>&emsp;&emsp;所有权转移：有一个auto_ptr指向一个对象，如果我们不小心把对象传递给另外的智能指针(即有另一个auto_ptr指向了原来的对象)，原来的指针就不再拥有这个对象了。这个操作是通过C++中的拷贝构造和赋值完成的，会直接剥夺指针对源对象内存的控制权。被剥夺后，对象内存的所有权转移给新指针，然后将原对象指针置为nullptr。因为这个问题，导致auto_ptr存在很大的安全隐患，这是被废弃的重要原因。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/auto_ptr.png" alt=""></p>
+<h2 id="c的智能指针">C++的智能指针</h2>
+<p>  C++推出了四种常见的智能指针：unique_ptr、shared_ptr、weak_ptr和C++11中已经废弃(deprecated)的auto+ptr，C++17中auto+ptr已经被正式删除。</p>
+<h3 id="auto_ptr">auto_ptr</h3>
+<p>  auto_ptr是一种简单直接的智能指针，可以指向一个泛型对象。我们由new获得的对象在堆区中，如果auto_ptr指向这个对象，那么在auto_ptr对象销毁的时候，它所管理的对象也会一并delete掉，这不是一个特别合理的行为，因为指针指向对象不是一种强关联的关系。</p>
+<p>  所有权转移：有一个auto_ptr指向一个对象，如果我们不小心把对象传递给另外的智能指针(即有另一个auto_ptr指向了原来的对象)，原来的指针就不再拥有这个对象了。这个操作是通过C++中的拷贝构造和赋值完成的，会直接剥夺指针对源对象内存的控制权。被剥夺后，对象内存的所有权转移给新指针，然后将原对象指针置为nullptr。因为这个问题，导致auto_ptr存在很大的安全隐患，这是被废弃的重要原因。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/auto_ptr.png" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span> <span class="comment">//智能指针头文件</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	&#123;<span class="comment">// 确定auto_ptr失效的范围</span></span><br><span class="line">		<span class="comment">// 对int使用</span></span><br><span class="line">		<span class="function">auto_ptr&lt;<span class="type">int</span>&gt; <span class="title">pI</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;      <span class="comment">//关注pI的生命周期范围和指向的堆区空间的声明周期范围</span></span><br><span class="line">		cout &lt;&lt; *pI &lt;&lt; endl;                <span class="comment">// 10 </span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// auto_ptr	C++ 17中移除	拥有严格对象所有权语义的智能指针</span></span><br><span class="line">		<span class="comment">// auto_ptr原理：在拷贝 / 赋值过程中，直接剥夺原对象对内存的控制权，转交给新对象，</span></span><br><span class="line">		<span class="comment">// 然后再将原对象指针置为nullptr（早期：NULL）。这种做法也叫管理权转移。</span></span><br><span class="line">		<span class="comment">// 他的缺点不言而喻，当我们再次去访问原对象时，程序就会报错，所以auto_ptr可以说实现的不好，</span></span><br><span class="line">		<span class="comment">// 很多企业在其库内也是要求不准使用auto_ptr。</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//对字符串数组使用</span></span><br><span class="line">		auto_ptr&lt;string&gt; languages[<span class="number">5</span>] = &#123;</span><br><span class="line">			<span class="built_in">auto_ptr</span>&lt;string&gt;(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&quot;C&quot;</span>)),</span><br><span class="line">			<span class="built_in">auto_ptr</span>&lt;string&gt;(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&quot;Java&quot;</span>)),</span><br><span class="line">			<span class="built_in">auto_ptr</span>&lt;string&gt;(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&quot;C++&quot;</span>)),</span><br><span class="line">			<span class="built_in">auto_ptr</span>&lt;string&gt;(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&quot;Python&quot;</span>)),</span><br><span class="line">			<span class="built_in">auto_ptr</span>&lt;string&gt;(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">&quot;Rust&quot;</span>))</span><br><span class="line">		&#125;;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;There are some computer languages here first time: \n&quot;</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; *languages[i] &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		auto_ptr&lt;string&gt; pC;</span><br><span class="line">		pC = languages[<span class="number">2</span>]; <span class="comment">// languges[2] loses ownership. 将所有权从languges[2]转让给pC!!!</span></span><br><span class="line">		<span class="comment">//此时languges[2]不再引用该字符串从而变成空指针</span></span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;There are some computer languages here second time: \n&quot;</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; ++i)</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; *languages[i] &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;The winner is &quot;</span> &lt;&lt; *pC &lt;&lt; endl;</span><br><span class="line">		<span class="comment">//下面会报错</span></span><br><span class="line">		<span class="comment">//cout &lt;&lt; &quot;There are some computer languages here third time: \n&quot;;</span></span><br><span class="line">		<span class="comment">//for (int i = 0; i &lt; 5; ++i)</span></span><br><span class="line">		<span class="comment">//&#123;</span></span><br><span class="line">		<span class="comment">//	cout &lt;&lt; *languages[i] &lt;&lt; endl;</span></span><br><span class="line">		<span class="comment">//&#125;</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//出了大括号，auto_ptr的内存被回收</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;</p>
+<p> </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//xmemory文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//观察auto_ptr的模板可以看到它是怎么实现资源释放和所有权转移的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//资源释放：是通过析构来完成的</span></span><br><span class="line">~<span class="built_in">auto_ptr</span>() <span class="keyword">noexcept</span> &#123;</span><br><span class="line">        <span class="keyword">delete</span> _Myptr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//所有权转移，观察赋值的重载：</span></span><br><span class="line">auto_ptr&amp; <span class="keyword">operator</span>=(auto_ptr&amp; _Right) <span class="keyword">noexcept</span> &#123;</span><br><span class="line">        <span class="built_in">reset</span>(_Right.<span class="built_in">release</span>());   <span class="comment">//保存原有的地址，把原有保存这个地址的指针置成nullptr</span></span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h3><p>&emsp;&emsp;auto_ptr提供了自动管理内存的一个方法，但是它和对象的耦合性太紧了，如果多方操作对象很容易出问题，所以推出了unique_ptr。unique_ptr是专属所有权，所以被unique_ptr管理的内存，只能被一个对象持有，不支持复制(参数传递)和赋值(=)操作。</p>
-<p>&emsp;&emsp;移动语义：虽然unique_ptr禁止了拷贝语义，但有时候我们也需要能够转移所有权，于是提供了移动语义，即可以使用std::move()进行所有权的转移。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/unique_ptr.png" alt=""></p>
+<h3 id="unique_ptr">unique_ptr</h3>
+<p>  auto_ptr提供了自动管理内存的一个方法，但是它和对象的耦合性太紧了，如果多方操作对象很容易出问题，所以推出了unique_ptr。unique_ptr是专属所有权，所以被unique_ptr管理的内存，只能被一个对象持有，不支持复制(参数传递)和赋值(=)操作。</p>
+<p>  移动语义：虽然unique_ptr禁止了拷贝语义，但有时候我们也需要能够转移所有权，于是提供了移动语义，即可以使用std::move()进行所有权的转移。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/unique_ptr.png" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 在这个范围之外，unique_ptr被释放</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">auto</span> i = <span class="built_in">unique_ptr</span>&lt;<span class="type">int</span>&gt;(<span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">10</span>));</span><br><span class="line">		<span class="comment">//i在栈区，指向一个堆区分配的区域</span></span><br><span class="line">		cout &lt;&lt; *i &lt;&lt; endl;</span><br><span class="line">	&#125;<span class="comment">//大括号结束后，i自动释放，指向的堆区内部也自动delete</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// unique_ptr</span></span><br><span class="line">	<span class="keyword">auto</span> w = std::<span class="built_in">make_unique</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line">	cout &lt;&lt; *(w.<span class="built_in">get</span>()) &lt;&lt; endl;                          <span class="comment">// 10。get()方法返回的就是指针</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//auto w2 = w;  // 编译错误！！如果想要把 w 复制给 w2, 是不可以的。</span></span><br><span class="line">	<span class="comment">//  因为复制从语义上来说，两个对象将共享同一块内存。</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// unique_ptr 只支持移动语义, 即如下</span></span><br><span class="line">	<span class="keyword">auto</span> w2 = std::<span class="built_in">move</span>(w); <span class="comment">// w2 获得内存所有权，w 此时等于 nullptr</span></span><br><span class="line">	cout &lt;&lt; ((w.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*w.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;       <span class="comment">// -1</span></span><br><span class="line">	cout &lt;&lt; ((w2.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*w2.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;   <span class="comment">// 10</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="shared-ptr和weak-ptr"><a href="#shared-ptr和weak-ptr" class="headerlink" title="shared_ptr和weak_ptr"></a>shared_ptr和weak_ptr</h3><p>&emsp;&emsp;unique_ptr在同一时间只能由一个指针持有对象，使用上具有局限性。所以推出了shared_ptr。</p>
-<p>&emsp;&emsp;shared_ptr通过一个引用计数共享一个对象，在这个机制上提供了可以共享所有权的智能指针，当然引用计数需要额外的开销。当引用计数为0时，说明该对象没有被使用，可以进行析构。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/share_ptr.png" alt=""></p>
+<h3 id="shared_ptr和weak_ptr">shared_ptr和weak_ptr</h3>
+<p>  unique_ptr在同一时间只能由一个指针持有对象，使用上具有局限性。所以推出了shared_ptr。</p>
+<p>  shared_ptr通过一个引用计数共享一个对象，在这个机制上提供了可以共享所有权的智能指针，当然引用计数需要额外的开销。当引用计数为0时，说明该对象没有被使用，可以进行析构。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/share_ptr.png" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// shared_ptr </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//shared_ptr 代表的是共享所有权，即多个 shared_ptr 可以共享同一块内存。</span></span><br><span class="line">		<span class="keyword">auto</span> wA = <span class="built_in">shared_ptr</span>&lt;<span class="type">int</span>&gt;(<span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">20</span>));</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">auto</span> wA2 = wA;          <span class="comment">//shared_ptr可以赋值，同时指向对象</span></span><br><span class="line">			cout &lt;&lt; ((wA2.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*wA2.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;       <span class="comment">// 20</span></span><br><span class="line">			cout &lt;&lt; ((wA.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*wA.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;         <span class="comment">// 20</span></span><br><span class="line">			cout &lt;&lt; wA2.<span class="built_in">use_count</span>() &lt;&lt; endl;              <span class="comment">// 打印引用计数 2</span></span><br><span class="line">			cout &lt;&lt; wA.<span class="built_in">use_count</span>() &lt;&lt; endl;               <span class="comment">// 打印引用计数 2</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//cout &lt;&lt; wA2.use_count() &lt;&lt; endl;                                               </span></span><br><span class="line">		cout &lt;&lt; wA.<span class="built_in">use_count</span>() &lt;&lt; endl;                  <span class="comment">// wA2消亡，引用计数为1</span></span><br><span class="line">		cout &lt;&lt; ((wA.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*wA.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;        <span class="comment">// 20</span></span><br><span class="line">		<span class="comment">//shared_ptr 内部是利用引用计数来实现内存的自动管理，每当复制一个 shared_ptr，</span></span><br><span class="line">		<span class="comment">//	引用计数会 + 1。当一个 shared_ptr 离开作用域时，引用计数会 - 1。</span></span><br><span class="line">		<span class="comment">//	当引用计数为 0 的时候，则 delete 内存。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//跳出作用域，wA也消亡，同时内存会被释放</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// shared_ptr也支持move()语法</span></span><br><span class="line">	<span class="keyword">auto</span> wAA = std::<span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">30</span>);</span><br><span class="line">	<span class="keyword">auto</span> wAA2 = std::<span class="built_in">move</span>(wAA); <span class="comment">// 此时 wAA 等于 nullptr，wAA2.use_count() 等于 1</span></span><br><span class="line">	cout &lt;&lt; ((wAA.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*wAA.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;          <span class="comment">// -1</span></span><br><span class="line">	cout &lt;&lt; ((wAA2.<span class="built_in">get</span>() != <span class="literal">nullptr</span>) ? (*wAA2.<span class="built_in">get</span>()) : <span class="number">-1</span>) &lt;&lt; endl;      <span class="comment">// 30</span></span><br><span class="line">	cout &lt;&lt; wAA.<span class="built_in">use_count</span>() &lt;&lt; endl;              <span class="comment">// 0</span></span><br><span class="line">	cout &lt;&lt; wAA2.<span class="built_in">use_count</span>() &lt;&lt; endl;             <span class="comment">// 1</span></span><br><span class="line">	<span class="comment">//将 wAA 对象 move 给 wAA2，意味着 wAA 放弃了对内存的所有权和管理，此时 wAA对象等于 nullptr。</span></span><br><span class="line">	<span class="comment">//而 wAA2 获得了对象所有权，但因为此时 wAA 已不再持有对象，因此 wAA2 的引用计数为 1。</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;引用计数也会带来一个严重问题：循环引用。即存在一种情况，有两个对象，对象A内部有shared_ptr指针指向B，B中也有shared_ptr指向A，当A使用完毕打算回收内存空间时，会检查内部变量pA,此时会去尝试清理B，但B中也有pB指向A，此时循环引用会导致堆里面的内存无法正常回收，造成内存泄漏。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/sharef_ptr%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.png" alt=""></p>
-<p>&emsp;&emsp;为了避免这种循环引用，标准库提供了weak_ptr，被用来和shared_ptr共同工作，用一种观察者模式工作，获得资源的观测权，像旁观者那样观测资源的使用情况。比如两个对象A和B互为关联，但B只是想获取A的一些属性，并不需要A的所有权，那么可以用weak_ptr，指向A但是并不拿A的引用计数。因为B没有A的引用计数，那么A销毁的时候，B也可以同时销毁。这就是观察者模式，观察者意味着weak_ptr只对shared_ptr进行引用，而不改变其引用计数，当被观察的shared_ptr失效后，相应的weak_ptr也失效。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/weak_ptr.png" alt=""></p>
+<p>  引用计数也会带来一个严重问题：循环引用。即存在一种情况，有两个对象，对象A内部有shared_ptr指针指向B，B中也有shared_ptr指向A，当A使用完毕打算回收内存空间时，会检查内部变量pA,此时会去尝试清理B，但B中也有pB指向A，此时循环引用会导致堆里面的内存无法正常回收，造成内存泄漏。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/sharef_ptr%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.png" /></p>
+<p>  为了避免这种循环引用，标准库提供了weak_ptr，被用来和shared_ptr共同工作，用一种观察者模式工作，获得资源的观测权，像旁观者那样观测资源的使用情况。比如两个对象A和B互为关联，但B只是想获取A的一些属性，并不需要A的所有权，那么可以用weak_ptr，指向A但是并不拿A的引用计数。因为B没有A的引用计数，那么A销毁的时候，B也可以同时销毁。这就是观察者模式，观察者意味着weak_ptr只对shared_ptr进行引用，而不改变其引用计数，当被观察的shared_ptr失效后，相应的weak_ptr也失效。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/weak_ptr.png" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;</span><br><span class="line">	shared_ptr&lt;B&gt; pb;</span><br><span class="line">	~<span class="built_in">A</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;~A()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span> &#123;</span><br><span class="line">	shared_ptr&lt;A&gt; pa;</span><br><span class="line">	~<span class="built_in">B</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;~B()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pa 和 pb 存在着循环引用，根据 shared_ptr 引用计数的原理，pa 和 pb 都无法被正常的释放。</span></span><br><span class="line"><span class="comment">// weak_ptr 是为了解决 shared_ptr 双向引用的问题。</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BW</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AW</span></span><br><span class="line">&#123;</span><br><span class="line">	shared_ptr&lt;BW&gt; pb;</span><br><span class="line">	~<span class="built_in">AW</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;~AW()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">BW</span></span><br><span class="line">&#123;</span><br><span class="line">	weak_ptr&lt;AW&gt; pa;</span><br><span class="line">	~<span class="built_in">BW</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;~BW()&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Test shared_ptr and shared_ptr:  &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="function">shared_ptr&lt;A&gt; <span class="title">tA</span><span class="params">(<span class="keyword">new</span> A())</span></span>;                                               </span><br><span class="line">	<span class="function">shared_ptr&lt;B&gt; <span class="title">tB</span><span class="params">(<span class="keyword">new</span> B())</span></span>;                                                </span><br><span class="line">	cout &lt;&lt; tA.<span class="built_in">use_count</span>() &lt;&lt; endl;  <span class="comment">//1</span></span><br><span class="line">	cout &lt;&lt; tB.<span class="built_in">use_count</span>() &lt;&lt; endl;  <span class="comment">//1</span></span><br><span class="line">	tA-&gt;pb = tB;</span><br><span class="line">	tB-&gt;pa = tA;</span><br><span class="line">	cout &lt;&lt; tA.<span class="built_in">use_count</span>() &lt;&lt; endl;     <span class="comment">// 2</span></span><br><span class="line">	cout &lt;&lt; tB.<span class="built_in">use_count</span>() &lt;&lt; endl;     <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Test2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;Test weak_ptr and shared_ptr:  &quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="function">shared_ptr&lt;AW&gt; <span class="title">tA</span><span class="params">(<span class="keyword">new</span> AW())</span></span>;</span><br><span class="line">	<span class="function">shared_ptr&lt;BW&gt; <span class="title">tB</span><span class="params">(<span class="keyword">new</span> BW())</span></span>;</span><br><span class="line">	cout &lt;&lt; tA.<span class="built_in">use_count</span>() &lt;&lt; endl;    <span class="comment">// 1</span></span><br><span class="line">	cout &lt;&lt; tB.<span class="built_in">use_count</span>() &lt;&lt; endl;    <span class="comment">// 1</span></span><br><span class="line">	tA-&gt;pb = tB;</span><br><span class="line">	tB-&gt;pa = tA;   <span class="comment">//tB-&gt;pa是weak_ptr，指向tA但不会对tA的引用计数产生影响</span></span><br><span class="line">	cout &lt;&lt; tA.<span class="built_in">use_count</span>() &lt;&lt; endl;    <span class="comment">// 1</span></span><br><span class="line">	cout &lt;&lt; tB.<span class="built_in">use_count</span>() &lt;&lt; endl;    <span class="comment">// 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">Test</span>();</span><br><span class="line">	<span class="built_in">Test2</span>();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">上面代码输出：</span><br><span class="line"><span class="keyword">Test </span>shared_ptr and shared_ptr:</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line"><span class="keyword">Test </span>weak_ptr and shared_ptr:</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">~AW()</span><br><span class="line">~BW()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">可以看到weak_ptr不会对引用计数产生影响，而产生循环引用的地方不会发生析构</span><br></pre></td></tr></table></figure>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>&emsp;&emsp;引用在本质上仍然是是指针，只不过自身比较特殊，是<strong>不允许修改的指针</strong>。(我们常说java中没有指针，其实java中的指针就是引用)</p>
+<h2 id="引用">引用</h2>
+<p>  引用在本质上仍然是是指针，只不过自身比较特殊，是<strong>不允许修改的指针</strong>。(我们常说java中没有指针，其实java中的指针就是引用)</p>
 <p>在指针使用上，我们会遇到一些问题：</p>
-<ol>
+<ol type="1">
 <li>空指针</li>
 <li>野指针（没有初始化）</li>
 <li>不知不觉改变了指针的值，我们却仍然在使用</li>
 </ol>
 <p>使用引用，我们可以避免这些问题：</p>
-<ol>
+<ol type="1">
 <li>不存在空引用；</li>
 <li>引用必须被初始化；</li>
 <li>一个引用永远指向它初始化的那个对象，不允许被修改。</li>
 </ol>
-<p>&emsp;</p>
+<p> </p>
 <ul>
 <li>引用的基本使用：可以认为是指定变量的别名，使用时可以认为是变量本身：</li>
 </ul>
@@ -915,9 +1061,11 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
 <li>当我们在函数中需要操作形参并且返回时一并返回，这时候我们就可以传递引用。</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 编写一个函数，输入两个int型变量a,b</span></span><br><span class="line"><span class="comment">// 实现在函数内部将a,b的值进行交换。</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span>&amp; a, <span class="type">int</span>&amp; b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> tmp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap2</span><span class="params">(<span class="type">int</span>* a, <span class="type">int</span>* b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> tmp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 交换变量的测试</span></span><br><span class="line">	<span class="type">int</span> a = <span class="number">3</span>, b = <span class="number">4</span>;</span><br><span class="line">	<span class="built_in">swap</span>(a, b);</span><br><span class="line">	<span class="built_in">assert</span>(a == <span class="number">4</span> &amp;&amp; b == <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	a = <span class="number">3</span>, b = <span class="number">4</span>;</span><br><span class="line">	<span class="built_in">swap2</span>(&amp;a, &amp;b);</span><br><span class="line">	<span class="built_in">assert</span>(a == <span class="number">4</span> &amp;&amp; b == <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&emsp;</p>
-<p>&emsp;&emsp;C++为什么要同时存在指针和引用？在java语言中我们直接使用引用，传统C语言我们都使用指针。C++可以认为是夹在C和java之间的一种。之所以要使用引用是为了支持函数的运算符重载。而C++为了兼容C语言不能摒弃指针。</p>
-<p>&emsp;&emsp;在函数传递参数的时候，对于内置基础类型（int、double等）而言，在函数中传递值更高效(pass by value)；在面向对象中自定义类型而言，在函数中传递const引用更高效(pass by reference to const)。</p>
+<p> </p>
+<p>  C++为什么要同时存在指针和引用？在java语言中我们直接使用引用，传统C语言我们都使用指针。C++可以认为是夹在C和java之间的一种。之所以要使用引用是为了支持函数的运算符重载。而C++为了兼容C语言不能摒弃指针。</p>
+<p>  在函数传递参数的时候，对于内置基础类型（int、double等）而言，在函数中传递值更高效(pass
+by value)；在面向对象中自定义类型而言，在函数中传递const引用更高效(pass
+by reference to const)。</p>
 
       
     </div>
@@ -968,7 +1116,7 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 15:34:10" itemprop="dateModified" datetime="2025-06-04T15:34:10+08:00">2025-06-04</time>
+                <time title="修改时间：2025-06-04 16:36:40" itemprop="dateModified" datetime="2025-06-04T16:36:40+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -986,7 +1134,7 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>4.8k</span>
             </span>
 
         </div>
@@ -998,53 +1146,97 @@ b))参数有函数指针，我们把函数名传递进去，真正的调用是�
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="字符串变量与常量"><a href="#字符串变量与常量" class="headerlink" title="字符串变量与常量"></a>字符串变量与常量</h1><p>C风格的字符串包括两种：字符串常量和末尾添加了’\0’的字符数组。无论怎么表示，都以’\0’结尾。</p>
-<h2 id="字符串变量"><a href="#字符串变量" class="headerlink" title="字符串变量"></a>字符串变量</h2><ul>
-<li>字符串是一个特殊的字符数组，以空字符’&#92;0’结尾;</li>
-<li>空字符’&#92;0’<strong>自动</strong>添加到字符串的内部表示中;</li>
-<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char str[11] = {“helloworld”},十个字符要留11个位置</li>
+          <p>  字符串是由零个或多个字符组成的有限串行。</p>
+<p>  子串的定义：串中任意个连续的字符组成的子序列，并规定空串是任意串的子串，任意串是其自身的子串</p>
+<h1 id="字符串变量与常量">字符串变量与常量</h1>
+<p>C风格的字符串包括两种：字符串常量和末尾添加了'\0'的字符数组。无论怎么表示，都以'\0'结尾。</p>
+<h2 id="字符串变量">字符串变量</h2>
+<ul>
+<li>字符串是一个特殊的字符数组，以空字符'\0'结尾;</li>
+<li>空字符'\0'<strong>自动</strong>添加到字符串的内部表示中;</li>
+<li>在声明字符串变量的时候，要时刻记得为这个空结束符预留一个额外元素的空间：char
+str[11] = {"helloworld"},十个字符要留11个位置</li>
 </ul>
-<h2 id="字符串常量"><a href="#字符串常量" class="headerlink" title="字符串常量"></a>字符串常量</h2><ul>
-<li>字符串常量就是一对双引号括起来的字符序列：”helloworld”;</li>
+<h2 id="字符串常量">字符串常量</h2>
+<ul>
+<li>字符串常量就是一对双引号括起来的字符序列："helloworld";</li>
 <li>字符串常量中的每个元素可以作为一个数组元素访问;</li>
-<li>字符串常量也是以’\0’结尾的;</li>
+<li>字符串常量也是以'\0'结尾的;</li>
 </ul>
-<h1 id="字符串的指针表示"><a href="#字符串的指针表示" class="headerlink" title="字符串的指针表示"></a>字符串的指针表示</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="字符串的指针表示">字符串的指针表示</h1>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span>* pStrHelloWorld = <span class="string">&quot;helloworld&quot;</span>;</span><br></pre></td></tr></table></figure>
 <p>表示一个char型的指针变量，指向内存中一个存储字符串“helloworld”的地址。</p>
 <p>定义字符串有两种方式，char[]和char*，要区分以下两个概念：</p>
-<ol>
+<ol type="1">
 <li>区分地址本身和地址存储的信息；</li>
 <li>区分可变与不可变；</li>
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//char strHello[10] = &#123; &quot;helloworld&quot; &#125;;  //错误定义，没有给&#x27;\0&#x27;留空间</span></span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> strHello[<span class="number">11</span>] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;</span><br><span class="line">	<span class="type">char</span> strHello[] = &#123; <span class="string">&quot;helloworld&quot;</span> &#125;;  <span class="comment">//这样定义也可以</span></span><br><span class="line">	<span class="comment">//strHello是数组变量，它本身的值是不允许改变的，但是它指向的区域的值strHello[index]是可以改变的</span></span><br><span class="line">	strHello[<span class="number">2</span>] = <span class="string">&#x27;6&#x27;</span>;    <span class="comment">//strHello = he6loworld</span></span><br><span class="line">	<span class="comment">//strHello = &#123; &quot;helloworld&quot; &#125;;    //本身不允许改变，编译不通过</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//ptrHello是指针变量，它本身是可以改变的，但是ptrHello[index]指向的值可变与否要取绝与所指向的区间是否可以改变</span></span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* ptrHello_1 = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//指针指向常量区(必须要加const)，ptrHello[index]不可改变，但本身指向的地址可以变。</span></span><br><span class="line">	ptrHello_1 = <span class="string">&quot;change&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span> tmp[<span class="number">7</span>] = <span class="string">&quot;change&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* ptrHello_2 = strHello;      <span class="comment">//指针指向数组变量，ptrHello[index]可以改变,本身也可以变</span></span><br><span class="line">	ptrHello_2[<span class="number">2</span>] = <span class="string">&#x27;l&#x27;</span>;</span><br><span class="line">	ptrHello_2 = tmp;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>char* pstr是指针，pstr本身可变，pstr[index]是否可变取决于指向的存储区间是否可变；</p>
-<p>char str[]是字符串数组，str本身的值不允许改变，但可以改变str[index];</p>
-<h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><p>头文件：string.h</p>
-<p>C/C++字符串处理函数，传递给这些标准库函数例程的指针必须具有非零值，并且<strong>指向以null结束的字符数组</strong>中的第一个元素。其中一些标准库函数会修改传递给它的字符串，这些函数将假定它们所修改的字符串具有足够大的空间接收新字符串，程序员需要保证目标字符串足够大。</p>
-<h2 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
-<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到’\0’为止；</p>
-<h2 id="字符串拷贝"><a href="#字符串拷贝" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1中</span></span><br></pre></td></tr></table></figure>
+<p>char*
+pstr是指针，pstr本身可变，pstr[index]是否可变取决于指向的存储区间是否可变；</p>
+<p>char
+str[]是字符串数组，str本身的值不允许改变，但可以改变str[index];</p>
+<h1 id="字符串操作">字符串操作</h1>
+<p>头文件：string.h</p>
+<p>  C/C++字符串处理函数，传递给这些标准库函数例程的指针必须具有非零值，并且<strong>指向以null结束的字符数组</strong>中的第一个元素。其中一些标准库函数会修改传递给它的字符串，这些函数将假定它们所修改的字符串具有足够大的空间接收新字符串，程序员需要保证目标字符串足够大。</p>
+<h2 id="字符串遍历">字符串遍历</h2>
+<p>  一般来说，我们使用指针的算数操作来编译C风格的字符串，每次对指针进行测试并递增1，直到到达结束符null为止：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> *cp = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line"><span class="keyword">while</span>(*cp)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">	++cp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串长度">字符串长度</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s);    <span class="comment">//返回字符串s的长度，要注意字符串的长度不包含&#x27;\0&#x27;。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sizeof</span>(s);   <span class="comment">//返回字符串所占用的空间，包含&#x27;\0&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> strA[<span class="number">11</span>] = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n1 = <span class="built_in">sizeof</span>(strA);     <span class="comment">//11</span></span><br><span class="line">	<span class="keyword">auto</span> n2 = <span class="built_in">strlen</span>(strA);     <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="type">wchar_t</span> strB[<span class="number">11</span>] = <span class="string">L&quot;helloworld&quot;</span>;</span><br><span class="line">	<span class="keyword">auto</span> n3 = <span class="built_in">sizeof</span>(strB);        <span class="comment">//22</span></span><br><span class="line">	<span class="keyword">auto</span> n4 = <span class="built_in">wcslen</span>(strB);        <span class="comment">//10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义实现strlen</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">assert</span>(str != <span class="literal">NULL</span>);</span><br><span class="line">	<span class="type">int</span> len = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>((*str++) != <span class="string">&#x27;\0&#x27;</span>)&#123;</span><br><span class="line">		len++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> len;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者不使用临时变量,用递归：</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">assert</span>(str != <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">return</span> *str == <span class="string">&#x27;\0&#x27;</span> ? <span class="number">0</span> : (<span class="number">1</span> + <span class="built_in">strlen</span>(++str));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较">字符串比较</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2); </span><br><span class="line"><span class="built_in">wcscmp</span>(s1,s2); </span><br><span class="line"><span class="comment">//s1 == s2,返回0</span></span><br><span class="line"><span class="comment">//s1 &lt; s2 ,返回值小于0</span></span><br><span class="line"><span class="comment">//s1 &gt; s2 ，返回值大于0</span></span><br></pre></td></tr></table></figure>
+<p>两个字符串自左向右逐个字符相比，按照ASCII值大小来比较，直到出现不同字符或遇到'\0'为止；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义实现strcmp：</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">strcmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str1, <span class="type">const</span> <span class="type">char</span>* str2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">assert</span>(str1 != <span class="literal">NULL</span> &amp;&amp; str2 != <span class="literal">NULL</span>);</span><br><span class="line">	<span class="type">int</span> ret = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!(ret = *(<span class="type">unsigned</span> <span class="type">char</span>*)str1 - *(<span class="type">unsigned</span> <span class="type">char</span>*)str2) &amp;&amp; str1)</span><br><span class="line">	&#123;</span><br><span class="line">		str1++;</span><br><span class="line">		str2++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(ret &lt; <span class="number">0</span>)  ret = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(ret &gt; <span class="number">0</span>)  ret = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串拷贝">字符串拷贝</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcpy</span>(s1,s2);   <span class="comment">//赋值字符串s2到字符串s1的地址空间</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncpy</span>(s1,s2,n);   <span class="comment">//将字符串s2中的前n个字符拷贝到s1的地址空间</span></span><br></pre></td></tr></table></figure>
 <p><strong>要注意一个陷阱，一定要保证字符串s1的内存大小能存的下要拷贝的s2的大小</strong></p>
-<h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义实现strcpy</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">strcpy</span><span class="params">(<span class="type">char</span>* strDestination, <span class="type">const</span> <span class="type">char</span>* strSource)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">assert</span>(strDestination != <span class="literal">NULL</span> &amp;&amp; strSource != <span class="literal">NULL</span>);</span><br><span class="line">	<span class="type">char</span>* strD = strDestination;</span><br><span class="line">	<span class="keyword">while</span>((*strDestination++ = *strSource++) != <span class="string">&#x27;\0&#x27;</span>);</span><br><span class="line">	<span class="keyword">return</span> strD;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>拷贝还可以使用内存拷贝函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从src所指向的内存地址起始位置开始拷贝n个字节到dest所指的内存地址的起始位置中。返回指向dest的指针</span></span><br><span class="line"><span class="function"><span class="type">void</span>* <span class="title">memcpy</span><span class="params">(<span class="type">void</span>* dest, <span class="type">const</span>* src, <span class="type">size_t</span> n)</span></span>; </span><br></pre></td></tr></table></figure>
+<p>memcpy和strcpy的区别：</p>
+<ol type="1">
+<li>复制内容不同。strcpy只能复制字符串，而且不仅复制字符串内容，也复制结束符'\0'；memcpy可以复制任意内容，用途更广；</li>
+<li>strcpy不需要指定长度，memcpy需要指定长度</li>
+</ol>
+<h2 id="字符串拼接">字符串拼接</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcat</span>(s1,s2);   <span class="comment">//将字符串s2拼接到s1后面(覆盖s1的&#x27;\0&#x27;),返回s1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">strncat</span>(s1, s2, n); <span class="comment">//将s2的前n个字符拼接到s1，并返回s1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义实现strcat：</span></span><br><span class="line"><span class="function"><span class="type">char</span> *<span class="title">strcat</span><span class="params">(<span class="type">char</span>* strDest, <span class="type">const</span> <span class="type">char</span>* strSrc)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span>* address = strDest;</span><br><span class="line">	<span class="built_in">assert</span>((strDest != <span class="literal">NULL</span>) &amp;&amp; strSrc != <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">while</span>(*strDest)  <span class="comment">//如果是strncat，这里用n作为结束标志</span></span><br><span class="line">	&#123;</span><br><span class="line">		strDest++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(*strDest++ = *strSrc++);</span><br><span class="line">	<span class="keyword">return</span> address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>这个更加要注意，s1的大小要足够存放拼接后的s1+s2字符串的大小</strong></p>
 <p>两个char*不能直接相加，字符串拼接必须要用这个函数。（指针相加是什么操作啊(#`O′)）</p>
-<h2 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
-<h2 id="安全函数"><a href="#安全函数" class="headerlink" title="安全函数"></a>安全函数</h2><p>C语言的字符串处理有其漏洞所在。上面的所有方法都无法做边界检查，如果不注意就会发生缓冲区溢出的问题，这个问题在编码时是很严重的事故。。现在我们往往在程序中使用更加安全的API函数：</p>
-<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。<br>strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有’&#92;0’结束标志。</p>
-<h1 id="C-新型字符串—string类"><a href="#C-新型字符串—string类" class="headerlink" title="C++新型字符串—string类"></a>C++新型字符串—string类</h1><p>C++标准库中提供了string类型专门表示字符串</p>
+<h2 id="字符串查找">字符串查找</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strchr</span>(s1,ch);   <span class="comment">//指向字符串s1中字符ch第一次出现的位置</span></span><br><span class="line"><span class="built_in">strstr</span>(s1,s2);   <span class="comment">//指向字符串s1中字符串s2的第一次出现的位置</span></span><br></pre></td></tr></table></figure>
+<h2 id="内容替换">内容替换</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将s中的前n个字节用ch替换并返回s</span></span><br><span class="line"><span class="function"><span class="type">void</span>* <span class="title">memset</span><span class="params">(<span class="type">void</span>* s, <span class="type">int</span> ch, <span class="type">size_t</span> n)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这个函数的作用是在一块内存中填充某个给定的值，是对较大的结构体或者数组进行清零的最快方法。</p>
+<h2 id="安全函数">安全函数</h2>
+<p>C语言的字符串处理有其漏洞所在。上面的所有方法都无法做边界检查，如果不注意就会发生缓冲区溢出的问题，这个问题在编码时是很严重的事故。。现在我们往往在程序中使用更加安全的API函数：</p>
+<p>上述所有API函数都有其_s版本，如strcpy_s()，在执行操作的同时要告诉系统当前可使用的缓冲区的大小。
+strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个最大的边界，以防止某些字符串没有'\0'结束标志。</p>
+<h1 id="c新型字符串--string类">C++新型字符串--string类</h1>
+<p>C++标准库中提供了string类型专门表示字符串</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br></pre></td></tr></table></figure>
 <p>使用string可以更加方便和安全的管理字符串，对性能要求不是特别高的场景可以使用。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="字符串长度-1"><a href="#字符串长度-1" class="headerlink" title="字符串长度"></a>字符串长度</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
-<h2 id="字符串比较-1"><a href="#字符串比较-1" class="headerlink" title="字符串比较"></a>字符串比较</h2><p>直接使用运算符&#61;&#61;&emsp;&#33;&#61;&emsp;&#60;&emsp;&#62;&emsp;&#62;&#61;&emsp;&#60; &#61; 即可，通过ASCII码来比较。</p>
-<h2 id="转换为C风格字符串"><a href="#转换为C风格字符串" class="headerlink" title="转换为C风格字符串"></a>转换为C风格字符串</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="随机访问"><a href="#随机访问" class="headerlink" title="随机访问"></a>随机访问</h2><p>字符串本身就是数组，可以使用下标的方式访问</p>
+<h2 id="定义">定义</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string s;   <span class="comment">//定义空字符串</span></span><br><span class="line">string s = <span class="string">&quot;helloworld&quot;</span>;  <span class="comment">//定义并初始化</span></span><br><span class="line"><span class="function">string <span class="title">s</span><span class="params">(<span class="string">&quot;helloworld&quot;</span>)</span></span>;</span><br><span class="line">string s = <span class="built_in">string</span>(<span class="string">&quot;helloworld&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="字符串长度-1">字符串长度</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;s1.<span class="built_in">length</span>()&lt;&lt;endl;    <span class="comment">//输出字符串长度</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">size</span>()&lt;&lt;endl;      <span class="comment">//本质和上面一样</span></span><br><span class="line">cout&lt;&lt;s1.<span class="built_in">capacity</span>()&lt;&lt;endl;  <span class="comment">// 字符串的容量</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串比较-1">字符串比较</h2>
+<p>直接使用运算符== != &lt; &gt; &gt;= &lt; =
+即可，通过ASCII码来比较。</p>
+<h2 id="转换为c风格字符串">转换为C风格字符串</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">char</span>* c_str1 = s1.<span class="built_in">c_str</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="随机访问">随机访问</h2>
+<p>字符串本身就是数组，可以使用下标的方式访问</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">cout&lt;&lt;s[<span class="number">0</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拷贝-1"><a href="#字符串拷贝-1" class="headerlink" title="字符串拷贝"></a>字符串拷贝</h2><p>不需要使用函数，直接使用=赋值</p>
+<h2 id="字符串拷贝-1">字符串拷贝</h2>
+<p>不需要使用函数，直接使用=赋值</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">string s2 = s1;</span><br></pre></td></tr></table></figure>
-<h2 id="字符串拼接-1"><a href="#字符串拼接-1" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><p>string重载了+和+=，不需要使用函数</p>
+<h2 id="字符串拼接-1">字符串拼接</h2>
+<p>string重载了+和+=，不需要使用函数</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string s1 = <span class="string">&quot;hell0&quot;</span>,s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">string s3 = s1+s2;</span><br><span class="line">s1 += s2;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -1346,7 +1538,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-04-02 15:48:08" itemprop="dateModified" datetime="2025-04-02T15:48:08+08:00">2025-04-02</time>
+                <time title="修改时间：2025-06-04 17:28:37" itemprop="dateModified" datetime="2025-06-04T17:28:37+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1364,7 +1556,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>3.1k</span>
             </span>
 
         </div>
@@ -1673,6 +1865,8 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
 </tr>
 </tbody>
 </table>
+<p>  一定要注意，sizeof是运算符，不要理解为函数！！！sizeof的操作数可以是一个表达式或者是类型名。需要牢记sizeof的计算发生在编译时期，所以它可以被当作常量表达式使用，且会忽略括号内的运算。比如sizeof(a++)中的++不会执行。</p>
+<p>  如果sizeof中传递的是个函数调用，则返回函数返回类型的大小，函数不会调用。这里只能传递函数调用，不能传递函数名（Func()这个是函数调用，Func是函数名）。且如果函数返回的是void，不能确定类型，也不可以使用sizeof运算符。</p>
 <h1 id="运算符优先级">运算符优先级</h1>
 <p>下表从高到低列出各个运算符，较高的运算符会被优先计算：</p>
 <table>
@@ -1816,7 +2010,7 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 15:35:10" itemprop="dateModified" datetime="2025-06-04T15:35:10+08:00">2025-06-04</time>
+                <time title="修改时间：2025-06-04 17:30:22" itemprop="dateModified" datetime="2025-06-04T17:30:22+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1834,7 +2028,7 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>2.9k</span>
             </span>
 
         </div>
@@ -1846,98 +2040,115 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h1><p>编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低</p>
-<ol>
+          <h1 id="编译型语言">编译型语言</h1>
+<p>编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低</p>
+<ol type="1">
 <li>机器语言、汇编语言：这些语言执行效率很高，但移植性很差；</li>
 <li>编译型语言：C/C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度；</li>
 <li>解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强；</li>
 <li>脚本语言：bash、csh。不同的平台拥有不同的脚本，本身的功能并不强大，但是很容易把各种语言融合在一起。</li>
 </ol>
 <p>C++属于编译型语言，需要经历编译和链接的过程，才能变成真正的可执行程序：</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png" alt=""></p>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>&emsp;&emsp;C++中的每个变量都有其数据类型，数据类型决定这个变量所占用内存空间的大小和布局方式、该空间能存储的值的范围，以及变量能参与的运算。</p>
-<p>&emsp;&emsp;在计算机中，1byte=8bit。我们在说数据类型的大小的时候一般以byte作为单位来计算。</p>
-<p>&emsp;&emsp;计算机中都是用0、1这种二进制存储的。日常中我们习惯用10进制来看，有时候为了方便，调试过程中更习惯用16进制的方式来表示。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA.png" alt=""></p>
-<p>&emsp;&emsp;内置的C++类型分为基本类型和符合类型。基本类型包括整数、浮点数及两者的多种变体；符合类型包括数组、字符串、指针、引用、结构体和共用体等。</p>
-<div class="table-container">
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png" /></p>
+<h1 id="数据类型">数据类型</h1>
+<p>  C++中的每个变量都有其数据类型，数据类型决定这个变量所占用内存空间的大小和布局方式、该空间能存储的值的范围，以及变量能参与的运算。</p>
+<p>  在计算机中，1byte=8bit。我们在说数据类型的大小的时候一般以byte作为单位来计算。</p>
+<p>  计算机中都是用0、1这种二进制存储的。日常中我们习惯用10进制来看，有时候为了方便，调试过程中更习惯用16进制的方式来表示。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA.png" /></p>
+<p>  内置的C++类型分为基本类型和符合类型。基本类型包括整数、浮点数及两者的多种变体；符合类型包括数组、字符串、指针、引用、结构体和共用体等。一般32位编译环境中的类型大小如下，需要注意不同的编译环境结果可能不同：</p>
 <table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">字节数</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:left">范围</th>
+<tr class="header">
+<th style="text-align: center;">名称</th>
+<th style="text-align: center;">字节数</th>
+<th style="text-align: center;">描述</th>
+<th style="text-align: left;">范围</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">char</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">存储字符或者整数，8位(bit)</td>
-<td style="text-align:left">有符号：-128~127；<br>无符号：0 ~ 255;</td>
+<tr class="odd">
+<td style="text-align: center;">char</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">存储字符或者整数，8位(bit)</td>
+<td style="text-align: left;">有符号：-128~127；<br>无符号：0 ~
+255;</td>
 </tr>
-<tr>
-<td style="text-align:center">short</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">短整数，16位</td>
-<td style="text-align:left">有符号：-32768~32767；<br>无符号:0 ~65535;</td>
+<tr class="even">
+<td style="text-align: center;">short</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">短整数，16位</td>
+<td style="text-align: left;">有符号：-32768~32767；<br>无符号:0
+~65535;</td>
 </tr>
-<tr>
-<td style="text-align:center">long</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">长整数，32位</td>
-<td style="text-align:left">有符号：-2147483648~2147483647；<br>无符号:0 ~4294967295 ;</td>
+<tr class="odd">
+<td style="text-align: center;">long</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">长整数，32位</td>
+<td
+style="text-align: left;">有符号：-2147483648~2147483647；<br>无符号:0
+~4294967295 ;</td>
 </tr>
-<tr>
-<td style="text-align:center">int</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">整数</td>
-<td style="text-align:left">同上</td>
+<tr class="even">
+<td style="text-align: center;">int</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">整数</td>
+<td style="text-align: left;">同上</td>
 </tr>
-<tr>
-<td style="text-align:center">float</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">浮点数</td>
-<td style="text-align:left"></td>
+<tr class="odd">
+<td style="text-align: center;">float</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">浮点数</td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:center">double</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">双精度浮点数</td>
-<td style="text-align:left"></td>
+<tr class="even">
+<td style="text-align: center;">double</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">双精度浮点数</td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:center">long double</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">长双精度浮点数</td>
-<td style="text-align:left"></td>
+<tr class="odd">
+<td style="text-align: center;">long double</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">长双精度浮点数</td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:center">bool</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">布尔值，只能是真值或假值</td>
-<td style="text-align:left">true或false</td>
+<tr class="even">
+<td style="text-align: center;">bool</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">布尔值，只能是真值或假值</td>
+<td style="text-align: left;">true或false</td>
 </tr>
-<tr>
-<td style="text-align:center">wchar_t</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">宽字符，这是为存储两字节长的国际字符而设计的类型</td>
+<tr class="odd">
+<td style="text-align: center;">wchar_t</td>
+<td style="text-align: center;">2</td>
+<td
+style="text-align: center;">宽字符，这是为存储两字节长的国际字符而设计的类型</td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
-</div>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常见的数据类型的定义</span></span><br><span class="line"><span class="type">char</span> a[<span class="number">10</span>] = <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">short</span> <span class="type">int</span> s = <span class="number">97</span>;</span><br><span class="line"><span class="type">int</span> m = <span class="number">97</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">int</span> n = <span class="number">97</span>;</span><br><span class="line"><span class="comment">//给float类型的变量赋值时，要在数值后面加上一个f或F，表示这是一个float类型的常量，否则默认为double类型的常量</span></span><br><span class="line"><span class="type">float</span> f = <span class="number">97.0f</span>; </span><br><span class="line"><span class="type">double</span> d = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">double</span> k = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="type">wchar_t</span> w[<span class="number">10</span>] = <span class="string">L&quot;a&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="内存分区"><a href="#内存分区" class="headerlink" title="内存分区"></a>内存分区</h1><ol>
+<h1 id="内存分区">内存分区</h1>
+<ol type="1">
 <li>堆：由程序员手动分配和释放，完全不同于数据结构中的堆，分配方式类似链表。由malloc(C)或new(C++)来分配，free(C)和delete(C++)释放。若程序员不释放，程序结束时由系统释放；</li>
 <li>栈：由编译器自动分配和释放的，存放函数的参数值、局部变量等。操作方式类似数据结构中的栈；</li>
 <li>全局（静态）存储区：存放全局变量和静态变量。包括DATA段(全局初始化区)和BSS段(全局未初始化区)。其中初始化的全局变量和静态变量存放在DATA段，未初始化的全局变量和未初始化的静态变量存放在BSS段。程序结束后由系统释放；在程序执行之前BSS段会自动清0，所以未初始化的全局变量和静态变量在程序执行之前就已经是0了；</li>
 <li>文字常量区：常量字符串存储在这里，程序结束后由系统释放；</li>
 <li>程序代码区：存放函数体的二进制代码</li>
 </ol>
-<h1 id="标识符和关键字"><a href="#标识符和关键字" class="headerlink" title="标识符和关键字"></a>标识符和关键字</h1><p>C++中的标识符是用来标识变量、函数、类、模块，或者任何其他用户自定义项目的名字；</p>
+<h1 id="标识符和关键字">标识符和关键字</h1>
+<p>C++中的标识符是用来标识变量、函数、类、模块，或者任何其他用户自定义项目的名字；</p>
 <ul>
-<li>一个标识符通常以字母A~Z或a ~z或下划线_开始，后面跟零个或者多个字母、下划线和数字；</li>
+<li>一个标识符通常以字母A~Z或a
+~z或下划线_开始，后面跟零个或者多个字母、下划线和数字；</li>
 <li>一个标识符不允许使用数字开头；</li>
 <li>一个标识符内不允许出现标点字符，如@、&amp;等等；</li>
 <li>不能混淆大小写，C++是区分大小写的编程语言；</li>
@@ -1949,263 +2160,155 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
 <li>标识符应该直观，可以望文知意，尽量使用英文单词组合，不要使用拼音；</li>
 <li>标识符长度要符合“min-length&amp;max-information”原则，长度尽可能短，信息尽可能多</li>
 <li>变量名字尽可能使用“名词”或“形容词+名词”形式，尽量避免出现数字；函数名尽量使用“动词+名词”</li>
-<li>可借鉴的命名规则：<ul>
-<li>匈牙利命名法：开头字母用变量类型缩写，其余部分用变量的英文或者英文缩写，要求第一个字母大写，如int iMyAge;</li>
-<li>Camel(驼峰)命名法：第一个单词首字母小写，后面单词首字母大写，如int myAge;</li>
+<li>可借鉴的命名规则：
+<ul>
+<li>匈牙利命名法：开头字母用变量类型缩写，其余部分用变量的英文或者英文缩写，要求第一个字母大写，如int
+iMyAge;</li>
+<li>Camel(驼峰)命名法：第一个单词首字母小写，后面单词首字母大写，如int
+myAge;</li>
 <li>Pascal命名法：每个单词的第一个字母都大写，如int MyAge;</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>&emsp;</p>
-<p><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
-<h1 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<p> </p>
+<p><a
+target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
+<h1 id="变量与常量">变量与常量</h1>
+<h2 id="变量">变量</h2>
+<ul>
 <li>变量就是在程序运行过程中，值可以改变的量；</li>
 <li>变量在程序的执行中可以进行赋值造作，发生变化；</li>
 <li>变量有一个名字，并在使用之前要说明其类型，一经说明，就在内存中占据与其类型相应的存储单元；</li>
 </ul>
 <p>变量定义：</p>
 <ul>
-<li>首先是类型说明符，随后紧跟一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束：int m = 1,n = 1;</li>
+<li>首先是类型说明符，随后紧跟一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束：int
+m = 1,n = 1;</li>
 <li>当变量在创建时获得了一个特定的值，我们说这个变量被初始化了。用于初始化变量的值可以是任意复杂的表达式；</li>
-<li>当一次定义了一个或多个变量时，变量的名字随着定义就可以使用了，如：int m=1,n=1; int sum = m + n;</li>
+<li>当一次定义了一个或多个变量时，变量的名字随着定义就可以使用了，如：int
+m=1,n=1; int sum = m + n;</li>
 </ul>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ul>
+<h2 id="常量">常量</h2>
+<ul>
 <li>在程序运行过程中，其值一直保持不变的量为常量；</li>
 <li>常量也区分不同的数据类型；</li>
 </ul>
 <p>常量在C++中有两种定义的方法：</p>
-<ol>
+<ol type="1">
 <li>使用#define，如：#define PI 3.14</li>
 <li>使用const，如：const double PI = 3.14</li>
 </ol>
 <p>尽量使用const形式定义变量，因为#define不会出现在编译时期，在编译出错时不容易排错。define是C语言时期的习惯。</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:center">宏定义</th>
-<th style="text-align:center">const</th>
+<tr class="header">
+<th style="text-align: center;">宏定义</th>
+<th style="text-align: center;">const</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">宏定义相当于字符替换</td>
-<td style="text-align:center">常量声明</td>
+<tr class="odd">
+<td style="text-align: center;">宏定义相当于字符替换</td>
+<td style="text-align: center;">常量声明</td>
 </tr>
-<tr>
-<td style="text-align:center">预处理器处理</td>
-<td style="text-align:center">编译器处理</td>
+<tr class="even">
+<td style="text-align: center;">预处理器处理</td>
+<td style="text-align: center;">编译器处理</td>
 </tr>
-<tr>
-<td style="text-align:center">无安全类型检查</td>
-<td style="text-align:center">有安全类型检查</td>
+<tr class="odd">
+<td style="text-align: center;">无安全类型检查</td>
+<td style="text-align: center;">有安全类型检查</td>
 </tr>
-<tr>
-<td style="text-align:center">不分配内存</td>
-<td style="text-align:center">分配内存</td>
+<tr class="even">
+<td style="text-align: center;">不分配内存</td>
+<td style="text-align: center;">分配内存</td>
 </tr>
-<tr>
-<td style="text-align:center">存储在代码段</td>
-<td style="text-align:center">存储在数据段</td>
+<tr class="odd">
+<td style="text-align: center;">存储在代码段</td>
+<td style="text-align: center;">存储在数据段</td>
 </tr>
-<tr>
-<td style="text-align:center">可以通过#undef取消</td>
-<td style="text-align:center">不可取消</td>
+<tr class="even">
+<td style="text-align: center;">可以通过#undef取消</td>
+<td style="text-align: center;">不可取消</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="整数常量"><a href="#整数常量" class="headerlink" title="整数常量"></a>整数常量</h2><p>整数常量可以是十进制、八进制或者十六进制的常量:</p>
+<h2 id="整数常量">整数常量</h2>
+<p>整数常量可以是十进制、八进制或者十六进制的常量:</p>
 <ul>
 <li>前缀指定基数：0x或者0X表示十六进制，0表示八进制，不带前缀则默认十进制；</li>
 <li>整数常量也可以带一个后缀，后缀是U和L的组合，U表示无符号整数，L表示长整数。后缀可以是大写也可以小写，不区分顺序。后缀不能重复。</li>
 </ul>
-<h2 id="布尔常量"><a href="#布尔常量" class="headerlink" title="布尔常量"></a>布尔常量</h2><p>布尔常量共有两个，他们都是C++关键字，true代表真，false代表假。</p>
-<h2 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h2><ul>
-<li>字符常量是括在<strong>单引号</strong>中的。如果常量以L(仅当大写时)开头，则表示宽字符常量(如L’x’)，此时必须保存在wchar_t类型的变量中;否则就是窄字符常量(如’x’)，此处可以存储在char类型的简单变量中；</li>
-<li>字符常量可以是一个普通字符(‘x’)、一个转义序列(‘\t’)、或者一个通用字符(‘\u02C0’)。</li>
+<h2 id="布尔常量">布尔常量</h2>
+<p>布尔常量共有两个，他们都是C++关键字，true代表真，false代表假。</p>
+<h2 id="字符常量">字符常量</h2>
+<ul>
+<li>字符常量是括在<strong>单引号</strong>中的。如果常量以L(仅当大写时)开头，则表示宽字符常量(如L'x')，此时必须保存在wchar_t类型的变量中;否则就是窄字符常量(如'x')，此处可以存储在char类型的简单变量中；</li>
+<li>字符常量可以是一个普通字符('x')、一个转义序列('\t')、或者一个通用字符('\u02C0')。</li>
 <li>需要表达一些符号的时候需要用到转义字符；</li>
 </ul>
 <p>常见转义字符如下：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:left">转义字符</th>
-<th style="text-align:left">含义</th>
+<tr class="header">
+<th style="text-align: left;">转义字符</th>
+<th style="text-align: left;">含义</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">\\\</td>
-<td style="text-align:left">&#92; 字符</td>
+<tr class="odd">
+<td style="text-align: left;">\\\</td>
+<td style="text-align: left;">\ 字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;’</td>
-<td style="text-align:left">‘字符</td>
+<tr class="even">
+<td style="text-align: left;">\'</td>
+<td style="text-align: left;">'字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;”</td>
-<td style="text-align:left">“字符</td>
+<tr class="odd">
+<td style="text-align: left;">\"</td>
+<td style="text-align: left;">"字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;?</td>
-<td style="text-align:left">?字符</td>
+<tr class="even">
+<td style="text-align: left;">\?</td>
+<td style="text-align: left;">?字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;a</td>
-<td style="text-align:left">警报铃</td>
+<tr class="odd">
+<td style="text-align: left;">\a</td>
+<td style="text-align: left;">警报铃</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;b</td>
-<td style="text-align:left">退格键</td>
+<tr class="even">
+<td style="text-align: left;">\b</td>
+<td style="text-align: left;">退格键</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;f</td>
-<td style="text-align:left">换页符</td>
+<tr class="odd">
+<td style="text-align: left;">\f</td>
+<td style="text-align: left;">换页符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;n</td>
-<td style="text-align:left">换行符</td>
+<tr class="even">
+<td style="text-align: left;">\n</td>
+<td style="text-align: left;">换行符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;r</td>
-<td style="text-align:left">换行符</td>
+<tr class="odd">
+<td style="text-align: left;">\r</td>
+<td style="text-align: left;">换行符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;t</td>
-<td style="text-align:left">水平制表符</td>
+<tr class="even">
+<td style="text-align: left;">\t</td>
+<td style="text-align: left;">水平制表符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;v</td>
-<td style="text-align:left">垂直制表符</td>
+<tr class="odd">
+<td style="text-align: left;">\v</td>
+<td style="text-align: left;">垂直制表符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;ooo</td>
-<td style="text-align:left">一到三位的八进制数</td>
+<tr class="even">
+<td style="text-align: left;">\ooo</td>
+<td style="text-align: left;">一到三位的八进制数</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;xhh…</td>
-<td style="text-align:left">一个或多个数字的十六进制数</td>
+<tr class="odd">
+<td style="text-align: left;">\xhh...</td>
+<td style="text-align: left;">一个或多个数字的十六进制数</td>
 </tr>
 </tbody>
 </table>
-</div>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2022/C/C++/C-%E6%A6%82%E5%86%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/C/C++/C-%E6%A6%82%E5%86%B5/" class="post-title-link" itemprop="url">C++概况</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-07 10:01:49" itemprop="dateCreated datePublished" datetime="2022-02-07T10:01:49+08:00">2022-02-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-01 03:04:42" itemprop="dateModified" datetime="2024-06-01T03:04:42+08:00">2024-06-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>668</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="c概况">C++概况</h1>
-<p>C++语言应用广泛，凡是要求大型的、对性能要求很高的程序，以及物联网应用上，都会用到C++语言。</p>
-<h1 id="c历史">C++历史</h1>
-<ul>
-<li>C++编程语言可追溯到1979年，Bjarne
-Stroustrup创立了带类的C，这就是C语言的超集。1983年，这个语言被命名为C++；</li>
-<li>C++最开始仅仅是C语言的增强版，但是后来又引入了很多功能。1998年伴随着STL标准库的诞生，一堆新功能和特性的产生，C++标准委员会发布了第一个国际标准C++
-+ ISO/IEC 1488：称为C++ 98；</li>
-<li>2011年中期，C++标准（被称作C++
-11）完成了新的标准。Boost库项目对新标准产生了相当大的影响，一些新模块直接从响应的Boost库中派生出来；</li>
-<li>C++
-11之后，每三年C++都会发布新的语言标准，每一版都在基本保留向后兼容性的同时，提供着改进和新功能；</li>
-</ul>
-<h1 id="c特点">C++特点</h1>
-<p>优点：</p>
-<ol type="1">
-<li>强大的抽象封装能力：这让C++语言具备了强大的开发工程能力；</li>
-<li>高性能：运行快，占用资源少；</li>
-<li>低功耗：特别适合在各种微型嵌入式设备中高效运行程序；</li>
-</ol>
-<p>缺点：</p>
-<ol type="1">
-<li>语法相对复杂，细节比较多；</li>
-<li>需要一些好的规范和范式，否则代码很难维护；</li>
-</ol>
-<h1 id="c的应用">C++的应用</h1>
-<ul>
-<li>大型桌面应用程序（如Google Chrome、Miscrosoft Office）</li>
-<li>大型网站的后台（Google的搜索引擎）</li>
-<li>游戏和游戏引擎（Unity）</li>
-<li>视觉库和AI引擎（Opencv和Tensorflow）</li>
-<li>数据库（Mircrosoft SQL Server）</li>
-<li>嵌入式领域</li>
-</ul>
-<p>总的来说，在开发成本比较高，对于内存和CPU要求很高，低功耗并且程序被调用非常频繁等场景中，目前C++是最合适的语言。</p>
 
       
     </div>
@@ -2291,7 +2394,7 @@ Stroustrup创立了带类的C，这就是C语言的超集。1983年，这个语�
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2353,7 +2456,7 @@ Stroustrup创立了带类的C，这就是C语言的超集。1983年，这个语�
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">125k</span>
+    <span title="站点总字数">130k</span>
 </div>
 
 <!--

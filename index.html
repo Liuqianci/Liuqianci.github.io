@@ -453,6 +453,133 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">预处理器、作用域、static、const和内存管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-06-04 18:04:38 / 修改时间：18:43:23" itemprop="dateCreated datePublished" datetime="2025-06-04T18:04:38+08:00">2025-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h1><p>C预处理器处理程序的源代码，在编译器运行之前运行，通常以符号”#”开头。</p>
+<p>C预言的预处理主要有三个方面的内容：</p>
+<ol>
+<li>宏定义与宏替换</li>
+<li>文件包含</li>
+<li>条件编译</li>
+</ol>
+<p>&emsp;&emsp;</p>
+<h2 id="宏定义与宏替换"><a href="#宏定义与宏替换" class="headerlink" title="宏定义与宏替换"></a>宏定义与宏替换</h2><p>&emsp;&emsp;“宏”是借用汇编预言中的概念，为的是在C语言程序中方便的做一些定义和扩展。这些语句以“#define”开头，分为两种：符号常量的宏定义和带参数的宏定义</p>
+<ul>
+<li>符号常量的宏定义和宏替换</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符 字符串</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;其中标识符就是宏名称，注意宏定义末尾不加分号.</p>
+<p>&emsp;&emsp;由于预处理是在编译之前的处理，而编译工作的任务之一就是语法检查，所以预处理是不做语法检查的。且宏定义不分配内存，变量定义才分配内存。</p>
+<p>&emsp;</p>
+<ul>
+<li>带有参数的宏定义及其替换</li>
+</ul>
+<p>&emsp;&emsp;对带有参数的宏定义进行宏替换时，不仅对宏标识符作字符串替换，还必须作参数的替换。有时为了避免发生错误，需要在宏参数上加括号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符(参数列表) 字符串</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUN(x) (x*x)  <span class="comment">//FUN(a+b)将被替换为a+B*a+B</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUN(x) ((x)*(x))  <span class="comment">//FUN(a+b)将被替换为(a+B)*(a+B)</span></span></span><br></pre></td></tr></table></figure>
+<p>&emsp;</p>
+<p>&emsp;&emsp;宏替换的本质就是文本替换，需要注意：</p>
+<ol>
+<li>宏名一般用大写，宏名和参数的括号间不能有空格，宏定义末尾不加分号；</li>
+<li>宏替换只坐替换，不做语法检查、不做计算、不做表达式求解；</li>
+<li>宏替换在编译前进行，不分配内存；函数调用在编译后的程序运行时进行，且分配内存；</li>
+<li>函数只有一个返回值，利用宏则可以设法得到多个值；</li>
+<li>宏替换会使源程序变长，函数调用不会；</li>
+<li>宏替换不占用运行时间，只占用编译时间；函数调用占用运行时间(内存分配、保留现场、值传递、返回值)</li>
+</ol>
+<p>&emsp;&emsp;实际工程中应尽量少用宏替换。C++中宏替换实现的符号常量功能由const、enum代替，带参数的宏替换可由模板内联函数代替。</p>
+<p>&emsp;</p>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;func.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;func.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;如果头文件名在尖括号&lt;&gt;中，那么认为该头文件是标准头文件。编译器将会在预定义的位置集合中查找该头文件，这些预定义的位置可以通过设置查找路径和环境变量或者修改命令行选项来修改；</p>
+<p>&emsp;&emsp;如果头文件在一对引号中，则认为它是非系统头文件，非系统头文件的查找通常开始于源文件所在的路径中；</p>
+<p>&emsp;</p>
+<h2 id="条件编译"><a href="#条件编译" class="headerlink" title="条件编译"></a>条件编译</h2><p>&emsp;&emsp;提供条件编译措施使得同一源程序可以根据不同编译条件(参数)选择不同的目标代码，其作用在于便于调试和移植。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span>/<span class="keyword">ifdef</span>/<span class="keyword">ifndef</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>&emsp;</p>
+<h1 id="全局变量和局部变量"><a href="#全局变量和局部变量" class="headerlink" title="全局变量和局部变量"></a>全局变量和局部变量</h1><p>&emsp;&emsp;全局变量也称为外部变量，在函数的外部定义。它属于一个源程序文件，作用域是整个源程序。</p>
+<p>&emsp;&emsp;在不同的文件中引用一个已经定义过的全局变量，可以用头文件引用的方式，也可以用extern关键字。假设变量写错了，如果使用头文件包含的方式，那么编译期间会报错；如果使用extern关键字，编译期间不会报错，链接期间报错。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file_1.cpp</span></span><br><span class="line"><span class="type">int</span> counter;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file_2.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> counter;  <span class="comment">//使用file_1中的counter</span></span><br><span class="line">++counter;</span><br></pre></td></tr></table></figure>
+<p>&emsp;</p>
+<p>&emsp;&emsp;局部变量指在程序中，只在特定过程或函数中可以访问的变量，是相对全局变量而言的。在面向过程的语言中，局部变量可以和全局变量重名，但局部变量会屏蔽全局变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> count = <span class="number">3</span>;  <span class="comment">//语句1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i, sum, count = <span class="number">2</span>;  <span class="comment">//语句2</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; count; i+=<span class="number">2</span>, count++)     <span class="comment">//判断条件count是语句2的count</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">static</span> <span class="type">int</span>, count = <span class="number">4</span>;  <span class="comment">//语句3</span></span><br><span class="line">        count++;    <span class="comment">//用的是语句3的count</span></span><br><span class="line">        <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">extern</span> <span class="type">int</span> count;</span><br><span class="line">            count++;    <span class="comment">//因为用了extern，这里的count是语句1的count</span></span><br><span class="line">            sum += count;   <span class="comment">//因为用了extern，这里的count是语句1的count</span></span><br><span class="line">        &#125;</span><br><span class="line">        sum += count;   <span class="comment">//语句3的count</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, count, sum);  <span class="comment">//语句2的count</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;</p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><h2 id="普通的static"><a href="#普通的static" class="headerlink" title="普通的static"></a>普通的static</h2><p>普通的static作用有三个：</p>
+<ol>
+<li>隐藏：当我们同时编译多个文件时，所有<strong>未加</strong>static的全局变量和函数都具有全局可见性，其他的源文件也可以访问。如果加了static前缀，则全局变量和函数对其他源文件隐藏，只在当前文件生效。</li>
+<li>默认初始化为0，包括未初始化的全局静态变量和局部静态变量。全局未初始化的变量本身也具备这个属性，未初始化的全局变量和未初始化的静态变量都在BSS段内，所有的字节默认为0x00;</li>
+<li>保持局部变量内容的持久。函数内的普通的局部变量退出作用域就消失了，但静态的局部变量退出函数后仍然存在，生存周期为整个源程序的周期。static的局部变量特点是只进行一次初始化且具有“记忆性”。不过虽然生存周期是整个程序，但作用域仍然和普通局部变量相同，出了函数虽然还存在，但不能使用。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1675,98 +1802,6 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%BC%
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/" class="post-title-link" itemprop="url">避免头文件重复包含</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-05-19 01:09:01 / 修改时间：01:14:54" itemprop="dateCreated datePublished" datetime="2025-05-19T01:09:01+08:00">2025-05-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>184</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  为了避免一个文件被多次include，有两种方式：</p>
-<ul>
-<li>使用宏来防止同一个文件被多次包含
-<ul>
-<li>优点：可移植性好</li>
-<li>缺点：无法防止宏名重复，难以排错</li>
-</ul></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _SOMEFILE_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _SOMEFILE_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>  </p>
-<ul>
-<li>使用编译器来防止同一个文件被多次包含
-<ul>
-<li>优点：可以防止宏名重复，易排错</li>
-<li>缺点：可移植性不好，windows支持，其他平台未必</li>
-</ul></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1837,7 +1872,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%BC%
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1899,7 +1934,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%BC%
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">125k</span>
+    <span title="站点总字数">130k</span>
 </div>
 
 <!--

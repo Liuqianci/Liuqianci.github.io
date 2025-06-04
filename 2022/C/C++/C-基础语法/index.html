@@ -22,21 +22,18 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="编译型语言编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低  机器语言、汇编语言：这些语言执行效率很高，但移植性很差； 编译型语言：C&#x2F;C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度； 解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强； 脚本语言：bash、csh">
+  <meta name="description" content="编译型语言 编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低  机器语言、汇编语言：这些语言执行效率很高，但移植性很差； 编译型语言：C&#x2F;C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度； 解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强； 脚本语言：b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++基础语法">
 <meta property="og:url" content="https://liu-fb.com/2022/C/C++/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="编译型语言编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低  机器语言、汇编语言：这些语言执行效率很高，但移植性很差； 编译型语言：C&#x2F;C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度； 解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强； 脚本语言：bash、csh">
+<meta property="og:description" content="编译型语言 编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低  机器语言、汇编语言：这些语言执行效率很高，但移植性很差； 编译型语言：C&#x2F;C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度； 解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强； 脚本语言：b">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png">
-<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA.png">
 <meta property="article:published_time" content="2022-02-07T02:25:18.000Z">
-<meta property="article:modified_time" content="2025-06-04T07:35:10.240Z">
+<meta property="article:modified_time" content="2025-06-04T09:30:22.957Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="C++基础">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png">
 
 <link rel="canonical" href="https://liu-fb.com/2022/C/C++/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
 
@@ -218,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 15:35:10" itemprop="dateModified" datetime="2025-06-04T15:35:10+08:00">2025-06-04</time>
+                <time title="修改时间：2025-06-04 17:30:22" itemprop="dateModified" datetime="2025-06-04T17:30:22+08:00">2025-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>2.9k</span>
             </span>
 
         </div>
@@ -255,98 +252,115 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h1><p>编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低</p>
-<ol>
+        <h1 id="编译型语言">编译型语言</h1>
+<p>编程语言可以分为四个层次，从上到下，语言会更接近人类使用语言的方式，但相对应的程序运行效率逐渐降低</p>
+<ol type="1">
 <li>机器语言、汇编语言：这些语言执行效率很高，但移植性很差；</li>
 <li>编译型语言：C/C++。这种类型的语言更接近人类的使用方式，在不同的机器上也可以跨平台使用。但跨平台有一些难度；</li>
 <li>解释型语言：Basic、Python。这种类型的语言通过解释器作为中间层，跨平台性很强；</li>
 <li>脚本语言：bash、csh。不同的平台拥有不同的脚本，本身的功能并不强大，但是很容易把各种语言融合在一起。</li>
 </ol>
 <p>C++属于编译型语言，需要经历编译和链接的过程，才能变成真正的可执行程序：</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png" alt=""></p>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>&emsp;&emsp;C++中的每个变量都有其数据类型，数据类型决定这个变量所占用内存空间的大小和布局方式、该空间能存储的值的范围，以及变量能参与的运算。</p>
-<p>&emsp;&emsp;在计算机中，1byte=8bit。我们在说数据类型的大小的时候一般以byte作为单位来计算。</p>
-<p>&emsp;&emsp;计算机中都是用0、1这种二进制存储的。日常中我们习惯用10进制来看，有时候为了方便，调试过程中更习惯用16进制的方式来表示。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA.png" alt=""></p>
-<p>&emsp;&emsp;内置的C++类型分为基本类型和符合类型。基本类型包括整数、浮点数及两者的多种变体；符合类型包括数组、字符串、指针、引用、结构体和共用体等。</p>
-<div class="table-container">
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B.png" /></p>
+<h1 id="数据类型">数据类型</h1>
+<p>  C++中的每个变量都有其数据类型，数据类型决定这个变量所占用内存空间的大小和布局方式、该空间能存储的值的范围，以及变量能参与的运算。</p>
+<p>  在计算机中，1byte=8bit。我们在说数据类型的大小的时候一般以byte作为单位来计算。</p>
+<p>  计算机中都是用0、1这种二进制存储的。日常中我们习惯用10进制来看，有时候为了方便，调试过程中更习惯用16进制的方式来表示。</p>
+<p><img
+src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA.png" /></p>
+<p>  内置的C++类型分为基本类型和符合类型。基本类型包括整数、浮点数及两者的多种变体；符合类型包括数组、字符串、指针、引用、结构体和共用体等。一般32位编译环境中的类型大小如下，需要注意不同的编译环境结果可能不同：</p>
 <table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 20%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">字节数</th>
-<th style="text-align:center">描述</th>
-<th style="text-align:left">范围</th>
+<tr class="header">
+<th style="text-align: center;">名称</th>
+<th style="text-align: center;">字节数</th>
+<th style="text-align: center;">描述</th>
+<th style="text-align: left;">范围</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">char</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">存储字符或者整数，8位(bit)</td>
-<td style="text-align:left">有符号：-128~127；<br>无符号：0 ~ 255;</td>
+<tr class="odd">
+<td style="text-align: center;">char</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">存储字符或者整数，8位(bit)</td>
+<td style="text-align: left;">有符号：-128~127；<br>无符号：0 ~
+255;</td>
 </tr>
-<tr>
-<td style="text-align:center">short</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">短整数，16位</td>
-<td style="text-align:left">有符号：-32768~32767；<br>无符号:0 ~65535;</td>
+<tr class="even">
+<td style="text-align: center;">short</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">短整数，16位</td>
+<td style="text-align: left;">有符号：-32768~32767；<br>无符号:0
+~65535;</td>
 </tr>
-<tr>
-<td style="text-align:center">long</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">长整数，32位</td>
-<td style="text-align:left">有符号：-2147483648~2147483647；<br>无符号:0 ~4294967295 ;</td>
+<tr class="odd">
+<td style="text-align: center;">long</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">长整数，32位</td>
+<td
+style="text-align: left;">有符号：-2147483648~2147483647；<br>无符号:0
+~4294967295 ;</td>
 </tr>
-<tr>
-<td style="text-align:center">int</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">整数</td>
-<td style="text-align:left">同上</td>
+<tr class="even">
+<td style="text-align: center;">int</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">整数</td>
+<td style="text-align: left;">同上</td>
 </tr>
-<tr>
-<td style="text-align:center">float</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">浮点数</td>
-<td style="text-align:left"></td>
+<tr class="odd">
+<td style="text-align: center;">float</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">浮点数</td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:center">double</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">双精度浮点数</td>
-<td style="text-align:left"></td>
+<tr class="even">
+<td style="text-align: center;">double</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">双精度浮点数</td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:center">long double</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">长双精度浮点数</td>
-<td style="text-align:left"></td>
+<tr class="odd">
+<td style="text-align: center;">long double</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">长双精度浮点数</td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:center">bool</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">布尔值，只能是真值或假值</td>
-<td style="text-align:left">true或false</td>
+<tr class="even">
+<td style="text-align: center;">bool</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">布尔值，只能是真值或假值</td>
+<td style="text-align: left;">true或false</td>
 </tr>
-<tr>
-<td style="text-align:center">wchar_t</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">宽字符，这是为存储两字节长的国际字符而设计的类型</td>
+<tr class="odd">
+<td style="text-align: center;">wchar_t</td>
+<td style="text-align: center;">2</td>
+<td
+style="text-align: center;">宽字符，这是为存储两字节长的国际字符而设计的类型</td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
-</div>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//常见的数据类型的定义</span></span><br><span class="line"><span class="type">char</span> a[<span class="number">10</span>] = <span class="string">&quot;a&quot;</span>;</span><br><span class="line"><span class="type">short</span> <span class="type">int</span> s = <span class="number">97</span>;</span><br><span class="line"><span class="type">int</span> m = <span class="number">97</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">int</span> n = <span class="number">97</span>;</span><br><span class="line"><span class="comment">//给float类型的变量赋值时，要在数值后面加上一个f或F，表示这是一个float类型的常量，否则默认为double类型的常量</span></span><br><span class="line"><span class="type">float</span> f = <span class="number">97.0f</span>; </span><br><span class="line"><span class="type">double</span> d = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">long</span> <span class="type">double</span> k = <span class="number">97.0</span>;</span><br><span class="line"><span class="type">bool</span> b = <span class="literal">true</span>;</span><br><span class="line"><span class="type">wchar_t</span> w[<span class="number">10</span>] = <span class="string">L&quot;a&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h1 id="内存分区"><a href="#内存分区" class="headerlink" title="内存分区"></a>内存分区</h1><ol>
+<h1 id="内存分区">内存分区</h1>
+<ol type="1">
 <li>堆：由程序员手动分配和释放，完全不同于数据结构中的堆，分配方式类似链表。由malloc(C)或new(C++)来分配，free(C)和delete(C++)释放。若程序员不释放，程序结束时由系统释放；</li>
 <li>栈：由编译器自动分配和释放的，存放函数的参数值、局部变量等。操作方式类似数据结构中的栈；</li>
 <li>全局（静态）存储区：存放全局变量和静态变量。包括DATA段(全局初始化区)和BSS段(全局未初始化区)。其中初始化的全局变量和静态变量存放在DATA段，未初始化的全局变量和未初始化的静态变量存放在BSS段。程序结束后由系统释放；在程序执行之前BSS段会自动清0，所以未初始化的全局变量和静态变量在程序执行之前就已经是0了；</li>
 <li>文字常量区：常量字符串存储在这里，程序结束后由系统释放；</li>
 <li>程序代码区：存放函数体的二进制代码</li>
 </ol>
-<h1 id="标识符和关键字"><a href="#标识符和关键字" class="headerlink" title="标识符和关键字"></a>标识符和关键字</h1><p>C++中的标识符是用来标识变量、函数、类、模块，或者任何其他用户自定义项目的名字；</p>
+<h1 id="标识符和关键字">标识符和关键字</h1>
+<p>C++中的标识符是用来标识变量、函数、类、模块，或者任何其他用户自定义项目的名字；</p>
 <ul>
-<li>一个标识符通常以字母A~Z或a ~z或下划线_开始，后面跟零个或者多个字母、下划线和数字；</li>
+<li>一个标识符通常以字母A~Z或a
+~z或下划线_开始，后面跟零个或者多个字母、下划线和数字；</li>
 <li>一个标识符不允许使用数字开头；</li>
 <li>一个标识符内不允许出现标点字符，如@、&amp;等等；</li>
 <li>不能混淆大小写，C++是区分大小写的编程语言；</li>
@@ -358,148 +372,155 @@
 <li>标识符应该直观，可以望文知意，尽量使用英文单词组合，不要使用拼音；</li>
 <li>标识符长度要符合“min-length&amp;max-information”原则，长度尽可能短，信息尽可能多</li>
 <li>变量名字尽可能使用“名词”或“形容词+名词”形式，尽量避免出现数字；函数名尽量使用“动词+名词”</li>
-<li>可借鉴的命名规则：<ul>
-<li>匈牙利命名法：开头字母用变量类型缩写，其余部分用变量的英文或者英文缩写，要求第一个字母大写，如int iMyAge;</li>
-<li>Camel(驼峰)命名法：第一个单词首字母小写，后面单词首字母大写，如int myAge;</li>
+<li>可借鉴的命名规则：
+<ul>
+<li>匈牙利命名法：开头字母用变量类型缩写，其余部分用变量的英文或者英文缩写，要求第一个字母大写，如int
+iMyAge;</li>
+<li>Camel(驼峰)命名法：第一个单词首字母小写，后面单词首字母大写，如int
+myAge;</li>
 <li>Pascal命名法：每个单词的第一个字母都大写，如int MyAge;</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>&emsp;</p>
-<p><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
-<h1 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<p> </p>
+<p><a
+target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/keyword">C++的关键字</a></p>
+<h1 id="变量与常量">变量与常量</h1>
+<h2 id="变量">变量</h2>
+<ul>
 <li>变量就是在程序运行过程中，值可以改变的量；</li>
 <li>变量在程序的执行中可以进行赋值造作，发生变化；</li>
 <li>变量有一个名字，并在使用之前要说明其类型，一经说明，就在内存中占据与其类型相应的存储单元；</li>
 </ul>
 <p>变量定义：</p>
 <ul>
-<li>首先是类型说明符，随后紧跟一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束：int m = 1,n = 1;</li>
+<li>首先是类型说明符，随后紧跟一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束：int
+m = 1,n = 1;</li>
 <li>当变量在创建时获得了一个特定的值，我们说这个变量被初始化了。用于初始化变量的值可以是任意复杂的表达式；</li>
-<li>当一次定义了一个或多个变量时，变量的名字随着定义就可以使用了，如：int m=1,n=1; int sum = m + n;</li>
+<li>当一次定义了一个或多个变量时，变量的名字随着定义就可以使用了，如：int
+m=1,n=1; int sum = m + n;</li>
 </ul>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ul>
+<h2 id="常量">常量</h2>
+<ul>
 <li>在程序运行过程中，其值一直保持不变的量为常量；</li>
 <li>常量也区分不同的数据类型；</li>
 </ul>
 <p>常量在C++中有两种定义的方法：</p>
-<ol>
+<ol type="1">
 <li>使用#define，如：#define PI 3.14</li>
 <li>使用const，如：const double PI = 3.14</li>
 </ol>
 <p>尽量使用const形式定义变量，因为#define不会出现在编译时期，在编译出错时不容易排错。define是C语言时期的习惯。</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:center">宏定义</th>
-<th style="text-align:center">const</th>
+<tr class="header">
+<th style="text-align: center;">宏定义</th>
+<th style="text-align: center;">const</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">宏定义相当于字符替换</td>
-<td style="text-align:center">常量声明</td>
+<tr class="odd">
+<td style="text-align: center;">宏定义相当于字符替换</td>
+<td style="text-align: center;">常量声明</td>
 </tr>
-<tr>
-<td style="text-align:center">预处理器处理</td>
-<td style="text-align:center">编译器处理</td>
+<tr class="even">
+<td style="text-align: center;">预处理器处理</td>
+<td style="text-align: center;">编译器处理</td>
 </tr>
-<tr>
-<td style="text-align:center">无安全类型检查</td>
-<td style="text-align:center">有安全类型检查</td>
+<tr class="odd">
+<td style="text-align: center;">无安全类型检查</td>
+<td style="text-align: center;">有安全类型检查</td>
 </tr>
-<tr>
-<td style="text-align:center">不分配内存</td>
-<td style="text-align:center">分配内存</td>
+<tr class="even">
+<td style="text-align: center;">不分配内存</td>
+<td style="text-align: center;">分配内存</td>
 </tr>
-<tr>
-<td style="text-align:center">存储在代码段</td>
-<td style="text-align:center">存储在数据段</td>
+<tr class="odd">
+<td style="text-align: center;">存储在代码段</td>
+<td style="text-align: center;">存储在数据段</td>
 </tr>
-<tr>
-<td style="text-align:center">可以通过#undef取消</td>
-<td style="text-align:center">不可取消</td>
+<tr class="even">
+<td style="text-align: center;">可以通过#undef取消</td>
+<td style="text-align: center;">不可取消</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="整数常量"><a href="#整数常量" class="headerlink" title="整数常量"></a>整数常量</h2><p>整数常量可以是十进制、八进制或者十六进制的常量:</p>
+<h2 id="整数常量">整数常量</h2>
+<p>整数常量可以是十进制、八进制或者十六进制的常量:</p>
 <ul>
 <li>前缀指定基数：0x或者0X表示十六进制，0表示八进制，不带前缀则默认十进制；</li>
 <li>整数常量也可以带一个后缀，后缀是U和L的组合，U表示无符号整数，L表示长整数。后缀可以是大写也可以小写，不区分顺序。后缀不能重复。</li>
 </ul>
-<h2 id="布尔常量"><a href="#布尔常量" class="headerlink" title="布尔常量"></a>布尔常量</h2><p>布尔常量共有两个，他们都是C++关键字，true代表真，false代表假。</p>
-<h2 id="字符常量"><a href="#字符常量" class="headerlink" title="字符常量"></a>字符常量</h2><ul>
-<li>字符常量是括在<strong>单引号</strong>中的。如果常量以L(仅当大写时)开头，则表示宽字符常量(如L’x’)，此时必须保存在wchar_t类型的变量中;否则就是窄字符常量(如’x’)，此处可以存储在char类型的简单变量中；</li>
-<li>字符常量可以是一个普通字符(‘x’)、一个转义序列(‘\t’)、或者一个通用字符(‘\u02C0’)。</li>
+<h2 id="布尔常量">布尔常量</h2>
+<p>布尔常量共有两个，他们都是C++关键字，true代表真，false代表假。</p>
+<h2 id="字符常量">字符常量</h2>
+<ul>
+<li>字符常量是括在<strong>单引号</strong>中的。如果常量以L(仅当大写时)开头，则表示宽字符常量(如L'x')，此时必须保存在wchar_t类型的变量中;否则就是窄字符常量(如'x')，此处可以存储在char类型的简单变量中；</li>
+<li>字符常量可以是一个普通字符('x')、一个转义序列('\t')、或者一个通用字符('\u02C0')。</li>
 <li>需要表达一些符号的时候需要用到转义字符；</li>
 </ul>
 <p>常见转义字符如下：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:left">转义字符</th>
-<th style="text-align:left">含义</th>
+<tr class="header">
+<th style="text-align: left;">转义字符</th>
+<th style="text-align: left;">含义</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">\\\</td>
-<td style="text-align:left">&#92; 字符</td>
+<tr class="odd">
+<td style="text-align: left;">\\\</td>
+<td style="text-align: left;">\ 字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;’</td>
-<td style="text-align:left">‘字符</td>
+<tr class="even">
+<td style="text-align: left;">\'</td>
+<td style="text-align: left;">'字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;”</td>
-<td style="text-align:left">“字符</td>
+<tr class="odd">
+<td style="text-align: left;">\"</td>
+<td style="text-align: left;">"字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;?</td>
-<td style="text-align:left">?字符</td>
+<tr class="even">
+<td style="text-align: left;">\?</td>
+<td style="text-align: left;">?字符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;a</td>
-<td style="text-align:left">警报铃</td>
+<tr class="odd">
+<td style="text-align: left;">\a</td>
+<td style="text-align: left;">警报铃</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;b</td>
-<td style="text-align:left">退格键</td>
+<tr class="even">
+<td style="text-align: left;">\b</td>
+<td style="text-align: left;">退格键</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;f</td>
-<td style="text-align:left">换页符</td>
+<tr class="odd">
+<td style="text-align: left;">\f</td>
+<td style="text-align: left;">换页符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;n</td>
-<td style="text-align:left">换行符</td>
+<tr class="even">
+<td style="text-align: left;">\n</td>
+<td style="text-align: left;">换行符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;r</td>
-<td style="text-align:left">换行符</td>
+<tr class="odd">
+<td style="text-align: left;">\r</td>
+<td style="text-align: left;">换行符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;t</td>
-<td style="text-align:left">水平制表符</td>
+<tr class="even">
+<td style="text-align: left;">\t</td>
+<td style="text-align: left;">水平制表符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;v</td>
-<td style="text-align:left">垂直制表符</td>
+<tr class="odd">
+<td style="text-align: left;">\v</td>
+<td style="text-align: left;">垂直制表符</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;ooo</td>
-<td style="text-align:left">一到三位的八进制数</td>
+<tr class="even">
+<td style="text-align: left;">\ooo</td>
+<td style="text-align: left;">一到三位的八进制数</td>
 </tr>
-<tr>
-<td style="text-align:left">&#92;xhh…</td>
-<td style="text-align:left">一个或多个数字的十六进制数</td>
+<tr class="odd">
+<td style="text-align: left;">\xhh...</td>
+<td style="text-align: left;">一个或多个数字的十六进制数</td>
 </tr>
 </tbody>
 </table>
-</div>
 
     </div>
 
@@ -598,7 +619,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -660,7 +681,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">125k</span>
+    <span title="站点总字数">130k</span>
 </div>
 
 <!--
