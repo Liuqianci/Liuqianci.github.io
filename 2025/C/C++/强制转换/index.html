@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="C语言的类型转换  隐式类型转换：double f &#x3D; 1&#x2F;2;中，虽然用double变量来接收结果，但表达式运算全是整型数，会转换为整形数的除法，运算结果为0,转换为double后为0.0；double f &#x3D; 1.0&#x2F;2;中，由于1.0是浮点型，所以2会发生隐式类型转换变为2.0，最终结果是0.5; 显示类型转换：(类型说明符)(表达式)，比如double f &#x3D; double(">
+  <meta name="description" content="C语言的类型转换 赋值转换   将一种类型的值赋给另一种类型的变量，此时值会转变为接收变量的类型 12345int ival &#x3D; 3.14;  &#x2F;&#x2F;3.14被截断为3int* ip;ip &#x3D; 0;  &#x2F;&#x2F;0被转换为int*型的空指针   当把一个超出其范围的值赋给一个指定类型的对象时，不同的系统有不同的操作。将int类型的数赋值给short类型时，大多数系统将int的低字节赋值，高字节舍去">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类型转换">
 <meta property="og:url" content="https://liu-fb.com/2025/C/C++/%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="C语言的类型转换  隐式类型转换：double f &#x3D; 1&#x2F;2;中，虽然用double变量来接收结果，但表达式运算全是整型数，会转换为整形数的除法，运算结果为0,转换为double后为0.0；double f &#x3D; 1.0&#x2F;2;中，由于1.0是浮点型，所以2会发生隐式类型转换变为2.0，最终结果是0.5; 显示类型转换：(类型说明符)(表达式)，比如double f &#x3D; double(">
+<meta property="og:description" content="C语言的类型转换 赋值转换   将一种类型的值赋给另一种类型的变量，此时值会转变为接收变量的类型 12345int ival &#x3D; 3.14;  &#x2F;&#x2F;3.14被截断为3int* ip;ip &#x3D; 0;  &#x2F;&#x2F;0被转换为int*型的空指针   当把一个超出其范围的值赋给一个指定类型的对象时，不同的系统有不同的操作。将int类型的数赋值给short类型时，大多数系统将int的低字节赋值，高字节舍去">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-20T03:59:24.000Z">
-<meta property="article:modified_time" content="2025-05-20T08:58:04.459Z">
+<meta property="article:modified_time" content="2025-06-05T03:03:54.374Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="C++基础">
 <meta name="twitter:card" content="summary">
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-05-20 11:59:24 / 修改时间：16:58:04" itemprop="dateCreated datePublished" datetime="2025-05-20T11:59:24+08:00">2025-05-20</time>
+              <time title="创建时间：2025-05-20 11:59:24" itemprop="dateCreated datePublished" datetime="2025-05-20T11:59:24+08:00">2025-05-20</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-05 11:03:54" itemprop="dateModified" datetime="2025-06-05T11:03:54+08:00">2025-06-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>3.7k</span>
             </span>
 
         </div>
@@ -247,20 +253,37 @@
 
       
         <h1 id="c语言的类型转换">C语言的类型转换</h1>
-<ul>
-<li>隐式类型转换：<kbd>double f =
-1/2;</kbd>中，虽然用double变量来接收结果，但表达式运算全是整型数，会转换为整形数的除法，运算结果为0,转换为double后为0.0；<kbd>double
-f =
-1.0/2;</kbd>中，由于1.0是浮点型，所以2会发生隐式类型转换变为2.0，最终结果是0.5;</li>
-<li>显示类型转换：(类型说明符)(表达式)，比如<kbd>double f =
-double(1)/double(2);</kbd></li>
-</ul>
-<p>  </p>
-<p>C语言的类型转换很灵活，但存在一些问题：</p>
+<h2 id="赋值转换">赋值转换</h2>
+<p>  将一种类型的值赋给另一种类型的变量，此时值会转变为接收变量的类型</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> ival = <span class="number">3.14</span>;  <span class="comment">//3.14被截断为3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span>* ip;</span><br><span class="line">ip = <span class="number">0</span>;  <span class="comment">//0被转换为int*型的空指针</span></span><br></pre></td></tr></table></figure>
+<p>  当把一个超出其范围的值赋给一个指定类型的对象时，不同的系统有不同的操作。将int类型的数赋值给short类型时，大多数系统将int的低字节赋值，高字节舍去：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">short</span> a = <span class="number">0x1111FFFF</span>; <span class="comment">//a的值为0xFFFF</span></span><br></pre></td></tr></table></figure>
+<p>  当把一个取值范围小的值赋给取值范围大的值，会根据符号位自动补值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> a = <span class="number">0xe0</span>;</span><br><span class="line"><span class="type">int</span> b = a;  <span class="comment">//符号位是1，补1，此时b=0xffffffe0</span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="表达式转换">表达式转换</h2>
+<p>  当同一个表达式中出现不同类型的量时，会根据不同的情况对操作数进行自动转换，这些转换可分为“整数提升”和“运算时的转换”：</p>
 <ol type="1">
-<li>任意类型之间都可以转换，编译器无法判断其准确性；</li>
-<li>难于定位，在源码中无法快速定位转换位置；</li>
+<li>整数提升：表达式计算时，bool、char、unsigned
+char、short都会自动转换成int型，bool值类型中true转为1，false转为0；</li>
+<li>运算时转换：运算涉及两种类型时，较小的类型(表达力低)会转换为较大的类型(表达力高)，表达力从低到高的排序为“int➡unsigned
+int➡long➡unsigned long➡fload➡double➡long double”;</li>
 </ol>
+<p>  表达式转换时long和unsigned
+int的转换需要注意，32位机器上long和int通常都是一个字长，所以表达式中包含unsigned
+int和long两种类型时，这俩统一转换为unsigend long;</p>
+<p>  表达式中出现同类型的signed和unsigned数时，统一转换为unsigned，只是把符号位当作数值位计算。比如int型的-1会转换为unsigned
+int的<span
+class="math inline">\(2^{32}-1\)</span>，这就是常说的溢出了。要注意此时内存中的内容并没有改变，只是解释不一样。</p>
+<p> </p>
+<h2 id="显式转换">显式转换</h2>
+<p>  显示转换也称为强制类型转换，格式为“(类型说明符)(表达式)”，比如<kbd>double
+f =
+double(1)/double(2);</kbd>。基本类型的指针之间不含隐式转换（void*除外），都需要显示转换。</p>
+<p> </p>
+<h2 id="隐式转换">隐式转换</h2>
+<p>  把一个表达式传递给一个函数调用、从函数中返回一个表达式会发生隐式类型转换.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> f = <span class="number">1</span>/<span class="number">2</span>;</span><br><span class="line"><span class="comment">//虽然用double变量来接收结果，但表达式运算全是整型数，会转换为整形数的除法</span></span><br><span class="line"><span class="comment">//运算结果为0,转换为double后为0.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">double</span> f = <span class="number">1.0</span>/<span class="number">2</span>;</span><br><span class="line"><span class="comment">//由于1.0是浮点型，所以2会发生隐式类型转换变为2.0，最终结果是0.5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> ival;</span><br><span class="line"><span class="keyword">if</span>(ival) <span class="comment">//ival发生隐式类型转换为bool</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p> </p>
 <h1 id="c的类型转换">C++的类型转换</h1>
 <h2 id="const_case">const_case</h2>
@@ -361,7 +384,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%BC%
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">C语言的类型转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">C++的类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#const_case"><span class="nav-number">2.1.</span> <span class="nav-text">const_case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reinterpret_cast"><span class="nav-number">2.2.</span> <span class="nav-text">reinterpret_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static_case%E5%92%8Cdynamic_cast"><span class="nav-number">2.3.</span> <span class="nav-text">static_case和dynamic_cast</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">C语言的类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">赋值转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">表达式转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">显式转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.4.</span> <span class="nav-text">隐式转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">C++的类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#const_case"><span class="nav-number">2.1.</span> <span class="nav-text">const_case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reinterpret_cast"><span class="nav-number">2.2.</span> <span class="nav-text">reinterpret_cast</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static_case%E5%92%8Cdynamic_cast"><span class="nav-number">2.3.</span> <span class="nav-text">static_case和dynamic_cast</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -438,7 +461,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%BC%
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">130k</span>
+    <span title="站点总字数">138k</span>
 </div>
 
 <!--
