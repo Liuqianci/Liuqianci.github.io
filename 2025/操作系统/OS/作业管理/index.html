@@ -22,20 +22,30 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="为了避免一个文件被多次include，有两种方式：  使用宏来防止同一个文件被多次包含  优点：可移植性好 缺点：无法防止宏名重复，难以排错   1234#ifndef _SOMEFILE_H_#define _SOMEFILE_H_#endif     使用编译器来防止同一个文件被多次包含  优点：可以防止宏名重复，易排错 缺点：可移植性不好，windows支持，">
+  <meta name="description" content="进程调度   进程调度是指计算机通过决策决定哪个就绪进程可以获得CPU使用权。前提是多道程序设计。   进程调度有两个步骤：  保留旧进程的运行信息，请出旧进程； 选择新进程，准备运行环境并分配CPU；      操作系统提供了三个机制来负责进程调度：  就绪队列的排队机制：    为了提高进程调度的效率，操作系统事先将就绪进程按照一定的方式排成队列，以便调度程序可以最快找">
 <meta property="og:type" content="article">
-<meta property="og:title" content="避免头文件重复包含">
-<meta property="og:url" content="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/index.html">
+<meta property="og:title" content="作业管理">
+<meta property="og:url" content="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="为了避免一个文件被多次include，有两种方式：  使用宏来防止同一个文件被多次包含  优点：可移植性好 缺点：无法防止宏名重复，难以排错   1234#ifndef _SOMEFILE_H_#define _SOMEFILE_H_#endif     使用编译器来防止同一个文件被多次包含  优点：可以防止宏名重复，易排错 缺点：可移植性不好，windows支持，">
+<meta property="og:description" content="进程调度   进程调度是指计算机通过决策决定哪个就绪进程可以获得CPU使用权。前提是多道程序设计。   进程调度有两个步骤：  保留旧进程的运行信息，请出旧进程； 选择新进程，准备运行环境并分配CPU；      操作系统提供了三个机制来负责进程调度：  就绪队列的排队机制：    为了提高进程调度的效率，操作系统事先将就绪进程按照一定的方式排成队列，以便调度程序可以最快找">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-05-18T17:09:01.000Z">
-<meta property="article:modified_time" content="2025-05-18T17:14:54.073Z">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-8_%E6%96%B0%E8%80%81%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-9_%E8%B5%84%E6%BA%90%E7%AB%9E%E4%BA%89.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-10_%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%BD%93.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-11_%E7%8E%AF%E5%BD%A2%E7%AD%89%E5%BE%85%E9%93%BE.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-12_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-13_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%952.png">
+<meta property="og:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-14_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%953.png">
+<meta property="article:published_time" content="2025-06-11T02:36:03.000Z">
+<meta property="article:modified_time" content="2025-06-11T07:18:36.552Z">
 <meta property="article:author" content="Fabian">
-<meta property="article:tag" content="C++基础">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png">
 
-<link rel="canonical" href="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/">
+<link rel="canonical" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -48,7 +58,7 @@
   };
 </script>
 
-  <title>避免头文件重复包含 | Fabian备忘录</title>
+  <title>作业管理 | Fabian备忘录</title>
   
 
 
@@ -297,7 +307,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB/">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
@@ -310,7 +320,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          避免头文件重复包含
+          作业管理
         </h1>
 
         <div class="post-meta">
@@ -321,7 +331,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-05-19 01:09:01 / 修改时间：01:14:54" itemprop="dateCreated datePublished" datetime="2025-05-19T01:09:01+08:00">2025-05-19</time>
+              <time title="创建时间：2025-06-11 10:36:03 / 修改时间：15:18:36" itemprop="dateCreated datePublished" datetime="2025-06-11T10:36:03+08:00">2025-06-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -329,7 +339,7 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
                 </span>
             </span>
 
@@ -346,7 +356,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>184</span>
+              <span>1.9k</span>
             </span>
 
         </div>
@@ -358,24 +368,117 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>  为了避免一个文件被多次include，有两种方式：</p>
+        <h1 id="进程调度">进程调度</h1>
+<p>  进程调度是指计算机通过决策决定哪个就绪进程可以获得CPU使用权。前提是多道程序设计。</p>
+<p>  进程调度有两个步骤：</p>
+<ol type="1">
+<li>保留旧进程的运行信息，请出旧进程；</li>
+<li>选择新进程，准备运行环境并分配CPU；</li>
+</ol>
+<p> </p>
+<p>  操作系统提供了三个机制来负责进程调度：</p>
 <ul>
-<li>使用宏来防止同一个文件被多次包含
-<ul>
-<li>优点：可移植性好</li>
-<li>缺点：无法防止宏名重复，难以排错</li>
-</ul></li>
+<li><strong>就绪队列的排队机制</strong>：</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _SOMEFILE_H_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _SOMEFILE_H_</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>  </p>
+<p>  为了提高进程调度的效率，操作系统事先将就绪进程按照一定的方式排成队列，以便调度程序可以最快找到就绪进程。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png"></p>
 <ul>
-<li>使用编译器来防止同一个文件被多次包含
-<ul>
-<li>优点：可以防止宏名重复，易排错</li>
-<li>缺点：可移植性不好，windows支持，其他平台未必</li>
-</ul></li>
+<li><strong>选择运行进程的委派机制</strong>：</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br></pre></td></tr></table></figure>
+<p>  调度程序以一定的策略选择就绪进程，将CPU资源分配给它。</p>
+<ul>
+<li><strong>新老进程的上下文切换机制</strong>：</li>
+</ul>
+<p>  保存当前进程的上下文信息，装入被委派执行进程的运行上下文。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-8_%E6%96%B0%E8%80%81%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2.png"></p>
+<p> </p>
+<p>  如果进程调度触发时，老进程还没有执行完毕的场景怎么办？为此有两种进程调度的方式：</p>
+<ul>
+<li><strong>非抢占式的调度</strong>：</li>
+</ul>
+<p>  处理器一旦分配给某个进程，就让该进程一直使用下去，调度程序不以任何原因抢占正在被使用的处理器。直到进程完成工作或因为IO阻塞才会让出处理器。</p>
+<ul>
+<li><strong>抢占式的调度</strong>：</li>
+</ul>
+<p>  允许调度程序以一定的策略暂停当前运行的进程，保存好旧进程的上下文信息，分配处理器给新进程。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">抢占式调度</th>
+<th style="text-align: center;">非抢占式调度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>系统开销</strong></td>
+<td style="text-align: center;">频繁切换，开销大</td>
+<td style="text-align: center;">切换次数少，开销小</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>公平性</strong></td>
+<td style="text-align: center;">相对公平</td>
+<td style="text-align: center;">不公平</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>应用</strong></td>
+<td style="text-align: center;">通用系统</td>
+<td style="text-align: center;">专用系统</td>
+</tr>
+</tbody>
+</table>
+<h2 id="进程调度算法">进程调度算法</h2>
+<ul>
+<li><strong>先来先服务算法</strong>：</li>
+</ul>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png"></p>
+<p>  这个算法比较简单，在就绪队列中按照先来先服务的原则，优先取出队列最前面的就绪进程来调度，之后依次执行。</p>
+<ul>
+<li><strong>短进程优先调度算法</strong>：</li>
+</ul>
+<p>  调度程序优先选择就绪队列中估计运行时间最短的进程。短进程优先调度算法不利于长作业进程的执行。</p>
+<ul>
+<li><strong>高优先权优先调度算法</strong>：</li>
+</ul>
+<p>  进程附带优先权，调度程序优先选择权重高的进程。这个算法使得紧迫的任务可以优先处理。</p>
+<p>  系统中分为前台进程和后台进程，一般来说前台进程的优先级都比后台进程大，因为前台进程需要和用户交互，要保证用户使用时不会卡顿。</p>
+<ul>
+<li><strong>时间片轮转调度算法</strong>：</li>
+</ul>
+<p>  按照先来先服务的原则排列就绪队列，然后每次从队列头部取出待执行的进程，分配一个时间片执行，每个进程分配的时间片都是一样的。这是相对公平的调度算法，但是不能保证及时响应用户操作。</p>
+<p> </p>
+<h1 id="死锁">死锁</h1>
+<p>  死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞现象。若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。</p>
+<h2 id="死锁的产生">死锁的产生</h2>
+<p>  第一个死锁产生的原因是资源竞争。当共享资源数量不满足各个进程需求时，各个进程之间就会因为共享资源的竞争而导致死锁。每个进程都在等待请求的资源被释放，但自身占用的资源又不会主动释放。如果此时增加多余的系统资源，死锁就会解开。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-9_%E8%B5%84%E6%BA%90%E7%AB%9E%E4%BA%89.png"></p>
+<p>  第二个原因是进程调度顺序不当。如下图，进程1和进程2都要申请打印机和传真机资源。如果调度的顺序是A-&gt;B-&gt;C-&gt;D，那么就会发生死锁。如果适当的改变调度顺序，改为A-&gt;D-&gt;B-&gt;C，那么就可以正常调度。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-10_%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%BD%93.png"></p>
+<p> </p>
+<p>  死锁产生的必要条件有四个，必须同时满足：</p>
+<ol type="1">
+<li><strong>互斥条件</strong>：进程对资源的使用是排他性的使用。某个资源只能由一个进程使用，其他进程需要使用只能等待。</li>
+<li><strong>请求保持条件</strong>：进程至少保持一个资源，同时又提出新的资源请求。此时新资源被占用，请求被阻塞，但被阻塞的进程不释放自己保持的资源。</li>
+<li><strong>不可剥夺条件</strong>：进程获得的资源在未完成使用前不能被剥夺，获得的资源只能由进程自身释放。</li>
+<li><strong>环路等待条件</strong>：发生死锁时，必然存在“进程-资源”的环形等待链。</li>
+</ol>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-11_%E7%8E%AF%E5%BD%A2%E7%AD%89%E5%BE%85%E9%93%BE.png"></p>
+<h2 id="死锁的处理">死锁的处理</h2>
+<h3 id="预防死锁的方法">预防死锁的方法</h3>
+<p>  死锁产生的必要条件有四个，我们只需要破坏其中一个或多个即可预防死锁产生。互斥条件我们不能破坏，其余三个我们都有方法破坏：</p>
+<ol type="1">
+<li>摒弃请求保持条件：系统规定进程运行之前，一次性申请所有需要的资源。这样在进程运行期间不会再提出资源请求。</li>
+<li>摒弃不可剥夺条件：当一个进程请求新的资源得不到满足时，必须释放占有的资源。</li>
+<li>破坏环路等待条件：可用资源按照线性排列，申请必须按照需要递增申请，线性申请就不再形成环路。</li>
+</ol>
+<h3 id="银行家算法">银行家算法</h3>
+<p>  以银行借贷系统分配策略为基础的算法，是一个可操作的著名的避免死锁的算法。客户申请的贷款是有限的，每次申请需声明最大资金量。银行在能够满足贷款时，都应该给用户贷款；客户在使用贷款后，能够及时归还贷款。</p>
+<p>  银行家算法需要有三个数据结构：已分配资源表、所需资源表、可分配资源表。如下图，表格中A、B、C、D四列表示可申请的四个共享资源，P1、P2、P3、P4是四个进程，第一张表内部的数字表示当前进程拥有的资源数量，第二张表内部的数字表示当前进程还需要资源的数量，第三张表内部数字表示当前系统还剩的资源数量。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-12_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95.png"></p>
+<p>  当我们把所需资源表减去已分配资源表，就可以得到一张还需要分配的资源表:</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-13_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%952.png"></p>
+<p>  此时我们把还需分配资源表中每个进程依次和可分配资源表比较，如果有一个进程当前满足运行条件，则直接把资源分配给它。等进程运行完毕归还资源后，重新再比较。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-14_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%953.png"></p>
 
     </div>
 
@@ -385,7 +488,7 @@ mjx-container[display="true"] + br {
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C-%E5%9F%BA%E7%A1%80/" rel="tag"># C++基础</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
           </div>
 
         
@@ -394,13 +497,10 @@ mjx-container[display="true"] + br {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/C/C++/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" rel="prev" title="C++面试问题">
-      <i class="fa fa-chevron-left"></i> C++面试问题
+    <a href="/2025/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/DataStructures/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E5%92%8C%E5%A0%86/" rel="prev" title="优先队列和堆">
+      <i class="fa fa-chevron-left"></i> 优先队列和堆
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2025/C/C++/%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2/" rel="next" title="类型转换">
-      类型转换 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -459,6 +559,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">进程调度算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-number">2.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-number">2.1.</span> <span class="nav-text">死锁的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">死锁的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.1.</span> <span class="nav-text">预防死锁的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">银行家算法</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

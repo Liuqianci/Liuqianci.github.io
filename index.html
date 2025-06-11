@@ -933,6 +933,191 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">作业管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-06-11 10:36:03 / 修改时间：15:18:36" itemprop="dateCreated datePublished" datetime="2025-06-11T10:36:03+08:00">2025-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="进程调度">进程调度</h1>
+<p>  进程调度是指计算机通过决策决定哪个就绪进程可以获得CPU使用权。前提是多道程序设计。</p>
+<p>  进程调度有两个步骤：</p>
+<ol type="1">
+<li>保留旧进程的运行信息，请出旧进程；</li>
+<li>选择新进程，准备运行环境并分配CPU；</li>
+</ol>
+<p> </p>
+<p>  操作系统提供了三个机制来负责进程调度：</p>
+<ul>
+<li><strong>就绪队列的排队机制</strong>：</li>
+</ul>
+<p>  为了提高进程调度的效率，操作系统事先将就绪进程按照一定的方式排成队列，以便调度程序可以最快找到就绪进程。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png"></p>
+<ul>
+<li><strong>选择运行进程的委派机制</strong>：</li>
+</ul>
+<p>  调度程序以一定的策略选择就绪进程，将CPU资源分配给它。</p>
+<ul>
+<li><strong>新老进程的上下文切换机制</strong>：</li>
+</ul>
+<p>  保存当前进程的上下文信息，装入被委派执行进程的运行上下文。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-8_%E6%96%B0%E8%80%81%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2.png"></p>
+<p> </p>
+<p>  如果进程调度触发时，老进程还没有执行完毕的场景怎么办？为此有两种进程调度的方式：</p>
+<ul>
+<li><strong>非抢占式的调度</strong>：</li>
+</ul>
+<p>  处理器一旦分配给某个进程，就让该进程一直使用下去，调度程序不以任何原因抢占正在被使用的处理器。直到进程完成工作或因为IO阻塞才会让出处理器。</p>
+<ul>
+<li><strong>抢占式的调度</strong>：</li>
+</ul>
+<p>  允许调度程序以一定的策略暂停当前运行的进程，保存好旧进程的上下文信息，分配处理器给新进程。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">抢占式调度</th>
+<th style="text-align: center;">非抢占式调度</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>系统开销</strong></td>
+<td style="text-align: center;">频繁切换，开销大</td>
+<td style="text-align: center;">切换次数少，开销小</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>公平性</strong></td>
+<td style="text-align: center;">相对公平</td>
+<td style="text-align: center;">不公平</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>应用</strong></td>
+<td style="text-align: center;">通用系统</td>
+<td style="text-align: center;">专用系统</td>
+</tr>
+</tbody>
+</table>
+<h2 id="进程调度算法">进程调度算法</h2>
+<ul>
+<li><strong>先来先服务算法</strong>：</li>
+</ul>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-7_%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97.png"></p>
+<p>  这个算法比较简单，在就绪队列中按照先来先服务的原则，优先取出队列最前面的就绪进程来调度，之后依次执行。</p>
+<ul>
+<li><strong>短进程优先调度算法</strong>：</li>
+</ul>
+<p>  调度程序优先选择就绪队列中估计运行时间最短的进程。短进程优先调度算法不利于长作业进程的执行。</p>
+<ul>
+<li><strong>高优先权优先调度算法</strong>：</li>
+</ul>
+<p>  进程附带优先权，调度程序优先选择权重高的进程。这个算法使得紧迫的任务可以优先处理。</p>
+<p>  系统中分为前台进程和后台进程，一般来说前台进程的优先级都比后台进程大，因为前台进程需要和用户交互，要保证用户使用时不会卡顿。</p>
+<ul>
+<li><strong>时间片轮转调度算法</strong>：</li>
+</ul>
+<p>  按照先来先服务的原则排列就绪队列，然后每次从队列头部取出待执行的进程，分配一个时间片执行，每个进程分配的时间片都是一样的。这是相对公平的调度算法，但是不能保证及时响应用户操作。</p>
+<p> </p>
+<h1 id="死锁">死锁</h1>
+<p>  死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞现象。若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。</p>
+<h2 id="死锁的产生">死锁的产生</h2>
+<p>  第一个死锁产生的原因是资源竞争。当共享资源数量不满足各个进程需求时，各个进程之间就会因为共享资源的竞争而导致死锁。每个进程都在等待请求的资源被释放，但自身占用的资源又不会主动释放。如果此时增加多余的系统资源，死锁就会解开。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-9_%E8%B5%84%E6%BA%90%E7%AB%9E%E4%BA%89.png"></p>
+<p>  第二个原因是进程调度顺序不当。如下图，进程1和进程2都要申请打印机和传真机资源。如果调度的顺序是A-&gt;B-&gt;C-&gt;D，那么就会发生死锁。如果适当的改变调度顺序，改为A-&gt;D-&gt;B-&gt;C，那么就可以正常调度。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-10_%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E9%A1%BA%E5%BA%8F%E4%B8%8D%E5%BD%93.png"></p>
+<p> </p>
+<p>  死锁产生的必要条件有四个，必须同时满足：</p>
+<ol type="1">
+<li><strong>互斥条件</strong>：进程对资源的使用是排他性的使用。某个资源只能由一个进程使用，其他进程需要使用只能等待。</li>
+<li><strong>请求保持条件</strong>：进程至少保持一个资源，同时又提出新的资源请求。此时新资源被占用，请求被阻塞，但被阻塞的进程不释放自己保持的资源。</li>
+<li><strong>不可剥夺条件</strong>：进程获得的资源在未完成使用前不能被剥夺，获得的资源只能由进程自身释放。</li>
+<li><strong>环路等待条件</strong>：发生死锁时，必然存在“进程-资源”的环形等待链。</li>
+</ol>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-11_%E7%8E%AF%E5%BD%A2%E7%AD%89%E5%BE%85%E9%93%BE.png"></p>
+<h2 id="死锁的处理">死锁的处理</h2>
+<h3 id="预防死锁的方法">预防死锁的方法</h3>
+<p>  死锁产生的必要条件有四个，我们只需要破坏其中一个或多个即可预防死锁产生。互斥条件我们不能破坏，其余三个我们都有方法破坏：</p>
+<ol type="1">
+<li>摒弃请求保持条件：系统规定进程运行之前，一次性申请所有需要的资源。这样在进程运行期间不会再提出资源请求。</li>
+<li>摒弃不可剥夺条件：当一个进程请求新的资源得不到满足时，必须释放占有的资源。</li>
+<li>破坏环路等待条件：可用资源按照线性排列，申请必须按照需要递增申请，线性申请就不再形成环路。</li>
+</ol>
+<h3 id="银行家算法">银行家算法</h3>
+<p>  以银行借贷系统分配策略为基础的算法，是一个可操作的著名的避免死锁的算法。客户申请的贷款是有限的，每次申请需声明最大资金量。银行在能够满足贷款时，都应该给用户贷款；客户在使用贷款后，能够及时归还贷款。</p>
+<p>  银行家算法需要有三个数据结构：已分配资源表、所需资源表、可分配资源表。如下图，表格中A、B、C、D四列表示可申请的四个共享资源，P1、P2、P3、P4是四个进程，第一张表内部的数字表示当前进程拥有的资源数量，第二张表内部的数字表示当前进程还需要资源的数量，第三张表内部数字表示当前系统还剩的资源数量。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-12_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95.png"></p>
+<p>  当我们把所需资源表减去已分配资源表，就可以得到一张还需要分配的资源表:</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-13_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%952.png"></p>
+<p>  此时我们把还需分配资源表中每个进程依次和可分配资源表比较，如果有一个进程当前满足运行条件，则直接把资源分配给它。等进程运行完毕归还资源后，重新再比较。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-14_%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%953.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1465,122 +1650,10 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">操作系统概述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-06-03 23:53:00" itemprop="dateCreated datePublished" datetime="2025-06-03T23:53:00+08:00">2025-06-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 00:47:00" itemprop="dateModified" datetime="2025-06-04T00:47:00+08:00">2025-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="操作系统发展历程">操作系统发展历程</h1>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/%E6%85%95%E8%AF%BE-1_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B.png"></p>
-<p>  多道程序设计是个很重要的概念。早期的批处理系统一次只能处理一个任务，多道程序设计使得批处理系统可以一次处理多个任务，大大提升系统运行效率。多道程序设计是指在计算机内存中同时存放多个程序，程序之间相互不干扰，在计算机的管理程序之下相互穿插运行。对多道程序的管理是操作系统的重要功能。</p>
-<p>  操作系统对多道程序和系统资源的管理，可以分为五大功能：<kbd>进程管理</kbd>、<kbd>存储管理</kbd>、<kbd>作业管理</kbd>、<kbd>文件管理</kbd>、<kbd>设备管理</kbd>。</p>
-<h1 id="操作系统概述">操作系统概述</h1>
-<p>  操作系统是管理计算机硬件和软件资源的<u><strong>计算机程序</strong></u>，本质是个软件程序。操作系统管理配置内存、决定资源供需顺序、控制输入输出设备等；操作系统也提供让用户和系统交互的操作界面。操作系统的种类是多样的，不局限于计算机，从手机到超级计算机，操作系统可简单也可复杂，在不同设备上，操作系统可向用户呈现多种操作手段。</p>
-<p> </p>
-<h1 id="操作系统基本功能">操作系统基本功能</h1>
-<p>  计算机系统中有几大资源：处理器资源、存储器资源、IO设备资源、文件资源。操作系统第一个基本功能是统一管理计算机资源。</p>
-<p>  操作系统的第二个功能是实现了对计算机资源的抽象，用户无需面向硬件接口编程：如IO设备管理软件提供读写接口、文件管理软件提供文件操作接口。</p>
-<p>  操作系统的第三个基本功能是提供了用户与计算机之间的接口。有三种接口形式：图形窗口形式(比如Windows界面)、命令形式(shell终端敲入命令)、系统调用形式(程序调用的接口)。</p>
-<p> </p>
-<h1 id="操作系统特性">操作系统特性</h1>
-<h2 id="并发性">并发性</h2>
-<p>  并发性是后面三种特性的前提，只有理解了并发性，才能理解其他特性。</p>
-<p>  并发需要和并行区分理解：并行是指两个或多个事件可以在<u><strong>同一时刻</strong></u>发生；并发是指两个或多个事件可以在<u><strong>同一时间间隔</strong></u>内发生。</p>
-<p>  多道程序设计是并行和并发的基础。在单处理器的系统中只存在并发的概念，同一时刻只有一个程序占用CPU，多个程序交替执行；多处理器系统中，单个处理器并发执行，所有处理器并行执行。</p>
-<h2 id="共享性">共享性</h2>
-<p>  共享性表现为操作系统中的资源可供多个并发程序共同使用，这种共同使用的形式称之为资源共享。</p>
-<p>  资源共享根据属性可以分为互斥共享形式和同时访问形式：</p>
-<ul>
-<li>互斥共享：当资源被程序A占用时，其他想使用资源的话只能等待A使用完，比如打印机资源；</li>
-<li>同时访问：某种资源在一段时间内并发的被多个程序访问，这种“同时”是宏观的，从宏观看资源可以被同时访问，比如硬盘资源；</li>
-</ul>
-<h2 id="虚拟性">虚拟性</h2>
-<p>  虚拟性表现为把一个<strong>物理实体</strong>转变为若干个<strong>逻辑实体</strong>，物理实体是真实存在的，逻辑实体是虚拟的。虚拟技术主要有<strong>时分复用技术</strong>和<strong>空分复用技术</strong>。</p>
-<ul>
-<li>时分复用：资源在时间上进行复用，不同程序<strong>并发</strong>使用，多道程序分时使用计算机的硬件资源，时分复用可以提高资源利用率；</li>
-<li>空分复用：用来实现虚拟磁盘、虚拟内存等，提高资源的利用率，提升编程效率；</li>
-</ul>
-<h2 id="异步性">异步性</h2>
-<p>  异步性表现为在多道程序的环境下，允许多个进程并发执行。由于进程在使用资源时可能需要等待或放弃，所以进程的执行并不是一气呵成的，而是以走走停停的形式推进。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1647,7 +1720,7 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1709,7 +1782,7 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">166k</span>
+    <span title="站点总字数">168k</span>
 </div>
 
 <!--
