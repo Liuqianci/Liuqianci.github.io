@@ -720,7 +720,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-11 00:07:48" itemprop="dateModified" datetime="2025-06-11T00:07:48+08:00">2025-06-11</time>
+                <time title="修改时间：2025-06-11 23:33:57" itemprop="dateModified" datetime="2025-06-11T23:33:57+08:00">2025-06-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -742,7 +742,7 @@ mjx-container[display="true"] + br {
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>4.2k</span>
             </span>
 
         </div>
@@ -754,7 +754,15 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="数组基础">数组基础</h1>
+<p>  从概念上说，数组就是把数据码成一排进行存放。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E7%BB%84/001-%E6%95%B0%E7%BB%84%E6%A6%82%E5%BF%B5.png"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">int</span> arr[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) {</span><br><span class="line">		arr[i] = i;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span>* arr2 = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> index = <span class="number">0</span>; index &lt; <span class="number">10</span>; index++) {</span><br><span class="line">		arr2[index] = index;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">delete</span>[] arr2;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> scores[] = { <span class="number">100</span>,<span class="number">99</span>,<span class="number">98</span> };</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> score : scores) {</span><br><span class="line">		cout &lt;&lt; score &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	scores[<span class="number">1</span>] = <span class="number">66</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="built_in">sizeof</span>(scores) / <span class="built_in">sizeof</span>(scores[<span class="number">0</span>]); i++) {</span><br><span class="line">		cout &lt;&lt; scores[i] &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>  数组最重要的就是就是它的索引。索引可以有语义，也可以没有语义。数组最大的优点就是可以快速查询，直接用数组下标就可以找到元素，因此数组最好应用于“索引有语义”的情况，通俗的说就是我们最好知道我们要查什么。但也要注意并非所有有语义的索引都适用于数组，比如当我们要存储人员信息，索引是身份证号的话，需要为索引信息开辟大量的空间。</p>
+<h1 id="自己封装数组">自己封装数组</h1>
+<p>  使用原生的数组会有很多限制，比如数组开辟了连续的空间，但只有很少的空间存储了信息，如果索引没有语义，那么那些没有信息的空间如何表示呢？还有如何向数组添加元素，如何删除元素等等。所以我们需要编写自己的动态数组类。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//动态数组，支持增删改查</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Array</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="comment">//构造函数传入数组容量capacity构造array</span></span><br><span class="line">	<span class="built_in">Array</span>(<span class="type">int</span> capacity)</span><br><span class="line">	{</span><br><span class="line">		m_nCapacity = capacity;</span><br><span class="line">		m_nSize = <span class="number">0</span>;</span><br><span class="line">		m_arrData = <span class="keyword">new</span> T[m_nCapacity];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//默认构造函数,默认容量为10</span></span><br><span class="line">	<span class="built_in">Array</span>()</span><br><span class="line">	{</span><br><span class="line">		m_nSize = <span class="number">0</span>;</span><br><span class="line">		m_nCapacity = <span class="number">10</span>;</span><br><span class="line">		m_arrData = <span class="keyword">new</span> T[<span class="number">10</span>];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	~<span class="built_in">Array</span>()</span><br><span class="line">	{</span><br><span class="line">		<span class="keyword">if</span> (m_arrData) {</span><br><span class="line">			<span class="keyword">delete</span>[] m_arrData;</span><br><span class="line">			m_arrData = <span class="literal">nullptr</span>;</span><br><span class="line">		}</span><br><span class="line">		m_nSize = <span class="number">0</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetSize</span><span class="params">()</span> </span>{ <span class="keyword">return</span> m_nSize; }</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">GetCapacity</span><span class="params">()</span> </span>{ <span class="keyword">return</span> m_nCapacity; }</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">IsEmpty</span><span class="params">()</span> </span>{ <span class="keyword">return</span> m_nSize == <span class="number">0</span>; }</span><br><span class="line"></span><br><span class="line">	<span class="comment">//向指定的位置添加元素</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Add</span><span class="params">(<span class="type">int</span> index, T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">assert</span>(index &gt;=<span class="number">0</span> &amp;&amp; index &lt;=m_nSize);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//动态扩容，添加元素时如果size当前元素已经占满内存空间，则容量翻倍</span></span><br><span class="line">		<span class="comment">//此处使用翻倍策略，而不是加上一个常数</span></span><br><span class="line">		<span class="comment">//如果只是简单加一个固定常数，这个常数不好确定</span></span><br><span class="line">		<span class="comment">//很容易出现当前Capacity小但加了一个很大的常数，或当前Capacity很大却加了一个很小的常数</span></span><br><span class="line">		<span class="comment">//造成效率低或资源浪费</span></span><br><span class="line">		<span class="keyword">if</span> (m_nSize == m_nCapacity)</span><br><span class="line">			<span class="built_in">Resize</span>(<span class="number">2</span> * m_nCapacity);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//index开始后面的元素全部后移</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = m_nSize - <span class="number">1</span>; i &gt;= index; i--) {</span><br><span class="line">			m_arrData[i + <span class="number">1</span>] = m_arrData[i];</span><br><span class="line">		}</span><br><span class="line">		m_arrData[index] = e;</span><br><span class="line">		m_nSize++;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">AddLast</span><span class="params">(T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">Add</span>(m_nSize, e);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">AddFirst</span><span class="params">(T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">Add</span>(<span class="number">0</span>, e);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//获取index位置的元素</span></span><br><span class="line">	<span class="function">T <span class="title">Get</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">assert</span>(index &gt;= <span class="number">0</span> &amp;&amp; index &lt; m_nSize);</span><br><span class="line">		<span class="keyword">return</span> m_arrData[index];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//更新数组元素</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Set</span><span class="params">(<span class="type">int</span> index, T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">assert</span>(index &gt;= <span class="number">0</span> &amp;&amp; index &lt; m_nSize);</span><br><span class="line">		m_arrData[index] = e;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//判断数组中是否存在元素e</span></span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">Contains</span><span class="params">(T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_nSize; i++) {</span><br><span class="line">			<span class="keyword">if</span> (m_arrData[i] == e)</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查找元素，找到时返回索引，否则返回-1</span></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">Find</span><span class="params">(T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_nSize; i++) {</span><br><span class="line">			<span class="keyword">if</span> (m_arrData[i] == e)</span><br><span class="line">				<span class="keyword">return</span> i;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//删除index位置的元素，返回删除的元素</span></span><br><span class="line">	<span class="function">T <span class="title">Remove</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">assert</span>(index &gt;= <span class="number">0</span> &amp;&amp; index &lt; m_nSize);</span><br><span class="line">		T ret = m_arrData[index];</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = index + <span class="number">1</span>; i &lt; m_nSize; i++) {</span><br><span class="line">			m_arrData[i - <span class="number">1</span>] = m_arrData[i];</span><br><span class="line">		}</span><br><span class="line">		m_nSize--;</span><br><span class="line">		<span class="comment">//m_arrData[m_nSize] = NULL; //这句可以不加，主要是为了清空垃圾值</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">//动态缩减空间</span></span><br><span class="line">		<span class="keyword">if</span> (m_nSize == m_nCapacity / <span class="number">2</span>)</span><br><span class="line">			<span class="built_in">Resize</span>(m_nCapacity / <span class="number">2</span>);</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">RemoveFirst</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Remove</span>(<span class="number">0</span>);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">RemoveLast</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">Remove</span>(m_nSize - <span class="number">1</span>);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">//删除指定元素</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">RemoveElement</span><span class="params">(T e)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="type">int</span> index = <span class="built_in">Find</span>(e);</span><br><span class="line">		<span class="keyword">if</span> (index != <span class="number">-1</span>)</span><br><span class="line">			<span class="built_in">Remove</span>(index);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">assert</span>(m_nSize &gt; <span class="number">0</span>);</span><br><span class="line">		cout &lt;&lt; <span class="string">"Array:size="</span> &lt;&lt; m_nSize &lt;&lt; <span class="string">",capacity="</span> &lt;&lt; m_nCapacity &lt;&lt; endl;</span><br><span class="line">		cout &lt;&lt; <span class="string">"["</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_nSize; i++)</span><br><span class="line">		{</span><br><span class="line">			cout &lt;&lt; m_arrData[i];</span><br><span class="line">			<span class="keyword">if</span> (i != m_nSize - <span class="number">1</span>)</span><br><span class="line">				cout &lt;&lt; <span class="string">","</span>;</span><br><span class="line">		}</span><br><span class="line">		cout &lt;&lt; <span class="string">"]"</span> &lt;&lt; endl;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="comment">//扩容函数私有，不允许外部扩容</span></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">Resize</span><span class="params">(<span class="type">int</span> newCapacity)</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		T* newData = <span class="keyword">new</span> T[newCapacity];</span><br><span class="line"></span><br><span class="line">		<span class="comment">//先把旧数据拷贝过来</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m_nSize; i++) {</span><br><span class="line">			newData[i] = m_arrData[i];</span><br><span class="line">		}</span><br><span class="line"></span><br><span class="line">		m_arrData = newData;</span><br><span class="line">		m_nCapacity = newCapacity;</span><br><span class="line">		newData = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">delete</span>[] newData;</span><br><span class="line">	}</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> m_nSize;	<span class="comment">//实际存储的元素格式</span></span><br><span class="line">	<span class="type">int</span> m_nCapacity;	<span class="comment">//数组空间最多可以装多少元素</span></span><br><span class="line">	T* m_arrData;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="comment">//Array myArr = 5;</span></span><br><span class="line">	Array&lt;<span class="type">int</span>&gt; *myArr = <span class="keyword">new</span> <span class="built_in">Array</span>&lt;<span class="type">int</span>&gt;(<span class="number">3</span>);</span><br><span class="line">	myArr-&gt;<span class="built_in">AddLast</span>(<span class="number">2</span>);</span><br><span class="line">	myArr-&gt;<span class="built_in">AddLast</span>(<span class="number">3</span>);</span><br><span class="line">	myArr-&gt;<span class="built_in">AddFirst</span>(<span class="number">1</span>);</span><br><span class="line">	myArr-&gt;<span class="built_in">Print</span>();</span><br><span class="line"></span><br><span class="line">	myArr-&gt;<span class="built_in">AddFirst</span>(<span class="number">10</span>);</span><br><span class="line">	myArr-&gt;<span class="built_in">Print</span>();</span><br><span class="line"></span><br><span class="line">	myArr-&gt;<span class="built_in">RemoveFirst</span>();</span><br><span class="line">	myArr-&gt;<span class="built_in">Print</span>();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> tmp1 = myArr-&gt;<span class="built_in">Get</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="type">bool</span> b1 = myArr-&gt;<span class="built_in">Contains</span>(<span class="number">6</span>);</span><br><span class="line">	myArr-&gt;<span class="built_in">Set</span>(<span class="number">2</span>, <span class="number">6</span>);</span><br><span class="line">	b1 = myArr-&gt;<span class="built_in">Contains</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (myArr) {</span><br><span class="line">		<span class="keyword">delete</span> myArr;</span><br><span class="line">		myArr = <span class="literal">nullptr</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h1 id="时间复杂度分析">时间复杂度分析</h1>
 
       
     </div>
@@ -914,6 +922,233 @@ mjx-container[display="true"] + br {
 <p>  考虑这个问题：当push到临界点时resize一倍空间，然后立即pop，此时又resize为一半，然后立即push，这种极端场景下时间复杂度无法均摊，会退化为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>。</p>
 <p>  如果想避免这种场景，可以不再临界点处resize，当pop操作到达capacity的1/4处时，resize为1/2</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 平均复杂度为 O(1)</span></span><br><span class="line">T <span class="title function_">pop_back</span><span class="params">()</span>{</span><br><span class="line"></span><br><span class="line">    assert(size &gt; <span class="number">0</span>);</span><br><span class="line">    T ret = data[size<span class="number">-1</span>]; <span class="comment">//这里一定要提前拿出来，resize操作会修改data</span></span><br><span class="line">    size --;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在size达到静态数组最大容量的1/4时才进行resize</span></span><br><span class="line">    <span class="comment">// resize的容量是当前最大容量的1/2</span></span><br><span class="line">    <span class="comment">// 防止复杂度的震荡</span></span><br><span class="line">    <span class="keyword">if</span>(size == capacity / <span class="number">4</span>)</span><br><span class="line">        resize(capacity / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">文件管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-06-13 11:18:45 / 修改时间：11:19:09" itemprop="dateCreated datePublished" datetime="2025-06-13T11:18:45+08:00">2025-06-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>0</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">存储管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-06-12 10:54:11" itemprop="dateCreated datePublished" datetime="2025-06-12T10:54:11+08:00">2025-06-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-13 11:18:25" itemprop="dateModified" datetime="2025-06-13T11:18:25+08:00">2025-06-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="内存的分配与回收">内存的分配与回收</h1>
+<p>  早期的计算机编程并不需要过多的存储管理，但随着计算机和程序越来越复杂，存储管理成为必要。存储管理需要确保计算机有足够的内存处理数据、确保程序可以从内存中获取一部分内存使用，并可以归还使用后的内存以供其他程序使用。</p>
+<h2 id="内存分配">内存分配</h2>
+<ul>
+<li><strong>单一连续分配</strong>：</li>
+</ul>
+<p>  单一连续分配是最简单的内存分配方式，只能在单用户、单进程的操作系统使用。它把系统内存分为系统区和用户区，系统区内的内存只能够被操作系统使用，用户区内的内存只能被用户程序使用。这个分配方式已经过时不再使用了。</p>
+<ul>
+<li><strong>固定分区分配</strong>：</li>
+</ul>
+<p>  固定分区分配是支持多道程序的最简单存储分配方式。内存被划分为若干固定大小的区域，每个分区只提供给一个程序使用，互不干扰。</p>
+<ul>
+<li><strong>动态分区分配</strong>：</li>
+</ul>
+<p>  这是操作系统中比较常用的方法。根据进程实际需要，动态地分配内存空间。要支持这种分配方法，就需要相关的数据结构和分配算法:</p>
+<p>  <strong>数据结构</strong>：</p>
+<p>  假设主存中有若干分区，有些分区已经被使用，有些分区空闲。<u>动态分区空闲表</u>这个数据结构就可以记录分区的使用情况。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-15_%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E7%A9%BA%E9%97%B2%E8%A1%A8.png"></p>
+<p>  还有<u>动态分区空闲链</u>数据结构，用一个双向链表的结构存储来存储当前系统中的空闲区域。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-16_%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E7%A9%BA%E9%97%B2%E9%93%BE.png"></p>
+<p> </p>
+<p>  <strong>算法</strong>：</p>
+<p>  <u><strong>首次适应算法(FF)</strong></u>：主要使用空闲链的数据结构，每次进行内存分配的时候从链表头开始顺序查找适合的内存区域。遍历结束后发现没有合适的空闲区，则该次分配失败；如果找到了合适的空闲区，则把这块内存分配给进程使用。首次使用算法有个很大的问题：由于每次都是从头部开始遍历，使得头部的地址空间不断的被划分，导致头部地址可能出现大量碎片。对于这个问题，可以优化为循环适应算法，每次遍历结束后记录位置，下次遍历从这个位置开始，而不需要每次从头开始遍历。</p>
+<p>  <u><strong>最佳适应算法</strong></u>：空闲链表按照容量大小进行排序，每次遍历空闲区链表时可以找到最佳的合适空闲区。这种算法可以有效避免大材小用的情况。</p>
+<p>  <u><strong>快速适应算法</strong></u>：快速适应算法要求有多个空闲区链表，每个空闲区链表存储一种容量大小的空闲区。这样当我们需要某个大小的空闲区域时，就可以快速找到对应的链表取内存。</p>
+<h2 id="内存回收">内存回收</h2>
+<p>  内存回收的场景可能会遇到下面四种场景：</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-17_%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E5%9C%BA%E6%99%AF.png"></p>
+<p>  第一种场景是需要回收的区域和空闲区连在一起且正好在空闲区后面，这个场景非常简单，不需要新建空闲链表节点，只需要把空闲区的容量增大即可，把回收区的容量包括进去。</p>
+<p>  第二种情况是需要回收的区域和空闲区连在一起，但在空闲区前面。这个场景也是将回收区和空闲区合并，合并而成的新的空闲区使用回收区的地址。</p>
+<p>  第三种情况回收区恰好在两个空闲区之间，回收需要将空闲区1、空闲区2和回收区一起合并，然后新的空闲区地址使用空闲区1的地址。</p>
+<p>  最后的场景就是单一的回收区，没有连接任何的空闲区，这种情况要为回收区创建新的空闲节点，然后把回收区插入到相应的空闲区链表中去。</p>
+<h1 id="段页式存储管理">段页式存储管理</h1>
+<p>  每个进程都有独立的进程空间，操作系统管理进程空间有三种管理方式：</p>
+<h2 id="页式存储管理">页式存储管理</h2>
+<p>  计算机组成原理中有字和字块的概念，字和字块是相对内存条等物理设备的定义，而操作系统内存管理中的页面则是相对逻辑空间的定义。字块和页面都是指大小一样的一块内存。</p>
+<p>  页式管理是将进程的逻辑空间划分成若干大小相同的页面，把相应的物理内存空间分成与页面大小相同的物理块。以进程为单位把进程空间装进物理内存中分散的物理块中。</p>
+<p>  页式管理系统中需要了解内存碎片的概念。如下图所示，空闲链表中存有大小不同的空闲节点，如果需要申请一个页面大小的内存，节点1不够，只能使用节点2-3的一部分，这样就造成了内存碎片。所以页式存储管理的页面大小应该适中，过大的话难以分配，过小的话又会造成内存碎片多。一般情况下，页面大小为512B~8K。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-18_%E5%86%85%E5%AD%98%E7%A2%8E%E7%89%87.png"></p>
+<p>  为了知道某个页面被分配到哪个字块，还需要了解页表的概念。页表记录进程逻辑空间和物理空间的映射关系。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-19_%E9%A1%B5%E8%A1%A8.png"></p>
+<p>  在现在计算机系统中，可以支持非常大的逻辑地址空间(<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>~<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.904ex" role="img" focusable="false" viewBox="0 -841.7 1290.1 841.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"></path><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>)，这样页表就会变得非常大，要占用非常大的内存空间。假设具有32位逻辑地址空间(寻址空间为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>即4G)的分页系统，规定页面大小为4KB，则每个进程页表中的页表项可达1M(4G/4KB=<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.919ex" height="1.887ex" role="img" focusable="false" viewBox="0 -833.9 1290.1 833.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msup"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"></path></g></g></g></g></g></svg></mjx-container></span>)个，如果每个页表项占用1Byte，每个进程仅仅页表就要占用1MB的内存空间。为应对这种情况，有了多级页表的设计.</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-20_%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8.png"></p>
+<p>  单纯的页式存储管理可能遇到的问题是，假如有一段连续的逻辑分布在多个页面中，将大大降低执行的效率。</p>
+<h2 id="段式存储管理">段式存储管理</h2>
+<p>  段式存储管理将进程的逻辑空间划分成若干段，这种划分是非等分的。每一段的长度由进程内连续的逻辑长度决定，比如针对MAIN函数、子程序段X、子函数Y等，根据不同的长度分配不同的内存空间。</p>
+<p>  我们也需要一个数据结构来保存逻辑空间到物理空间的映射，段式存储结构中的数据结构叫段表，由于段长度不同，所以相比页式存储管理，段表内多了一个段长。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-21_%E6%AE%B5%E8%A1%A8.png"></p>
+<p>  页式存储管理和段式存储管理相同点在于，都离散的管理了进程的逻辑空间，它们之间的不同点在于：</p>
+<ol type="1">
+<li>页是物理单位，段是逻辑单位；</li>
+<li>分页是为了合理利用空间、分段是为了满足用户需求；</li>
+<li>页的大小由硬件固定，段的长度可动态变化</li>
+<li>页表信息是一维的，段表信息是二维的(需要记录段长度)</li>
+</ol>
+<h2 id="段页式存储管理-1">段页式存储管理</h2>
+<p>  结合了页式存储管理和段式存储管理，产生了段页式的存储管理。分页的优点在于虽然存在页内碎片，但相比分段来说提高了内存的利用率；分段的优点在于可以更好的满足用户需求。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-23_%E6%AE%B5%E9%A1%B5%E5%AD%98%E5%82%A8.png"></p>
+<p>  段页式存储管理首先将逻辑空间按照段式管理分成若干段，再把段内空间按页式管理分成若干页。页式管理的页地址由页号和业内偏移组成，段式管理的段地址由段号和段内偏移组成，段页式结合两者，段页地址由段号、段内页号、页内地址三者组成。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-22_%E6%AE%B5%E9%A1%B5%E5%9C%B0%E5%9D%80.png"></p>
+<h1 id="虚拟内存">虚拟内存</h1>
+<p>  有些进程实际需要的内存很大，超过了物理内存的容量，而伴随着多道程序设计的出现，使得每个进程可用的物理内存更加稀缺。但由于现实的原因，不可能无限增加物理内存，物理内存总有不够用的时候，所以诞生了虚拟内存技术。虚拟内存是操作系统内存管理的关键技术，使得多道程序运行和大程序运行成为现实。虚拟内存技术把程序使用的内存进行划分，将暂时不使用的内存放置在辅存中。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-24_%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.png"></p>
+<h2 id="程序的局部性原理">程序的局部性原理</h2>
+<p>  局部性原理是指CPU访问存储器时，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</p>
+<p>  局部性原理是虚拟内存可以实现的原因之一。程序加载的时候，不需要把进程所有的逻辑空间都加载到内存中，只装载部分即可。如果需要访问页时发现页面不在内存中，则发出缺页中断，发起页面置换，置换后程序就可以继续运行下去。从用户层面看，程序仿佛拥有很大的空间，即是虚拟内存。虚拟内存实际上是对物理内存的补充，速度接近于内存，成本接近于辅存。</p>
+<h2 id="虚拟内存置换算法">虚拟内存置换算法</h2>
+<ul>
+<li><strong>先进先出算法</strong>(FIFO)</li>
+<li><strong>最不经常使用算法</strong>(LFU)</li>
+<li><strong>最近最少使用算法</strong>(LRU)</li>
+</ul>
 
       
     </div>
@@ -1114,542 +1349,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">预处理器、作用域、static、const和内存管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-06-04 18:04:38" itemprop="dateCreated datePublished" datetime="2025-06-04T18:04:38+08:00">2025-06-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-05 21:43:36" itemprop="dateModified" datetime="2025-06-05T21:43:36+08:00">2025-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.5k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="预处理器">预处理器</h1>
-<p>C预处理器处理程序的源代码，在编译器运行之前运行，通常以符号"#"开头。</p>
-<p>C预言的预处理主要有三个方面的内容：</p>
-<ol type="1">
-<li>宏定义与宏替换</li>
-<li>文件包含</li>
-<li>条件编译</li>
-</ol>
-<p>  </p>
-<h2 id="宏定义与宏替换">宏定义与宏替换</h2>
-<p>  “宏”是借用汇编预言中的概念，为的是在C语言程序中方便的做一些定义和扩展。这些语句以“#define”开头，分为两种：符号常量的宏定义和带参数的宏定义</p>
-<ul>
-<li>符号常量的宏定义和宏替换</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符 字符串</span></span><br></pre></td></tr></table></figure>
-<p>  其中标识符就是宏名称，注意宏定义末尾不加分号.</p>
-<p>  由于预处理是在编译之前的处理，而编译工作的任务之一就是语法检查，所以预处理是不做语法检查的。且宏定义不分配内存，变量定义才分配内存。</p>
-<p> </p>
-<ul>
-<li>带有参数的宏定义及其替换</li>
-</ul>
-<p>  对带有参数的宏定义进行宏替换时，不仅对宏标识符作字符串替换，还必须作参数的替换。有时为了避免发生错误，需要在宏参数上加括号。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符(参数列表) 字符串</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUN(x) (x*x)  <span class="comment">//FUN(a+b)将被替换为a+B*a+B</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUN(x) ((x)*(x))  <span class="comment">//FUN(a+b)将被替换为(a+B)*(a+B)</span></span></span><br></pre></td></tr></table></figure>
-<p> </p>
-<p>  宏替换的本质就是文本替换，需要注意：</p>
-<ol type="1">
-<li>宏名一般用大写，宏名和参数的括号间不能有空格，宏定义末尾不加分号；</li>
-<li>宏替换只坐替换，不做语法检查、不做计算、不做表达式求解；</li>
-<li>宏替换在编译前进行，不分配内存；函数调用在编译后的程序运行时进行，且分配内存；</li>
-<li>函数只有一个返回值，利用宏则可以设法得到多个值；</li>
-<li>宏替换会使源程序变长，函数调用不会；</li>
-<li>宏替换不占用运行时间，只占用编译时间；函数调用占用运行时间(内存分配、保留现场、值传递、返回值)</li>
-</ol>
-<p>  实际工程中应尽量少用宏替换。C++中宏替换实现的符号常量功能由const、enum代替，带参数的宏替换可由模板内联函数代替。</p>
-<p> </p>
-<h2 id="文件包含">文件包含</h2>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;func.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;func.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p>  如果头文件名在尖括号&lt;&gt;中，那么认为该头文件是标准头文件。编译器将会在预定义的位置集合中查找该头文件，这些预定义的位置可以通过设置查找路径和环境变量或者修改命令行选项来修改；</p>
-<p>  如果头文件在一对引号中，则认为它是非系统头文件，非系统头文件的查找通常开始于源文件所在的路径中；</p>
-<p> </p>
-<h2 id="条件编译">条件编译</h2>
-<p>  提供条件编译措施使得同一源程序可以根据不同编译条件(参数)选择不同的目标代码，其作用在于便于调试和移植。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span>/<span class="keyword">ifdef</span>/<span class="keyword">ifndef</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p> </p>
-<h1 id="全局变量和局部变量">全局变量和局部变量</h1>
-<p>  全局变量也称为外部变量，在函数的外部定义。它属于一个源程序文件，作用域是整个源程序。</p>
-<p>  在不同的文件中引用一个已经定义过的全局变量，可以用头文件引用的方式，也可以用extern关键字。假设变量写错了，如果使用头文件包含的方式，那么编译期间会报错；如果使用extern关键字，编译期间不会报错，链接期间报错。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file_1.cpp</span></span><br><span class="line"><span class="type">int</span> counter;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file_2.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> counter;  <span class="comment">//使用file_1中的counter</span></span><br><span class="line">++counter;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<p>  局部变量指在程序中，只在特定过程或函数中可以访问的变量，是相对全局变量而言的。在面向过程的语言中，局部变量可以和全局变量重名，但局部变量会屏蔽全局变量。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> count = <span class="number">3</span>;  <span class="comment">//语句1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i, sum, count = <span class="number">2</span>;  <span class="comment">//语句2</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; count; i+=<span class="number">2</span>, count++)     <span class="comment">//判断条件count是语句2的count</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">static</span> <span class="type">int</span>, count = <span class="number">4</span>;  <span class="comment">//语句3</span></span><br><span class="line">        count++;    <span class="comment">//用的是语句3的count</span></span><br><span class="line">        <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">extern</span> <span class="type">int</span> count;</span><br><span class="line">            count++;    <span class="comment">//因为用了extern，这里的count是语句1的count</span></span><br><span class="line">            sum += count;   <span class="comment">//因为用了extern，这里的count是语句1的count</span></span><br><span class="line">        &#125;</span><br><span class="line">        sum += count;   <span class="comment">//语句3的count</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, count, sum);  <span class="comment">//语句2的count</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<h1 id="static">static</h1>
-<h2 id="普通的static">普通的static</h2>
-<p>普通的static作用有三个：</p>
-<ol type="1">
-<li>隐藏：当我们同时编译多个文件时，所有<strong>未加</strong>static的全局变量和函数都具有全局可见性，其他的源文件也可以访问。如果加了static前缀，则全局变量和函数对其他源文件隐藏，只在当前文件生效。</li>
-<li>默认初始化为0，包括未初始化的全局静态变量和局部静态变量。全局未初始化的变量本身也具备这个属性，未初始化的全局变量和未初始化的静态变量都在BSS段内，所有的字节默认为0x00;</li>
-<li>保持局部变量内容的持久。函数内的普通的局部变量退出作用域就消失了，但静态的局部变量退出函数后仍然存在，生存周期为整个源程序的周期。static的局部变量特点是只进行一次初始化且具有“记忆性”。不过虽然生存周期是整个程序，但作用域仍然和普通局部变量相同，出了函数虽然还存在，但不能使用。</li>
-</ol>
-<p> </p>
-<h2 id="类中的static">类中的static</h2>
-<p>  C++重用了static关键字，并赋予了不同的含义：类中的static表示属于一个类但不属于此类的任何特定对象的变量和函数。static的成员变量和成员函数都独立于类对象存在。</p>
-<ul>
-<li><strong>静态数据成员</strong>：</li>
-</ul>
-<p>  普通数据成员存在于该类的每个对象中，但static数据成员独立于该类的任意对象存在：static数据成员是与类关联的对象，二不与该类的对象相关联。当某个类的实例修改了该静态成员变量，修改后的值被该类的所有实例所见。</p>
-<p>  静态数据成员和普通数据成员一样，也遵从public、protected、private的访问规则。</p>
-<p>  静态数据成员也存储在全局(静态)存储区。静态数据成员定义时要分配空间，所以不能在类声明中定义，必须在类定义体的外部定义。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Account</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">apply</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">double</span> <span class="title">rate</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> interestRate;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string owner;</span><br><span class="line">    <span class="type">static</span> <span class="type">double</span> interestRate;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">double</span> Account::interestRate = <span class="number">10</span>; <span class="comment">//类外定义</span></span><br></pre></td></tr></table></figure>
-<p>使用static成员变量而不是全局变量有三个优点：</p>
-<ol type="1">
-<li>static成员的名字还在类的作用域中，可以避免全局冲突；</li>
-<li>static成员可以声明为私有的，实施封装；</li>
-<li>阅读方便，可以明确看出static成员与类是关联的</li>
-</ol>
-<p> </p>
-<ul>
-<li><strong>静态成员函数</strong>：</li>
-</ul>
-<p>  和静态成员变量一样，静态成员函数是类的内部实现，属于类定义的一部分，为类服务而不是为类的具体对象服务。</p>
-<p>  普通成员函数服务于具体的对象，所以普通的成员函数都隐含了一个this指针指向类的对象本身；静态成员函数不与对象关联，所以不具有this指针。所以静态成员函数<strong>无法访问属于类对象的非静态数据成员，也无法访问非静态成员函数</strong>，只能调用类其余的静态成员函数与访问静态数据成员。不过非静态的成员函数可以任意访问静态的成员函数和变量。由于没有this的开销，静态成员函数相比普通的成员函数速度上有少许增长。</p>
-<p>  static成员变量可以被声明为const，但static成员函数不可以。const成员函数的意思是承诺不修改该函数所属的对象，但static成员函数不属于任何对象。</p>
-<p>  static成员函数也不能被声明为虚函数、volatile。</p>
-<p> </p>
-<h1 id="const">const</h1>
-<h2 id="常量">常量</h2>
-<p>  C++中const限定符把一个对象转换为常量，常量定义后不允许修改，所以定义时必须初始化。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> bufSize = <span class="number">512</span>; <span class="comment">//必须初始化</span></span><br></pre></td></tr></table></figure>
-<p>  全局变量在整个程序中都可以访问，但全局的const变量是定义该变量的文件的局部变量。如果想被其他文件访问，需要声明extern。</p>
-<p>  C和C++中的const有区别。常量引进是在早期的C++版本中，当时标准C规范正在制定。C中的const意思是“一个不能被改变的普通变量”，在C中总是占用存储，C编译器不能把const视为一个编译器的常量：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下写法在C中是错误的，C++中是允许的</span></span><br><span class="line"><span class="type">const</span> bufSize = <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> buf[bufSize];</span><br></pre></td></tr></table></figure>
-<p>  C默认const是外部连接的，C++默认const是内部连接的，如果想在C+中完成于C同样的事情，需要加extern变成外部连接：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C语言可以这么写，C编译器只把他当作声明，C++编译器必须初始化，不能这么写</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> size;</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++必须加extern</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> bufSize; <span class="comment">//只声明</span></span><br></pre></td></tr></table></figure>
-<p> </p>
-<p>  const最初的动机是取代#define的值替换功能，使用const取代#define的优点如下：</p>
-<ol type="1">
-<li>const常量有数据类型，宏常量没有数据类型，所以编译器可以对const常量进行类型安全检查；</li>
-<li>预处理会盲目的将宏常量进行代码替换，可能导致代码中多出很多个备份，所以使用const常量可能比使用#define产生更小的目标代码；</li>
-<li>const可以执行常量折叠：常量折叠是编译期间简化常量表达式的过程，简单说就是将常量表达式计算求值，并用求得的值替换表达式放入常量表。</li>
-</ol>
-<p> </p>
-<h2 id="指针和const">指针和const</h2>
-<p>  需要区分指向const的指针和const指针：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指向const的指针：</span></span><br><span class="line"><span class="type">const</span> <span class="type">double</span> *cptr;</span><br><span class="line"><span class="comment">// cptr是个指针，它指向一个const double</span></span><br><span class="line"><span class="comment">// cptr可以指向任何东西，所以不需要初始化，但是它所指的东西不能改变</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//const指针</span></span><br><span class="line"><span class="comment">//使指针成为const，要把const标明的部分放在*右边</span></span><br><span class="line"><span class="type">double</span> d = <span class="number">1.0</span>;</span><br><span class="line"><span class="type">double</span>* <span class="type">const</span> cptr = &amp;d;</span><br><span class="line"><span class="comment">// cptr是个指针，这个指针是指向double的const指针</span></span><br><span class="line"><span class="comment">// 指针本身是const，所以必须初始化</span></span><br><span class="line"><span class="comment">// 在指针寿命期间内，指向的地址不可以改变，但地址里的内容可以变更</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> </p>
-<h2 id="const修饰函数参数和返回值">const修饰函数参数和返回值</h2>
-<p>  在一个函数声明式内，const可以和函数返回值、各参数、类成员函数函数自身产生关联：</p>
-<ul>
-<li><strong>const修饰返回值</strong>：</li>
-</ul>
-<p>  若返回值是值类型，则对于内部数据类型来说，返回值是否是常量并没有关系，const修饰返回值通常用于处理用户定义的类型；除了值类型，还可以返回指针。正常的函数不能返回指向局部变量的指针，因为函数返回后指针就无效了，栈也被情理了，但如果返回的指针是指向对中分配的存储空间的指针或者是指向静态存储区的指针，在返回后仍然有效。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误！！</span></span><br><span class="line"><span class="comment">// p是数组在栈上，返回的是指向栈内存的指针，</span></span><br><span class="line"><span class="comment">//返回的地址不是NULL，但内容已经被清除了</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> p[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="comment">//数组在静态存储区，可以通过函数返回</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">char</span> p[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="comment">//p指向全局静态存储区，可以通过函数返回</span></span><br><span class="line"><span class="comment">//因为p指向常量，这里最好加上const修饰</span></span><br><span class="line"><span class="comment">//如果不加const，函数外面如果对返回的字符串做修改就崩溃了</span></span><br><span class="line"><span class="function"><span class="type">const</span> <span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> p* = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//不太好的写法</span></span><br><span class="line"><span class="comment">//p指向堆内存的地址，可以通过函数返回</span></span><br><span class="line"><span class="comment">//但是需要外部来delete[]释放内存</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span>* p = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">12</span>);</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        p = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<ul>
-<li><strong>const修饰函数参数</strong>：</li>
-</ul>
-<p>  参数加上const可以明确告知编译器参数在函数体内部不会也无法改变。如果是值传递，加const意义不大，但如果是传递地址，那么都应该尽可能的用const修饰。</p>
-<p> </p>
-<h2 id="const与类">const与类</h2>
-<ul>
-<li><strong>const成员函数</strong>：</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span>&#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func2</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  被const修饰的类成员函数改变了隐含的this形参的类型，使得this形参指向的对象为const类型。this本身的类型是base*
-const，被const修饰后变成了const base*
-const。const成员函数不能修改调用该函数的对象。</p>
-<p>  const成员函数的目的是为了确保该成员函数可以作用于const对象身上。const对象、指向const对象的指针或引用只能调用其const成员函数；非const对象可以调用所有成员函数。显然，若不存在const成员函数，那么const对象的操作就变的极为困难，无法调用任何成员函数了。</p>
-<p>  要注意，如果类成员函数只是常量性质不同，其余都一样，是可以被重载的：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span>&#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func1</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<ul>
-<li><strong>const数据成员</strong>：</li>
-</ul>
-<p>  如果一个类的数据成员声明为const，那么必须在<strong>构造函数的初始化列表中</strong>进行初始化，且必须具有构造函数。不过如果数据成员同时具有static和const属性，那么也可以使用外部初始化。const数据成员也不可以在类定义处初始化，因为const数据成员只是在某个对象的生存周期内是常量，对于整个类而言是可变的，不同的对象可以有不同的值，如果在类声明中初始化const数据成员，因为类对象还没有创建，编译器不知道const数据成员的值是什么。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thing</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Thing</span>():<span class="built_in">valueB</span>(<span class="number">1</span>)&#123;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> valueB;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Test</span>():<span class="built_in">a</span>(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">    <span class="keyword">enum</span> &#123;</span><br><span class="line">        size1 = <span class="number">100</span>,</span><br><span class="line">        size2 = <span class="number">200</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> a;    <span class="comment">//只能在构造函数初始化列表中初始化</span></span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> b;   <span class="comment">//在类外定义并初始化</span></span><br><span class="line">    <span class="type">const</span> <span class="type">static</span> <span class="type">int</span> c;</span><br><span class="line">    <span class="comment">//也可以写作static const int c;</span></span><br><span class="line">    <span class="comment">//c这里是整型，所以也可以在这里初始化，但仍需要在类外进行定义</span></span><br><span class="line">    <span class="comment">//如果c不是整形(char、short、int、long)，就不允许在这里初始化</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> Test::b = <span class="number">0</span>;    <span class="comment">//static成员变量不允许在类内初始化，不属于某个对象</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> Test::c = <span class="number">0</span>;  <span class="comment">//给const static成员变量赋值时可以不加static，但必须加const</span></span><br></pre></td></tr></table></figure>
-<p> </p>
-<h1 id="内存管理与释放">内存管理与释放</h1>
-<p>  C/C++程序，用户主要使用的内存主要分为：栈区、堆区、全局(静态)存储区、文字常量区、代码区。</p>
-<p>  堆区和栈区的区别：</p>
-<ul>
-<li>栈区：由编译器自动分配和释放，存放函数的参数值、局部变量的值等。操作方式类似于数据结构中的栈，速度较快；</li>
-<li>堆区：一般由程序员分配释放，若程序员不释放，程序结束时由操作系统回收。要注意和数据结构中的堆是两回事，它的分配方式类似链表。一般速度比较慢，而且容易产生内存碎片，不过用起来方便。</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C语言</span></span><br><span class="line"><span class="type">char</span>* p1 = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++</span></span><br><span class="line"><span class="type">char</span>* p2 = new <span class="type">char</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//要注意p1和p2本身是栈上的变量，只是指向堆上分配的内存</span></span><br></pre></td></tr></table></figure>
-<p>  每一个程序执行时都占用一块可用的内存空间，用于存放动态分配的对象，这个内存空间就是堆。C语言使用标准库函数malloc和free在堆区分配存储空间，C++语言使用new和delete表达式实现。</p>
-<h2 id="动态创建对象的初始化">动态创建对象的初始化</h2>
-<p>  通常，动态创建的对象如果不提供显式的初始化，那么对于类对象，用该类的默认构造函数初始化，当然也可以使用显式初始化；而内置类型的对象则无初始化；</p>
-<p>  对于提供了默认构造函数的类的类型，没有必要对其对象进行显式初始化，操作结果一样；但如果是内置类型或者是没有默认构造函数的类型，不同的初始化方式有显著的差别：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//std::string类有默认构造函数</span></span><br><span class="line"><span class="comment">//无论是隐式的还是显式的，结果都是调用默认构造</span></span><br><span class="line">string* ps = <span class="keyword">new</span> string;    <span class="comment">//调用默认构造函数初始化</span></span><br><span class="line">string* ps = <span class="keyword">new</span> <span class="built_in">string</span>();  <span class="comment">//调用默认构造函数初始化</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//int是内置类型的，隐式的和显式的有区别</span></span><br><span class="line"><span class="type">int</span>* pi = <span class="keyword">new</span> <span class="type">int</span>;  <span class="comment">//隐式的，无初始化</span></span><br><span class="line"><span class="type">int</span>* pi = <span class="keyword">new</span> <span class="built_in">int</span>();    <span class="comment">//显式的，pi指向一个初始化为0的int值</span></span><br></pre></td></tr></table></figure>
-<p>  动态创建的对象用完后，程序员必须显式的将该对象占用的内存释放，否则就会内存泄漏，C语言提供了free函数，C++使用delete表达式。回收用new分配的单个对象的内存空间用delete，回收用new[]分配的一组对象的内存空间时用delete[];</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* p = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">64</span>];</span><br><span class="line"><span class="keyword">delete</span>[] p;</span><br><span class="line">p = <span class="literal">nullptr</span>;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<h2 id="const对象的动态分配和回收">const对象的动态分配和回收</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* pci = <span class="keyword">new</span> <span class="type">const</span> <span class="built_in">int</span>(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
-<p>  C++允许动态创建const对象。与其他常量一样，动态创建的const对象必须在创建时初始化，且一经初始化其值不可再修改。</p>
-<p>  对于一个类的const动态对象，如果该类提供了默认的构造函数，则此对象可以隐式初始化；内置类型对象或者未提供默认构造函数的类对象必须显式初始化：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//std::string有默认的构造函数</span></span><br><span class="line"><span class="comment">//new表达式没有显式的初始化pcs所指的对象</span></span><br><span class="line"><span class="comment">//而是隐式的将pcs所指的对象初始化为空string</span></span><br><span class="line"><span class="type">const</span> string *pcs = <span class="keyword">new</span> <span class="type">const</span> string;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<p>  尽管程序员不能改变const对象的值，但是可以撤销对象本身。如同其他对象一样，const动态对象也可以使用指针释放：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> string *pcs = <span class="keyword">new</span> <span class="type">const</span> string;</span><br><span class="line"><span class="keyword">delete</span> pci;</span><br></pre></td></tr></table></figure>
-<p> </p>
-<h2 id="newdelete和mallocfree比较">new/delete和malloc/free比较</h2>
-<p>相同点：都可以用于申请动态内存和释放内存</p>
-<p> </p>
-<p>不同点：</p>
-<ol type="1">
-<li>malloc和free是C/C++语言的标准库函数，new/delete是C++的运算符；</li>
-<li>new自动计算需要分配的空间，而malloc需要手工计算字节数；</li>
-<li>new是类型安全的，malloc不是；</li>
-<li>new和delete可以调用相关对象的构造和析构，malloc和free不行；</li>
-<li>malloc和free需要库文件支持，new和delete不需要</li>
-</ol>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">malloc和free由于是库函数，不在编译器控制权限之内，所以无法执行类的构造函数和析构函数；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span>的执行过程：</span><br><span class="line"><span class="number">1.</span>用<span class="keyword">operator</span> <span class="keyword">new</span>的标准库函数(<span class="keyword">operator</span> <span class="keyword">new</span>对应malloc)，分配足够大的原始的未类型化的内存，以保存指定类型的一个对象；</span><br><span class="line"><span class="number">2.</span>运行该类的一个构造函数，用指定初始化式构造对象</span><br><span class="line"><span class="number">3.</span>返回指向新分配并构造的对象的指针；</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span>的执行过程：</span><br><span class="line"><span class="number">1.</span>首先对指针指向的对象运行适当的析构函数；</span><br><span class="line"><span class="number">2.</span>调用<span class="keyword">operator</span> <span class="keyword">delete</span>的标准库函数释放该对象用的内存(<span class="keyword">operator</span> <span class="keyword">delete</span>对应free)；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">malloc的函数原型如下：</span><br><span class="line"><span class="type">void</span>* <span class="built_in">malloc</span>(<span class="type">size_t</span> size);</span><br><span class="line">用malloc申请一块长度为length的整数类型的内容程序如下：</span><br><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="type">int</span>) * length);</span><br><span class="line">可见malloc返回值的类型是<span class="type">void</span>*，所以在调用malloc时一定要显式类型转换；</span><br><span class="line">且malloc函数本身并不识别要申请的内存类型，只关心总字节数</span><br><span class="line"></span><br><span class="line">free函数的原型如下：</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">free</span><span class="params">(<span class="type">void</span>* memblock)</span></span>;</span><br><span class="line">用<span class="built_in">free</span>(p)来释放内存，如果p是<span class="literal">NULL</span>，那么<span class="built_in">free</span>(p)操作多少次也不会出问题；</span><br><span class="line">但如果p不是<span class="literal">NULL</span>，那么连续<span class="built_in">free</span>(p)两次就会导致程序运行错误</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span>内置了<span class="keyword">sizeof</span>、类型转换和类型安全检查功能，所以使用简单</span><br><span class="line"><span class="type">int</span>* p2 = <span class="keyword">new</span> <span class="type">int</span>[length];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> </p>
-<h2 id="内存池">内存池</h2>
-<p>  通常我们直接使用new、malloc等申请内存，这样做有个缺点：由于所申请的内存块大小不定，当频繁使用时会造成大量的内存碎片降低性能。</p>
-<p>  内存池是一种内存分配方式，在真正使用内存之前，先申请分配一定数量的、大小相等(一般情况下)的内存块留作备用。当有新的内存需求时，就从内存池中分出一部分内存块，若内存块不够再继续申请新的内存。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">进程管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-06-04 00:46:47 / 修改时间：11:23:58" itemprop="dateCreated datePublished" datetime="2025-06-04T00:46:47+08:00">2025-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="进程">进程</h1>
-<h2 id="进程概念">进程概念</h2>
-<p>  在没有操作系统之前，计算机只能运行一个程序，全部的资源都属于当前运行的程序。配置了操作系统后，引入了<strong>多道程序设计</strong>的概念，进程可以合理的隔离资源和运行环境、提升资源利用率。</p>
-<ul>
-<li><strong>进程是系统进行资源分配和调度的基本单位；</strong></li>
-<li>进程作为程序独立运行的载体保障程序正常执行；</li>
-<li>进程的存在使得操作系统资源的利用率大幅提升；</li>
-</ul>
-<p> </p>
-<h2 id="进程实体">进程实体</h2>
-<p>  主存中的进程是一个连续的存储空间，称为<strong>进程控制块(PCB)</strong>。进程控制块是用于描述和控制进程运行的通用数据结构。进程控制块中存有进程状态、优先级、程序计数器、内存指针、上下文数据、IO状态信息、记账信息等多个进程当前状态和控制进程的信息：</p>
-<ul>
-<li>标识符：唯一标记一个进程，用于区别其他进程；</li>
-<li>状态：标记进程的运行状态</li>
-<li>程序计数器：指向进程即将被执行的下一条指令的地址；</li>
-<li>内存指针：程序代码、进程数据相关的指针；</li>
-<li>上下文数据：存储进程执行时处理器中的数据；</li>
-<li>IO状态信息：被进程IO操作所占用的文件列表；</li>
-<li>记账信息：存储进程使用处理器的时间、时钟数总和等信息；</li>
-</ul>
-<p>  除了上面的内容，进程还有一些其他信息。所有信息可以分为四大类：进程标识符、处理机状态、进程调度信息、进程控制信息。进程控制块使得进程是能够独立运行的基本单位，操作系统通过进程控制块信息来调度和控制进程。进程控制块是常驻内存的，存放在系统专门开辟的PCB区域内。</p>
-<p> </p>
-<h2 id="进程与线程">进程与线程</h2>
-<p>  进程(Process)和线程(Thread)是一对多的关系，一个进程内可以有一个或多个线程。</p>
-<p>  进程是系统进行资源分配和调度的基本单位，而<strong>线程是操作系统进行运行调度的最小单位</strong>。线程包含在进程之中，是进程中实际运行工作的单位。一个进程可以并发多个线程，每个线程执行不同的任务。</p>
-<p>  进程拥有资源，而线程不拥有资源，进程内部的线程共享进程资源。</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">进程</th>
-<th style="text-align: center;">线程</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>资源</strong></td>
-<td style="text-align: center;">资源分配的基本单位</td>
-<td style="text-align: center;">不拥有资源</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>调度</strong></td>
-<td style="text-align: center;">独立调度的基本单位</td>
-<td style="text-align: center;">独立调度的最小单位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>系统开销</strong></td>
-<td style="text-align: center;">进程系统开销大</td>
-<td style="text-align: center;">线程系统开销小</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>通信</strong></td>
-<td style="text-align: center;">进程IPC</td>
-<td style="text-align: center;">读写同一进程数据通信</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<h1 id="五状态模型">五状态模型</h1>
-<ul>
-<li><strong>就绪状态</strong>：</li>
-</ul>
-<p>  当进程被分配到除CPU以外的所有必要资源后，就处于就绪状态。只要再获得CPU的使用权，就可以立即运行。在一个系统中多个处于就绪状态的进程通常排成一个队列，称为就绪队列。</p>
-<p> </p>
-<ul>
-<li><strong>执行状态</strong>：</li>
-</ul>
-<p>  进程获得CPU，其程序开始执行，这个状态为执行状态。在单处理机中，某个时刻只能有一个进程是处于执行状态。</p>
-<p> </p>
-<ul>
-<li><strong>阻塞状态</strong>：</li>
-</ul>
-<p>  进程因为某种原因，比如其他设备未就绪而无法执行，从而放弃CPU的状态称为阻塞状态。和就绪队列一样，操作系统也有阻塞队列，存放所有阻塞的进程。</p>
-<p> </p>
-<ul>
-<li><strong>创建状态</strong>：</li>
-</ul>
-<p>  进程创建分为两步，第一步分配PCB，第二步插入就绪队列。创建进程时拥有PCB但其他资源尚未就绪的状态称为创建状态。无论是系统创建的进程还是用户创建的进程都是一样的，操作系统提供fork接口创建进程。</p>
-<p> </p>
-<ul>
-<li><strong>终止状态</strong>：</li>
-</ul>
-<p>  进程终止也分为两步：首先进行系统清理，然后进行PCB归还。进程结束由系统清理或者归还PCB的状态称为终止状态。</p>
-<p> </p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-2_%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B.png"></p>
-<h1 id="进程同步">进程同步</h1>
-<h2 id="生产者-消费者模型">生产者-消费者模型</h2>
-<p>  有一群生产者进程在生产产品，并将这些产品提供给消费者进程进行消费。生产者进程和消费者进程可以并发执行，在两者之间设置了一个具有n个可缓冲区的缓冲池，生产者进程需要将所生产的产品放到其中一个缓冲区中，消费者进程可以从缓冲区中取走产品进行消费。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-3_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B.png"></p>
-<p>  生产者消费者模型在宏观上是没有问题的，当生产一个产品时缓冲区+1，当消费一个产品时缓冲区-1。但是计算机系统中是有问题的。计算机中的缓冲区位于高速缓存Cache上，生产者或消费者如果要操作缓冲区需要三个步骤：</p>
-<ol type="1">
-<li>把缓冲区中的信息取出来放入寄存器：register = count</li>
-<li>如果生产register+1；如果消费register-1</li>
-<li>把寄存器信息放回缓冲区里：count = register</li>
-</ol>
-<p>  这三个步骤但从生产者或消费者程序看没有问题，但两者并发执行时就会出差错:</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-4_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B2.png"></p>
-<p> </p>
-<h2 id="哲学家进餐问题">哲学家进餐问题</h2>
-<p>  有五个哲学家，他们的生活方式是交替的进行思考和进餐。哲学家们共同使用一张圆桌，分别坐在周围的五张椅子上，在圆桌上有五个碗和五支筷子。平时哲学家们只进行思考，饥饿时则试图取靠近他们的左、右两支筷子，只有两支筷子都被拿到时才能进餐，进餐完毕后分别放下左、右的筷子继续思考。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-5_%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90.png"></p>
-<p>  通常的情况下，假设一个哲学家饿了，首先拿起左边的筷子，如果发现右边的筷子被拿走，则需要等待右边的筷子释放，释放后才能拿起筷子吃饭。但有一种极端情况：五个哲学家同时拿起左边的筷子，此时发现他们右边的筷子都被拿走，所以五个哲学家都需要等待右边筷子释放，最终的结果就是五个哲学家被饿死。</p>
-<p> </p>
-<h2 id="进程同步-1">进程同步</h2>
-<p>  上面两个问题是操作系统中的经典问题，问题的根源在于：彼此之间没有通信。如果生产者通知消费者已经完成了一件生产，或者哲学家向旁边的哲学家说我要进餐了，就可以避免这些问题。</p>
-<p>  进程的同步用于解决这种<strong>对竞争资源在多进程间进行使用次序的协调，使得并发的多个进程之间可以有效使用资源和相互合作</strong>。</p>
-<p> </p>
-<h2 id="进程同步原则">进程同步原则</h2>
-<p>  临界资源指的是一些虽然作为共享资源却无法同时被多个线程共同访问的共享资源。当有进程在使用临界资源时，其他进程必须依据操作系统的同步机制等待占用进程释放该共享资源才可重新竞争使用共享资源。为了对临界资源进行约束，提出了进程同步的四个原则：</p>
-<ol type="1">
-<li>空闲让进：资源无占用时允许进程使用；</li>
-<li>忙则等待：资源有占用，其他请求进程需要等待；</li>
-<li>有限等待：保证有限等待时间能够使用资源；</li>
-<li>让权等待：进程等待时，需要让出CPU；</li>
-</ol>
-<p> </p>
-<h2 id="线程同步">线程同步</h2>
-<p>  和进程同步一样，一个进程内有多个线程并发使用，也会产生生产者-消费者问题和哲学家进餐问题，所以进程内的多线程也需要同步。</p>
-<p> </p>
-<h1 id="linux的进程管理">Linux的进程管理</h1>
-<h2 id="进程类型">进程类型</h2>
-<p>  Linux下进程分为三种类型：前台进程、后台进程、守护进程。</p>
-<ul>
-<li><strong>前台进程</strong>：</li>
-</ul>
-<p>  Linux下有一个重要概念，就是终端Shell，我们使用命令行来使用Linux时就是通过终端Shell来实现。前台进程就是具有终端Shell，可以和用户交互的进程。前台进程占用终端Shell但不一定有输出。</p>
-<p> </p>
-<ul>
-<li><strong>后台进程</strong>：</li>
-</ul>
-<p>  和前台进程相对，没有占用终端的就是后台进程。后台进程基本上不和用户交互，优先级比前台进程低。Linux下将需要执行的命令以“&amp;”符号结束来启动后台进程。</p>
-<p> </p>
-<ul>
-<li><strong>守护进程</strong>：</li>
-</ul>
-<p>  守护(daemon)进程是特殊的后台进程。很多守护进程在系统引导的时候启动，一直运行到系统关闭。Linux下进程名字以d结尾的进程一般都是守护进程，比如定时任务守护进程crond、http服务守护进程httpd、ssh登录的守护进程sshd、数据库守护进程mysqld。</p>
-<p> </p>
-<h2 id="进程标记">进程标记</h2>
-<ul>
-<li><strong>进程ID</strong>：</li>
-</ul>
-<p>  进程的唯一标识符，每个进程拥有不同的ID。进程ID表现为一个非负整数，最大值由操作系统限定。</p>
-<p>  操作系统提供fork接口创建进程，进程可以多层创建，这些进程是父子进程的关系。进程父子关系可以用pstree命令查看。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-6_%E7%88%B6%E5%AD%90%E8%BF%9B%E7%A8%8B.png"></p>
-<p>  需要记住几个特殊的进程：ID为0的进程为idle进程，是系统创建的第一个进程；ID为1的进程为init进程，是0号进程的子进程，完成系统的初始化。init进程也是所有用户进程的祖先进程；</p>
-<p> </p>
-<ul>
-<li><strong>进程标记</strong>：</li>
-</ul>
-<p>  和Windows系统类似，Linux下的进程也有不同的进程状态，我们可以通过<kbd>man
-ps</kbd>命令来查看进程状态的所有标记，Linux进程状态很多，常见的有以下几种：</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">状态符号</th>
-<th style="text-align: center;">状态说明</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">R</td>
-<td style="text-align: center;">(TASK_RUNNING)，进程正处于运行状态</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S</td>
-<td style="text-align: center;">(TASK_INTERRUPTIBLE)，进程正处于睡眠状态</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">D</td>
-<td style="text-align: center;">(TASK_UNINTERRUPTIBLE)，进程正处于IO等待的睡眠状态</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">T</td>
-<td style="text-align: center;">(TASK_STOPPED)，进程正处于暂停状态</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Z</td>
-<td style="text-align: center;">(TASK_DEAD or
-EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<h2 id="linux操作进程命令">Linux操作进程命令</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> ps命令：用于显示进程信息的常用命令，常用选项如下：</span><br><span class="line"><span class="bullet">  +</span> -e：显示所有进程，包括系统进程</span><br><span class="line"><span class="bullet">  +</span> -f：显示完整进程信息，包括进程的详细信息</span><br><span class="line"><span class="bullet">  +</span> -l：显示更多的列，包括进程的状态、CPU使用情况等</span><br><span class="line"><span class="bullet">  +</span> -u：显示指定用户的进程信息</span><br><span class="line"><span class="bullet">  +</span> -aux：结合-a和-u选项，显示所有用户的所有进程，并显示详细信息</span><br><span class="line"><span class="bullet">  +</span> -p：显示指定进程号PID的进程信息</span><br><span class="line"><span class="bullet">  +</span> -k --sort：按指定的列排序进程信息，常见的排序屁啊包括&amp;#37;cpu(CPU使用率)、&amp;#37;mem(内存使用率)等</span><br><span class="line"><span class="bullet">  +</span> -c：根据命令行显示进程信息</span><br><span class="line"><span class="bullet">  +</span> -o：自定义输出格式，可以指定要显示的列</span><br><span class="line"><span class="bullet">  +</span> --forest：以树状结构显示进程间的父子关系</span><br><span class="line"></span><br><span class="line">ps命令可以和其他命令结合：</span><br><span class="line">ps -aux | grep '进程名'：查找指定进程的信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> top命令：系统监视工具，查看进程状态，常用选项如下：</span><br><span class="line"><span class="bullet">  +</span> -d：秒数，指定top命令每个几秒更新</span><br><span class="line"><span class="bullet">  +</span> -b：使用批处理模式输出，一般和"-n"选项合用，用于把top命令重定向到文件中</span><br><span class="line"><span class="bullet">  +</span> -n：次数，指定top命令执行的次数，和"-"选项合用</span><br><span class="line"><span class="bullet">  +</span> -p：仅查看指定PID的进程</span><br><span class="line"><span class="bullet">  +</span> -s：使top命令在安全模式中运行，避免在交互模式中出现错误</span><br><span class="line"><span class="bullet">  +</span> -u：用户名，只监听某个用户的进程</span><br><span class="line"></span><br><span class="line">在top命令的显示窗口中，还可以使用如下按键进行交互操作：</span><br><span class="line"><span class="bullet">+</span> ?或h：显示交互模式的帮助</span><br><span class="line"><span class="bullet">+</span> c：按照CPU的使用率排序，这个是默认的</span><br><span class="line"><span class="bullet">+</span> M：按照内存使用率排序</span><br><span class="line"><span class="bullet">+</span> N：按照PID排序</span><br><span class="line"><span class="bullet">+</span> T：按照CPU的累积运算时间排序</span><br><span class="line"><span class="bullet">+</span> k：按照PID给予某个进程一个信号，一般用于终止某个进程</span><br><span class="line"><span class="bullet">+</span> r：按照PID给某个进程重设优先级</span><br><span class="line"><span class="bullet">+</span> q：退出top命令</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用top命令后展示的进程信息关键字含义如下：</span><br><span class="line"><span class="bullet">+</span> PID：进程标识符</span><br><span class="line"><span class="bullet">+</span> USER：运行进程的用户名</span><br><span class="line"><span class="bullet">+</span> PR：进程的优先级</span><br><span class="line"><span class="bullet">+</span> NI：进程的优先级调整值</span><br><span class="line"><span class="bullet">+</span> VIRT：进程使用的虚拟内存大小</span><br><span class="line"><span class="bullet">+</span> RES：进程实际使用的物理内存大小</span><br><span class="line"><span class="bullet">+</span> SHR：进程的共享内存大小</span><br><span class="line"><span class="bullet">+</span> %CPU：进程占用CPU的使用率</span><br><span class="line"><span class="bullet">+</span> %MEM：进程占用内存的使用率</span><br><span class="line"><span class="bullet">+</span> TIME+：进程的累计CPU时间</span><br><span class="line"><span class="bullet">+</span> COMMAND：进程命令行</span><br></pre></td></tr></table></figure>
-<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">kill</span>命令：给进程发送信号时使用</span><br><span class="line"></span><br><span class="line"><span class="keyword">kill</span> -<span class="keyword">l</span>：查看操作系统支持的所有信号</span><br><span class="line"><span class="comment">//只有SIGKILL 9信号可以无条件终止进程，其他信号进程有权忽略</span></span><br><span class="line"></span><br><span class="line">eg：<span class="keyword">kill</span> -<span class="number">9</span> PID :给指定PID进程发送<span class="number">9</span>信号，用于强制退出进程</span><br></pre></td></tr></table></figure>
-<p> </p>
-<p> </p>
-<p> </p>
-<p>进程同步方法</p>
-<ul>
-<li>消息队列</li>
-<li>共享存储</li>
-<li>信号量</li>
-</ul>
-<p>线程同步的方法：</p>
-<ol type="1">
-<li>互斥量</li>
-<li>读写锁</li>
-<li>自旋锁</li>
-<li>条件变量</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1720,7 +1419,7 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1782,7 +1481,7 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">168k</span>
+    <span title="站点总字数">176k</span>
 </div>
 
 <!--

@@ -294,6 +294,542 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/C/C++/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">预处理器、作用域、static、const和内存管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-06-04 18:04:38" itemprop="dateCreated datePublished" datetime="2025-06-04T18:04:38+08:00">2025-06-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-05 21:43:36" itemprop="dateModified" datetime="2025-06-05T21:43:36+08:00">2025-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.5k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="预处理器">预处理器</h1>
+<p>C预处理器处理程序的源代码，在编译器运行之前运行，通常以符号"#"开头。</p>
+<p>C预言的预处理主要有三个方面的内容：</p>
+<ol type="1">
+<li>宏定义与宏替换</li>
+<li>文件包含</li>
+<li>条件编译</li>
+</ol>
+<p>  </p>
+<h2 id="宏定义与宏替换">宏定义与宏替换</h2>
+<p>  “宏”是借用汇编预言中的概念，为的是在C语言程序中方便的做一些定义和扩展。这些语句以“#define”开头，分为两种：符号常量的宏定义和带参数的宏定义</p>
+<ul>
+<li>符号常量的宏定义和宏替换</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符 字符串</span></span><br></pre></td></tr></table></figure>
+<p>  其中标识符就是宏名称，注意宏定义末尾不加分号.</p>
+<p>  由于预处理是在编译之前的处理，而编译工作的任务之一就是语法检查，所以预处理是不做语法检查的。且宏定义不分配内存，变量定义才分配内存。</p>
+<p> </p>
+<ul>
+<li>带有参数的宏定义及其替换</li>
+</ul>
+<p>  对带有参数的宏定义进行宏替换时，不仅对宏标识符作字符串替换，还必须作参数的替换。有时为了避免发生错误，需要在宏参数上加括号。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> 标识符(参数列表) 字符串</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUN(x) (x*x)  <span class="comment">//FUN(a+b)将被替换为a+B*a+B</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUN(x) ((x)*(x))  <span class="comment">//FUN(a+b)将被替换为(a+B)*(a+B)</span></span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>  宏替换的本质就是文本替换，需要注意：</p>
+<ol type="1">
+<li>宏名一般用大写，宏名和参数的括号间不能有空格，宏定义末尾不加分号；</li>
+<li>宏替换只坐替换，不做语法检查、不做计算、不做表达式求解；</li>
+<li>宏替换在编译前进行，不分配内存；函数调用在编译后的程序运行时进行，且分配内存；</li>
+<li>函数只有一个返回值，利用宏则可以设法得到多个值；</li>
+<li>宏替换会使源程序变长，函数调用不会；</li>
+<li>宏替换不占用运行时间，只占用编译时间；函数调用占用运行时间(内存分配、保留现场、值传递、返回值)</li>
+</ol>
+<p>  实际工程中应尽量少用宏替换。C++中宏替换实现的符号常量功能由const、enum代替，带参数的宏替换可由模板内联函数代替。</p>
+<p> </p>
+<h2 id="文件包含">文件包含</h2>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;func.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;func.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+<p>  如果头文件名在尖括号&lt;&gt;中，那么认为该头文件是标准头文件。编译器将会在预定义的位置集合中查找该头文件，这些预定义的位置可以通过设置查找路径和环境变量或者修改命令行选项来修改；</p>
+<p>  如果头文件在一对引号中，则认为它是非系统头文件，非系统头文件的查找通常开始于源文件所在的路径中；</p>
+<p> </p>
+<h2 id="条件编译">条件编译</h2>
+<p>  提供条件编译措施使得同一源程序可以根据不同编译条件(参数)选择不同的目标代码，其作用在于便于调试和移植。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span>/<span class="keyword">ifdef</span>/<span class="keyword">ifndef</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">elif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h1 id="全局变量和局部变量">全局变量和局部变量</h1>
+<p>  全局变量也称为外部变量，在函数的外部定义。它属于一个源程序文件，作用域是整个源程序。</p>
+<p>  在不同的文件中引用一个已经定义过的全局变量，可以用头文件引用的方式，也可以用extern关键字。假设变量写错了，如果使用头文件包含的方式，那么编译期间会报错；如果使用extern关键字，编译期间不会报错，链接期间报错。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//file_1.cpp</span></span><br><span class="line"><span class="type">int</span> counter;</span><br><span class="line"></span><br><span class="line"><span class="comment">//file_2.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> counter;  <span class="comment">//使用file_1中的counter</span></span><br><span class="line">++counter;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>  局部变量指在程序中，只在特定过程或函数中可以访问的变量，是相对全局变量而言的。在面向过程的语言中，局部变量可以和全局变量重名，但局部变量会屏蔽全局变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> count = <span class="number">3</span>;  <span class="comment">//语句1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i, sum, count = <span class="number">2</span>;  <span class="comment">//语句2</span></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; count; i+=<span class="number">2</span>, count++)     <span class="comment">//判断条件count是语句2的count</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">static</span> <span class="type">int</span>, count = <span class="number">4</span>;  <span class="comment">//语句3</span></span><br><span class="line">        count++;    <span class="comment">//用的是语句3的count</span></span><br><span class="line">        <span class="keyword">if</span>(i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">extern</span> <span class="type">int</span> count;</span><br><span class="line">            count++;    <span class="comment">//因为用了extern，这里的count是语句1的count</span></span><br><span class="line">            sum += count;   <span class="comment">//因为用了extern，这里的count是语句1的count</span></span><br><span class="line">        &#125;</span><br><span class="line">        sum += count;   <span class="comment">//语句3的count</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, count, sum);  <span class="comment">//语句2的count</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h1 id="static">static</h1>
+<h2 id="普通的static">普通的static</h2>
+<p>普通的static作用有三个：</p>
+<ol type="1">
+<li>隐藏：当我们同时编译多个文件时，所有<strong>未加</strong>static的全局变量和函数都具有全局可见性，其他的源文件也可以访问。如果加了static前缀，则全局变量和函数对其他源文件隐藏，只在当前文件生效。</li>
+<li>默认初始化为0，包括未初始化的全局静态变量和局部静态变量。全局未初始化的变量本身也具备这个属性，未初始化的全局变量和未初始化的静态变量都在BSS段内，所有的字节默认为0x00;</li>
+<li>保持局部变量内容的持久。函数内的普通的局部变量退出作用域就消失了，但静态的局部变量退出函数后仍然存在，生存周期为整个源程序的周期。static的局部变量特点是只进行一次初始化且具有“记忆性”。不过虽然生存周期是整个程序，但作用域仍然和普通局部变量相同，出了函数虽然还存在，但不能使用。</li>
+</ol>
+<p> </p>
+<h2 id="类中的static">类中的static</h2>
+<p>  C++重用了static关键字，并赋予了不同的含义：类中的static表示属于一个类但不属于此类的任何特定对象的变量和函数。static的成员变量和成员函数都独立于类对象存在。</p>
+<ul>
+<li><strong>静态数据成员</strong>：</li>
+</ul>
+<p>  普通数据成员存在于该类的每个对象中，但static数据成员独立于该类的任意对象存在：static数据成员是与类关联的对象，二不与该类的对象相关联。当某个类的实例修改了该静态成员变量，修改后的值被该类的所有实例所见。</p>
+<p>  静态数据成员和普通数据成员一样，也遵从public、protected、private的访问规则。</p>
+<p>  静态数据成员也存储在全局(静态)存储区。静态数据成员定义时要分配空间，所以不能在类声明中定义，必须在类定义体的外部定义。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Account</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">apply</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">double</span> <span class="title">rate</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> interestRate;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string owner;</span><br><span class="line">    <span class="type">static</span> <span class="type">double</span> interestRate;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">double</span> Account::interestRate = <span class="number">10</span>; <span class="comment">//类外定义</span></span><br></pre></td></tr></table></figure>
+<p>使用static成员变量而不是全局变量有三个优点：</p>
+<ol type="1">
+<li>static成员的名字还在类的作用域中，可以避免全局冲突；</li>
+<li>static成员可以声明为私有的，实施封装；</li>
+<li>阅读方便，可以明确看出static成员与类是关联的</li>
+</ol>
+<p> </p>
+<ul>
+<li><strong>静态成员函数</strong>：</li>
+</ul>
+<p>  和静态成员变量一样，静态成员函数是类的内部实现，属于类定义的一部分，为类服务而不是为类的具体对象服务。</p>
+<p>  普通成员函数服务于具体的对象，所以普通的成员函数都隐含了一个this指针指向类的对象本身；静态成员函数不与对象关联，所以不具有this指针。所以静态成员函数<strong>无法访问属于类对象的非静态数据成员，也无法访问非静态成员函数</strong>，只能调用类其余的静态成员函数与访问静态数据成员。不过非静态的成员函数可以任意访问静态的成员函数和变量。由于没有this的开销，静态成员函数相比普通的成员函数速度上有少许增长。</p>
+<p>  static成员变量可以被声明为const，但static成员函数不可以。const成员函数的意思是承诺不修改该函数所属的对象，但static成员函数不属于任何对象。</p>
+<p>  static成员函数也不能被声明为虚函数、volatile。</p>
+<p> </p>
+<h1 id="const">const</h1>
+<h2 id="常量">常量</h2>
+<p>  C++中const限定符把一个对象转换为常量，常量定义后不允许修改，所以定义时必须初始化。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> bufSize = <span class="number">512</span>; <span class="comment">//必须初始化</span></span><br></pre></td></tr></table></figure>
+<p>  全局变量在整个程序中都可以访问，但全局的const变量是定义该变量的文件的局部变量。如果想被其他文件访问，需要声明extern。</p>
+<p>  C和C++中的const有区别。常量引进是在早期的C++版本中，当时标准C规范正在制定。C中的const意思是“一个不能被改变的普通变量”，在C中总是占用存储，C编译器不能把const视为一个编译器的常量：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下写法在C中是错误的，C++中是允许的</span></span><br><span class="line"><span class="type">const</span> bufSize = <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> buf[bufSize];</span><br></pre></td></tr></table></figure>
+<p>  C默认const是外部连接的，C++默认const是内部连接的，如果想在C+中完成于C同样的事情，需要加extern变成外部连接：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C语言可以这么写，C编译器只把他当作声明，C++编译器必须初始化，不能这么写</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> size;</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++必须加extern</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> bufSize; <span class="comment">//只声明</span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>  const最初的动机是取代#define的值替换功能，使用const取代#define的优点如下：</p>
+<ol type="1">
+<li>const常量有数据类型，宏常量没有数据类型，所以编译器可以对const常量进行类型安全检查；</li>
+<li>预处理会盲目的将宏常量进行代码替换，可能导致代码中多出很多个备份，所以使用const常量可能比使用#define产生更小的目标代码；</li>
+<li>const可以执行常量折叠：常量折叠是编译期间简化常量表达式的过程，简单说就是将常量表达式计算求值，并用求得的值替换表达式放入常量表。</li>
+</ol>
+<p> </p>
+<h2 id="指针和const">指针和const</h2>
+<p>  需要区分指向const的指针和const指针：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指向const的指针：</span></span><br><span class="line"><span class="type">const</span> <span class="type">double</span> *cptr;</span><br><span class="line"><span class="comment">// cptr是个指针，它指向一个const double</span></span><br><span class="line"><span class="comment">// cptr可以指向任何东西，所以不需要初始化，但是它所指的东西不能改变</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//const指针</span></span><br><span class="line"><span class="comment">//使指针成为const，要把const标明的部分放在*右边</span></span><br><span class="line"><span class="type">double</span> d = <span class="number">1.0</span>;</span><br><span class="line"><span class="type">double</span>* <span class="type">const</span> cptr = &amp;d;</span><br><span class="line"><span class="comment">// cptr是个指针，这个指针是指向double的const指针</span></span><br><span class="line"><span class="comment">// 指针本身是const，所以必须初始化</span></span><br><span class="line"><span class="comment">// 在指针寿命期间内，指向的地址不可以改变，但地址里的内容可以变更</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="const修饰函数参数和返回值">const修饰函数参数和返回值</h2>
+<p>  在一个函数声明式内，const可以和函数返回值、各参数、类成员函数函数自身产生关联：</p>
+<ul>
+<li><strong>const修饰返回值</strong>：</li>
+</ul>
+<p>  若返回值是值类型，则对于内部数据类型来说，返回值是否是常量并没有关系，const修饰返回值通常用于处理用户定义的类型；除了值类型，还可以返回指针。正常的函数不能返回指向局部变量的指针，因为函数返回后指针就无效了，栈也被情理了，但如果返回的指针是指向对中分配的存储空间的指针或者是指向静态存储区的指针，在返回后仍然有效。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误！！</span></span><br><span class="line"><span class="comment">// p是数组在栈上，返回的是指向栈内存的指针，</span></span><br><span class="line"><span class="comment">//返回的地址不是NULL，但内容已经被清除了</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> p[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="comment">//数组在静态存储区，可以通过函数返回</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">char</span> p[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="comment">//p指向全局静态存储区，可以通过函数返回</span></span><br><span class="line"><span class="comment">//因为p指向常量，这里最好加上const修饰</span></span><br><span class="line"><span class="comment">//如果不加const，函数外面如果对返回的字符串做修改就崩溃了</span></span><br><span class="line"><span class="function"><span class="type">const</span> <span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span> p* = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//不太好的写法</span></span><br><span class="line"><span class="comment">//p指向堆内存的地址，可以通过函数返回</span></span><br><span class="line"><span class="comment">//但是需要外部来delete[]释放内存</span></span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">char</span>* p = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">12</span>);</span><br><span class="line">    <span class="keyword">if</span>(p == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        p = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<ul>
+<li><strong>const修饰函数参数</strong>：</li>
+</ul>
+<p>  参数加上const可以明确告知编译器参数在函数体内部不会也无法改变。如果是值传递，加const意义不大，但如果是传递地址，那么都应该尽可能的用const修饰。</p>
+<p> </p>
+<h2 id="const与类">const与类</h2>
+<ul>
+<li><strong>const成员函数</strong>：</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span>&#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func2</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  被const修饰的类成员函数改变了隐含的this形参的类型，使得this形参指向的对象为const类型。this本身的类型是base*
+const，被const修饰后变成了const base*
+const。const成员函数不能修改调用该函数的对象。</p>
+<p>  const成员函数的目的是为了确保该成员函数可以作用于const对象身上。const对象、指向const对象的指针或引用只能调用其const成员函数；非const对象可以调用所有成员函数。显然，若不存在const成员函数，那么const对象的操作就变的极为困难，无法调用任何成员函数了。</p>
+<p>  要注意，如果类成员函数只是常量性质不同，其余都一样，是可以被重载的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span>&#123;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">func1</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<ul>
+<li><strong>const数据成员</strong>：</li>
+</ul>
+<p>  如果一个类的数据成员声明为const，那么必须在<strong>构造函数的初始化列表中</strong>进行初始化，且必须具有构造函数。不过如果数据成员同时具有static和const属性，那么也可以使用外部初始化。const数据成员也不可以在类定义处初始化，因为const数据成员只是在某个对象的生存周期内是常量，对于整个类而言是可变的，不同的对象可以有不同的值，如果在类声明中初始化const数据成员，因为类对象还没有创建，编译器不知道const数据成员的值是什么。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thing</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Thing</span>():<span class="built_in">valueB</span>(<span class="number">1</span>)&#123;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> valueB;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Test</span>():<span class="built_in">a</span>(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">    <span class="keyword">enum</span> &#123;</span><br><span class="line">        size1 = <span class="number">100</span>,</span><br><span class="line">        size2 = <span class="number">200</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> a;    <span class="comment">//只能在构造函数初始化列表中初始化</span></span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> b;   <span class="comment">//在类外定义并初始化</span></span><br><span class="line">    <span class="type">const</span> <span class="type">static</span> <span class="type">int</span> c;</span><br><span class="line">    <span class="comment">//也可以写作static const int c;</span></span><br><span class="line">    <span class="comment">//c这里是整型，所以也可以在这里初始化，但仍需要在类外进行定义</span></span><br><span class="line">    <span class="comment">//如果c不是整形(char、short、int、long)，就不允许在这里初始化</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> Test::b = <span class="number">0</span>;    <span class="comment">//static成员变量不允许在类内初始化，不属于某个对象</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> Test::c = <span class="number">0</span>;  <span class="comment">//给const static成员变量赋值时可以不加static，但必须加const</span></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h1 id="内存管理与释放">内存管理与释放</h1>
+<p>  C/C++程序，用户主要使用的内存主要分为：栈区、堆区、全局(静态)存储区、文字常量区、代码区。</p>
+<p>  堆区和栈区的区别：</p>
+<ul>
+<li>栈区：由编译器自动分配和释放，存放函数的参数值、局部变量的值等。操作方式类似于数据结构中的栈，速度较快；</li>
+<li>堆区：一般由程序员分配释放，若程序员不释放，程序结束时由操作系统回收。要注意和数据结构中的堆是两回事，它的分配方式类似链表。一般速度比较慢，而且容易产生内存碎片，不过用起来方便。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C语言</span></span><br><span class="line"><span class="type">char</span>* p1 = (<span class="type">char</span>*)<span class="built_in">malloc</span>(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//C++</span></span><br><span class="line"><span class="type">char</span>* p2 = new <span class="type">char</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//要注意p1和p2本身是栈上的变量，只是指向堆上分配的内存</span></span><br></pre></td></tr></table></figure>
+<p>  每一个程序执行时都占用一块可用的内存空间，用于存放动态分配的对象，这个内存空间就是堆。C语言使用标准库函数malloc和free在堆区分配存储空间，C++语言使用new和delete表达式实现。</p>
+<h2 id="动态创建对象的初始化">动态创建对象的初始化</h2>
+<p>  通常，动态创建的对象如果不提供显式的初始化，那么对于类对象，用该类的默认构造函数初始化，当然也可以使用显式初始化；而内置类型的对象则无初始化；</p>
+<p>  对于提供了默认构造函数的类的类型，没有必要对其对象进行显式初始化，操作结果一样；但如果是内置类型或者是没有默认构造函数的类型，不同的初始化方式有显著的差别：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//std::string类有默认构造函数</span></span><br><span class="line"><span class="comment">//无论是隐式的还是显式的，结果都是调用默认构造</span></span><br><span class="line">string* ps = <span class="keyword">new</span> string;    <span class="comment">//调用默认构造函数初始化</span></span><br><span class="line">string* ps = <span class="keyword">new</span> <span class="built_in">string</span>();  <span class="comment">//调用默认构造函数初始化</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//int是内置类型的，隐式的和显式的有区别</span></span><br><span class="line"><span class="type">int</span>* pi = <span class="keyword">new</span> <span class="type">int</span>;  <span class="comment">//隐式的，无初始化</span></span><br><span class="line"><span class="type">int</span>* pi = <span class="keyword">new</span> <span class="built_in">int</span>();    <span class="comment">//显式的，pi指向一个初始化为0的int值</span></span><br></pre></td></tr></table></figure>
+<p>  动态创建的对象用完后，程序员必须显式的将该对象占用的内存释放，否则就会内存泄漏，C语言提供了free函数，C++使用delete表达式。回收用new分配的单个对象的内存空间用delete，回收用new[]分配的一组对象的内存空间时用delete[];</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* p = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">64</span>];</span><br><span class="line"><span class="keyword">delete</span>[] p;</span><br><span class="line">p = <span class="literal">nullptr</span>;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="const对象的动态分配和回收">const对象的动态分配和回收</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* pci = <span class="keyword">new</span> <span class="type">const</span> <span class="built_in">int</span>(<span class="number">1024</span>);</span><br></pre></td></tr></table></figure>
+<p>  C++允许动态创建const对象。与其他常量一样，动态创建的const对象必须在创建时初始化，且一经初始化其值不可再修改。</p>
+<p>  对于一个类的const动态对象，如果该类提供了默认的构造函数，则此对象可以隐式初始化；内置类型对象或者未提供默认构造函数的类对象必须显式初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//std::string有默认的构造函数</span></span><br><span class="line"><span class="comment">//new表达式没有显式的初始化pcs所指的对象</span></span><br><span class="line"><span class="comment">//而是隐式的将pcs所指的对象初始化为空string</span></span><br><span class="line"><span class="type">const</span> string *pcs = <span class="keyword">new</span> <span class="type">const</span> string;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<p>  尽管程序员不能改变const对象的值，但是可以撤销对象本身。如同其他对象一样，const动态对象也可以使用指针释放：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> string *pcs = <span class="keyword">new</span> <span class="type">const</span> string;</span><br><span class="line"><span class="keyword">delete</span> pci;</span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="newdelete和mallocfree比较">new/delete和malloc/free比较</h2>
+<p>相同点：都可以用于申请动态内存和释放内存</p>
+<p> </p>
+<p>不同点：</p>
+<ol type="1">
+<li>malloc和free是C/C++语言的标准库函数，new/delete是C++的运算符；</li>
+<li>new自动计算需要分配的空间，而malloc需要手工计算字节数；</li>
+<li>new是类型安全的，malloc不是；</li>
+<li>new和delete可以调用相关对象的构造和析构，malloc和free不行；</li>
+<li>malloc和free需要库文件支持，new和delete不需要</li>
+</ol>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">malloc和free由于是库函数，不在编译器控制权限之内，所以无法执行类的构造函数和析构函数；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span>的执行过程：</span><br><span class="line"><span class="number">1.</span>用<span class="keyword">operator</span> <span class="keyword">new</span>的标准库函数(<span class="keyword">operator</span> <span class="keyword">new</span>对应malloc)，分配足够大的原始的未类型化的内存，以保存指定类型的一个对象；</span><br><span class="line"><span class="number">2.</span>运行该类的一个构造函数，用指定初始化式构造对象</span><br><span class="line"><span class="number">3.</span>返回指向新分配并构造的对象的指针；</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span>的执行过程：</span><br><span class="line"><span class="number">1.</span>首先对指针指向的对象运行适当的析构函数；</span><br><span class="line"><span class="number">2.</span>调用<span class="keyword">operator</span> <span class="keyword">delete</span>的标准库函数释放该对象用的内存(<span class="keyword">operator</span> <span class="keyword">delete</span>对应free)；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">malloc的函数原型如下：</span><br><span class="line"><span class="type">void</span>* <span class="built_in">malloc</span>(<span class="type">size_t</span> size);</span><br><span class="line">用malloc申请一块长度为length的整数类型的内容程序如下：</span><br><span class="line"><span class="type">int</span>* p = (<span class="type">int</span>*)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="type">int</span>) * length);</span><br><span class="line">可见malloc返回值的类型是<span class="type">void</span>*，所以在调用malloc时一定要显式类型转换；</span><br><span class="line">且malloc函数本身并不识别要申请的内存类型，只关心总字节数</span><br><span class="line"></span><br><span class="line">free函数的原型如下：</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">free</span><span class="params">(<span class="type">void</span>* memblock)</span></span>;</span><br><span class="line">用<span class="built_in">free</span>(p)来释放内存，如果p是<span class="literal">NULL</span>，那么<span class="built_in">free</span>(p)操作多少次也不会出问题；</span><br><span class="line">但如果p不是<span class="literal">NULL</span>，那么连续<span class="built_in">free</span>(p)两次就会导致程序运行错误</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span>内置了<span class="keyword">sizeof</span>、类型转换和类型安全检查功能，所以使用简单</span><br><span class="line"><span class="type">int</span>* p2 = <span class="keyword">new</span> <span class="type">int</span>[length];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<h2 id="内存池">内存池</h2>
+<p>  通常我们直接使用new、malloc等申请内存，这样做有个缺点：由于所申请的内存块大小不定，当频繁使用时会造成大量的内存碎片降低性能。</p>
+<p>  内存池是一种内存分配方式，在真正使用内存之前，先申请分配一定数量的、大小相等(一般情况下)的内存块留作备用。当有新的内存需求时，就从内存池中分出一部分内存块，若内存块不够再继续申请新的内存。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">进程管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-06-04 00:46:47 / 修改时间：11:23:58" itemprop="dateCreated datePublished" datetime="2025-06-04T00:46:47+08:00">2025-06-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.2k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="进程">进程</h1>
+<h2 id="进程概念">进程概念</h2>
+<p>  在没有操作系统之前，计算机只能运行一个程序，全部的资源都属于当前运行的程序。配置了操作系统后，引入了<strong>多道程序设计</strong>的概念，进程可以合理的隔离资源和运行环境、提升资源利用率。</p>
+<ul>
+<li><strong>进程是系统进行资源分配和调度的基本单位；</strong></li>
+<li>进程作为程序独立运行的载体保障程序正常执行；</li>
+<li>进程的存在使得操作系统资源的利用率大幅提升；</li>
+</ul>
+<p> </p>
+<h2 id="进程实体">进程实体</h2>
+<p>  主存中的进程是一个连续的存储空间，称为<strong>进程控制块(PCB)</strong>。进程控制块是用于描述和控制进程运行的通用数据结构。进程控制块中存有进程状态、优先级、程序计数器、内存指针、上下文数据、IO状态信息、记账信息等多个进程当前状态和控制进程的信息：</p>
+<ul>
+<li>标识符：唯一标记一个进程，用于区别其他进程；</li>
+<li>状态：标记进程的运行状态</li>
+<li>程序计数器：指向进程即将被执行的下一条指令的地址；</li>
+<li>内存指针：程序代码、进程数据相关的指针；</li>
+<li>上下文数据：存储进程执行时处理器中的数据；</li>
+<li>IO状态信息：被进程IO操作所占用的文件列表；</li>
+<li>记账信息：存储进程使用处理器的时间、时钟数总和等信息；</li>
+</ul>
+<p>  除了上面的内容，进程还有一些其他信息。所有信息可以分为四大类：进程标识符、处理机状态、进程调度信息、进程控制信息。进程控制块使得进程是能够独立运行的基本单位，操作系统通过进程控制块信息来调度和控制进程。进程控制块是常驻内存的，存放在系统专门开辟的PCB区域内。</p>
+<p> </p>
+<h2 id="进程与线程">进程与线程</h2>
+<p>  进程(Process)和线程(Thread)是一对多的关系，一个进程内可以有一个或多个线程。</p>
+<p>  进程是系统进行资源分配和调度的基本单位，而<strong>线程是操作系统进行运行调度的最小单位</strong>。线程包含在进程之中，是进程中实际运行工作的单位。一个进程可以并发多个线程，每个线程执行不同的任务。</p>
+<p>  进程拥有资源，而线程不拥有资源，进程内部的线程共享进程资源。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">进程</th>
+<th style="text-align: center;">线程</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>资源</strong></td>
+<td style="text-align: center;">资源分配的基本单位</td>
+<td style="text-align: center;">不拥有资源</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>调度</strong></td>
+<td style="text-align: center;">独立调度的基本单位</td>
+<td style="text-align: center;">独立调度的最小单位</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>系统开销</strong></td>
+<td style="text-align: center;">进程系统开销大</td>
+<td style="text-align: center;">线程系统开销小</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>通信</strong></td>
+<td style="text-align: center;">进程IPC</td>
+<td style="text-align: center;">读写同一进程数据通信</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h1 id="五状态模型">五状态模型</h1>
+<ul>
+<li><strong>就绪状态</strong>：</li>
+</ul>
+<p>  当进程被分配到除CPU以外的所有必要资源后，就处于就绪状态。只要再获得CPU的使用权，就可以立即运行。在一个系统中多个处于就绪状态的进程通常排成一个队列，称为就绪队列。</p>
+<p> </p>
+<ul>
+<li><strong>执行状态</strong>：</li>
+</ul>
+<p>  进程获得CPU，其程序开始执行，这个状态为执行状态。在单处理机中，某个时刻只能有一个进程是处于执行状态。</p>
+<p> </p>
+<ul>
+<li><strong>阻塞状态</strong>：</li>
+</ul>
+<p>  进程因为某种原因，比如其他设备未就绪而无法执行，从而放弃CPU的状态称为阻塞状态。和就绪队列一样，操作系统也有阻塞队列，存放所有阻塞的进程。</p>
+<p> </p>
+<ul>
+<li><strong>创建状态</strong>：</li>
+</ul>
+<p>  进程创建分为两步，第一步分配PCB，第二步插入就绪队列。创建进程时拥有PCB但其他资源尚未就绪的状态称为创建状态。无论是系统创建的进程还是用户创建的进程都是一样的，操作系统提供fork接口创建进程。</p>
+<p> </p>
+<ul>
+<li><strong>终止状态</strong>：</li>
+</ul>
+<p>  进程终止也分为两步：首先进行系统清理，然后进行PCB归还。进程结束由系统清理或者归还PCB的状态称为终止状态。</p>
+<p> </p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-2_%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B.png"></p>
+<h1 id="进程同步">进程同步</h1>
+<h2 id="生产者-消费者模型">生产者-消费者模型</h2>
+<p>  有一群生产者进程在生产产品，并将这些产品提供给消费者进程进行消费。生产者进程和消费者进程可以并发执行，在两者之间设置了一个具有n个可缓冲区的缓冲池，生产者进程需要将所生产的产品放到其中一个缓冲区中，消费者进程可以从缓冲区中取走产品进行消费。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-3_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B.png"></p>
+<p>  生产者消费者模型在宏观上是没有问题的，当生产一个产品时缓冲区+1，当消费一个产品时缓冲区-1。但是计算机系统中是有问题的。计算机中的缓冲区位于高速缓存Cache上，生产者或消费者如果要操作缓冲区需要三个步骤：</p>
+<ol type="1">
+<li>把缓冲区中的信息取出来放入寄存器：register = count</li>
+<li>如果生产register+1；如果消费register-1</li>
+<li>把寄存器信息放回缓冲区里：count = register</li>
+</ol>
+<p>  这三个步骤但从生产者或消费者程序看没有问题，但两者并发执行时就会出差错:</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-4_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B2.png"></p>
+<p> </p>
+<h2 id="哲学家进餐问题">哲学家进餐问题</h2>
+<p>  有五个哲学家，他们的生活方式是交替的进行思考和进餐。哲学家们共同使用一张圆桌，分别坐在周围的五张椅子上，在圆桌上有五个碗和五支筷子。平时哲学家们只进行思考，饥饿时则试图取靠近他们的左、右两支筷子，只有两支筷子都被拿到时才能进餐，进餐完毕后分别放下左、右的筷子继续思考。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-5_%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90.png"></p>
+<p>  通常的情况下，假设一个哲学家饿了，首先拿起左边的筷子，如果发现右边的筷子被拿走，则需要等待右边的筷子释放，释放后才能拿起筷子吃饭。但有一种极端情况：五个哲学家同时拿起左边的筷子，此时发现他们右边的筷子都被拿走，所以五个哲学家都需要等待右边筷子释放，最终的结果就是五个哲学家被饿死。</p>
+<p> </p>
+<h2 id="进程同步-1">进程同步</h2>
+<p>  上面两个问题是操作系统中的经典问题，问题的根源在于：彼此之间没有通信。如果生产者通知消费者已经完成了一件生产，或者哲学家向旁边的哲学家说我要进餐了，就可以避免这些问题。</p>
+<p>  进程的同步用于解决这种<strong>对竞争资源在多进程间进行使用次序的协调，使得并发的多个进程之间可以有效使用资源和相互合作</strong>。</p>
+<p> </p>
+<h2 id="进程同步原则">进程同步原则</h2>
+<p>  临界资源指的是一些虽然作为共享资源却无法同时被多个线程共同访问的共享资源。当有进程在使用临界资源时，其他进程必须依据操作系统的同步机制等待占用进程释放该共享资源才可重新竞争使用共享资源。为了对临界资源进行约束，提出了进程同步的四个原则：</p>
+<ol type="1">
+<li>空闲让进：资源无占用时允许进程使用；</li>
+<li>忙则等待：资源有占用，其他请求进程需要等待；</li>
+<li>有限等待：保证有限等待时间能够使用资源；</li>
+<li>让权等待：进程等待时，需要让出CPU；</li>
+</ol>
+<p> </p>
+<h2 id="线程同步">线程同步</h2>
+<p>  和进程同步一样，一个进程内有多个线程并发使用，也会产生生产者-消费者问题和哲学家进餐问题，所以进程内的多线程也需要同步。</p>
+<p> </p>
+<h1 id="linux的进程管理">Linux的进程管理</h1>
+<h2 id="进程类型">进程类型</h2>
+<p>  Linux下进程分为三种类型：前台进程、后台进程、守护进程。</p>
+<ul>
+<li><strong>前台进程</strong>：</li>
+</ul>
+<p>  Linux下有一个重要概念，就是终端Shell，我们使用命令行来使用Linux时就是通过终端Shell来实现。前台进程就是具有终端Shell，可以和用户交互的进程。前台进程占用终端Shell但不一定有输出。</p>
+<p> </p>
+<ul>
+<li><strong>后台进程</strong>：</li>
+</ul>
+<p>  和前台进程相对，没有占用终端的就是后台进程。后台进程基本上不和用户交互，优先级比前台进程低。Linux下将需要执行的命令以“&amp;”符号结束来启动后台进程。</p>
+<p> </p>
+<ul>
+<li><strong>守护进程</strong>：</li>
+</ul>
+<p>  守护(daemon)进程是特殊的后台进程。很多守护进程在系统引导的时候启动，一直运行到系统关闭。Linux下进程名字以d结尾的进程一般都是守护进程，比如定时任务守护进程crond、http服务守护进程httpd、ssh登录的守护进程sshd、数据库守护进程mysqld。</p>
+<p> </p>
+<h2 id="进程标记">进程标记</h2>
+<ul>
+<li><strong>进程ID</strong>：</li>
+</ul>
+<p>  进程的唯一标识符，每个进程拥有不同的ID。进程ID表现为一个非负整数，最大值由操作系统限定。</p>
+<p>  操作系统提供fork接口创建进程，进程可以多层创建，这些进程是父子进程的关系。进程父子关系可以用pstree命令查看。</p>
+<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-6_%E7%88%B6%E5%AD%90%E8%BF%9B%E7%A8%8B.png"></p>
+<p>  需要记住几个特殊的进程：ID为0的进程为idle进程，是系统创建的第一个进程；ID为1的进程为init进程，是0号进程的子进程，完成系统的初始化。init进程也是所有用户进程的祖先进程；</p>
+<p> </p>
+<ul>
+<li><strong>进程标记</strong>：</li>
+</ul>
+<p>  和Windows系统类似，Linux下的进程也有不同的进程状态，我们可以通过<kbd>man
+ps</kbd>命令来查看进程状态的所有标记，Linux进程状态很多，常见的有以下几种：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">状态符号</th>
+<th style="text-align: center;">状态说明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: center;">(TASK_RUNNING)，进程正处于运行状态</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S</td>
+<td style="text-align: center;">(TASK_INTERRUPTIBLE)，进程正处于睡眠状态</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D</td>
+<td style="text-align: center;">(TASK_UNINTERRUPTIBLE)，进程正处于IO等待的睡眠状态</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">T</td>
+<td style="text-align: center;">(TASK_STOPPED)，进程正处于暂停状态</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Z</td>
+<td style="text-align: center;">(TASK_DEAD or
+EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<h2 id="linux操作进程命令">Linux操作进程命令</h2>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> ps命令：用于显示进程信息的常用命令，常用选项如下：</span><br><span class="line"><span class="bullet">  +</span> -e：显示所有进程，包括系统进程</span><br><span class="line"><span class="bullet">  +</span> -f：显示完整进程信息，包括进程的详细信息</span><br><span class="line"><span class="bullet">  +</span> -l：显示更多的列，包括进程的状态、CPU使用情况等</span><br><span class="line"><span class="bullet">  +</span> -u：显示指定用户的进程信息</span><br><span class="line"><span class="bullet">  +</span> -aux：结合-a和-u选项，显示所有用户的所有进程，并显示详细信息</span><br><span class="line"><span class="bullet">  +</span> -p：显示指定进程号PID的进程信息</span><br><span class="line"><span class="bullet">  +</span> -k --sort：按指定的列排序进程信息，常见的排序屁啊包括&amp;#37;cpu(CPU使用率)、&amp;#37;mem(内存使用率)等</span><br><span class="line"><span class="bullet">  +</span> -c：根据命令行显示进程信息</span><br><span class="line"><span class="bullet">  +</span> -o：自定义输出格式，可以指定要显示的列</span><br><span class="line"><span class="bullet">  +</span> --forest：以树状结构显示进程间的父子关系</span><br><span class="line"></span><br><span class="line">ps命令可以和其他命令结合：</span><br><span class="line">ps -aux | grep '进程名'：查找指定进程的信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> top命令：系统监视工具，查看进程状态，常用选项如下：</span><br><span class="line"><span class="bullet">  +</span> -d：秒数，指定top命令每个几秒更新</span><br><span class="line"><span class="bullet">  +</span> -b：使用批处理模式输出，一般和"-n"选项合用，用于把top命令重定向到文件中</span><br><span class="line"><span class="bullet">  +</span> -n：次数，指定top命令执行的次数，和"-"选项合用</span><br><span class="line"><span class="bullet">  +</span> -p：仅查看指定PID的进程</span><br><span class="line"><span class="bullet">  +</span> -s：使top命令在安全模式中运行，避免在交互模式中出现错误</span><br><span class="line"><span class="bullet">  +</span> -u：用户名，只监听某个用户的进程</span><br><span class="line"></span><br><span class="line">在top命令的显示窗口中，还可以使用如下按键进行交互操作：</span><br><span class="line"><span class="bullet">+</span> ?或h：显示交互模式的帮助</span><br><span class="line"><span class="bullet">+</span> c：按照CPU的使用率排序，这个是默认的</span><br><span class="line"><span class="bullet">+</span> M：按照内存使用率排序</span><br><span class="line"><span class="bullet">+</span> N：按照PID排序</span><br><span class="line"><span class="bullet">+</span> T：按照CPU的累积运算时间排序</span><br><span class="line"><span class="bullet">+</span> k：按照PID给予某个进程一个信号，一般用于终止某个进程</span><br><span class="line"><span class="bullet">+</span> r：按照PID给某个进程重设优先级</span><br><span class="line"><span class="bullet">+</span> q：退出top命令</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用top命令后展示的进程信息关键字含义如下：</span><br><span class="line"><span class="bullet">+</span> PID：进程标识符</span><br><span class="line"><span class="bullet">+</span> USER：运行进程的用户名</span><br><span class="line"><span class="bullet">+</span> PR：进程的优先级</span><br><span class="line"><span class="bullet">+</span> NI：进程的优先级调整值</span><br><span class="line"><span class="bullet">+</span> VIRT：进程使用的虚拟内存大小</span><br><span class="line"><span class="bullet">+</span> RES：进程实际使用的物理内存大小</span><br><span class="line"><span class="bullet">+</span> SHR：进程的共享内存大小</span><br><span class="line"><span class="bullet">+</span> %CPU：进程占用CPU的使用率</span><br><span class="line"><span class="bullet">+</span> %MEM：进程占用内存的使用率</span><br><span class="line"><span class="bullet">+</span> TIME+：进程的累计CPU时间</span><br><span class="line"><span class="bullet">+</span> COMMAND：进程命令行</span><br></pre></td></tr></table></figure>
+<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">kill</span>命令：给进程发送信号时使用</span><br><span class="line"></span><br><span class="line"><span class="keyword">kill</span> -<span class="keyword">l</span>：查看操作系统支持的所有信号</span><br><span class="line"><span class="comment">//只有SIGKILL 9信号可以无条件终止进程，其他信号进程有权忽略</span></span><br><span class="line"></span><br><span class="line">eg：<span class="keyword">kill</span> -<span class="number">9</span> PID :给指定PID进程发送<span class="number">9</span>信号，用于强制退出进程</span><br></pre></td></tr></table></figure>
+<p> </p>
+<p> </p>
+<p> </p>
+<p>进程同步方法</p>
+<ul>
+<li>消息队列</li>
+<li>共享存储</li>
+<li>信号量</li>
+</ul>
+<p>线程同步的方法：</p>
+<ol type="1">
+<li>互斥量</li>
+<li>读写锁</li>
+<li>自旋锁</li>
+<li>条件变量</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1402,212 +1938,6 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E5%BC%
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">C++面试问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-05-16 11:53:14" itemprop="dateCreated datePublished" datetime="2025-05-16T11:53:14+08:00">2025-05-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-19 01:40:21" itemprop="dateModified" datetime="2025-05-19T01:40:21+08:00">2025-05-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="指针">指针</h1>
-<h2 id="参数传递">参数传递</h2>
-<p>下列程序是否正确：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">GetMemory</span><span class="params">(<span class="type">char</span> *p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">p = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">100</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Test</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line"><span class="built_in">GetMemory</span>(str);</span><br><span class="line"><span class="built_in">strcpy</span>(str, <span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>错误，程序崩溃。因为GetMemory 并不能传递动态内存， Test 函数中的 str
-一直都是 NULL。strcpy(str, "hello world");将使程序崩溃。</p>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">char</span>* <span class="title">GetMemory</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> p[] = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Test</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line">	str = <span class="built_in">GetMemory</span>();</span><br><span class="line">	<span class="built_in">printf</span>(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可能返回乱码。因为GetMemory
-返回的是指向“栈内存”的指针，该指针的地址不是
-NULL，但其原现的内容已经被清除，新内容不可知。</p>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">GetMemory2</span><span class="params">(<span class="type">char</span> **p, <span class="type">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">*p = <span class="keyword">new</span> <span class="type">char</span>[num];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Test</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="type">char</span> *str = <span class="literal">NULL</span>;</span><br><span class="line"><span class="built_in">GetMemory2</span>(&amp;str, <span class="number">100</span>);</span><br><span class="line"><span class="built_in">strcpy</span>(str, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>能正常运行，但是内存泄漏。</p>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">oid <span class="title">Test</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">char</span> *str = <span class="keyword">new</span>  <span class="type">char</span>[<span class="number">100</span>];</span><br><span class="line">	<span class="built_in">strcpy</span>(str, <span class="string">&quot;hello&quot;</span>);</span><br><span class="line">	<span class="keyword">delete</span>[ ] str;</span><br><span class="line">	<span class="keyword">if</span> (str != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">strcpy</span>(str,<span class="string">&quot;world&quot;</span>);</span><br><span class="line">		<span class="built_in">printf</span>(str);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>篡改动态内存区的内容，后果难以预料，非常危险。因为 delete[
-]str;之后，str成为野指针(需要str = NULL;)if(str !=
-NULL)语句不起作用。</p>
-<h1 id="编程">编程</h1>
-<h2 id="不用c库函数自行实现strcpy">不用C++库函数，自行实现strcpy</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">char</span> *<span class="title">strcpy</span><span class="params">(<span class="type">char</span> *strDest, <span class="type">const</span> <span class="type">char</span> *strSrc)</span></span>;</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">assert</span>((strDest!=<span class="literal">NULL</span>) &amp;&amp; (strSrc !=<span class="literal">NULL</span>));</span><br><span class="line"><span class="type">char</span> *address = strDest; </span><br><span class="line"><span class="keyword">while</span>( (*strDest++ = * strSrc++) != ‘\<span class="number">0</span>’ )</span><br><span class="line">  ;</span><br><span class="line"><span class="keyword">return</span> address ; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/C/C++/%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">编程思想——泛型编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-05-14 11:29:26" itemprop="dateCreated datePublished" datetime="2025-05-14T11:29:26+08:00">2025-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-06 20:52:27" itemprop="dateModified" datetime="2025-06-06T20:52:27+08:00">2025-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>  泛型编程就是以独立于任何特定类型的方式编写代码。使用泛型程序时，我们需要提供具体程序实例操作的类型或只值。</p>
-<p>  泛型编程和面向对象编程一样，都依赖于某种形式的多态性。</p>
-<p>  面向对象编程中的多态性在运行时依赖存在继承关系的类。我们能够编写使用这些类的代码，忽略基类与派生类之间类型上的差异。只要使用基类的引用或指针，基类类型或派生类类型的对象就可以使用相同的代码。</p>
-<p>  如果说面向对象是一种通过间接层来调用函数以换取一种抽象（创建一个接口类），那么泛型编程则是更直接的抽象，它不会因为间接层而损失效率。不同于面向对象的动态期多态，泛型编程是一种静态期多态，通过编译器生成最直接的代码。泛型编程可以将算法与特定类型、结构剥离，尽可能复用代码。标准库中的容器、迭代器和算法是很好的泛型编程的例子，几乎可以在任意类型上使用标准库的类和函数。</p>
-<p>  C++中，模板是泛型编程的基础。模板是创建类或函数的蓝图或公式。</p>
-<h1 id="函数模板">函数模板</h1>
-<p>  模板定义以关键字template开始，后接模板形参表。模板形参表是用尖括号括住的一个或多个模板形参的列表，形参之间以逗号分隔。模板形参表不能为空。</p>
-<p>  模板形参表很像函数形参表，函数形参表定义了特定类型的局部变量但并不初始化那些变量，在运行时再提供实参来初始化形参。同样，模板形参表示可以在类或函数的定义中使用的类型或值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明一个名为T的类型形参</span></span><br><span class="line"><span class="comment">//在callWithMax内部，可以使用名字T引用一个类型，具体表示哪个类型由编译器根据所用函数参数而确定</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">callWithMax</span><span class="params">(<span class="type">const</span> T &amp;a, <span class="type">const</span> T &amp;b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="built_in">f</span>(a &gt; b ? a : b);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>  类型形参T跟在关键字class或者typename之后定义，这里class和typename没有区别。模板形参可以是表示类型的类型形参，也可以是表示常量表达式的非类型形参。模板形参选择的名字没有本质含义。可以给模板形参赋予的唯一含义是区别形参是类型形参还是非类型形参。如果是类型形参，我们就知道该形参表示的是未知类型；如果是非类型形参，我们就知道他是一个未知值。<strong>模板非类型形参是模板定义内部的常量值</strong>。</p>
-<p>  上面那个模板函数若再加上inline（不要放在template之前，要放在模板形参之后，返回类型之前），使其成为模板内联函数。这个模板内联函数可以用下列宏定义替换：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> CALL_WITH_MAX(a, b) f((a) &gt; (b) ? (a) : (b))</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a = <span class="number">5</span>, b = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">CALL_WITH_MAX</span>(++a, b);  <span class="comment">//这里a被累加两次</span></span><br><span class="line">CALL+<span class="built_in">WITH_MAX</span>(++a, b + <span class="number">10</span>); <span class="comment">//这里a被累加一次</span></span><br></pre></td></tr></table></figure>
-<p>  由此可见，用模板内联函数可以避免宏定义中犯人的括号。而且还可以避免莫名其妙的情况，上面例子可见第一次运算的时候a的递增次数竟然依赖于它被拿来和谁比较。因此我们应该尽量少使用宏！！</p>
-<p>  （宏定义和内联的区别：宏定义是在预处理阶段进行代码替换，内联函数是在编译阶段插入代码；其次宏没有类型检查，函数由类型检查）</p>
-<p> </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">泛型编程的主要工作不是程序员，而是编译器</span></span><br><span class="line"><span class="comment">编译器会在编译期间根据代码自动生成方法</span></span><br><span class="line"><span class="comment">由于大量工作是编译器操作，可能通用的泛型函数并不能满足我们的需求</span></span><br><span class="line"><span class="comment">所以我们通常还需要“特化”处理</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//特化</span></span><br><span class="line"><span class="comment">//如果是字符串的话特殊处理</span></span><br><span class="line"><span class="comment">//其余的输入可以让输入类型不相同，返回值统一为int</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">max</span><span class="params">(<span class="type">char</span>* a, <span class="type">char</span>* b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> (<span class="built_in">strcmp</span>(a, b) &gt; <span class="number">0</span> ?  (a) : (b));</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">max</span><span class="params">(T1 a, T2 b)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">static_cast</span>&lt;<span class="type">int</span>&gt;(a &gt; b ? a : b);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//调用函数</span></span><br><span class="line">    <span class="type">char</span>* s1 = <span class="string">"hello"</span>;</span><br><span class="line">    <span class="type">char</span>* s2 = <span class="string">"world"</span>;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(s1, s2) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">max</span>(<span class="number">2</span>, <span class="number">4.5</span>) &lt;&lt; endl;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p>  泛型编程是把算法和具体的数据结构分开了，我们不需要考虑类型本身是什么，直接用一套逻辑把所有的类型都涵盖了，如果需要针对某些特殊类型做处理，我们就进行单独的“特化”。这里比较复杂的操作是编译器的推理过程，程序员所做的工作无非是把该定义好的类型通知编译器，让编译器帮助我们做处理。</p>
-<p> </p>
-<h1 id="类模板">类模板</h1>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="title class_">Type</span>&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span></span><br><span class="line">{</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Queue</span>();</span><br><span class="line">    <span class="function">Type &amp;<span class="title">front</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">const</span> Type &amp;<span class="title">front</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">const</span> Type&amp;)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">empty</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">Queue&lt;<span class="type">int</span>&gt; q1;  <span class="comment">//必须显式指定实参</span></span><br></pre></td></tr></table></figure>
-<p>  使用类模板时，必须为模板形参显式指定实参，编译器使用实参来实例化这个类的特定类型版本，重新编写Queue类。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">泛型编程的思想可以做一些算法优化，比如下面的等差数列求和</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1+2+3...+100 ==&gt; n*(n+1)/2 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这里用泛型不是用泛型编程可以传递广泛类型的属性，这里直接定义了int</span></span><br><span class="line"><span class="comment">//这里是借用泛型编程的另一个特征：编译期推理，让程序自动生成代码</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="type">int</span> n&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sum</span></span><br><span class="line">{</span><br><span class="line"><span class="comment">// 递推的思路，求前n个数的和可以表示为前(n-1)个数的和+n</span></span><br><span class="line"><span class="comment">// Sum(n) = Sum(n-1)+n</span></span><br><span class="line"><span class="comment">// 这里声明一个enum的成员，内部的枚举值是N，N的计算方法是递归求和</span></span><br><span class="line"><span class="comment">// 利用泛型编程的自动推理完成编译期计算</span></span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Value</span> {</span><br><span class="line">        N = Sum&lt;n<span class="number">-1</span>&gt;::N+n</span><br><span class="line">	};</span><br><span class="line">};</span><br><span class="line"><span class="comment">//下面这个就是递推的基准点，n=1的特化</span></span><br><span class="line"><span class="comment">// 如果不设置，那么就会无穷递归</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Sum</span>&lt;<span class="number">1</span>&gt;</span><br><span class="line">{</span><br><span class="line">	<span class="keyword">enum</span> <span class="title class_">Value</span> {N = <span class="number">1</span>};    <span class="comment">// n=1</span></span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="comment">//这里只需要输出结果就行，运算过程中在编译期就完成了</span></span><br><span class="line">    cout &lt;&lt; Sum&lt;<span class="number">100</span>&gt;::N &lt;&lt; endl; <span class="comment">//计算1+2+……+99+100</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-<p> </p>
-<p>  <strong>模板编程的难点很大程度上在于对编译器的理解，我们需要直到怎么帮助编译器提供需要生成代码的信息。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1678,7 +2008,7 @@ NULL)语句不起作用。</p>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1740,7 +2070,7 @@ NULL)语句不起作用。</p>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">168k</span>
+    <span title="站点总字数">176k</span>
 </div>
 
 <!--
