@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="创建分支 1$ git branch 分支名 删除分支 12345# -d必须要求该分支已经被合并$ git branch -d 分支名# -D强制删除$ git branch -D 分支名 修改commit的message 123# 修改当前branch最新的commit的message:$ git commit --amend# 命令输入后可以修改message，linux命令行wq">
+  <meta name="description" content="创建分支1$ git branch 分支名 删除分支12345# -d必须要求该分支已经被合并$ git branch -d 分支名# -D强制删除$ git branch -D 分支名 修改commit的message123# 修改当前branch最新的commit的message:$ git commit --amend# 命令输入后可以修改message，linux命令行wq!退出编辑 12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git独立开发">
 <meta property="og:url" content="https://liu-fb.com/2025/git/git/git%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="创建分支 1$ git branch 分支名 删除分支 12345# -d必须要求该分支已经被合并$ git branch -d 分支名# -D强制删除$ git branch -D 分支名 修改commit的message 123# 修改当前branch最新的commit的message:$ git commit --amend# 命令输入后可以修改message，linux命令行wq">
+<meta property="og:description" content="创建分支1$ git branch 分支名 删除分支12345# -d必须要求该分支已经被合并$ git branch -d 分支名# -D强制删除$ git branch -D 分支名 修改commit的message123# 修改当前branch最新的commit的message:$ git commit --amend# 命令输入后可以修改message，linux命令行wq!退出编辑 12">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-03T12:33:10.000Z">
-<meta property="article:modified_time" content="2025-06-16T16:08:10.234Z">
+<meta property="article:modified_time" content="2025-06-18T07:57:01.648Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary">
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-17 00:08:10" itemprop="dateModified" datetime="2025-06-17T00:08:10+08:00">2025-06-17</time>
+                <time title="修改时间：2025-06-18 15:57:01" itemprop="dateModified" datetime="2025-06-18T15:57:01+08:00">2025-06-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>630</span>
+              <span>1.5k</span>
             </span>
 
         </div>
@@ -252,26 +252,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="创建分支">创建分支</h1>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch 分支名</span><br></pre></td></tr></table></figure>
-<h1 id="删除分支">删除分支</h1>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># -d必须要求该分支已经被合并</span><br><span class="line">$ git branch -d 分支名</span><br><span class="line"></span><br><span class="line"># -D强制删除</span><br><span class="line">$ git branch -D 分支名</span><br></pre></td></tr></table></figure>
-<h1 id="修改commit的message">修改commit的message</h1>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 修改当前branch最新的commit的message:</span><br><span class="line">$ git commit --amend</span><br><span class="line"># 命令输入后可以修改message，linux命令行wq!退出编辑</span><br></pre></td></tr></table></figure>
+        <h1 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch 分支名</span><br></pre></td></tr></table></figure>
+<h1 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># -d必须要求该分支已经被合并</span><br><span class="line">$ git branch -d 分支名</span><br><span class="line"></span><br><span class="line"># -D强制删除</span><br><span class="line">$ git branch -D 分支名</span><br></pre></td></tr></table></figure>
+<h1 id="修改commit的message"><a href="#修改commit的message" class="headerlink" title="修改commit的message"></a>修改commit的message</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 修改当前branch最新的commit的message:</span><br><span class="line">$ git commit --amend</span><br><span class="line"># 命令输入后可以修改message，linux命令行wq!退出编辑</span><br></pre></td></tr></table></figure>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase -i 需要变更的commit的上一次commit的hash</span><br><span class="line"></span><br><span class="line"># 命令输入后进入交互界面，根据界面中的指令选择对应的命令，此处应该用r</span><br></pre></td></tr></table></figure>
-<h1 id="把多个commit整理为一个">把多个commit整理为一个</h1>
-<p>连续的commit整理为一个：</p>
+<h1 id="把多个commit整理为一个"><a href="#把多个commit整理为一个" class="headerlink" title="把多个commit整理为一个"></a>把多个commit整理为一个</h1><p>连续的commit整理为一个：</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase -i 需要整理的最早的commit的hash</span><br><span class="line"></span><br><span class="line"># 命令输入后进入交互界面，根据界面中的指令选择对应的命令</span><br><span class="line"># 多个分支选择一个用pick命令，其余用squash指令</span><br></pre></td></tr></table></figure>
-<h1 id="比较暂存区和head所含文件">比较暂存区和HEAD所含文件</h1>
-<p>  省事的做法是，修改完文件后直接把暂存区文件commit提交，这是个不好的习惯。一个比较好的做法是，在执行commit之前，需要先比较一下当前暂存区的文件是否合适提交到当前分支。</p>
+<h1 id="比较暂存区和HEAD所含文件"><a href="#比较暂存区和HEAD所含文件" class="headerlink" title="比较暂存区和HEAD所含文件"></a>比较暂存区和HEAD所含文件</h1><p>&emsp;&emsp;省事的做法是，修改完文件后直接把暂存区文件commit提交，这是个不好的习惯。一个比较好的做法是，在执行commit之前，需要先比较一下当前暂存区的文件是否合适提交到当前分支。</p>
 <figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 比较暂存区和HEAD</span><br><span class="line">$ git diff --cached </span><br></pre></td></tr></table></figure>
-<h1 id="比较工作区和暂存区">比较工作区和暂存区</h1>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git diff </span><br><span class="line"></span><br><span class="line">$ git diff --文件名</span><br></pre></td></tr></table></figure>
-<h1 id="暂存区恢复为head">暂存区恢复为HEAD</h1>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 恢复所有暂存区文件</span><br><span class="line">$ git reset HEAD</span><br><span class="line"></span><br><span class="line"># 恢复暂存区部分文件</span><br><span class="line">$ git reset HEAD -- 文件名</span><br></pre></td></tr></table></figure>
-<h1 id="工作区恢复为暂存区">工作区恢复为暂存区</h1>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout --文件名</span><br></pre></td></tr></table></figure>
-
+<h1 id="比较工作区和暂存区"><a href="#比较工作区和暂存区" class="headerlink" title="比较工作区和暂存区"></a>比较工作区和暂存区</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git diff </span><br><span class="line"></span><br><span class="line">$ git diff --文件名</span><br></pre></td></tr></table></figure>
+<h1 id="暂存区恢复为HEAD"><a href="#暂存区恢复为HEAD" class="headerlink" title="暂存区恢复为HEAD"></a>暂存区恢复为HEAD</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 恢复所有暂存区文件</span><br><span class="line">$ git reset HEAD</span><br><span class="line"></span><br><span class="line"># 恢复暂存区部分文件</span><br><span class="line">$ git reset HEAD -- 文件名</span><br></pre></td></tr></table></figure>
+<h1 id="工作区恢复为暂存区"><a href="#工作区恢复为暂存区" class="headerlink" title="工作区恢复为暂存区"></a>工作区恢复为暂存区</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout --文件名</span><br></pre></td></tr></table></figure>
+<h1 id="commit回退"><a href="#commit回退" class="headerlink" title="commit回退"></a>commit回退</h1><p>这个命令直接操作了head指针，把工作区和暂存区的东西都修改了，轻易不要使用。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard 指定的commit的hash</span><br></pre></td></tr></table></figure>
+<h1 id="比较不同branch之间的差异"><a href="#比较不同branch之间的差异" class="headerlink" title="比较不同branch之间的差异"></a>比较不同branch之间的差异</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git diff 分支<span class="number">1</span> 分支<span class="number">2</span></span><br><span class="line"></span><br><span class="line">$ git diff 分支<span class="number">1</span> 分支<span class="number">2</span> -- 具体文件名</span><br><span class="line"></span><br><span class="line">$ git diff hash1 hash2</span><br></pre></td></tr></table></figure>
+<h1 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h1><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 暂存区里删除文件</span><br><span class="line">$ git rm 文件名</span><br></pre></td></tr></table></figure>
+<h1 id="暂存修改内容"><a href="#暂存修改内容" class="headerlink" title="暂存修改内容"></a>暂存修改内容</h1><p>一般用于开发过程中出现紧急任务，当前分支需要做修改。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 暂存当前工作区内容</span><br><span class="line">$ git stash</span><br><span class="line"></span><br><span class="line"># 查看所有暂存内容</span><br><span class="line">$ git stash list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 暂存区内容恢复，但不清空stash堆栈</span><br><span class="line">$ git stash apply  </span><br><span class="line"></span><br><span class="line"># 暂存区内容恢复，且清空stash堆栈</span><br><span class="line">$ git stash pop</span><br></pre></td></tr></table></figure>
+<h1 id="指定不需要git管理的文件"><a href="#指定不需要git管理的文件" class="headerlink" title="指定不需要git管理的文件"></a>指定不需要git管理的文件</h1><p>对于一些代码生成过程中产生的构建文件，是不需要参与git管理的，每次生成都可以重新产生。</p>
+<p>github中有一个文件”.gitignore”可以指定，这个文件由github自动生成，不同语言的内容不一样。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*<span class="string">.d</span>     <span class="string">//</span>所有<span class="string">.d</span>后缀的文件都不纳入管理</span><br><span class="line"></span><br><span class="line">*<span class="string">.dsYM/</span>     <span class="string">//dsYM</span>文件夹下的任何文件都不纳入git管理，但如果有文件是<span class="string">.dsYM</span>后缀仍然需要掌控</span><br></pre></td></tr></table></figure>
+<h1 id="git备份"><a href="#git备份" class="headerlink" title="git备份"></a>git备份</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常用协议</th>
+<th style="text-align:left">语法格式</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">本地协议</td>
+<td style="text-align:left">/path/to/repo.git</td>
+<td style="text-align:center">哑协议</td>
+</tr>
+<tr>
+<td style="text-align:left">本地协议</td>
+<td style="text-align:left">file://path/to/repo.git</td>
+<td style="text-align:center">智能协议</td>
+</tr>
+<tr>
+<td style="text-align:left">http/https协议</td>
+<td style="text-align:left"><a href="http://git-server.com:port/path/to/repo.git">http://git-server.com:port/path/to/repo.git</a><br><a href="https://git-server.com:port/path/to/repo.git">https://git-server.com:port/path/to/repo.git</a></td>
+<td style="text-align:center">平时经常接触的智能协议</td>
+</tr>
+<tr>
+<td style="text-align:left">ssh协议</td>
+<td style="text-align:left">user@git-server.com:path/to/repo/git</td>
+<td style="text-align:center">工作中常用的智能协议</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>哑协议和智能协议的区别：</p>
+<ol>
+<li>哑协议传输进度不可见、智能协议传输可见；</li>
+<li>智能协议传输速度更快；</li>
+</ol>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git clone 协议地址 本地路径  //远程仓库拉取到本地</span><br><span class="line"></span><br><span class="line">$ git remote add &lt;file&gt; &lt;远端地址&gt;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -354,7 +393,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-number">1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="nav-number">2.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9commit%E7%9A%84message"><span class="nav-number">3.</span> <span class="nav-text">修改commit的message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%8A%E5%A4%9A%E4%B8%AAcommit%E6%95%B4%E7%90%86%E4%B8%BA%E4%B8%80%E4%B8%AA"><span class="nav-number">4.</span> <span class="nav-text">把多个commit整理为一个</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8Chead%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">比较暂存区和HEAD所含文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">6.</span> <span class="nav-text">比较工作区和暂存区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9A%82%E5%AD%98%E5%8C%BA%E6%81%A2%E5%A4%8D%E4%B8%BAhead"><span class="nav-number">7.</span> <span class="nav-text">暂存区恢复为HEAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E6%81%A2%E5%A4%8D%E4%B8%BA%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">8.</span> <span class="nav-text">工作区恢复为暂存区</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="nav-number">1.</span> <span class="nav-text">创建分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="nav-number">2.</span> <span class="nav-text">删除分支</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9commit%E7%9A%84message"><span class="nav-number">3.</span> <span class="nav-text">修改commit的message</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%8A%E5%A4%9A%E4%B8%AAcommit%E6%95%B4%E7%90%86%E4%B8%BA%E4%B8%80%E4%B8%AA"><span class="nav-number">4.</span> <span class="nav-text">把多个commit整理为一个</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">比较暂存区和HEAD所含文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">6.</span> <span class="nav-text">比较工作区和暂存区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9A%82%E5%AD%98%E5%8C%BA%E6%81%A2%E5%A4%8D%E4%B8%BAHEAD"><span class="nav-number">7.</span> <span class="nav-text">暂存区恢复为HEAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E6%81%A2%E5%A4%8D%E4%B8%BA%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="nav-number">8.</span> <span class="nav-text">工作区恢复为暂存区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#commit%E5%9B%9E%E9%80%80"><span class="nav-number">9.</span> <span class="nav-text">commit回退</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E4%B8%8D%E5%90%8Cbranch%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">10.</span> <span class="nav-text">比较不同branch之间的差异</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">11.</span> <span class="nav-text">删除文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9A%82%E5%AD%98%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9"><span class="nav-number">12.</span> <span class="nav-text">暂存修改内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">13.</span> <span class="nav-text">指定不需要git管理的文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git%E5%A4%87%E4%BB%BD"><span class="nav-number">14.</span> <span class="nav-text">git备份</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -431,7 +470,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">177k</span>
+    <span title="站点总字数">178k</span>
 </div>
 
 <!--
