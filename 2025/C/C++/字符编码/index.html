@@ -30,7 +30,7 @@
 <meta property="og:description" content="ASCII码表   ASCII(American Standard Code for Information Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑编码系统，主要用于显示现代英语和其他西欧语言。它是最通用的信息交换标准，并等同于国际标准ISO&#x2F;IEC 646。    ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。美国一开始设">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-09T08:43:40.000Z">
-<meta property="article:modified_time" content="2025-05-29T06:05:53.948Z">
+<meta property="article:modified_time" content="2025-07-17T14:38:43.128Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="C++基础">
 <meta name="twitter:card" content="summary">
@@ -327,7 +327,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-05-29 14:05:53" itemprop="dateModified" datetime="2025-05-29T14:05:53+08:00">2025-05-29</time>
+                <time title="修改时间：2025-07-17 22:38:43" itemprop="dateModified" datetime="2025-07-17T22:38:43+08:00">2025-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -372,7 +372,7 @@ Interchange,美国信息交换标准代码)是基于拉丁字母的一套电脑�
 ASCII码使用指定的7位或8位二进制数组合来表示128或256种可能的字符。美国一开始设计的是7位共128个，包含95个可见字符和33个控制字符，后期扩展到8位，称为扩展ASCII码。</p>
 <p>  </p>
 <h1 id="国标编码">国标编码</h1>
-<p>  中国也有自己的编码，用于表示中文字符。设计编码首先要确定字符集。国标使用分区管理，共计分为94个区，每个区含94位，共8836个码位。1<sub>9区收录除汉字外的682个字符；10</sub>15区为空白区，没有使用；16<sub>55区收录3755个一级汉字，按照拼音排序；56</sub>87区收录3008个二级汉字，按照部首/笔画排序；剩余的88~94区为空白区，没有使用。这套字符集称为<strong>GB2312</strong>字符集。按照这个字符集来编码，比如3区的6行7列字符，编码0367。</p>
+<p>  中国也有自己的编码，用于表示中文字符。设计编码首先要确定字符集。国标使用分区管理，共计分为94个区，每个区含94位，共8836个码位。1-9区收录除汉字外的682个字符；10-15区为空白区，没有使用；16-55区收录3755个一级汉字，按照拼音排序；56-87区收录3008个二级汉字，按照部首/笔画排序；剩余的88-94区为空白区，没有使用。这套字符集称为<strong>GB2312</strong>字符集。按照这个字符集来编码，比如3区的6行7列字符，编码0367。</p>
 <p>  ASCII是直接把码位按照二进制存储，但国标编码不是。比如5709编码的汉字(侃)，把6709按照前两位和后两位分开，并分别转为16进制：0x39和0x09；然后两个数分别加上0xA0得到0xD9和0xA9，将两数合并，0xD90xA9就是汉字侃的GB2312码。</p>
 <p>  GB2312编码之所以要加0xA0，是为了要兼容ASCII码。GB2312是双字节编码，为了与ASCII编码区分，每个单字节的第八位必须是1，所以GB2312编码最少要从0x80(1000
 0000)开始。但是根据规定，0x80~0x9F需要留给控制块，所以只能从0xA0开始。</p>

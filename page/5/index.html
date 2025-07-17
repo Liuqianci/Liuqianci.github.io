@@ -383,7 +383,7 @@ strlen()的安全版本是strnlen_s()，传入字符串的同时要传入一个�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 15:45:47" itemprop="dateModified" datetime="2025-06-04T15:45:47+08:00">2025-06-04</time>
+                <time title="修改时间：2025-07-17 22:35:14" itemprop="dateModified" datetime="2025-07-17T22:35:14+08:00">2025-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -481,7 +481,7 @@ error(差一错误)</h2>
 <p>二维数组访问：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">2</span>][<span class="number">4</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;,&#123;<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> row = <span class="number">0</span>; row &lt; <span class="number">2</span>; ++row)  <span class="comment">//行</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> col = <span class="number">0</span>; col &lt; <span class="number">4</span>; ++col) <span class="comment">//列</span></span><br><span class="line">	&#123;</span><br><span class="line">		cout&lt;&lt;a[row][col]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  二维数组我们一般按照一行一行的遍历，虽然可以进行一列一列的遍历的，但是实际操作中不建议这么做：因为循环需要满足“空间局部性”：在一个小的时间窗口内，访问的地址越接近越好，这样执行的速度快；也就是说我们一般把最长的循环放在内层，最短的循环放在最外层，以减少CPU跨切循环的次数。</p>
-<p>  本质上所有数组在内存中都是一维线性的。不同的预言采用的存储方式不同，有的采用行有限存储，有的采用列有限存储。C/C++中采用行优先顺序存储。</p>
+<p>  本质上所有数组在内存中都是一维线性的。不同的语言采用的存储方式不同，有的采用行优先存储，有的采用列优先存储。C/C++中采用行优先顺序存储。</p>
 <p> </p>
 <p>二维数组动态声明：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//a[m][n]</span></span><br><span class="line"><span class="type">int</span> **a = <span class="keyword">new</span> <span class="type">int</span>*[m];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">	a[i] = <span class="keyword">new</span> <span class="type">int</span>[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//动态声明的数组需要释放内存：</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i)&#123;</span><br><span class="line">	<span class="keyword">delete</span> []a[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">delete</span> []a;</span><br></pre></td></tr></table></figure>
@@ -650,7 +650,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E6%91%
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-10 09:16:15" itemprop="dateModified" datetime="2025-06-10T09:16:15+08:00">2025-06-10</time>
+                <time title="修改时间：2025-07-17 22:34:15" itemprop="dateModified" datetime="2025-07-17T22:34:15+08:00">2025-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -942,7 +942,8 @@ B\)</span>； <span class="math inline">\(\neg(A \lor B)\)</span> 等价于
 <p> </p>
 <p>  异或操作有特性：两个相同的数异或后结果为0，且满足交换律，即"A ^ B ^
 C ^ D ^ F ^ B"等价于"A ^ C ^ D ^ E ^
-F"。这个特性常用来寻找成对出现的数据时缺失的哪一个数：如对于一组数【A、B、C、D、A、B、C】，直接做异或运算"A<sup>B</sup>C<sup>D</sup>A<sup>B</sup>C=D"找出缺失的D。</p>
+F"。这个特性常用来寻找成对出现的数据时缺失的哪一个数：如对于一组数【A、B、C、D、A、B、C】，直接做异或运算"A
+^ B ^ C ^ D ^ A ^ B ^ C = D"找出缺失的D。</p>
 <p> </p>
 <p>  异或操作还可以交换两个变量的值，利用了异或操作的自反性(a ^ a =
 0)、恒等性(a ^ 0 = a)以及交换律(a ^ b = b ^ a、(a ^ b) ^ c = a ^ (b ^
@@ -1136,7 +1137,7 @@ c))。不过要注<strong>意两个变量不能相等</strong>，相等后结果
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 17:30:22" itemprop="dateModified" datetime="2025-06-04T17:30:22+08:00">2025-06-04</time>
+                <time title="修改时间：2025-07-17 22:31:41" itemprop="dateModified" datetime="2025-07-17T22:31:41+08:00">2025-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1183,7 +1184,7 @@ src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E7%BC%
 <p>  计算机中都是用0、1这种二进制存储的。日常中我们习惯用10进制来看，有时候为了方便，调试过程中更习惯用16进制的方式来表示。</p>
 <p><img
 src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/C%2B%2B/%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA.png" /></p>
-<p>  内置的C++类型分为基本类型和符合类型。基本类型包括整数、浮点数及两者的多种变体；符合类型包括数组、字符串、指针、引用、结构体和共用体等。一般32位编译环境中的类型大小如下，需要注意不同的编译环境结果可能不同：</p>
+<p>  内置的C++类型分为基本类型和复合类型。基本类型包括整数、浮点数及两者的多种变体；复合类型包括数组、字符串、指针、引用、结构体和共用体等。一般32位编译环境中的类型大小如下，需要注意不同的编译环境结果可能不同：</p>
 <table>
 <colgroup>
 <col style="width: 26%" />
