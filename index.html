@@ -236,12 +236,12 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -514,6 +514,352 @@ mjx-container[display="true"] + br {
 <p>  考虑这个问题：当push到临界点时resize一倍空间，然后立即pop，此时又resize为一半，然后立即push，这种极端场景下时间复杂度无法均摊，会退化为<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span>。</p>
 <p>  如果想避免这种场景，可以不再临界点处resize，当pop操作到达capacity的1/4处时，resize为1/2</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 平均复杂度为 O(1)</span></span><br><span class="line">T <span class="title function_">pop_back</span><span class="params">()</span>{</span><br><span class="line"></span><br><span class="line">    assert(size &gt; <span class="number">0</span>);</span><br><span class="line">    T ret = data[size<span class="number">-1</span>]; <span class="comment">//这里一定要提前拿出来，resize操作会修改data</span></span><br><span class="line">    size --;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在size达到静态数组最大容量的1/4时才进行resize</span></span><br><span class="line">    <span class="comment">// resize的容量是当前最大容量的1/2</span></span><br><span class="line">    <span class="comment">// 防止复杂度的震荡</span></span><br><span class="line">    <span class="keyword">if</span>(size == capacity / <span class="number">4</span>)</span><br><span class="line">        resize(capacity / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E9%A5%AE%E6%96%99/cook/%E8%B0%83%E9%85%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E9%A5%AE%E6%96%99/cook/%E8%B0%83%E9%85%92/" class="post-title-link" itemprop="url">调酒</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-08 22:08:20" itemprop="dateCreated datePublished" datetime="2026-06-08T22:08:20+08:00">2026-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-09 21:11:06" itemprop="dateModified" datetime="2026-06-09T21:11:06+08:00">2026-06-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E9%A5%AE%E6%96%99/" itemprop="url" rel="index"><span itemprop="name">饮料</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="六大基酒"><a href="#六大基酒" class="headerlink" title="六大基酒"></a>六大基酒</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>基酒</th>
+<th>核心风味来源</th>
+<th>一句话性格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>金酒Gin</td>
+<td>杜松子为主，加橙皮、桂皮、芫荽籽等植物</td>
+<td>杜松子为主，加橙皮、桂皮、芫荽籽等植物</td>
+</tr>
+<tr>
+<td>伏特加 Vodka</td>
+<td>几乎无味，仅有轻微的谷物或马铃薯感</td>
+<td>透明、中性、诚实，不抢话的聆听者</td>
+</tr>
+<tr>
+<td>威士忌 Whiskey</td>
+<td>麦芽、谷物、桶（香草、焦糖、烟熏）</td>
+<td>深沉、复杂、有故事感，像旧书或皮衣</td>
+</tr>
+<tr>
+<td>朗姆酒 Rum</td>
+<td>甘蔗糖蜜，陈年后有焦糖、热带水果感</td>
+<td>热情、甜润、不设防，像海边派对</td>
+</tr>
+<tr>
+<td>龙舌兰 Tequila</td>
+<td>蓝色龙舌兰植物芯，有鲜明的青草、胡椒、矿物味</td>
+<td>野性、直接、带一点泥土感</td>
+</tr>
+<tr>
+<td>白兰地 Brandy</td>
+<td>葡萄或其他水果，橡木桶带来葡萄干、可可、花香</td>
+<td>优雅、圆润、偏暖调，像老派绅士</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="伏特加"><a href="#伏特加" class="headerlink" title="伏特加"></a>伏特加</h2><p>&emsp;&emsp;鸡尾酒中的万金油，突出纯净，就像一张空白画纸，可以填充任意的风味和材料，包括果汁、咖啡和奶茶。不知道喝什么，但就是想喝酒的时候，选择伏特加就不会出错。推荐：斯米诺、SKYY、绝对伏特加；如果想要品质好的伏特加，可以选绝对亦乐、灰雁。</p>
+<h2 id="金酒"><a href="#金酒" class="headerlink" title="金酒"></a>金酒</h2><p>&emsp;&emsp;金酒又被称作风味伏特加，是在蒸馏烈酒的基础上加以杜松子为首的各种香料和草本来增加风味。所以金酒最大的特点就是有草本气息。不同品牌做出的风味不一样。推荐必富达、添加利、孟买蓝宝石。</p>
+<h2 id="朗姆酒"><a href="#朗姆酒" class="headerlink" title="朗姆酒"></a>朗姆酒</h2><p>&emsp;&emsp;带有浓浓热带气息的海盗酒，本身的原料是甘蔗糖蜜，所以喝起来有香甜感，做出的鸡尾酒也有热带风情。最常见的就是百加得。进阶的话朗姆酒有细分：金朗姆、黑朗姆、陈年朗姆等，刚刚入门只需要一瓶白朗姆即可。</p>
+<h2 id="龙舌兰"><a href="#龙舌兰" class="headerlink" title="龙舌兰"></a>龙舌兰</h2><p>&emsp;&emsp;具有异域风情的酒。必须使用墨西哥当地的蓝色龙舌兰草作为原料。派对和夜店常见的喝法是把盐放在虎口上，先舔一口盐，再喝一shooter龙舌兰，最后再咬一瓣超酸青柠。国内性价比高的龙舌兰就是奥美加、培恩。</p>
+<h2 id="威士忌"><a href="#威士忌" class="headerlink" title="威士忌"></a>威士忌</h2><p>&emsp;&emsp;威士忌种类非常多，调酒的话不推荐用高价的单一麦芽威士忌，这种威士忌是纯喝风味的，调酒不需要太强的风味。推荐百龄坛、波本。</p>
+<h2 id="白兰地"><a href="#白兰地" class="headerlink" title="白兰地"></a>白兰地</h2><p>&emsp;&emsp;白兰地的分级是按照年份分级，可以在标签上看到VS、VSOP和XO。XO是陈年时间最久的，VS是最轻的。调酒时推荐用VS，口味风格不会特别突出。</p>
+<hr>
+<h1 id="家庭吧台中的辅料推荐"><a href="#家庭吧台中的辅料推荐" class="headerlink" title="家庭吧台中的辅料推荐"></a>家庭吧台中的辅料推荐</h1><h2 id="利口酒"><a href="#利口酒" class="headerlink" title="利口酒"></a>利口酒</h2><p>利口酒可以给烈酒加上特殊的风味。</p>
+<ul>
+<li>君度橙酒 COINTREAU</li>
+<li>金巴利 CAMPARI</li>
+<li>味美思 VERMOUTH,味美思是加烈葡萄酒，分为干性、甜性、半干性。</li>
+<li>苦精 Bitters。就是浓缩的草药酒。用于鸡尾酒的提香。</li>
+</ul>
+<h2 id="非酒类材料"><a href="#非酒类材料" class="headerlink" title="非酒类材料"></a>非酒类材料</h2><ul>
+<li>柠檬和青柠檬，可以直接用青柠汁。</li>
+<li>各种苏打水。</li>
+<li>果汁</li>
+</ul>
+<hr>
+<h1 id="一些常见的鸡尾酒配方"><a href="#一些常见的鸡尾酒配方" class="headerlink" title="一些常见的鸡尾酒配方"></a>一些常见的鸡尾酒配方</h1><h2 id="金酒篇"><a href="#金酒篇" class="headerlink" title="金酒篇"></a>金酒篇</h2><h3 id="GIN-amp-TONIC-金汤力"><a href="#GIN-amp-TONIC-金汤力" class="headerlink" title="GIN &amp; TONIC 金汤力"></a>GIN &amp; TONIC 金汤力</h3><p>直调酒，不需要搅拌不需要摇晃。 </p>
+<ul>
+<li>加冰</li>
+<li>45-60ml金酒</li>
+<li>90-150ml汤力水</li>
+<li>少许青柠汁（可选，经典金汤力不加）</li>
+<li>一瓣青柠做装饰</li>
+</ul>
+<p>勺子只做提拉，不要搅拌，否则气泡会散失</p>
+<h3 id="GIMLET-螺丝钻"><a href="#GIMLET-螺丝钻" class="headerlink" title="GIMLET 螺丝钻"></a>GIMLET 螺丝钻</h3><ul>
+<li>60ml金酒</li>
+<li>15ml青柠汁</li>
+<li>15ml糖浆</li>
+<li>摇晃，一瓣青柠做装饰</li>
+</ul>
+<h3 id="NEGRONI-尼格罗尼"><a href="#NEGRONI-尼格罗尼" class="headerlink" title="NEGRONI 尼格罗尼"></a>NEGRONI 尼格罗尼</h3><p>口感苦涩，但是很好看</p>
+<ul>
+<li>30ml金酒</li>
+<li>30ml金巴利</li>
+<li>30ml甜味美思</li>
+<li>搅拌，一片橙子皮做装饰</li>
+</ul>
+<h3 id="TOM-COLLINS-汤姆柯林斯"><a href="#TOM-COLLINS-汤姆柯林斯" class="headerlink" title="TOM COLLINS 汤姆柯林斯"></a>TOM COLLINS 汤姆柯林斯</h3><ul>
+<li>60ml金酒</li>
+<li>30ml柠檬汁</li>
+<li>15ml糖浆</li>
+<li>加满新鲜的苏打水</li>
+<li>摇晃，一片柠檬皮做装饰</li>
+</ul>
+<h3 id="FRENCH-75-法兰西75"><a href="#FRENCH-75-法兰西75" class="headerlink" title="FRENCH 75 法兰西75"></a>FRENCH 75 法兰西75</h3><ul>
+<li>45ml金酒</li>
+<li>22.5ml柠檬汁</li>
+<li>22.5糖浆</li>
+<li>加满香槟</li>
+<li>摇晃，长条柠檬皮做装饰</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/AI/cursor/AI/cursor/cursor%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/AI/cursor/AI/cursor/cursor%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">cursor基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-22 16:10:53" itemprop="dateCreated datePublished" datetime="2026-03-22T16:10:53+08:00">2026-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-03-25 23:18:36" itemprop="dateModified" datetime="2026-03-25T23:18:36+08:00">2026-03-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/cursor/" itemprop="url" rel="index"><span itemprop="name">cursor</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="AI编程"><a href="#AI编程" class="headerlink" title="AI编程"></a>AI编程</h1><p>&emsp;&emsp;传统的编程模型中，开发程序是一项高度专业化的任务。程序员需要具备深厚的技术背景，掌握至少一门编程语言。并且要对复杂的逻辑和算法有着清晰的理解。然而随着AI人工智能技术飞速发展，编程的方式正在迎来革命性的变化。现在迎来了一个全新的阶段：我们不再需要精通晦涩难懂的编程语法，甚至不需要直接面对复杂的代码编辑器。取而代之的是，我们可以像和朋友聊天一样，用自然、日常的语言，向一个强大的AI大模型描述我们的需求。</p>
+<p>&emsp;&emsp;AI编程的核心在于利用强大的AI大模型来辅助甚至主导编程过程。这些AI大模型经过海量数据的训练，具备了理解和生成代码的能力。通过简单的对话聊天，即使是非专业的用户，也能够与AI大模型交互，快速生成所需的程序代码。</p>
+<h1 id="主流AI编程IDE对比"><a href="#主流AI编程IDE对比" class="headerlink" title="主流AI编程IDE对比"></a>主流AI编程IDE对比</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">工具名称</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">核心功能</th>
+<th style="text-align:left">支持模型</th>
+<th style="text-align:left">价格</th>
+<th style="text-align:left">优势</th>
+<th style="text-align:left">劣势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GitHub Copilot</td>
+<td style="text-align:left">IDE插件</td>
+<td style="text-align:left">代码补全、Copilot Chat、支持多种语言</td>
+<td style="text-align:left">GPT-4o、Claude3.7等</td>
+<td style="text-align:left">个人用户&#36;10/月或&#36;100/年</td>
+<td style="text-align:left">代码补全能力强、支持广泛的语言、成熟社区</td>
+<td style="text-align:left">对整个代码库的理解有限、基本重构能力较弱</td>
+</tr>
+<tr>
+<td style="text-align:left">Cursor AI</td>
+<td style="text-align:left">独立IDE</td>
+<td style="text-align:left">代码生成、重构、自然语言编辑、多文件协作</td>
+<td style="text-align:left">Open AI系列、Claude系列、DeepSeek系列</td>
+<td style="text-align:left">有免费版，Pro版本&#36;20/月</td>
+<td style="text-align:left">AI编程第一选择，最强AI编程IDE、接入新模型的速度非常快，适合专业开发</td>
+<td style="text-align:left">价格较高</td>
+</tr>
+<tr>
+<td style="text-align:left">Windsurf IDE</td>
+<td style="text-align:left">独立IDE</td>
+<td style="text-align:left">AI Flow动态思维画布、实时差分评估、本地优先AI</td>
+<td style="text-align:left">OpenAI系列、DeepSeek系列</td>
+<td style="text-align:left">有免费版，Pro版本&#36;15/月</td>
+<td style="text-align:left">本地运行AI模型，快速性能，以Web为中心</td>
+<td style="text-align:left">还不够成熟，需要高端硬件</td>
+</tr>
+<tr>
+<td style="text-align:left">Trae</td>
+<td style="text-align:left">独立IDE</td>
+<td style="text-align:left">自然语言到代码的转化、低代码开发</td>
+<td style="text-align:left">Claude3.5、DeepSeek R1</td>
+<td style="text-align:left">免费</td>
+<td style="text-align:left">国产工具(字节)，免费且有潜力</td>
+<td style="text-align:left">功能相对基础，社区支持有限</td>
+</tr>
+<tr>
+<td style="text-align:left">Codeium</td>
+<td style="text-align:left">IDE插件</td>
+<td style="text-align:left">代码生成、聊天、搜索功能</td>
+<td style="text-align:left">未明确</td>
+<td style="text-align:left">免费</td>
+<td style="text-align:left">免费试用、支持多种语言和IDE</td>
+<td style="text-align:left">功能相对基础</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="Cursor简介"><a href="#Cursor简介" class="headerlink" title="Cursor简介"></a>Cursor简介</h1><p>&emsp;&emsp;Curosr是一款基于人工智能的现代化代码编辑器，由Anysphere公司开发。</p>
+<p>&emsp;&emsp;Cursor是基于VS Code开发的一款编辑器，它在保留VS Code强大功能和熟悉操作体验的同时，专注于集成AI技术，帮助开发者更高效的编写代码。</p>
+<p>&emsp;&emsp;国内阿里与字节页有基于VS Code开发的IDE：</p>
+<ul>
+<li>阿里Lingma IDE: <a target="_blank" rel="noopener" href="https://lingma.aliyun.com/">https://lingma.aliyun.com/</a></li>
+<li>字节Trae：<a target="_blank" rel="noopener" href="https://www.trae.com.cn/">https://www.trae.com.cn/</a></li>
+</ul>
+<p><strong>核心特征：</strong></p>
+<ul>
+<li>AI 原生设计：从底层架构就融入了AI能力，而非后期添加的插件；</li>
+<li>智能代码生成：通过自然语言描述快速生成代码片段；</li>
+<li>上下文感知：深度理解项目结构和代码关系；</li>
+<li>实时协助：在编程过程中提供即时的建议和优化；</li>
+<li></li>
+</ul>
 
       
     </div>
@@ -1467,395 +1813,6 @@ const。const成员函数不能修改调用该函数的对象。</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">进程管理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-06-04 00:46:47 / 修改时间：11:23:58" itemprop="dateCreated datePublished" datetime="2025-06-04T00:46:47+08:00">2025-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>4.2k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="进程">进程</h1>
-<h2 id="进程概念">进程概念</h2>
-<p>  在没有操作系统之前，计算机只能运行一个程序，全部的资源都属于当前运行的程序。配置了操作系统后，引入了<strong>多道程序设计</strong>的概念，进程可以合理的隔离资源和运行环境、提升资源利用率。</p>
-<ul>
-<li><strong>进程是系统进行资源分配和调度的基本单位；</strong></li>
-<li>进程作为程序独立运行的载体保障程序正常执行；</li>
-<li>进程的存在使得操作系统资源的利用率大幅提升；</li>
-</ul>
-<p> </p>
-<h2 id="进程实体">进程实体</h2>
-<p>  主存中的进程是一个连续的存储空间，称为<strong>进程控制块(PCB)</strong>。进程控制块是用于描述和控制进程运行的通用数据结构。进程控制块中存有进程状态、优先级、程序计数器、内存指针、上下文数据、IO状态信息、记账信息等多个进程当前状态和控制进程的信息：</p>
-<ul>
-<li>标识符：唯一标记一个进程，用于区别其他进程；</li>
-<li>状态：标记进程的运行状态</li>
-<li>程序计数器：指向进程即将被执行的下一条指令的地址；</li>
-<li>内存指针：程序代码、进程数据相关的指针；</li>
-<li>上下文数据：存储进程执行时处理器中的数据；</li>
-<li>IO状态信息：被进程IO操作所占用的文件列表；</li>
-<li>记账信息：存储进程使用处理器的时间、时钟数总和等信息；</li>
-</ul>
-<p>  除了上面的内容，进程还有一些其他信息。所有信息可以分为四大类：进程标识符、处理机状态、进程调度信息、进程控制信息。进程控制块使得进程是能够独立运行的基本单位，操作系统通过进程控制块信息来调度和控制进程。进程控制块是常驻内存的，存放在系统专门开辟的PCB区域内。</p>
-<p> </p>
-<h2 id="进程与线程">进程与线程</h2>
-<p>  进程(Process)和线程(Thread)是一对多的关系，一个进程内可以有一个或多个线程。</p>
-<p>  进程是系统进行资源分配和调度的基本单位，而<strong>线程是操作系统进行运行调度的最小单位</strong>。线程包含在进程之中，是进程中实际运行工作的单位。一个进程可以并发多个线程，每个线程执行不同的任务。</p>
-<p>  进程拥有资源，而线程不拥有资源，进程内部的线程共享进程资源。</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">进程</th>
-<th style="text-align: center;">线程</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><strong>资源</strong></td>
-<td style="text-align: center;">资源分配的基本单位</td>
-<td style="text-align: center;">不拥有资源</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>调度</strong></td>
-<td style="text-align: center;">独立调度的基本单位</td>
-<td style="text-align: center;">独立调度的最小单位</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>系统开销</strong></td>
-<td style="text-align: center;">进程系统开销大</td>
-<td style="text-align: center;">线程系统开销小</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><strong>通信</strong></td>
-<td style="text-align: center;">进程IPC</td>
-<td style="text-align: center;">读写同一进程数据通信</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<h1 id="五状态模型">五状态模型</h1>
-<ul>
-<li><strong>就绪状态</strong>：</li>
-</ul>
-<p>  当进程被分配到除CPU以外的所有必要资源后，就处于就绪状态。只要再获得CPU的使用权，就可以立即运行。在一个系统中多个处于就绪状态的进程通常排成一个队列，称为就绪队列。</p>
-<p> </p>
-<ul>
-<li><strong>执行状态</strong>：</li>
-</ul>
-<p>  进程获得CPU，其程序开始执行，这个状态为执行状态。在单处理机中，某个时刻只能有一个进程是处于执行状态。</p>
-<p> </p>
-<ul>
-<li><strong>阻塞状态</strong>：</li>
-</ul>
-<p>  进程因为某种原因，比如其他设备未就绪而无法执行，从而放弃CPU的状态称为阻塞状态。和就绪队列一样，操作系统也有阻塞队列，存放所有阻塞的进程。</p>
-<p> </p>
-<ul>
-<li><strong>创建状态</strong>：</li>
-</ul>
-<p>  进程创建分为两步，第一步分配PCB，第二步插入就绪队列。创建进程时拥有PCB但其他资源尚未就绪的状态称为创建状态。无论是系统创建的进程还是用户创建的进程都是一样的，操作系统提供fork接口创建进程。</p>
-<p> </p>
-<ul>
-<li><strong>终止状态</strong>：</li>
-</ul>
-<p>  进程终止也分为两步：首先进行系统清理，然后进行PCB归还。进程结束由系统清理或者归还PCB的状态称为终止状态。</p>
-<p> </p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-2_%E4%BA%94%E7%8A%B6%E6%80%81%E6%A8%A1%E5%9E%8B.png"></p>
-<h1 id="进程同步">进程同步</h1>
-<h2 id="生产者-消费者模型">生产者-消费者模型</h2>
-<p>  有一群生产者进程在生产产品，并将这些产品提供给消费者进程进行消费。生产者进程和消费者进程可以并发执行，在两者之间设置了一个具有n个可缓冲区的缓冲池，生产者进程需要将所生产的产品放到其中一个缓冲区中，消费者进程可以从缓冲区中取走产品进行消费。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-3_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B.png"></p>
-<p>  生产者消费者模型在宏观上是没有问题的，当生产一个产品时缓冲区+1，当消费一个产品时缓冲区-1。但是计算机系统中是有问题的。计算机中的缓冲区位于高速缓存Cache上，生产者或消费者如果要操作缓冲区需要三个步骤：</p>
-<ol type="1">
-<li>把缓冲区中的信息取出来放入寄存器：register = count</li>
-<li>如果生产register+1；如果消费register-1</li>
-<li>把寄存器信息放回缓冲区里：count = register</li>
-</ol>
-<p>  这三个步骤但从生产者或消费者程序看没有问题，但两者并发执行时就会出差错:</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-4_%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B2.png"></p>
-<p> </p>
-<h2 id="哲学家进餐问题">哲学家进餐问题</h2>
-<p>  有五个哲学家，他们的生活方式是交替的进行思考和进餐。哲学家们共同使用一张圆桌，分别坐在周围的五张椅子上，在圆桌上有五个碗和五支筷子。平时哲学家们只进行思考，饥饿时则试图取靠近他们的左、右两支筷子，只有两支筷子都被拿到时才能进餐，进餐完毕后分别放下左、右的筷子继续思考。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-5_%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90.png"></p>
-<p>  通常的情况下，假设一个哲学家饿了，首先拿起左边的筷子，如果发现右边的筷子被拿走，则需要等待右边的筷子释放，释放后才能拿起筷子吃饭。但有一种极端情况：五个哲学家同时拿起左边的筷子，此时发现他们右边的筷子都被拿走，所以五个哲学家都需要等待右边筷子释放，最终的结果就是五个哲学家被饿死。</p>
-<p> </p>
-<h2 id="进程同步-1">进程同步</h2>
-<p>  上面两个问题是操作系统中的经典问题，问题的根源在于：彼此之间没有通信。如果生产者通知消费者已经完成了一件生产，或者哲学家向旁边的哲学家说我要进餐了，就可以避免这些问题。</p>
-<p>  进程的同步用于解决这种<strong>对竞争资源在多进程间进行使用次序的协调，使得并发的多个进程之间可以有效使用资源和相互合作</strong>。</p>
-<p> </p>
-<h2 id="进程同步原则">进程同步原则</h2>
-<p>  临界资源指的是一些虽然作为共享资源却无法同时被多个线程共同访问的共享资源。当有进程在使用临界资源时，其他进程必须依据操作系统的同步机制等待占用进程释放该共享资源才可重新竞争使用共享资源。为了对临界资源进行约束，提出了进程同步的四个原则：</p>
-<ol type="1">
-<li>空闲让进：资源无占用时允许进程使用；</li>
-<li>忙则等待：资源有占用，其他请求进程需要等待；</li>
-<li>有限等待：保证有限等待时间能够使用资源；</li>
-<li>让权等待：进程等待时，需要让出CPU；</li>
-</ol>
-<p> </p>
-<h2 id="线程同步">线程同步</h2>
-<p>  和进程同步一样，一个进程内有多个线程并发使用，也会产生生产者-消费者问题和哲学家进餐问题，所以进程内的多线程也需要同步。</p>
-<p> </p>
-<h1 id="linux的进程管理">Linux的进程管理</h1>
-<h2 id="进程类型">进程类型</h2>
-<p>  Linux下进程分为三种类型：前台进程、后台进程、守护进程。</p>
-<ul>
-<li><strong>前台进程</strong>：</li>
-</ul>
-<p>  Linux下有一个重要概念，就是终端Shell，我们使用命令行来使用Linux时就是通过终端Shell来实现。前台进程就是具有终端Shell，可以和用户交互的进程。前台进程占用终端Shell但不一定有输出。</p>
-<p> </p>
-<ul>
-<li><strong>后台进程</strong>：</li>
-</ul>
-<p>  和前台进程相对，没有占用终端的就是后台进程。后台进程基本上不和用户交互，优先级比前台进程低。Linux下将需要执行的命令以“&amp;”符号结束来启动后台进程。</p>
-<p> </p>
-<ul>
-<li><strong>守护进程</strong>：</li>
-</ul>
-<p>  守护(daemon)进程是特殊的后台进程。很多守护进程在系统引导的时候启动，一直运行到系统关闭。Linux下进程名字以d结尾的进程一般都是守护进程，比如定时任务守护进程crond、http服务守护进程httpd、ssh登录的守护进程sshd、数据库守护进程mysqld。</p>
-<p> </p>
-<h2 id="进程标记">进程标记</h2>
-<ul>
-<li><strong>进程ID</strong>：</li>
-</ul>
-<p>  进程的唯一标识符，每个进程拥有不同的ID。进程ID表现为一个非负整数，最大值由操作系统限定。</p>
-<p>  操作系统提供fork接口创建进程，进程可以多层创建，这些进程是父子进程的关系。进程父子关系可以用pstree命令查看。</p>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/mooc-6_%E7%88%B6%E5%AD%90%E8%BF%9B%E7%A8%8B.png"></p>
-<p>  需要记住几个特殊的进程：ID为0的进程为idle进程，是系统创建的第一个进程；ID为1的进程为init进程，是0号进程的子进程，完成系统的初始化。init进程也是所有用户进程的祖先进程；</p>
-<p> </p>
-<ul>
-<li><strong>进程标记</strong>：</li>
-</ul>
-<p>  和Windows系统类似，Linux下的进程也有不同的进程状态，我们可以通过<kbd>man
-ps</kbd>命令来查看进程状态的所有标记，Linux进程状态很多，常见的有以下几种：</p>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">状态符号</th>
-<th style="text-align: center;">状态说明</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">R</td>
-<td style="text-align: center;">(TASK_RUNNING)，进程正处于运行状态</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S</td>
-<td style="text-align: center;">(TASK_INTERRUPTIBLE)，进程正处于睡眠状态</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">D</td>
-<td style="text-align: center;">(TASK_UNINTERRUPTIBLE)，进程正处于IO等待的睡眠状态</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">T</td>
-<td style="text-align: center;">(TASK_STOPPED)，进程正处于暂停状态</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Z</td>
-<td style="text-align: center;">(TASK_DEAD or
-EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
-<h2 id="linux操作进程命令">Linux操作进程命令</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> ps命令：用于显示进程信息的常用命令，常用选项如下：</span><br><span class="line"><span class="bullet">  +</span> -e：显示所有进程，包括系统进程</span><br><span class="line"><span class="bullet">  +</span> -f：显示完整进程信息，包括进程的详细信息</span><br><span class="line"><span class="bullet">  +</span> -l：显示更多的列，包括进程的状态、CPU使用情况等</span><br><span class="line"><span class="bullet">  +</span> -u：显示指定用户的进程信息</span><br><span class="line"><span class="bullet">  +</span> -aux：结合-a和-u选项，显示所有用户的所有进程，并显示详细信息</span><br><span class="line"><span class="bullet">  +</span> -p：显示指定进程号PID的进程信息</span><br><span class="line"><span class="bullet">  +</span> -k --sort：按指定的列排序进程信息，常见的排序屁啊包括&amp;#37;cpu(CPU使用率)、&amp;#37;mem(内存使用率)等</span><br><span class="line"><span class="bullet">  +</span> -c：根据命令行显示进程信息</span><br><span class="line"><span class="bullet">  +</span> -o：自定义输出格式，可以指定要显示的列</span><br><span class="line"><span class="bullet">  +</span> --forest：以树状结构显示进程间的父子关系</span><br><span class="line"></span><br><span class="line">ps命令可以和其他命令结合：</span><br><span class="line">ps -aux | grep '进程名'：查找指定进程的信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">+</span> top命令：系统监视工具，查看进程状态，常用选项如下：</span><br><span class="line"><span class="bullet">  +</span> -d：秒数，指定top命令每个几秒更新</span><br><span class="line"><span class="bullet">  +</span> -b：使用批处理模式输出，一般和"-n"选项合用，用于把top命令重定向到文件中</span><br><span class="line"><span class="bullet">  +</span> -n：次数，指定top命令执行的次数，和"-"选项合用</span><br><span class="line"><span class="bullet">  +</span> -p：仅查看指定PID的进程</span><br><span class="line"><span class="bullet">  +</span> -s：使top命令在安全模式中运行，避免在交互模式中出现错误</span><br><span class="line"><span class="bullet">  +</span> -u：用户名，只监听某个用户的进程</span><br><span class="line"></span><br><span class="line">在top命令的显示窗口中，还可以使用如下按键进行交互操作：</span><br><span class="line"><span class="bullet">+</span> ?或h：显示交互模式的帮助</span><br><span class="line"><span class="bullet">+</span> c：按照CPU的使用率排序，这个是默认的</span><br><span class="line"><span class="bullet">+</span> M：按照内存使用率排序</span><br><span class="line"><span class="bullet">+</span> N：按照PID排序</span><br><span class="line"><span class="bullet">+</span> T：按照CPU的累积运算时间排序</span><br><span class="line"><span class="bullet">+</span> k：按照PID给予某个进程一个信号，一般用于终止某个进程</span><br><span class="line"><span class="bullet">+</span> r：按照PID给某个进程重设优先级</span><br><span class="line"><span class="bullet">+</span> q：退出top命令</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">使用top命令后展示的进程信息关键字含义如下：</span><br><span class="line"><span class="bullet">+</span> PID：进程标识符</span><br><span class="line"><span class="bullet">+</span> USER：运行进程的用户名</span><br><span class="line"><span class="bullet">+</span> PR：进程的优先级</span><br><span class="line"><span class="bullet">+</span> NI：进程的优先级调整值</span><br><span class="line"><span class="bullet">+</span> VIRT：进程使用的虚拟内存大小</span><br><span class="line"><span class="bullet">+</span> RES：进程实际使用的物理内存大小</span><br><span class="line"><span class="bullet">+</span> SHR：进程的共享内存大小</span><br><span class="line"><span class="bullet">+</span> %CPU：进程占用CPU的使用率</span><br><span class="line"><span class="bullet">+</span> %MEM：进程占用内存的使用率</span><br><span class="line"><span class="bullet">+</span> TIME+：进程的累计CPU时间</span><br><span class="line"><span class="bullet">+</span> COMMAND：进程命令行</span><br></pre></td></tr></table></figure>
-<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">kill</span>命令：给进程发送信号时使用</span><br><span class="line"></span><br><span class="line"><span class="keyword">kill</span> -<span class="keyword">l</span>：查看操作系统支持的所有信号</span><br><span class="line"><span class="comment">//只有SIGKILL 9信号可以无条件终止进程，其他信号进程有权忽略</span></span><br><span class="line"></span><br><span class="line">eg：<span class="keyword">kill</span> -<span class="number">9</span> PID :给指定PID进程发送<span class="number">9</span>信号，用于强制退出进程</span><br></pre></td></tr></table></figure>
-<p> </p>
-<p> </p>
-<p> </p>
-<p>进程同步方法</p>
-<ul>
-<li>消息队列</li>
-<li>共享存储</li>
-<li>信号量</li>
-</ul>
-<p>线程同步的方法：</p>
-<ol type="1">
-<li>互斥量</li>
-<li>读写锁</li>
-<li>自旋锁</li>
-<li>条件变量</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="Fabian">
-      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Fabian备忘录">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">操作系统概述</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-06-03 23:53:00" itemprop="dateCreated datePublished" datetime="2025-06-03T23:53:00+08:00">2025-06-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-04 00:47:00" itemprop="dateModified" datetime="2025-06-04T00:47:00+08:00">2025-06-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="操作系统发展历程">操作系统发展历程</h1>
-<p><img src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/OS/%E6%85%95%E8%AF%BE-1_%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B.png"></p>
-<p>  多道程序设计是个很重要的概念。早期的批处理系统一次只能处理一个任务，多道程序设计使得批处理系统可以一次处理多个任务，大大提升系统运行效率。多道程序设计是指在计算机内存中同时存放多个程序，程序之间相互不干扰，在计算机的管理程序之下相互穿插运行。对多道程序的管理是操作系统的重要功能。</p>
-<p>  操作系统对多道程序和系统资源的管理，可以分为五大功能：<kbd>进程管理</kbd>、<kbd>存储管理</kbd>、<kbd>作业管理</kbd>、<kbd>文件管理</kbd>、<kbd>设备管理</kbd>。</p>
-<h1 id="操作系统概述">操作系统概述</h1>
-<p>  操作系统是管理计算机硬件和软件资源的<u><strong>计算机程序</strong></u>，本质是个软件程序。操作系统管理配置内存、决定资源供需顺序、控制输入输出设备等；操作系统也提供让用户和系统交互的操作界面。操作系统的种类是多样的，不局限于计算机，从手机到超级计算机，操作系统可简单也可复杂，在不同设备上，操作系统可向用户呈现多种操作手段。</p>
-<p> </p>
-<h1 id="操作系统基本功能">操作系统基本功能</h1>
-<p>  计算机系统中有几大资源：处理器资源、存储器资源、IO设备资源、文件资源。操作系统第一个基本功能是统一管理计算机资源。</p>
-<p>  操作系统的第二个功能是实现了对计算机资源的抽象，用户无需面向硬件接口编程：如IO设备管理软件提供读写接口、文件管理软件提供文件操作接口。</p>
-<p>  操作系统的第三个基本功能是提供了用户与计算机之间的接口。有三种接口形式：图形窗口形式(比如Windows界面)、命令形式(shell终端敲入命令)、系统调用形式(程序调用的接口)。</p>
-<p> </p>
-<h1 id="操作系统特性">操作系统特性</h1>
-<h2 id="并发性">并发性</h2>
-<p>  并发性是后面三种特性的前提，只有理解了并发性，才能理解其他特性。</p>
-<p>  并发需要和并行区分理解：并行是指两个或多个事件可以在<u><strong>同一时刻</strong></u>发生；并发是指两个或多个事件可以在<u><strong>同一时间间隔</strong></u>内发生。</p>
-<p>  多道程序设计是并行和并发的基础。在单处理器的系统中只存在并发的概念，同一时刻只有一个程序占用CPU，多个程序交替执行；多处理器系统中，单个处理器并发执行，所有处理器并行执行。</p>
-<h2 id="共享性">共享性</h2>
-<p>  共享性表现为操作系统中的资源可供多个并发程序共同使用，这种共同使用的形式称之为资源共享。</p>
-<p>  资源共享根据属性可以分为互斥共享形式和同时访问形式：</p>
-<ul>
-<li>互斥共享：当资源被程序A占用时，其他想使用资源的话只能等待A使用完，比如打印机资源；</li>
-<li>同时访问：某种资源在一段时间内并发的被多个程序访问，这种“同时”是宏观的，从宏观看资源可以被同时访问，比如硬盘资源；</li>
-</ul>
-<h2 id="虚拟性">虚拟性</h2>
-<p>  虚拟性表现为把一个<strong>物理实体</strong>转变为若干个<strong>逻辑实体</strong>，物理实体是真实存在的，逻辑实体是虚拟的。虚拟技术主要有<strong>时分复用技术</strong>和<strong>空分复用技术</strong>。</p>
-<ul>
-<li>时分复用：资源在时间上进行复用，不同程序<strong>并发</strong>使用，多道程序分时使用计算机的硬件资源，时分复用可以提高资源利用率；</li>
-<li>空分复用：用来实现虚拟磁盘、虚拟内存等，提高资源的利用率，提升编程效率；</li>
-</ul>
-<h2 id="异步性">异步性</h2>
-<p>  异步性表现为在多道程序的环境下，允许多个进程并发执行。由于进程在使用资源时可能需要等待或放弃，所以进程的执行并不是一气呵成的，而是以走走停停的形式推进。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1926,20 +1883,20 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1988,7 +1945,7 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">177k</span>
+    <span title="站点总字数">179k</span>
 </div>
 
 <!--
