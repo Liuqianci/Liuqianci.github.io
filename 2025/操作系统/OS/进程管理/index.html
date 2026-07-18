@@ -727,7 +727,7 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">182k</span>
+    <span title="站点总字数">183k</span>
 </div>
 
 <!--
@@ -802,6 +802,19 @@ EXIT_ZOMBIE)，进程正处于退出状态，或僵尸进程</td>
 
 
 
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
 
 
   
