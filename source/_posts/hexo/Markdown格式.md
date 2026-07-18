@@ -101,9 +101,12 @@ npm install hexo-asset-image --save
 
 # 四、公式
 公式使用的是Latex语法。但需要注意，Hexo并不支持Laxte语法，所以我们需要开启相关的开关。有些主题就自带这个功能。
+
 Markdown使用&#36;包裹实现行内公式，使用&#36;&#36;包裹实现行间公式。
+
 Latex语法可以不掌握，借助工具即可：
 [HostMath](http://www.hostmath.com/)
+
 不过Hexo显示数学公式还需要一些其他设置，Hexo默认使用 hexo-renderer-marked 引擎渲染网页，该引擎会把一些特殊的 markdown 符号转换为相应的 html 标签，导致公式不显示。
 
 # 五、表格
@@ -125,8 +128,108 @@ Latex语法可以不掌握，借助工具即可：
 `------`表示左对齐，`:------：`表示居中，`-----:`表示右对齐
 Hexo的表格必须和正文之间有空行，否则不能正常显示
 
+---
+
 # 六、流程图
-Hexo里流程图限制多多，直接在其他软件画完截图吧。我也懒得学了。【流汗黄豆】
+
+流程图的使用参考自[Hexo-Next 主题的图形工具 -- Mermaid](https://blog.hanqunfeng.com/2025/01/02/mermaid/)
+
+Mermaid 是一个支持在Markdown文档中绘制流程图、甘特图、序列图等图形的工具。它基于JavaScript实现，能够将Markdown中的元素渲染成HTML元素，从而在网页上直观地展示各种图表‌。我使用的是Next主题，所以记录Next主题中使用流程图的方式。
+
+**配置**：
+
++ NexT config file 中找到mermaid配置，并设置为true，theme 可以设置浅色和深色背景的样式，共有4个可用选项
+
+```
+mermaid:
+  enable: true
+  # Available themes: default | dark | forest | neutral
+  theme:
+    light: dark
+    dark: dark
+```
+
+**使用方法：mermaid与endmermaid是固定搭配，type 用于设置图形的种类，如流程图、时序图、甘特图等**
+
+```
+{% mermaid type %}
+{% endmermaid %}
+```
+
+也可以使用代码块的方式：
+
+```
+// 去掉前面的#
+#```mermaid
+type
+
+#```
+```
+
+但是此时需要在 Hexo config file 中找到highlight，并添加如下内容，才会使代码块的形式生效：
+
+```
+highlight:
+  exclude_languages:
+    - mermaid
+```
+
+## Flowchart
+
++ 用于绘制流程图，支持方向（例如从左到右、从上到下）和节点间关系的定义。
++ type 为 "graph TD"或者"graph LR"，分别表示从上到下和从左到右的方向
+
+```
+- 流程图方向:
+  - TB - 从上到下
+  - TD - 自上而下，等同于TB
+  - BT - 从下到上
+  - RL - 从右到左
+  - LR - 从左到右
+```
+
+
+示例：
+
+```
+{% mermaid graph TD %}
+A[Hard] -->|Text| B(Round)
+B --> C{Decision}
+C -->|One| D[Result 1]
+C -->|Two| E[Result 2]
+{% endmermaid %}
+```
+
+效果：
+
+{% mermaid graph TD %}
+A[Hard] -->|Text| B(Round)
+B --> C{Decision}
+C -->|One| D[Result 1]
+C -->|Two| E[Result 2]
+{% endmermaid %}
+
+说明：
+
+```
+graph TD，定义一个从上到下的流程图。
+TD 是 Top to Down 的缩写，表示流程图从上向下排列。
+
+A[Hard] -->|Text| B(Round)，定义了一个节点 A，显示为 Hard。
+一个带标签的箭头 -->|Text| 指向节点 B，箭头上的标签为 Text。
+节点 B 被定义为 Round，这是一个椭圆形节点。
+
+B --> C{Decision}，节点 B 指向节点 C。
+节点 C 被定义为 Decision，这是一个决策节点，用大括号 {} 表示。
+
+C -->|One| D[Result 1]，决策节点 C 的一个分支，带标签 One，指向节点 D。
+节点 D 显示为 Result 1，这是一个矩形节点。
+
+C -->|Two| E[Result 2]，决策节点 C 的另一个分支，带标签 Two，指向节点 E。
+节点 E 显示为 Result 2，也是一个矩形节点。
+```
+
+---
 
 # 七、特殊字符
 常见转义如下：
