@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="AI初期的这几年 AI核心概念串讲 一、底层引擎：LLM（Large Language Model）   LLM全称“Large Language Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention Is All You Ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI入门基础知识">
+<meta property="og:url" content="https://liu-fb.com/2026/AI/AI/AI%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Fabian备忘录">
+<meta property="og:description" content="AI初期的这几年 AI核心概念串讲 一、底层引擎：LLM（Large Language Model）   LLM全称“Large Language Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention Is All You Ne">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-11-13T03:03:14.000Z">
+<meta property="article:modified_time" content="2026-11-13T08:26:40.644Z">
+<meta property="article:author" content="Fabian">
+<meta property="article:tag" content="AI基础">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liu-fb.com/2026/AI/AI/AI%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>AI入门基础知识 | Fabian备忘录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband">
+	<a target="_blank" rel="noopener" href="https://github.com/Liuqianci" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	</div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Fabian备忘录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人类资格证考核中</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/AI/AI/AI%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AI入门基础知识
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-11-13 11:03:14 / 修改时间：16:26:40" itemprop="dateCreated datePublished" datetime="2026-11-13T11:03:14+08:00">2026-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="ai初期的这几年">AI初期的这几年</h1>
+<h1 id="ai核心概念串讲">AI核心概念串讲</h1>
+<h2 id="一底层引擎llmlarge-language-model">一、底层引擎：LLM（Large
+Language Model）</h2>
+<p>  LLM全称“Large Language
+Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention
+Is All You
+Need”。虽然Google提出了这个概念，但真正把这个概念引爆的是OpenAI，2022年底GPT-3.5横空出世，是第一个真正达到可用级别的大模型。2023年3月份GPT-4发布，把AI能力的天花板拉到了新的高度。之后随着Claude、Gemini等大模型涌现，现在市场上有多个模型在竞争。</p>
+<p>  AI的工作方式本质上就是一个文字接龙游戏。举个例子，我对AI提问“这个文档写的怎么样”，大模型收到这句话后，会在内部进行一系列运算，然后预测下一个出现概率最高的词，比如“特别”，然后吐出这个词；但模型不会停下来，而是把刚刚吐出的“特别”这个词抓回来，和刚刚的输入“这个文档写的怎么样”拼接起来，成为一个新的输入，然后大模型继续预测下一个出现概率最高的词，比如“得”；大模型重复操作，把“得”再次拼接起来成为新的输入后预测下一个词，比如“好”；如果大模型发现这句话已经说完了，那么大模型会再吐出一个结束标识符，这个回答就彻底结束了。</p>
+<p>  这就是大模型底层的生成原理，我们看到大模型的输出，就是一个词一个词的输出。</p>
+<h2 id="二数据处理单元token">二、数据处理单元：Token</h2>
+<p>  上文中说的大模型每次回答吐出一个词是个方便理解的简化说法，现实情况是：大模型本质上是个庞大的数学函数，里面跑的全是矩阵运算，接收的是数字，输出的也是数字，并不认识人类的文字。所以就像各种编程语言一样，人类和大模型之间也必须有一个翻译官，这个翻译官就叫Tokenizer，他负责的是编码和解码两件事，编码就是把文字变成数字，解码就是把数字变成文字。</p>
+<p>  还是用之前的例子，我们给AI输出“这个文档写的怎么样”，AI输出“特别得好”，实际发生的流程如下：</p>
+<ol type="1">
+<li>Tokenizer对输入的文字进行编码，把文字变数字，这个步骤分两步：
+<ol type="1">
+<li>切分：把输入切成一个一个的片段，如“这个”、“文档”、“写的”、“怎么样”，这些片段就叫做<strong>Token</strong>；</li>
+<li>映射：大模型只认识数字，Tokenizer会把每一个Token对应到一个数字上；这个数字就叫做<strong>Token
+ID</strong>,Token
+ID和Token是一一对应的，本质上是一个意思，只不过表达方式不一样，一个是文字，一个是数字;</li>
+</ol></li>
+<li>Tokenizer把生成的Token ID组成列表，送入大模型；</li>
+<li>模型经过运算，吐出一个Token ID;</li>
+<li>解码：Tokenizer把这个Token
+ID翻译回Token。解码环节不会进行切分，因为大模型一次只吐出一个Token;</li>
+<li>如果话还没说完，大模型持续吐出Token，然后Tokenizer进行解码，直到终止符。</li>
+</ol>
+<p>  所以<strong><code>Token就是大模型处理文本的最基本单位</code></strong>。</p>
+<p>  上述的例子也只是方便理解，实际上Token和词并不是一一对应的关系，OpenAI提供了一个<a
+target="_blank" rel="noopener" href="https://platform.openai.com/tokenizer">把文本转化为Token</a>的页面，我们可以在这里看看一句话是怎么拆分成Token的：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">语言单位</th>
+<th style="text-align: left;">于Token的关系</th>
+<th style="text-align: center;">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">中文词语</td>
+<td style="text-align: left;">非一一对应关系，可能被拆分</td>
+<td style="text-align: center;">程序员-&gt;"程序"、“员”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">简单英文单词</td>
+<td style="text-align: left;">常见简单单词会对应一个Token</td>
+<td style="text-align: center;">hello</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">复杂英文单词</td>
+<td style="text-align: left;">可能被拆分</td>
+<td style="text-align: center;">helpful-&gt;"help"、"ful"</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">特殊字符</td>
+<td style="text-align: left;">一个字符可能被多个Token表示</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>  所以我们不能把词和Token理解为纯粹的一对一关系，可以把Token理解为大模型自己的一套文本切分规则，切出的每一块就是大模型能处理的一个最小单位。平均来讲，一个Token对应0.75个英文单词或1.5~2个中文汉字，量化的看，40万Token就对应60万至80万的汉字或30万英文单词。</p>
+<h2 id="三临时记忆体context">三、临时记忆体：Context</h2>
+<p>  大模型本质上就是数学函数，给祂一个输入就给我们一个输出，并不像人一样有记忆。所以我们每次给大模型发消息的时候，并不只发送我们的问题，背后的程序会把之前对话的整段历史找出来一起发出去，这样大模型每次看到的就是完整的对话内容了。</p>
+<p>  这就引出了context这个概念，中文叫“上下文”。<strong><code>Context代表大模型每次处理任务时所接收到的信息总和</code></strong>。Context的内容除包括：对话历史、用户问题、当前输出的Token、工具列表、System
+Prompt等内容。</p>
+<p>  那么一个Context到底能装多大，这就引出了<strong><code>Context Window的概念，中文叫“上下文窗口”，代表Context能容纳的最大Token数量</code></strong>。Context
+Window为1万，就代表模型最多能处理1万个Token，目前主流的大模型的Context
+Window大小都在100万以上，大概有150万汉字，整个哈利波特全集都可以装下。</p>
+<p>  虽然当前主流的大模型Context
+Window都很大，但我们也不可能把全部东西都丢给大模型。设想一个场景：假如我们有一个上千页的产品手册，希望大模型根据这个产品手册来回答用户的各种问题。如果我们把这个产品手册和用户问题一起丢给大模型，显然不是合理的方法，产品手册太长了，即使Context
+Window足够大，我们的成本也无法控制。所以就需要一个叫<strong>RAG</strong>的技术了，中文叫“检索增强生成”，它可以从产品手册中抽取用户问题最为匹配的几个片段，然后只把这几个片段丢给大模型，让大模型只根据这几个片段回答问题。有了这个技术，就不受大模型的Context
+Window的大小限制了，成本也会低很多。</p>
+<h2 id="四指令交互prompt">四、指令交互：Prompt</h2>
+<p>  <strong><code>Prompt，中文叫提示词，是大模型接收的具体问题或指令</code></strong>。比如向大模型提需求“帮我翻译这句话”，这就是一个Prompt。</p>
+<p>  Prompt怎么写直接决定了大模型的输出质量。假如你只给大模型说“帮我翻译这句话”，那么大模型可能翻译为英文、法文或各种奇妙语言。一个好的Prompt应该是清晰的、明确的。有个专门的领域叫Prompt
+Engineering，中文翻译“提示词工程”，专门研究怎么把话说清楚，让大模型更精准的理解意图。但这个领域已经没啥人再提了，因为这个领域本质就是把话说清楚，门槛太低，且大模型能力越来越强，即使指令含混不清，大模型也能大概猜出意思。</p>
+<p> </p>
+<p>  有些时候我们不仅要给大模型具体的任务，也要告诉大模型人设和具体做事规则，这就引出了两种Prompt：</p>
+<ul>
+<li>User Prompt：用户提示词，用于说明具体的任务，是用户自己输入的；</li>
+<li>System
+Prompt：系统提示词，用于说明人设和规则，是开发者在后台配置的；</li>
+</ul>
+<p>  举个例子：有一个数学辅导机器人，我们希望他不要直接告诉学生答案，要引导学生思考。System
+Prompt就可以这样设置：“你是一个耐心的数学老师，当学生问你问题的时候不要直接给出答案，而是一步一步引导学生思考，帮助他们理解思路”。这个是开发者在后台设置的，用户看不到，但它会一直影响大模型的行为。这样当用户在对话框输入User
+Prompt
+"3+5等于几"的时候，大模型就不会直接回答“8”，而是教学生怎么计算。</p>
+<h2 id="五外部能力扩展tool">五、外部能力扩展：Tool</h2>
+<p>  大模型本质上就是个文字接龙游戏，它的能力是根据训练数据来预测下一个词。但如果我们问大模型“今天北京天气如何”，大模型根部就无法获取当日天气内容，这就需要Tool来解决了。</p>
+<p>  <strong>Tool本质上就是函数，我们给它输入，它就返回一个输出</strong>。比如说天气查询的Tool，我们给它城市和日期的输入，它内部一通操作，返回给我们天气数据。<strong>Tool通过提供各种外部能力，让大模型能够感知和影响外部环境</strong>。</p>
+<p>  以问天气为例子，总结一下出从用户提问，到大模型输出这样一个完整的工作流是怎么运行的。</p>
+<p>  整个流程涉及四个角色：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">角色</th>
+<th style="text-align: left;">职责</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">用户</td>
+<td style="text-align: left;">输入指令</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">大模型</td>
+<td
+style="text-align: left;">选择工具并输出工具需要的参数、对工具返回的结果做归纳总结</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">工具</td>
+<td style="text-align: left;">提供外部能力</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">平台</td>
+<td style="text-align: left;">串联整个流程</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="highlight mermaid">sequenceDiagram
+    participant U as 用户
+    participant P as 平台
+    participant L as 大模型
+    participant W as 天气查询工具
+
+    U-&gt;&gt;P: 北京今天的天气？
+    P-&gt;&gt;L: 北京今天的天气？
+    L--&gt;&gt;P: 请求调用天气查询
+    P-&gt;&gt;W: 调用天气查询
+    W--&gt;&gt;P: 返回天气查询结果
+    P--&gt;&gt;L: 返回工具调用结果
+    L--&gt;&gt;P: 北京天气如下
+    P--&gt;&gt;U: 北京天气如下</code></pre>
+<ol type="1">
+<li>用户提出问题-&gt;平台把用户的问题和当前可用的工具列表传递给大模型；</li>
+<li>大模型收到问题后分析，如果遇到自己无法解决的能力，会看当前工具列表是否有可用工具；</li>
+<li>大模型输出调用某个工具的指令；</li>
+<li>平台收到指令，调用工具；</li>
+<li>工具返回结果给平台；</li>
+<li>平台把信息反馈给大模型；</li>
+<li>大模型输出最终结果给平台；</li>
+<li>平台把结果转发给用户；</li>
+</ol>
+<p>  一定要注意，模型能做的仅仅是接收和输出文本，并不具备其他能力。调用工具、串联流程的活是需要平台来完成的。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AI%E5%9F%BA%E7%A1%80/" rel="tag"># AI基础</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E9%9D%A2%E9%A3%9F/" rel="prev" title="八、面食">
+      <i class="fa fa-chevron-left"></i> 八、面食
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ai%E5%88%9D%E6%9C%9F%E7%9A%84%E8%BF%99%E5%87%A0%E5%B9%B4"><span class="nav-number">1.</span> <span class="nav-text">AI初期的这几年</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ai%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%B2%E8%AE%B2"><span class="nav-number">2.</span> <span class="nav-text">AI核心概念串讲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%BA%95%E5%B1%82%E5%BC%95%E6%93%8Ellmlarge-language-model"><span class="nav-number">2.1.</span> <span class="nav-text">一、底层引擎：LLM（Large
+Language Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83token"><span class="nav-number">2.2.</span> <span class="nav-text">二、数据处理单元：Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BF%86%E4%BD%93context"><span class="nav-number">2.3.</span> <span class="nav-text">三、临时记忆体：Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E6%8C%87%E4%BB%A4%E4%BA%A4%E4%BA%92prompt"><span class="nav-number">2.4.</span> <span class="nav-text">四、指令交互：Prompt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E5%A4%96%E9%83%A8%E8%83%BD%E5%8A%9B%E6%89%A9%E5%B1%95tool"><span class="nav-number">2.5.</span> <span class="nav-text">五、外部能力扩展：Tool</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fabian"
+      src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">Fabian</p>
+  <div class="site-description" itemprop="description">水止无恒地，云行不计程。到时为彼岸，过处即前生。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Liuqianci" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Liuqianci" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/Damon_liufb@163.com" title="E-Mail → Damon_liufb@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="bed"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FabianLiu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">203k</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div> -->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'default',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+  <script async src="/js/cursor/love.min.js"></script>
+
+
+</body>
+</html>
