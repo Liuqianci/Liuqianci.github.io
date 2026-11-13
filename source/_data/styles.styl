@@ -7,39 +7,46 @@
    -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
 }
 
-.mermaid {
-  background: #ffffff !important;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-// =======================================================
-// Mermaid 图表样式（最终建议版）
-// =======================================================
-
-.post-body .mermaid {
-  display: table;
-  margin: 20px auto;
-  background: #ffffff !important;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+// Mermaid 与正文共用浅色背景；宽图在图框内横向滚动。
+.post-body pre.mermaid {
+  background: #fff;
+  border: 1px solid #dce2e6;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #26363d;
+  margin: 1.5em 0;
   overflow-x: auto;
-  max-width: 100%;
+  padding: 16px;
 }
 
-.post-body .mermaid svg {
+.post-body pre.mermaid svg {
   display: block;
-  background: #ffffff !important;
+  height: auto;
+  margin: 0 auto;
 }
 
-.post-body .mermaid svg text {
-  fill: #222222 !important;
+// Mermaid 8 自带的 max-width 是图的原始宽度，小图仍按原尺寸显示。
+.post-body pre.mermaid svg[width='100%'][style*='max-width'] {
+  width: unquote('max(100%, 46rem)');
 }
 
-.post-body .mermaid svg .messageLine0,
-.post-body .mermaid svg .messageLine1,
-.post-body .mermaid svg .actor-line {
-  stroke: #555555 !important;
+// SVG 内的主题规则带有动态 ID；只覆盖时序图的参与者和消息文字。
+.post-body pre.mermaid {
+  rect.actor {
+    fill: #e8f2f2 !important;
+    stroke: #8aa9ae !important;
+  }
+
+  text.actor, .messageText {
+    font-family: $font-family-posts !important;
+  }
+
+  text.actor {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+  }
+
+  .messageText {
+    stroke: none !important;
+  }
 }
