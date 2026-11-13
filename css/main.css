@@ -1196,7 +1196,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #0a454b;
+  background: #aaffe9;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2697,4 +2697,27 @@ mjx-container + br {
   margin-bottom: 60px;
   -webkit-box-shadow: 0 0 5px #788072;
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
+.mermaid {
+  background: #fff !important;
+  padding: 10px;
+  border-radius: 4px;
+}
+.mermaid {
+  background: #fff !important;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+.mermaid svg {
+  background: #fff !important;
+}
+.mermaid svg text {
+  fill: #222 !important;
+}
+.mermaid svg .messageLine0,
+.mermaid svg .messageLine1,
+.mermaid svg .actor-line {
+  stroke: #555 !important;
 }
