@@ -1196,7 +1196,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #aaffe9;
+  background: #98c7f7;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2703,21 +2703,26 @@ mjx-container + br {
   padding: 10px;
   border-radius: 4px;
 }
-.mermaid {
+.post-body .mermaid {
+  display: table;
+  margin: 20px auto;
   background: #fff !important;
-  padding: 10px;
+  padding: 16px;
   border-radius: 6px;
-  margin: 20px 0;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   overflow-x: auto;
+  max-width: 100%;
 }
-.mermaid svg {
+.post-body .mermaid svg {
+  display: block;
   background: #fff !important;
 }
-.mermaid svg text {
+.post-body .mermaid svg text {
   fill: #222 !important;
 }
-.mermaid svg .messageLine0,
-.mermaid svg .messageLine1,
-.mermaid svg .actor-line {
+.post-body .mermaid svg .messageLine0,
+.post-body .mermaid svg .messageLine1,
+.post-body .mermaid svg .actor-line {
   stroke: #555 !important;
 }
