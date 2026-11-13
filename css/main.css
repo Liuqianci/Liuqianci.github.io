@@ -1196,7 +1196,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #98c7f7;
+  background: #603609;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2698,31 +2698,36 @@ mjx-container + br {
   -webkit-box-shadow: 0 0 5px #788072;
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
-.mermaid {
-  background: #fff !important;
-  padding: 10px;
-  border-radius: 4px;
-}
-.post-body .mermaid {
-  display: table;
-  margin: 20px auto;
-  background: #fff !important;
-  padding: 16px;
-  border-radius: 6px;
-  border: 1px solid #e5e5e5;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+.post-body pre.mermaid {
+  background: #fff;
+  border: 1px solid #dce2e6;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #26363d;
+  margin: 1.5em 0;
   overflow-x: auto;
-  max-width: 100%;
+  padding: 16px;
 }
-.post-body .mermaid svg {
+.post-body pre.mermaid svg {
   display: block;
-  background: #fff !important;
+  height: auto;
+  margin: 0 auto;
 }
-.post-body .mermaid svg text {
-  fill: #222 !important;
+.post-body pre.mermaid svg[width='100%'][style*='max-width'] {
+  width: max(100%, 46rem);
 }
-.post-body .mermaid svg .messageLine0,
-.post-body .mermaid svg .messageLine1,
-.post-body .mermaid svg .actor-line {
-  stroke: #555 !important;
+.post-body pre.mermaid rect.actor {
+  fill: #e8f2f2 !important;
+  stroke: #8aa9ae !important;
+}
+.post-body pre.mermaid text.actor,
+.post-body pre.mermaid .messageText {
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif !important;
+}
+.post-body pre.mermaid text.actor {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+.post-body pre.mermaid .messageText {
+  stroke: none !important;
 }

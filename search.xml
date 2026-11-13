@@ -225,7 +225,7 @@ style="text-align: left;">选择工具并输出工具需要的参数、对工具
 </tr>
 </tbody>
 </table>
-<pre><code class="highlight mermaid">sequenceDiagram
+<pre class="mermaid">sequenceDiagram
     participant U as 用户
     participant P as 平台
     participant L as 大模型
@@ -238,7 +238,7 @@ style="text-align: left;">选择工具并输出工具需要的参数、对工具
     W--&gt;&gt;P: 返回天气查询结果
     P--&gt;&gt;L: 返回工具调用结果
     L--&gt;&gt;P: 北京天气如下
-    P--&gt;&gt;U: 北京天气如下</code></pre>
+    P--&gt;&gt;U: 北京天气如下</pre>
 <ol type="1">
 <li>用户提出问题-&gt;平台把用户的问题和当前可用的工具列表传递给大模型；</li>
 <li>大模型收到问题后分析，如果遇到自己无法解决的能力，会看当前工具列表是否有可用工具；</li>
