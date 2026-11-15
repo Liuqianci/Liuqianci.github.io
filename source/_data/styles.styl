@@ -1,19 +1,19 @@
-	// 主页文章添加阴影效果
+@import 'color-mode';
+
+// 主页文章间距
 .post {
    margin-top: 60px;
    padding: 20px;
    margin-bottom: 60px;
-   -webkit-box-shadow: 0 0 5px rgba(120, 128, 114, 1.5);
-   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
 }
 
-// Mermaid 与正文共用浅色背景；宽图在图框内横向滚动。
+// Mermaid 配色随页面切换；宽图仍在图框内横向滚动。
 .post-body pre.mermaid {
-  background: #fff;
-  border: 1px solid #dce2e6;
+  background: var(--diagram-bg);
+  border: 1px solid var(--blog-border);
   border-radius: 8px;
   box-sizing: border-box;
-  color: #26363d;
+  color: var(--diagram-text);
   margin: 1.5em 0;
   overflow-x: auto;
   padding: 16px;
@@ -30,11 +30,48 @@
   width: unquote('max(100%, 46rem)');
 }
 
-// SVG 内的主题规则带有动态 ID；只覆盖时序图的参与者和消息文字。
+// Mermaid 8 的 SVG 带动态 ID 样式，使用 !important 覆盖默认配色。
+// 只调整颜色，不重新渲染，切换时保留图的大小和横向滚动位置。
 .post-body pre.mermaid {
-  rect.actor {
-    fill: #e8f2f2 !important;
-    stroke: #8aa9ae !important;
+  rect.actor, .labelBox, .activation0, .activation1, .activation2,
+  .node rect, .node circle, .node ellipse, .node polygon, .node path {
+    fill: var(--diagram-node-bg) !important;
+    stroke: var(--diagram-node-border) !important;
+  }
+
+  text, text tspan, .messageText, .labelText, .loopText, .noteText,
+  .nodeLabel, .edgeLabel, .label {
+    color: var(--diagram-text) !important;
+    fill: var(--diagram-text) !important;
+  }
+
+  .actor-line, line[id^='actor'], .messageLine0, .messageLine1, .loopLine,
+  .flowchart-link, .edgePath .path {
+    stroke: var(--diagram-line) !important;
+  }
+
+  marker path, marker circle, .arrowheadPath {
+    fill: var(--diagram-line) !important;
+    stroke: var(--diagram-line) !important;
+  }
+
+  .sequenceNumber {
+    fill: var(--diagram-bg) !important;
+  }
+
+  .note {
+    fill: var(--diagram-note-bg) !important;
+    stroke: var(--diagram-note-border) !important;
+  }
+
+  .cluster rect {
+    fill: var(--card-bg-color) !important;
+    stroke: var(--blog-border) !important;
+  }
+
+  .edgeLabel, .edgeLabel rect, .edgeLabel span, .labelBkg {
+    background: var(--diagram-bg) !important;
+    fill: var(--diagram-bg) !important;
   }
 
   text.actor, .messageText {
