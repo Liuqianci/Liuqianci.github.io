@@ -9,3 +9,4 @@
 {% elseif theme.cursor_effect == "text" %}
   <script async src="/js/cursor/text.js"></script>
 {% endif %}
+<script defer src="/js/copy-email.js"></script>

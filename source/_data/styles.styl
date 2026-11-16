@@ -1,5 +1,71 @@
 @import 'color-mode';
 
+// 侧栏邮箱复制按钮与 GitHub 入口保持相同的字号和间距。
+.links-of-author .email-copy-button {
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--link-color);
+  cursor: pointer;
+  display: block;
+  font-family: inherit;
+  font-size: $font-size-smaller;
+  line-height: inherit;
+  margin: 0;
+  padding: 0 5px;
+  white-space: nowrap;
+  width: 100%;
+
+  &:hover {
+    background: var(--body-bg-color);
+    color: var(--link-hover-color);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blog-accent);
+    outline-offset: 2px;
+  }
+
+  &[data-copy-state='copied'] {
+    color: var(--blog-accent);
+  }
+}
+
+.email-copy-fallback {
+  background: var(--card-bg-color);
+  border: 1px solid var(--blog-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: var(--text-color);
+  font-size: $font-size-smaller;
+  margin-top: 8px;
+  padding: 8px;
+  text-align: left;
+  width: 100%;
+
+  label {
+    display: block;
+  }
+
+  input {
+    background: var(--content-bg-color);
+    border: 1px solid var(--blog-border);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    display: block;
+    font: inherit;
+    padding: 4px;
+    width: 100%;
+
+    &:focus {
+      outline: 2px solid var(--blog-accent);
+      outline-offset: 1px;
+    }
+  }
+}
+
 // 主页文章间距
 .post {
    margin-top: 60px;
