@@ -1,0 +1,92 @@
+# 首页与专题页共用这份目录。路径相对 source/_posts，省略 .md；以 / 结尾表示整个目录。
+# 每篇文章归入第一个匹配的小节；新增文章自动收录，published: false 不进入导航。
+topics:
+  - id: cpp
+    title: C / C++
+    icon: fa fa-code
+    description: 语言基础、内存与并发，以及开发中的问题记录。
+    paths: [C++/]
+    sections:
+      - id: basics
+        title: 语言基础
+        paths:
+          - C++/C-概况
+          - C++/C-基础语法
+          - C++/C-基础句法
+          - C++/C-运算符、表达式
+          - C++/C到C++的改进
+          - C++/自定义结构
+          - C++/强制转换
+          - C++/字符编码
+          - C++/补码
+      - id: memory
+        title: 指针与内存
+        paths: [C++/指针与引用, C++/内存管理, C++/内存调试初步]
+      - id: advanced
+        title: 容器与工程实践
+        paths: [C++/数组, C++/字符串, C++/STL, C++/泛型编程, C++/C++多线程, C++/]
+  - id: fundamentals
+    title: 计算机基础
+    icon: fa fa-layer-group
+    description: 操作系统、数据结构与算法，从原理到具体问题。
+    paths: [OS/, 算法与数据结构/]
+    sections:
+      - id: os
+        title: 操作系统
+        paths: [OS/操作系统概述, OS/进程管理, OS/作业管理, OS/存储管理, OS/文件管理, OS/]
+      - id: algorithms
+        title: 数据结构与算法
+        paths: [算法与数据结构/]
+  - id: debugging
+    title: Windows 调试
+    icon: fa fa-bug
+    description: 调试环境、断点与运行机制，记录排查问题的方法。
+    paths: [软件调试/]
+    sections:
+      - id: windbg
+        title: WinDbg 入门
+        paths: [软件调试/windbg]
+      - id: mechanisms
+        title: 调试机制与实践
+        paths: [软件调试/]
+  - id: tools
+    title: 工具与实践
+    icon: fa fa-toolbox
+    description: 开发环境、版本管理，以及这个博客的维护备忘。
+    paths: [git/, apps/, Windows/, hexo/]
+    sections:
+      - id: git
+        title: Git 与 GitHub
+        paths: [git/git基础, git/git独立开发, git/Github, git/]
+      - id: environment
+        title: 开发环境
+        paths: [apps/, Windows/]
+      - id: blog
+        title: 博客维护
+        paths: [hexo/Hexo博客搭建与部署, hexo/多台电脑同步提交博客, hexo/Markdown格式, hexo/]
+  - id: ai
+    title: AI
+    icon: fa fa-robot
+    description: 从基础概念出发，记录 AI 工具的理解与使用。
+    paths: [AI/]
+    sections:
+      - id: concepts
+        title: 基础概念
+        paths: [AI/]
+        exclude: [AI/cursor/]
+      - id: cursor
+        title: Cursor
+        paths: [AI/cursor/]
+  - id: life
+    title: 生活备忘
+    icon: fa fa-mug-hot
+    description: 厨房里的基本功、食材处理，还有偶尔的调酒。
+    paths: [cook/]
+    sections:
+      - id: cooking
+        title: 厨艺与食材
+        paths: [cook/初入厨房, cook/刀工, cook/蔬菜, cook/肉菜, cook/厨艺小百科, cook/]
+        exclude: [cook/调酒]
+      - id: drinks
+        title: 调酒
+        paths: [cook/调酒]

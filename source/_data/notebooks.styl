@@ -1,0 +1,232 @@
+// 所有规则限定在导航页，文章正文继续使用原有样式。
+.notebook-page {
+  h1, h2, p {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 1.75em;
+    font-weight: 600;
+  }
+
+  a {
+    border-bottom: 0;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--blog-accent);
+    outline-offset: 4px;
+  }
+
+  .notebook-intro, .notebook-card, .notebook-topic {
+    background: var(--content-bg-color);
+    border: 1px solid var(--blog-border);
+    border-radius: 16px;
+    box-shadow: var(--blog-shadow);
+  }
+
+  .notebook-intro {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 26px 30px;
+
+    p {
+      color: var(--blog-muted);
+      font-size: .875em;
+      margin-top: 4px;
+    }
+  }
+
+  .notebook-search {
+    background: var(--menu-item-bg-color);
+    border: 1px solid var(--blog-border);
+    border-radius: 8px;
+    color: var(--blog-accent);
+    cursor: pointer;
+    flex-shrink: 0;
+    font: inherit;
+    font-size: .875em;
+    padding: 8px 14px;
+  }
+
+  .notebook-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .notebook-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .notebook-card-heading {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+
+    h2 {
+      flex: 1;
+      font-size: 1.125em;
+      font-weight: 600;
+    }
+  }
+
+  .notebook-icon {
+    align-items: center;
+    background: var(--menu-item-bg-color);
+    border-radius: 10px;
+    color: var(--blog-accent);
+    display: inline-flex;
+    flex: 0 0 38px;
+    font-size: 18px;
+    height: 38px;
+    justify-content: center;
+  }
+
+  .notebook-count {
+    color: var(--blog-muted);
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+
+  .notebook-description {
+    color: var(--blog-muted);
+    font-size: .875em;
+    line-height: 1.8;
+  }
+
+  .notebook-shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    list-style: none;
+    margin: 16px 0 20px;
+    padding: 0;
+
+    a {
+      border-bottom: 1px dotted var(--blog-border);
+      font-size: .8125em;
+    }
+  }
+
+  .notebook-more {
+    align-self: flex-start;
+    color: var(--blog-accent);
+    font-size: .8125em;
+    margin-top: auto;
+
+    i {
+      font-size: 11px;
+      margin-left: 5px;
+    }
+  }
+
+  .notebook-bottom {
+    color: var(--blog-muted);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .8125em;
+    gap: 6px 16px;
+    justify-content: center;
+    margin: 22px 0;
+  }
+
+  .notebook-topic {
+    padding: 30px;
+  }
+
+  .notebook-back {
+    color: var(--blog-accent);
+    display: inline-block;
+    font-size: .8125em;
+    margin-bottom: 20px;
+  }
+
+  .notebook-topic-header h1 {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 8px;
+  }
+
+  .notebook-sections, .notebook-topic-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .8125em;
+    gap: 8px;
+    margin-top: 20px;
+
+    a {
+      background: var(--menu-item-bg-color);
+      border-radius: 6px;
+      padding: 3px 10px;
+    }
+  }
+
+  .notebook-section {
+    margin-top: 32px;
+    scroll-margin-top: 20px;
+
+    h2 {
+      align-items: baseline;
+      border-bottom: 1px solid var(--blog-border);
+      display: flex;
+      font-size: 1.125em;
+      gap: 12px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .notebook-articles {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+
+    a {
+      align-items: center;
+      border-radius: 6px;
+      display: flex;
+      font-size: .9375em;
+      gap: 12px;
+      justify-content: space-between;
+      line-height: 1.7;
+      padding: 10px 8px;
+
+      &:hover {
+        background: var(--menu-item-bg-color);
+      }
+    }
+
+    i {
+      color: var(--blog-muted);
+      flex-shrink: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .notebook-grid {
+      gap: 14px;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .notebook-intro {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .notebook-intro, .notebook-card, .notebook-topic {
+      padding: 20px;
+    }
+  }
+}
