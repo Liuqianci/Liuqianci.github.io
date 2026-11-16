@@ -22,15 +22,15 @@
     var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="AI初期的这几年 AI核心概念串讲 一、底层引擎：LLM（Large Language Model）   LLM全称“Large Language Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention Is All You Ne">
+  <meta name="description" content="AI初期的这几年 AI核心概念串讲 底层引擎：LLM（Large Language Model）   LLM全称“Large Language Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention Is All You Need">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AI入门基础知识">
 <meta property="og:url" content="https://liu-fb.com/2026/AI/AI/AI%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Fabian备忘录">
-<meta property="og:description" content="AI初期的这几年 AI核心概念串讲 一、底层引擎：LLM（Large Language Model）   LLM全称“Large Language Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention Is All You Ne">
+<meta property="og:description" content="AI初期的这几年 AI核心概念串讲 底层引擎：LLM（Large Language Model）   LLM全称“Large Language Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention Is All You Need">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-11-13T03:03:14.000Z">
-<meta property="article:modified_time" content="2026-11-13T09:02:53.810Z">
+<meta property="article:modified_time" content="2026-11-16T15:17:47.074Z">
 <meta property="article:author" content="Fabian">
 <meta property="article:tag" content="AI基础">
 <meta name="twitter:card" content="summary">
@@ -126,11 +126,6 @@
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-技术笔记">
-
-    <a href="/notes/" rel="section"><i class="fa fa-book fa-fw"></i>技术笔记</a>
-
-  </li>
         <li class="menu-item menu-item-tags">
 
     <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a>
@@ -215,10 +210,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2026-11-13 11:03:14 / 修改时间：17:02:53" itemprop="dateCreated datePublished" datetime="2026-11-13T11:03:14+08:00">2026-11-13</time>
+              <time title="创建时间：2026-11-13 11:03:14" itemprop="dateCreated datePublished" datetime="2026-11-13T11:03:14+08:00">2026-11-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-11-16 23:17:47" itemprop="dateModified" datetime="2026-11-16T23:17:47+08:00">2026-11-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -242,7 +243,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.7k</span>
+              <span>4.3k</span>
             </span>
 
         </div>
@@ -256,15 +257,15 @@
       
         <h1 id="ai初期的这几年">AI初期的这几年</h1>
 <h1 id="ai核心概念串讲">AI核心概念串讲</h1>
-<h2 id="一底层引擎llmlarge-language-model">一、底层引擎：LLM（Large
-Language Model）</h2>
+<h2 id="底层引擎llmlarge-language-model">底层引擎：LLM（Large Language
+Model）</h2>
 <p>  LLM全称“Large Language
 Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention
 Is All You
 Need”。虽然Google提出了这个概念，但真正把这个概念引爆的是OpenAI，2022年底GPT-3.5横空出世，是第一个真正达到可用级别的大模型。2023年3月份GPT-4发布，把AI能力的天花板拉到了新的高度。之后随着Claude、Gemini等大模型涌现，现在市场上有多个模型在竞争。</p>
 <p>  AI的工作方式本质上就是一个文字接龙游戏。举个例子，我对AI提问“这个文档写的怎么样”，大模型收到这句话后，会在内部进行一系列运算，然后预测下一个出现概率最高的词，比如“特别”，然后吐出这个词；但模型不会停下来，而是把刚刚吐出的“特别”这个词抓回来，和刚刚的输入“这个文档写的怎么样”拼接起来，成为一个新的输入，然后大模型继续预测下一个出现概率最高的词，比如“得”；大模型重复操作，把“得”再次拼接起来成为新的输入后预测下一个词，比如“好”；如果大模型发现这句话已经说完了，那么大模型会再吐出一个结束标识符，这个回答就彻底结束了。</p>
 <p>  这就是大模型底层的生成原理，我们看到大模型的输出，就是一个词一个词的输出。</p>
-<h2 id="二数据处理单元token">二、数据处理单元：Token</h2>
+<h2 id="数据处理单元token">数据处理单元：Token</h2>
 <p>  上文中说的大模型每次回答吐出一个词是个方便理解的简化说法，现实情况是：大模型本质上是个庞大的数学函数，里面跑的全是矩阵运算，接收的是数字，输出的也是数字，并不认识人类的文字。所以就像各种编程语言一样，人类和大模型之间也必须有一个翻译官，这个翻译官就叫Tokenizer，他负责的是编码和解码两件事，编码就是把文字变成数字，解码就是把数字变成文字。</p>
 <p>  还是用之前的例子，我们给AI输出“这个文档写的怎么样”，AI输出“特别得好”，实际发生的流程如下：</p>
 <ol type="1">
@@ -316,7 +317,7 @@ target="_blank" rel="noopener" href="https://platform.openai.com/tokenizer">把�
 </tbody>
 </table>
 <p>  所以我们不能把词和Token理解为纯粹的一对一关系，可以把Token理解为大模型自己的一套文本切分规则，切出的每一块就是大模型能处理的一个最小单位。平均来讲，一个Token对应0.75个英文单词或1.5~2个中文汉字，量化的看，40万Token就对应60万至80万的汉字或30万英文单词。</p>
-<h2 id="三临时记忆体context">三、临时记忆体：Context</h2>
+<h2 id="临时记忆体context">临时记忆体：Context</h2>
 <p>  大模型本质上就是数学函数，给祂一个输入就给我们一个输出，并不像人一样有记忆。所以我们每次给大模型发消息的时候，并不只发送我们的问题，背后的程序会把之前对话的整段历史找出来一起发出去，这样大模型每次看到的就是完整的对话内容了。</p>
 <p>  这就引出了context这个概念，中文叫“上下文”。<strong><code>Context代表大模型每次处理任务时所接收到的信息总和</code></strong>。Context的内容除包括：对话历史、用户问题、当前输出的Token、工具列表、System
 Prompt等内容。</p>
@@ -327,7 +328,7 @@ Window大小都在100万以上，大概有150万汉字，整个哈利波特全�
 Window都很大，但我们也不可能把全部东西都丢给大模型。设想一个场景：假如我们有一个上千页的产品手册，希望大模型根据这个产品手册来回答用户的各种问题。如果我们把这个产品手册和用户问题一起丢给大模型，显然不是合理的方法，产品手册太长了，即使Context
 Window足够大，我们的成本也无法控制。所以就需要一个叫<strong>RAG</strong>的技术了，中文叫“检索增强生成”，它可以从产品手册中抽取用户问题最为匹配的几个片段，然后只把这几个片段丢给大模型，让大模型只根据这几个片段回答问题。有了这个技术，就不受大模型的Context
 Window的大小限制了，成本也会低很多。</p>
-<h2 id="四指令交互prompt">四、指令交互：Prompt</h2>
+<h2 id="指令交互prompt">指令交互：Prompt</h2>
 <p>  <strong><code>Prompt，中文叫提示词，是大模型接收的具体问题或指令</code></strong>。比如向大模型提需求“帮我翻译这句话”，这就是一个Prompt。</p>
 <p>  Prompt怎么写直接决定了大模型的输出质量。假如你只给大模型说“帮我翻译这句话”，那么大模型可能翻译为英文、法文或各种奇妙语言。一个好的Prompt应该是清晰的、明确的。有个专门的领域叫Prompt
 Engineering，中文翻译“提示词工程”，专门研究怎么把话说清楚，让大模型更精准的理解意图。但这个领域已经没啥人再提了，因为这个领域本质就是把话说清楚，门槛太低，且大模型能力越来越强，即使指令含混不清，大模型也能大概猜出意思。</p>
@@ -342,7 +343,7 @@ Prompt：系统提示词，用于说明人设和规则，是开发者在后台�
 Prompt就可以这样设置：“你是一个耐心的数学老师，当学生问你问题的时候不要直接给出答案，而是一步一步引导学生思考，帮助他们理解思路”。这个是开发者在后台设置的，用户看不到，但它会一直影响大模型的行为。这样当用户在对话框输入User
 Prompt
 "3+5等于几"的时候，大模型就不会直接回答“8”，而是教学生怎么计算。</p>
-<h2 id="五外部能力扩展tool">五、外部能力扩展：Tool</h2>
+<h2 id="外部能力扩展tool">外部能力扩展：Tool</h2>
 <p>  大模型本质上就是个文字接龙游戏，它的能力是根据训练数据来预测下一个词。但如果我们问大模型“今天北京天气如何”，大模型根部就无法获取当日天气内容，这就需要Tool来解决了。</p>
 <p>  <strong>Tool本质上就是函数，我们给它输入，它就返回一个输出</strong>。比如说天气查询的Tool，我们给它城市和日期的输入，它内部一通操作，返回给我们天气数据。<strong>Tool通过提供各种外部能力，让大模型能够感知和影响外部环境</strong>。</p>
 <p>  以问天气为例子，总结一下出从用户提问，到大模型输出这样一个完整的工作流是怎么运行的。</p>
@@ -381,9 +382,9 @@ style="text-align: left;">选择工具并输出工具需要的参数、对工具
     participant W as 天气查询工具
 
     U-&gt;&gt;P: 北京今天的天气？
-    P-&gt;&gt;L: 北京今天的天气？
-    L--&gt;&gt;P: 请求调用天气查询
-    P-&gt;&gt;W: 调用天气查询
+    P-&gt;&gt;L: 北京今天的天气？&lt;br/&gt;天气查询工具、计算器等工具调用
+    L--&gt;&gt;P: 调用天气查询的指令&lt;br/&gt;指明工具名称和参数
+    P-&gt;&gt;W: 调用“天气查询”工具
     W--&gt;&gt;P: 返回天气查询结果
     P--&gt;&gt;L: 返回工具调用结果
     L--&gt;&gt;P: 北京天气如下
@@ -398,7 +399,17 @@ style="text-align: left;">选择工具并输出工具需要的参数、对工具
 <li>大模型输出最终结果给平台；</li>
 <li>平台把结果转发给用户；</li>
 </ol>
-<p>  一定要注意，模型能做的仅仅是接收和输出文本，并不具备其他能力。调用工具、串联上下文这个活是平台来干的。</p>
+<p>  一定要注意，模型能做的仅仅是接收和输出文本，并不具备其他能力。调用工具、串联上下文这个活是平台来干的，并不是大模型干的。</p>
+<h2 id="统一的工具接入标准mcp">统一的工具接入标准：MCP</h2>
+<p>  上文中天气查询的例子可以看出，平台需要具备两个能力：可以给大模型传递工具列表、可以调用工具。要做到这些，首先要把工具接入到平台里，这样平台才知道工具调用列表，以及每个工具的参数和调用方法。可是不同的平台，工具接入的规范都是不一样的，要在不同的平台上接入一个工具，要写不同的代码。</p>
+<p>  为了解决这个问题，提出了MCP的概念。<strong><code>MCP全程是Model Context Protocol，中文是模型上下文协议，就是一个统一的工具接入标准</code>。</strong>有了MCP，工具的开发者只需要按照MCP的规范开发一次工具，这个工具就可以在所有支持MCP的平台食用。</p>
+<h2 id="自主决策系统agent">自主决策系统：Agent</h2>
+<p>  现实中的指令往往很复杂，如果只有简单的工具调用功能，很多任务无法完成。比如指令“今天天气怎么样？如果下雨的话帮我查查附近有没有卖伞的店”。这个指令至少需要用到定位工具、天气查询工具、根据定位查询店铺的工具。平台需要根据指令不断的调用工具、并根据工具执行结果判断下一步要做什么。</p>
+<p>  <strong><code>Agent就是能够自主规划、自主调用工具，持续工作直到完成用户任务的系统</code>。</strong>市面上主流的Agent有Claude
+Code、Codex、Gemini
+CLI等，他们使用的构建模式也是多种多样，比较经典的是ReAct、Plan And
+Execute等。</p>
+<h2 id="任务定制agent-skill">任务定制：Agent Skill</h2>
 
     </div>
 
@@ -479,8 +490,8 @@ style="text-align: left;">选择工具并输出工具需要的参数、对工具
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ai%E5%88%9D%E6%9C%9F%E7%9A%84%E8%BF%99%E5%87%A0%E5%B9%B4"><span class="nav-number">1.</span> <span class="nav-text">AI初期的这几年</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ai%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%B2%E8%AE%B2"><span class="nav-number">2.</span> <span class="nav-text">AI核心概念串讲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E5%BA%95%E5%B1%82%E5%BC%95%E6%93%8Ellmlarge-language-model"><span class="nav-number">2.1.</span> <span class="nav-text">一、底层引擎：LLM（Large
-Language Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83token"><span class="nav-number">2.2.</span> <span class="nav-text">二、数据处理单元：Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BF%86%E4%BD%93context"><span class="nav-number">2.3.</span> <span class="nav-text">三、临时记忆体：Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E6%8C%87%E4%BB%A4%E4%BA%A4%E4%BA%92prompt"><span class="nav-number">2.4.</span> <span class="nav-text">四、指令交互：Prompt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E5%A4%96%E9%83%A8%E8%83%BD%E5%8A%9B%E6%89%A9%E5%B1%95tool"><span class="nav-number">2.5.</span> <span class="nav-text">五、外部能力扩展：Tool</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ai%E5%88%9D%E6%9C%9F%E7%9A%84%E8%BF%99%E5%87%A0%E5%B9%B4"><span class="nav-number">1.</span> <span class="nav-text">AI初期的这几年</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ai%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%B2%E8%AE%B2"><span class="nav-number">2.</span> <span class="nav-text">AI核心概念串讲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%BC%95%E6%93%8Ellmlarge-language-model"><span class="nav-number">2.1.</span> <span class="nav-text">底层引擎：LLM（Large Language
+Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%8D%95%E5%85%83token"><span class="nav-number">2.2.</span> <span class="nav-text">数据处理单元：Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B4%E6%97%B6%E8%AE%B0%E5%BF%86%E4%BD%93context"><span class="nav-number">2.3.</span> <span class="nav-text">临时记忆体：Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4%E4%BA%A4%E4%BA%92prompt"><span class="nav-number">2.4.</span> <span class="nav-text">指令交互：Prompt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E9%83%A8%E8%83%BD%E5%8A%9B%E6%89%A9%E5%B1%95tool"><span class="nav-number">2.5.</span> <span class="nav-text">外部能力扩展：Tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E7%9A%84%E5%B7%A5%E5%85%B7%E6%8E%A5%E5%85%A5%E6%A0%87%E5%87%86mcp"><span class="nav-number">2.6.</span> <span class="nav-text">统一的工具接入标准：MCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E4%B8%BB%E5%86%B3%E7%AD%96%E7%B3%BB%E7%BB%9Fagent"><span class="nav-number">2.7.</span> <span class="nav-text">自主决策系统：Agent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%AE%9A%E5%88%B6agent-skill"><span class="nav-number">2.8.</span> <span class="nav-text">任务定制：Agent Skill</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,7 +529,7 @@ Language Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-
         <a href="https://github.com/Liuqianci" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Liuqianci" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/Damon_liufb@163.com" title="E-Mail → Damon_liufb@163.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="mailto:Damon_liufb@163.com" title="E-Mail → mailto:Damon_liufb@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -557,7 +568,7 @@ Language Model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">204k</span>
+    <span title="站点总字数">205k</span>
 </div>
 
 <!--
@@ -708,6 +719,7 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   <script async src="/js/cursor/love.min.js"></script>
 
+<script defer src="/js/copy-email.js"></script>
 
 </body>
 </html>
