@@ -22,7 +22,8 @@ function matchIndex(post, paths) {
 }
 
 hexo.extend.generator.register('notebooks', function(locals) {
-  const settings = locals.data.notebooks;
+  // 直接读取配置，兼容旧缓存中残留的同名样式数据及旧文件删除时的数据清理。
+  const settings = this.render.renderSync({ path: path.join(this.source_dir, '_data/notebooks.yml') });
   if (!settings || !Array.isArray(settings.topics)) {
     throw new Error('笔记导航缺少 source/_data/notebooks.yml 中的 topics 配置');
   }
