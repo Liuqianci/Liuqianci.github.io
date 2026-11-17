@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liu-fb.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":2,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fabian备忘录">
+<meta property="og:url" content="https://liu-fb.com/posts/index.html">
+<meta property="og:site_name" content="Fabian备忘录">
+<meta property="og:description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Fabian">
+<meta property="article:tag" content="C&#x2F;C++ Windows 网络 安全 摘抄">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liu-fb.com/posts/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+<script src="/js/color-mode.js"></script>
+
+  <title>Fabian备忘录</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband">
+	<a target="_blank" rel="noopener" href="https://github.com/Liuqianci" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	</div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Fabian备忘录</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人类资格证考核中</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/AI/AI/AI%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/AI/AI/AI%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">AI入门基础知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-11-13 11:03:14" itemprop="dateCreated datePublished" datetime="2026-11-13T11:03:14+08:00">2026-11-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-11-16 23:17:47" itemprop="dateModified" datetime="2026-11-16T23:17:47+08:00">2026-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ai初期的这几年">AI初期的这几年</h1>
+<h1 id="ai核心概念串讲">AI核心概念串讲</h1>
+<h2 id="底层引擎llmlarge-language-model">底层引擎：LLM（Large Language
+Model）</h2>
+<p>  LLM全称“Large Language
+Model”，中文翻译为“大语言模型”，简称“大模型”。基本上现在所有的大模型都是基于Transformer这个架构训练出来的，这个架构最早是由Google团队在2017年提出，对应论文名是“Attention
+Is All You
+Need”。虽然Google提出了这个概念，但真正把这个概念引爆的是OpenAI，2022年底GPT-3.5横空出世，是第一个真正达到可用级别的大模型。2023年3月份GPT-4发布，把AI能力的天花板拉到了新的高度。之后随着Claude、Gemini等大模型涌现，现在市场上有多个模型在竞争。</p>
+<p>  AI的工作方式本质上就是一个文字接龙游戏。举个例子，我对AI提问“这个文档写的怎么样”，大模型收到这句话后，会在内部进行一系列运算，然后预测下一个出现概率最高的词，比如“特别”，然后吐出这个词；但模型不会停下来，而是把刚刚吐出的“特别”这个词抓回来，和刚刚的输入“这个文档写的怎么样”拼接起来，成为一个新的输入，然后大模型继续预测下一个出现概率最高的词，比如“得”；大模型重复操作，把“得”再次拼接起来成为新的输入后预测下一个词，比如“好”；如果大模型发现这句话已经说完了，那么大模型会再吐出一个结束标识符，这个回答就彻底结束了。</p>
+<p>  这就是大模型底层的生成原理，我们看到大模型的输出，就是一个词一个词的输出。</p>
+<h2 id="数据处理单元token">数据处理单元：Token</h2>
+<p>  上文中说的大模型每次回答吐出一个词是个方便理解的简化说法，现实情况是：大模型本质上是个庞大的数学函数，里面跑的全是矩阵运算，接收的是数字，输出的也是数字，并不认识人类的文字。所以就像各种编程语言一样，人类和大模型之间也必须有一个翻译官，这个翻译官就叫Tokenizer，他负责的是编码和解码两件事，编码就是把文字变成数字，解码就是把数字变成文字。</p>
+<p>  还是用之前的例子，我们给AI输出“这个文档写的怎么样”，AI输出“特别得好”，实际发生的流程如下：</p>
+<ol type="1">
+<li>Tokenizer对输入的文字进行编码，把文字变数字，这个步骤分两步：
+<ol type="1">
+<li>切分：把输入切成一个一个的片段，如“这个”、“文档”、“写的”、“怎么样”，这些片段就叫做<strong>Token</strong>；</li>
+<li>映射：大模型只认识数字，Tokenizer会把每一个Token对应到一个数字上；这个数字就叫做<strong>Token
+ID</strong>,Token
+ID和Token是一一对应的，本质上是一个意思，只不过表达方式不一样，一个是文字，一个是数字;</li>
+</ol></li>
+<li>Tokenizer把生成的Token ID组成列表，送入大模型；</li>
+<li>模型经过运算，吐出一个Token ID;</li>
+<li>解码：Tokenizer把这个Token
+ID翻译回Token。解码环节不会进行切分，因为大模型一次只吐出一个Token;</li>
+<li>如果话还没说完，大模型持续吐出Token，然后Tokenizer进行解码，直到终止符。</li>
+</ol>
+<p>  所以<strong><code>Token就是大模型处理文本的最基本单位</code></strong>。</p>
+<p>  上述的例子也只是方便理解，实际上Token和词并不是一一对应的关系，OpenAI提供了一个<a
+target="_blank" rel="noopener" href="https://platform.openai.com/tokenizer">把文本转化为Token</a>的页面，我们可以在这里看看一句话是怎么拆分成Token的：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">语言单位</th>
+<th style="text-align: left;">于Token的关系</th>
+<th style="text-align: center;">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">中文词语</td>
+<td style="text-align: left;">非一一对应关系，可能被拆分</td>
+<td style="text-align: center;">程序员-&gt;"程序"、“员”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">简单英文单词</td>
+<td style="text-align: left;">常见简单单词会对应一个Token</td>
+<td style="text-align: center;">hello</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">复杂英文单词</td>
+<td style="text-align: left;">可能被拆分</td>
+<td style="text-align: center;">helpful-&gt;"help"、"ful"</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">特殊字符</td>
+<td style="text-align: left;">一个字符可能被多个Token表示</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>  所以我们不能把词和Token理解为纯粹的一对一关系，可以把Token理解为大模型自己的一套文本切分规则，切出的每一块就是大模型能处理的一个最小单位。平均来讲，一个Token对应0.75个英文单词或1.5~2个中文汉字，量化的看，40万Token就对应60万至80万的汉字或30万英文单词。</p>
+<h2 id="临时记忆体context">临时记忆体：Context</h2>
+<p>  大模型本质上就是数学函数，给祂一个输入就给我们一个输出，并不像人一样有记忆。所以我们每次给大模型发消息的时候，并不只发送我们的问题，背后的程序会把之前对话的整段历史找出来一起发出去，这样大模型每次看到的就是完整的对话内容了。</p>
+<p>  这就引出了context这个概念，中文叫“上下文”。<strong><code>Context代表大模型每次处理任务时所接收到的信息总和</code></strong>。Context的内容除包括：对话历史、用户问题、当前输出的Token、工具列表、System
+Prompt等内容。</p>
+<p>  那么一个Context到底能装多大，这就引出了<strong><code>Context Window的概念，中文叫“上下文窗口”，代表Context能容纳的最大Token数量</code></strong>。Context
+Window为1万，就代表模型最多能处理1万个Token，目前主流的大模型的Context
+Window大小都在100万以上，大概有150万汉字，整个哈利波特全集都可以装下。</p>
+<p>  虽然当前主流的大模型Context
+Window都很大，但我们也不可能把全部东西都丢给大模型。设想一个场景：假如我们有一个上千页的产品手册，希望大模型根据这个产品手册来回答用户的各种问题。如果我们把这个产品手册和用户问题一起丢给大模型，显然不是合理的方法，产品手册太长了，即使Context
+Window足够大，我们的成本也无法控制。所以就需要一个叫<strong>RAG</strong>的技术了，中文叫“检索增强生成”，它可以从产品手册中抽取用户问题最为匹配的几个片段，然后只把这几个片段丢给大模型，让大模型只根据这几个片段回答问题。有了这个技术，就不受大模型的Context
+Window的大小限制了，成本也会低很多。</p>
+<h2 id="指令交互prompt">指令交互：Prompt</h2>
+<p>  <strong><code>Prompt，中文叫提示词，是大模型接收的具体问题或指令</code></strong>。比如向大模型提需求“帮我翻译这句话”，这就是一个Prompt。</p>
+<p>  Prompt怎么写直接决定了大模型的输出质量。假如你只给大模型说“帮我翻译这句话”，那么大模型可能翻译为英文、法文或各种奇妙语言。一个好的Prompt应该是清晰的、明确的。有个专门的领域叫Prompt
+Engineering，中文翻译“提示词工程”，专门研究怎么把话说清楚，让大模型更精准的理解意图。但这个领域已经没啥人再提了，因为这个领域本质就是把话说清楚，门槛太低，且大模型能力越来越强，即使指令含混不清，大模型也能大概猜出意思。</p>
+<p> </p>
+<p>  有些时候我们不仅要给大模型具体的任务，也要告诉大模型人设和具体做事规则，这就引出了两种Prompt：</p>
+<ul>
+<li>User Prompt：用户提示词，用于说明具体的任务，是用户自己输入的；</li>
+<li>System
+Prompt：系统提示词，用于说明人设和规则，是开发者在后台配置的；</li>
+</ul>
+<p>  举个例子：有一个数学辅导机器人，我们希望他不要直接告诉学生答案，要引导学生思考。System
+Prompt就可以这样设置：“你是一个耐心的数学老师，当学生问你问题的时候不要直接给出答案，而是一步一步引导学生思考，帮助他们理解思路”。这个是开发者在后台设置的，用户看不到，但它会一直影响大模型的行为。这样当用户在对话框输入User
+Prompt
+"3+5等于几"的时候，大模型就不会直接回答“8”，而是教学生怎么计算。</p>
+<h2 id="外部能力扩展tool">外部能力扩展：Tool</h2>
+<p>  大模型本质上就是个文字接龙游戏，它的能力是根据训练数据来预测下一个词。但如果我们问大模型“今天北京天气如何”，大模型根部就无法获取当日天气内容，这就需要Tool来解决了。</p>
+<p>  <strong>Tool本质上就是函数，我们给它输入，它就返回一个输出</strong>。比如说天气查询的Tool，我们给它城市和日期的输入，它内部一通操作，返回给我们天气数据。<strong>Tool通过提供各种外部能力，让大模型能够感知和影响外部环境</strong>。</p>
+<p>  以问天气为例子，总结一下出从用户提问，到大模型输出这样一个完整的工作流是怎么运行的。</p>
+<p>  整个流程涉及四个角色：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">角色</th>
+<th style="text-align: left;">职责</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">用户</td>
+<td style="text-align: left;">输入指令</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">大模型</td>
+<td
+style="text-align: left;">选择工具并输出工具需要的参数、对工具返回的结果做归纳总结</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">工具</td>
+<td style="text-align: left;">提供外部能力</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">平台</td>
+<td style="text-align: left;">串联整个流程</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid">sequenceDiagram
+    participant U as 用户
+    participant P as 平台
+    participant L as 大模型
+    participant W as 天气查询工具
+
+    U-&gt;&gt;P: 北京今天的天气？
+    P-&gt;&gt;L: 北京今天的天气？&lt;br/&gt;天气查询工具、计算器等工具调用
+    L--&gt;&gt;P: 调用天气查询的指令&lt;br/&gt;指明工具名称和参数
+    P-&gt;&gt;W: 调用“天气查询”工具
+    W--&gt;&gt;P: 返回天气查询结果
+    P--&gt;&gt;L: 返回工具调用结果
+    L--&gt;&gt;P: 北京天气如下
+    P--&gt;&gt;U: 北京天气如下</pre>
+<ol type="1">
+<li>用户提出问题-&gt;平台把用户的问题和当前可用的工具列表传递给大模型；</li>
+<li>大模型收到问题后分析，如果遇到自己无法解决的能力，会看当前工具列表是否有可用工具；</li>
+<li>大模型输出调用某个工具的指令；</li>
+<li>平台收到指令，调用工具；</li>
+<li>工具返回结果给平台；</li>
+<li>平台把信息反馈给大模型；</li>
+<li>大模型输出最终结果给平台；</li>
+<li>平台把结果转发给用户；</li>
+</ol>
+<p>  一定要注意，模型能做的仅仅是接收和输出文本，并不具备其他能力。调用工具、串联上下文这个活是平台来干的，并不是大模型干的。</p>
+<h2 id="统一的工具接入标准mcp">统一的工具接入标准：MCP</h2>
+<p>  上文中天气查询的例子可以看出，平台需要具备两个能力：可以给大模型传递工具列表、可以调用工具。要做到这些，首先要把工具接入到平台里，这样平台才知道工具调用列表，以及每个工具的参数和调用方法。可是不同的平台，工具接入的规范都是不一样的，要在不同的平台上接入一个工具，要写不同的代码。</p>
+<p>  为了解决这个问题，提出了MCP的概念。<strong><code>MCP全程是Model Context Protocol，中文是模型上下文协议，就是一个统一的工具接入标准</code>。</strong>有了MCP，工具的开发者只需要按照MCP的规范开发一次工具，这个工具就可以在所有支持MCP的平台食用。</p>
+<h2 id="自主决策系统agent">自主决策系统：Agent</h2>
+<p>  现实中的指令往往很复杂，如果只有简单的工具调用功能，很多任务无法完成。比如指令“今天天气怎么样？如果下雨的话帮我查查附近有没有卖伞的店”。这个指令至少需要用到定位工具、天气查询工具、根据定位查询店铺的工具。平台需要根据指令不断的调用工具、并根据工具执行结果判断下一步要做什么。</p>
+<p>  <strong><code>Agent就是能够自主规划、自主调用工具，持续工作直到完成用户任务的系统</code>。</strong>市面上主流的Agent有Claude
+Code、Codex、Gemini
+CLI等，他们使用的构建模式也是多种多样，比较经典的是ReAct、Plan And
+Execute等。</p>
+<h2 id="任务定制agent-skill">任务定制：Agent Skill</h2>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E5%8E%A8%E8%89%BA%E5%B0%8F%E7%99%BE%E7%A7%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E5%8E%A8%E8%89%BA%E5%B0%8F%E7%99%BE%E7%A7%91/" class="post-title-link" itemprop="url">九、厨艺小百科</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-11-07 19:13:48 / 修改时间：19:28:24" itemprop="dateCreated datePublished" datetime="2026-11-07T19:13:48+08:00">2026-11-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/" itemprop="url" rel="index"><span itemprop="name">厨艺</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>529</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="辣椒怎么买">辣椒怎么买</h1>
+<ul>
+<li>又大又圆，颜色丰富多彩的辣椒叫甜椒，也叫彩椒，辣度很低，甚至发甜；颜色鲜艳适合做配菜，也可以做一些特殊的菜肴</li>
+<li>个头适中的青椒是家中经常使用的，辣度偏低，香味很足，适合当配菜，让菜品有青椒香气，也可以单独做菜，做成虎皮青椒；很多人不喜欢吃青椒籽，有一个很方便的去籽方法：左手握住青椒，右手拇指从根部往下按，然后就可以连根带籽拔出来了；</li>
+<li>又长又粗的叫螺丝椒，整体辣度适中，比青椒辣，和青椒的用途很接近；</li>
+<li>比逻辑椒更细一点的叫
+二荆条，这个就更辣一点，属于中等偏上，日常除了配菜外，也可以适当切一两个给菜品增加一点鲜辣的味觉体验；</li>
+<li>二荆条很长，比二荆条短一点的叫
+美人椒，美人椒和二荆条辣度相近，用法相同；</li>
+<li>红色或绿色的又小又细的就是让人闻风丧胆的小米椒，辣度很高。青小米椒清香味更浓，辣度比红小米椒稍低，一般会搭配使用；</li>
+<li>和小米辣长得差不多的黄色的，就是野山椒，这个比小米辣还要更辣，除了辣没有其他特点</li>
+</ul>
+<blockquote>
+<p>总结：一般来讲，个头越长、越粗、越大、肉质越厚的辣椒辣度越低；个头越短、越细小、肉质越薄的辣椒辣度更高。相同品种青绿色的辣度更低，深绿色的辣度更高（成熟度越高颜色越深）；相同品种打蔫起皱的辣度更低、坚挺饱满色泽光亮的辣度越高（生长时间短的辣椒果皮松弛容易失去水分）。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E8%82%89%E8%8F%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E8%82%89%E8%8F%9C/" class="post-title-link" itemprop="url">四、各种肉菜</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-08-29 21:49:40" itemprop="dateCreated datePublished" datetime="2026-08-29T21:49:40+08:00">2026-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-11-12 17:55:42" itemprop="dateModified" datetime="2026-11-12T17:55:42+08:00">2026-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/" itemprop="url" rel="index"><span itemprop="name">厨艺</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.6k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="猪肉怎么买">猪肉怎么买</h1>
+<p>  买肉不需要记住什么前腿肉、后腿肉、二刀肉、梅花肉，只需要记住我们是要瘦肉还是肥肉就行。纯瘦肉的价格很贵，瘦肉多肥肉少的肉性价比很高。</p>
+<p>  如果炒肉总是很柴，可以试试有<strong>明显脂肪纹理</strong>的肉，这种肉炒出来更鲜嫩，对新手很友好。这种肉就是夹子肉/二刀肉。优点是价格便宜、性价比高；同时可以买到瘦肉和肥肉，一肉两用；带脂肪纹理的肉不容易柴。这种肉挑选时看瘦肉占比越多越好。但这种肉的缺点是需要和肥肉一起买，不喜欢吃肥肉的话会浪费；肉形不规整，切出来的肉丝炒的时候很容易碎，不适合用来切肉丝。</p>
+<p>  不在意价格想吃纯瘦肉的话，可以买散切的瘦肉，挑选方法也一样：有脂肪纹理的适合炒肉片；如果想切肉丝，就挑选一块四四方方的净瘦肉，比较好操作。</p>
+<p>  炒菜不建议用里脊肉，虽然里脊肉四四方方的看起来很漂亮，但处理不好很容易柴。但里脊肉很规整，很适合切肉丝。里脊肉还分大里脊和小里脊，看粗细就行，小里脊肉质细嫩，怎么做都好吃。</p>
+<p>  五花肉是很常用的肉，这种肉有很明显的肥瘦纹理，是做回锅肉、红烧肉、梅菜扣肉、粉蒸肉最理想的食材。买五花肉的时候也是尽量挑瘦肉多且纹理清晰的部分。</p>
+<p>  
+排骨尽量买一条一条的中排，散装砍好的价格会便宜一点，但骨头大肉少，口感相对差一点，尽量挑选骨头小肉多的。</p>
+<p>  猪腿肉一般会买猪后腿，因为肉比较多，瘦肉占比高。猪前腿去掉骨头后，肉就很少了，根本不够吃。猪腿的骨头非常硬，买的时候让摊贩砍好了再带回家。</p>
+<p>  </p>
+<p>  肉买回家后，不要直接放冰箱，先清洗，分成小份。有些地方的摊贩在卖肉的时候会烧猪皮，这样可以去除残留的猪毛。如果购买的时候没有这个服务，猪皮上还残留有猪毛，可以把锅烧烫，然后把猪肉放进去滋啦几下，把肉皮烫的金黄起皱，上面的毛就没了；再用热水清洗猪肉，然后用刀刮猪毛（或者拿钢丝球刷，不过要注意钢丝球容易断）。清洗完成后分块。先把瘦肉从上面剔下来，纯瘦的部分可以用来炒或者煮汤，肥瘦的部分可以用来做回锅肉，也可以直接切成片炒着吃。之所以要切成小块是因为方便解冻，如果一大块肉放进冰箱，再拿出来解冻很慢，且反复解冻肉就不新鲜了。肉放到冰箱冷冻层，记得分开保存，不要让连在一起了。吃的时候提前半小时拿出来自然解冻即可，着急的话就泡在冷水里，加速解冻（千万不要用热水，影响口感）。</p>
+<hr />
+<h1 id="猪肉怎么切">猪肉怎么切</h1>
+<p>  刚刚从冰箱里拿出来的冻肉，解冻到似冻非冻的状态时切起来很听话，想怎么切就怎么切。但刚刚买回来的鲜肉切起来就比较麻烦了。</p>
+<p>  我们切蔬菜的时候，由于蔬菜很脆，我们可以轻松的一刀到底，但肉都有一定韧性，所以需要一些细节。</p>
+<p>  对于冻肉来说，解冻时间都是不固定的。标准就是：肉能轻松切动，又不过于软榻。切片时要注意看瘦肉的纹理，切片时要垂直于纹理来切，这样不塞牙，而且瘦肉还有很多细小的缝隙，垂直纹理切片后，在码味的时候淀粉和调料可以更好的进入到瘦肉的缝隙中，从而让肉更加细嫩。</p>
+<p>  拿到一块肉不要直接来切，要看大小是否合适，不要搞的最后切出来的片巨大。我们需要先把大块的肉分成小份，分小份的时候是顺着纹理来切。改小时顺手把白色的筋膜去掉，这个吃不动。</p>
+<p>  切片时左手半握拳，小指和拇指分别放在肉的两侧，其他手指搭在肉上面，中指的第一个关节抵着刀，其余任何手指不要超过中指关节。从刀的前半截下刀，切的时候刀往前推。</p>
+<p>  切好的冻肉拿一个稍微宽松一点的碗或者盆用冷水冲洗几遍，直到肉完全变软。然后稍微攥干水分，不用太干，碗底看不到水就好了。然后开始码味。</p>
+<p>  码味先撒一点盐、然后是白胡椒粉（一定是白胡椒，西餐才用黑胡椒），胡椒性状温热，不宜多放，只需要少许就能达到去腥增香的作用（半个指甲盖大小）。最后撒一些淀粉放在盆的角落，然后撒一勺料酒化开淀粉，然后用手抓伴肉。很多人做肉很柴就是没有做好抓伴这一步，不是三两下和匀就完事的，手指打开带点力气不停的抓肉，约抓伴一分钟。和不均匀的话再加少许水，最终抓到黏糊糊的感觉就行了。</p>
+<p>  </p>
+<p>  如果是鲜肉，因为鲜肉在摊位上摆了很久会有灰尘，需要先用温水清洗2遍（猪肉有油，冷水洗不干净，热水肉就熟了）。然后和冻肉一样，先观察肉的纹理，如果肉很大，还要先分成大小合适的小块、去掉筋膜。瘦肉切片一般就2mm厚。</p>
+<p>  新鲜的肉切完后就不需要冲洗了，可以直接码味。操作方法一样：先撒盐，少许白胡椒粉，然后是淀粉、料酒，用力抓拌，太干的话再加点水。</p>
+<p>  </p>
+<p>  对于买到的不规则的瘦肉，就不能直接切成小块，需要先从筋膜连接的地方用刀分开。</p>
+<p>  </p>
+<p>  码味时使用了淀粉。无论是红薯淀粉、玉米淀粉、土豆淀粉、嫩肉粉都可以归类为淀粉。淀粉在加热工程中可以在原料的外表形成隔膜，组织原料水分流失，从而使菜肴更鲜嫩、饱满。市面上淀粉种类非常多，但除了价格不同，作用都大同小异，餐饮行业常用红薯淀粉和玉米淀粉。</p>
+<p>  淀粉的用量很重要，用少了锁不住水分，淀粉太多了就浑汤了，使炒的菜肴过于黏稠。这个需要长久的经验。</p>
+<hr />
+<p>  </p>
+<h1 id="肉菜入门---肉片汤">肉菜入门---肉片汤</h1>
+<blockquote>
+<p>码肉+烧汤 -&gt; 水开放菜+调料 -&gt; 出锅</p>
+</blockquote>
+<h2 id="蔬菜肉片汤">蔬菜肉片汤</h2>
+<p>常见的绿叶菜有：空心菜、木耳菜、小白菜、菠菜、豆尖、生菜、油麦菜、茼蒿、冬葵、苦菊。跟随季节使用不同的原料。接下来以菠菜为例子。</p>
+<p>买到的菠菜，把根单独摘下来（不要扔掉，这个很好吃），叶子和根茎直接掐成段。然后洗菜。根部有很多泥土，需要单独关照。如果根部很粗，需要切成两半，方便做熟。</p>
+<p>生姜切2到3片，放进汤中增香提味。再切点葱花备用。</p>
+<ol type="1">
+<li>锅中倒水，放入切好的姜片，开始烧水；</li>
+<li>水烧开后先放一勺盐，让汤有个底味，这样煮肉时水就不会把我们之前码肉时的盐吸走；</li>
+<li>把肉抓散，防止煮出来的肉一坨一坨的，然后就可以在水中放肉了，记得把肉打散放进去。放肉时火一定要调小，等下完肉再开大火；</li>
+<li>肉放完后不要着急，等个10秒钟再搅拌均匀，让肉片均匀受热；成团的肉还需要打散；</li>
+<li>水再次烧开，看不到红色的生肉时，就可以下菠菜了；码肉的淀粉融入了汤里，所以水烧开会有泡泡，此时把火调小就可以消除泡泡；</li>
+<li>等汤再次烧开，就可以放盐、鸡精、味精。由于之前已经放过盐了，所以先放鸡精和味精，用量比炒蔬菜少很多，不要放多了；搅开后尝一下，咸度不够再放盐；够了就可以准备出锅了；放调料时火调小；</li>
+<li>出锅前倒入一点点油，保证风味且营养均衡，用啥油都可以，但不建议菜籽油，这个味道太重了，不适合清汤类菜品；</li>
+<li>出锅后撒上葱花；</li>
+</ol>
+<p>做这个菜需要注意，肉片不宜煮太久，2分钟左右就可以出锅了，否则就会柴。</p>
+<h2 id="平菇肉片汤">平菇肉片汤</h2>
+<p>可以用平菇、香菇、海鲜菇、茶树菇、蟹味菇来做。本文以平菇为例子。</p>
+<p>平菇选择大小适中、杆子小叶子大、颜色微微发墨绿色的为上品。颜色墨绿说明成熟度刚好。平菇叶子太大说明成熟过度。平菇的杆子绵软，杆子越小越好。</p>
+<p>买回来的平菇，如果超市没有去掉平菇的根，需要先切掉。所有蘑菇都需要这个步骤。</p>
+<p>去掉根的平菇分成小朵，再把小朵的平菇撕小一点，然后清洗。清洗时要注意温柔一点，不然就碎了。平菇不是从土里种出来的，所以没有泥。轻轻淘洗两遍，洗去灰尘就好。</p>
+<p>步骤和蔬菜肉片汤基本一样，先码肉，然后：</p>
+<ol type="1">
+<li>锅中倒水，放入切好的姜片，开始烧水；</li>
+<li>蘑菇不容易熟，所以先放蘑菇</li>
+<li>蘑菇不容易熟，煮2分钟后放盐，让汤有个底味，然后放肉。盐一定要比肉先下锅；</li>
+<li>肉片再煮2分钟，如果有浮沫是血水，需要撇出来，否则影响口感；</li>
+<li>肉快熟时放味精鸡精，尝一下味道，不够再放盐；放调料时火调小；</li>
+<li>淋一点油，出锅，放葱花；</li>
+</ol>
+<h2 id="丝瓜肉片汤">丝瓜肉片汤</h2>
+<p>市面上有两种丝瓜：普通的和细长的，买哪种都可以。长相奇葩不方便处理的不买，有坑洼的不买，有局部变色的不买。</p>
+<p>买回来用刨子去皮，去头去尾。清水冲洗一遍。先切成食指长的段，然后每段再滚着切成粗细均匀的丝瓜条（先切成2半再切）。切好后放一边备用。码号的肉放一边备用。</p>
+<ol type="1">
+<li>锅中倒水，放入切好的姜片，开始烧水；</li>
+<li>水开后放丝瓜；</li>
+<li>2分钟左右快熟后放入盐，然后放入肉片；</li>
+<li>2分钟左右放调料，淋入食用油，出锅后撒葱花；放调料时火调小；</li>
+</ol>
+<h2 id="薄片黄瓜肉片汤">薄片黄瓜肉片汤</h2>
+<p>买回的黄瓜仔细清洗后去头去尾，然后斜着切。如果正着切只能切出圆片，斜着切就可以切出大大的薄片。这个片切的越薄越好。</p>
+<p>如果刀工实在是太差了，切不出薄片，那么就用刨子来一层层切也可以。</p>
+<p>码肉后开始做汤：</p>
+<ol type="1">
+<li>锅中倒水，放入切好的姜片，开始烧水；</li>
+<li>水开后放盐，然后放入肉片；</li>
+<li>2分钟左右，没有红色生肉了，放入黄瓜片，黄瓜片要打散，防止夹生；</li>
+<li>2分钟左右放调料，淋入食用油，出锅后撒葱花；放调料时火调小；</li>
+</ol>
+<h2 id="番茄肉片汤">番茄肉片汤</h2>
+<p>番茄选择颜色通红，稍微用力捏的时候手感偏软的番茄。颜色不统一且捏着发硬的番茄是催熟番茄，口感欠佳。</p>
+<p>挑选2个大小适中的番茄放入锅中，用开水翻来覆去烫一分钟。然后拿到水龙头下边冲洗边去皮。从中间切成2半，番茄头部中间的硬芯吃不动，要切掉。然后把番茄像切西瓜一样切成小块。</p>
+<p>这个菜除了姜，还需要大蒜。大蒜的味道和番茄很搭配。用2瓣蒜切片备用。码肉后开始做。</p>
+<ol type="1">
+<li>锅烧干，放入少许植物油。如果家里有猪油更好，一起放；</li>
+<li>放入姜片、蒜片，炒香后，番茄下锅炒一下；</li>
+<li>当番茄炒出酱汁，能明显闻出香味后（3分钟左右），加水</li>
+<li>汤烧开后放盐，然后加肉片；</li>
+<li>2分钟快熟了，就放鸡精味精，盐度不够再放盐</li>
+<li>炒番茄时已经放过油了，这里不再放油，直接出锅。撒上葱花。</li>
+</ol>
+<h2 id="酸菜肉片汤">酸菜肉片汤</h2>
+<p>超市直接买成品鱼酸菜，再买袋装野山椒就可以。</p>
+<p>酸菜取出来挤干水分，切成小块。菜帮子部分用斜刀切成薄片，叶子展开切成小块。如果酸菜自带姜和辣椒，可以拿来直接用。需要注意姜不一定品质很好，可能含有很厚的木质层，需要把肉质层剥出来。</p>
+<p>超市买的酸菜一般都很咸，需要把切好的酸菜放到盆里清洗2遍，把多余的盐分洗掉。攥干水分备用。</p>
+<p>野山椒很辣，用2、3根就可以了，切成小段和酸菜放一起。多余的冻起来就行。泡椒水是很好的东西，不要扔掉，放一边备用。</p>
+<p>然后再切一点姜片。也可以再来一点金针菇，酸菜汤搭配蘑菇很不错。把金针菇根部切掉，撕成小束，清洗干净备用。清洗很简单，简单冲一下就行。</p>
+<ol type="1">
+<li>锅烧干，放入油，有猪油更好一起放；</li>
+<li>放几粒花椒、生姜爆香；</li>
+<li>放入酸菜、野山椒，翻炒一分钟后加水，然后再倒入一勺野山椒水；</li>
+<li>汤烧开后转小火，再慢煮2、3分钟，把酸菜的香味熬煮出来；</li>
+<li>转大火，放入金针菇，盖上盖子焖煮一分钟；</li>
+<li>酸菜、野山椒、野山椒水都有盐，所以不需要再额外加盐，直接放肉片；</li>
+<li>放入一汤匙的白醋，仅仅依靠酸菜的酸度是不够的；再加入一点耗油；</li>
+<li>放入味精、鸡精，这个汤的口味重，所以可以稍微给多一点。</li>
+<li>炒酸菜时放过油了，不再加油，出锅前尝尝味道，盐度不够放盐、酸度不够加白醋；</li>
+</ol>
+<p>酸汤类菜肴，用的是白醋，可千万不要用成陈醋了，味道不一样。</p>
+<hr />
+<p>Q：是先放菜还是先放肉？</p>
+<p>A：煮肉的时间就是2分钟，2分钟煮不熟的蔬菜，就先放蔬菜；很快成熟的蔬菜（各种绿叶菜），就先放肉。</p>
+<hr />
+<p> </p>
+<h1 id="炒肉公式">炒肉公式</h1>
+<p>本节会学习三种风味的家常菜炒肉风味：豆瓣酱炒出的豆瓣风味、青椒炒出的青椒香、干辣椒炒出的胡辣香。</p>
+<p>本节炒肉菜都需要提前腌制肉，这个步骤就不再复述了。腌过的肉下锅后粘在一起不容易打散，可以在肉上撒一圈食用油拌匀，这样肉下锅后可以轻松的滑散。</p>
+<blockquote>
+<ol type="1">
+<li>肉切好码味，加姜蒜、豆瓣酱，如果不爱吃豆瓣酱也可以不放，就变成清炒了</li>
+<li>腌肉时准备配菜</li>
+<li>炒菜，配菜容易熟就肉快熟时放，不容易熟就先把配菜炒到7、8成熟再和肉一起炒</li>
+<li>调料</li>
+</ol>
+</blockquote>
+<h2 id="黄瓜炒肉">黄瓜炒肉</h2>
+<p>这个例子中，黄瓜比肉更容易熟</p>
+<p>  提前腌肉；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。然后再取一勺豆瓣酱，也和肉放在一个容器备用。</p>
+<p>  在家里炒菜，最好是把葱姜蒜、豆瓣酱和肉都放在一起，一起下锅炒。在饭店里，正常的步骤是先把豆瓣酱炒香，然后放入姜蒜，爆香后再放入准备好的肉片，全程旺火，一道菜1、2分钟就好了。但家里天然气火力太小了，按照饭店里的做法的话，锅里就始终保持一个低油温状态，炒菜会变慢，这样炒出来的肉又老又柴。一起放进去的话，可以让刚刚烧热的油直接给到肉，模拟饭店的旺火。</p>
+<p>  炒菜选土黄瓜最好，最好选直溜的，更好切。实在买不到用普通黄瓜也可以。黄瓜清洗后去头去尾，然后竖着切成2半，每一半再单独切片，切片时刀可以斜一点，切出来的片更大。炒肉需要黄瓜在很短时间内成熟，所以黄瓜片切的要薄，1mm厚。用这个方法切两根黄瓜。</p>
+<p>炒肉菜全程大火，并且放油不能小气，不然要么油烟味太大，要么颜色黑黢黢的。</p>
+<ol type="1">
+<li>锅烧干，倒油烧热，等油冒烟；</li>
+<li>油冒烟后，放入几粒干花椒，不要等，直接把肉、葱姜蒜、豆瓣酱一起下锅，用锅铲滑散均匀受热。此时油温很高，可能会四处飞溅油滴，一定要迅速把肉滑散，把温度降下来；不断翻炒；</li>
+<li>看不到红色的生肉，就代表有6、7成熟了，放入黄瓜。不要放早了，否则黄瓜拉低了锅中的温度，拉长了炒肉时间，会让肉变柴。</li>
+<li>黄瓜开始打蔫的时候代表快熟了，可以放调料，此时用小火，放一勺生抽、味精、鸡精、一小点陈醋；这个不需要放盐了，码肉的时候放盐了，生抽、豆瓣酱也有盐；</li>
+<li>开大火，和匀调料。出锅。</li>
+</ol>
+<p> </p>
+<h2 id="莴笋炒肉">莴笋炒肉</h2>
+<p>这个例子中，肉比莴笋更容易熟。</p>
+<p>  提前腌肉；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。然后再取一勺豆瓣酱，也和肉放在一个容器备用。</p>
+<p>  这个菜的难点是处理莴笋，厚厚的皮处理起来很麻烦。选购莴笋的时候尽量选择平整的，太过粗大的不买，质地较老，很容易存在空心；太细的也不买，去皮后就啥也不剩了；带花的不买，莴笋开花说明莴笋已经非常老了。</p>
+<p>  有的莴笋会带着莴笋尖买（顶部叶子），剥莴笋时需要先把莴笋尖取下来，莴笋尖最下面的叶子如果老了要提前取下来，然后从莴笋尖比较嫩的地方切断。莴笋尖很嫩，可以用来炒菜、下面条、煮汤。</p>
+<p>  剥莴笋的常规方法就是左手握住莴笋根，用刀一点一点把木质层去掉，切记手指不要露头防止受伤。木质层吃不动，一定要清理干净。然后把根部老的地方切掉。最后用水简单清洗一下就好。邪修法就是用甘蔗去皮刀了，家里普通的去皮刀是切不动莴笋皮的。</p>
+<p>  莴笋放在菜板上，稍微斜着切薄片。如果讲究一点也可以切菱形片，也是先把莴笋放到菜板上斜着放，然后切长段。然后依次把长段竖着放菜板上切片。黄瓜、胡萝卜、西葫芦、山药等都可以用这种方法切片。</p>
+<p>  和黄瓜炒肉不同，莴笋不容易成熟，如果先放肉再放莴笋，那么肉就老了，所以要分两步来进行：</p>
+<ol type="1">
+<li>锅中烧干放油，油热后直接放入莴笋片，大火炒到7、8成熟，由青绿色转变为略带透明的翡翠色（一分半多就差不多了），直接出锅备用，这一步任何调料都不要放；</li>
+<li>重新烧干放油，油冒烟后，放入几粒干花椒，不要等，直接把肉、葱姜蒜、豆瓣酱一起下锅，用锅铲滑散均匀受热。此时油温很高，可能会四处飞溅油滴，一定要迅速把肉滑散，把温度降下来；不断翻炒；</li>
+<li>看不到红色的生肉，就代表有6、7成熟了，放入刚刚炒的莴笋片。</li>
+<li>翻炒片刻，小火放入调料：生抽一勺、味精、鸡精、一点醋，调料和匀，尝一下咸度，合适就出锅；尝菜要尝瘦肉，肥肉不入味尝不出来，蔬菜如果盐度合适那肉一定咸了；</li>
+</ol>
+<p>  </p>
+<h2 id="青椒炒肉">青椒炒肉</h2>
+<p>  提前腌肉；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。这道菜是青椒口味，就不需要放豆瓣酱了。</p>
+<p>  青椒去籽，去籽方法请看【厨艺小百科】，也可以不去籽，直接把青椒把去掉。处理完的青椒用清水清洗2遍。青椒要切片，先从中间切成两半，然后随意切块，只要大小均匀就行。</p>
+<p>  青椒肉质比较厚，属于不那么容易熟的蔬菜。</p>
+<ol type="1">
+<li>先开小火，把青椒慢煎几分钟，千万不要放油，不然油烟呛死人，这一步的目的是把青椒的水分去掉一些；大概五分钟左右，感觉煎出锅巴了，青椒打蔫了，放入少许盐继续翻炒半分钟左右，这样就解决了青椒不入味的问题，然后出锅；</li>
+<li>锅清洗干净，烧干放油，大火，油冒烟后，放入几粒干花椒，不要等，直接把肉、葱姜蒜一起下锅，用锅铲滑散均匀受热。此时油温很高，可能会四处飞溅油滴，一定要迅速把肉滑散，把温度降下来；不断翻炒；</li>
+<li>看不到红色的生肉，就代表有6、7成熟了，放入刚刚炒的青椒；</li>
+<li>翻炒片刻，小火放入调料：生抽两勺（没有豆瓣酱，生抽可以多放）、味精、鸡精、一丢丢的盐、一点醋，调料和匀，尝一下咸度，合适就出锅；</li>
+</ol>
+<p> </p>
+<h2 id="苦瓜炒肉">苦瓜炒肉</h2>
+<p>  提前腌肉，这道菜炒的时候是不放生抽的，因为会让苦瓜变丑，所以腌肉时可以先放2勺生抽；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。这道菜还要放一点青椒，这个选择辣一点的美人椒。青椒先清洗，把后面的把去掉，然后切滚刀块。青椒是配角，用2、3个就行了。也可以不放辣椒，就变成了清炒风味。把辣椒也和肉放一起。</p>
+<p>  苦瓜是很好买的，很少翻车。要注意变黄的苦瓜是完全成熟的样子，这种苦瓜苦味降低，甚至发甜，但口感很面。是否喜欢吃这个就因人而异了。</p>
+<p>  苦瓜清洗一下，去头去尾。然后竖着切成两半，除去中间的瓜瓤（不方便就用勺子），然后横放在菜板上切片，2mm左右即可。</p>
+<p>  苦瓜属于不易成熟的，所以需要先炒蔬菜。</p>
+<ol type="1">
+<li>锅中烧干放油，油热后直接放入苦瓜片，大火炒到7、8成熟。大部分蔬菜都是越炒水越多，但苦瓜本身水分就少，为了防止苦瓜变干瘪，翻炒30秒左右要倒一小口水进去，这样炒出来的苦瓜比较滋润，看到苦瓜基本变软（整体2分钟左右）就可以出锅了，这一步任何调料都不要放；</li>
+<li>锅清洗干净，烧干放油，大火，油冒烟后，放入几粒干花椒，不要等，直接把肉、葱姜蒜、辣椒一起下锅，用锅铲滑散均匀受热。此时油温很高，可能会四处飞溅油滴，一定要迅速把肉滑散，把温度降下来；不断翻炒；</li>
+<li>看不到红色的生肉，就代表有6、7成熟了，放入刚刚炒的苦瓜；</li>
+<li>翻炒片刻（10秒左右），小火放入调料：盐、味精、鸡精，不再放生抽和醋了，尝一下咸度，没问题就出锅；</li>
+</ol>
+<p> </p>
+<h2 id="西兰花炒肉">西兰花炒肉</h2>
+<p>  提前腌肉；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。</p>
+<p>  这道菜做成糊辣口味的，需要用到干辣椒。市面上有很多品种的干辣椒。家里做饭建议选择香味更高、辣度适中的品种，如“新一代”、“二荆条”、“线椒”、“秦椒”、“丘北辣”等。另外一些辣度很高的品种，如“小米辣”、“子弹头”、“七星椒”、“石柱红”、“印度椒”等适合变态辣爱好者选择。</p>
+<p>  选取3~4个干辣椒切成段放在一边备用。</p>
+<p>  西兰花拿到后是一整个，需要先切成小朵，从茎的位置切。叶子去掉不要。切下来的小朵需要再次切小一点，一朵切4个就行。一整颗没必要都切下来，还是很多的，可以留下备用，冰箱里能存一周。切完后留下的大粗茎也可以吃，很脆，但需要像剥莴笋一样把木质层去掉，然后切成薄片。切完后用清水淘洗两遍。</p>
+<p>  西兰花属于不宜成熟的，需要先炒菜再炒肉，西兰花下锅前需要先焖煮一下，操作比较麻烦。不过有个简单粗暴的方法，直接过水。</p>
+<p>  这道菜是糊辣香气，把辣椒煎到半糊的状态就会有糊辣的香气。难点在于煎的不够辣椒香气出不来，煎过头辣椒就全糊了。</p>
+<ol type="1">
+<li>起锅烧水，水开后直接放入西兰花，煮一分钟出锅；出锅后过凉水，防止扎堆的西兰花过熟，也可以让西兰花更爽脆；滤干水份备用；</li>
+<li>大火烧干锅，倒油，油热后倒入干辣椒段；</li>
+<li>油很热，等几秒钟，干辣椒由红变黄后倒入肉片，肉片滑散，不断翻炒；</li>
+<li>翻炒1分半多看到肉断生后，放入西兰花，西兰花已经熟了，不需要炒太久，翻炒片刻就好；</li>
+<li>关小火，放调料。这里可以放花椒粉（也可以选择在一开始的时候煎干花椒）、生抽2小勺、盐、味精、鸡精、一小勺醋。调料和匀出锅；</li>
+</ol>
+<p> </p>
+<h2 id="葱爆肉">葱爆肉</h2>
+<p>  提前腌肉；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。</p>
+<p>  3~4个干辣椒切成段。</p>
+<p>  这道菜的配菜是大葱。大葱当作配菜时，需要买那种粗大的，吃起来更嫩。选择葱白多葱叶少的更实惠，因为葱叶一般用来腌鱼腌肉，但不食用。</p>
+<p>  大葱三根，先切掉根部，然后剥掉表面失去水分的干皮，冲洗一下。然后斜刀切成薄片。</p>
+<ol type="1">
+<li>四档大火，烧干倒油，油热放入干花椒粒、干辣椒段；</li>
+<li>略等几秒，辣椒由红变黄后倒入肉片，肉滑散；</li>
+<li>肉没有红色断生后，放入切好的大葱，翻炒。大葱没啥水分，越炒乐越干，中途可以加一点点水，炒出来的菜更滋润；</li>
+<li>看到大葱打蔫了，关小火放调料：生抽2小勺、盐、味精、鸡精，开大火和匀后放入一点点陈醋，和匀出锅；</li>
+</ol>
+<p> </p>
+<h2 id="平菇炒肉">平菇炒肉</h2>
+<p>主料：瘦肉</p>
+<p>辅料：平菇</p>
+<p>调料：盐、淀粉、料酒、胡椒粉、鸡精、生抽、干花椒、生姜、大蒜、食用油</p>
+<p>  平菇购买时，挑选叶片颜色偏墨绿色，形状圆润的，吃起来会更脆嫩。叶片完全打开的吃起来比较绵软，不推荐购买。</p>
+<p>  提前腌肉；准备几瓣大蒜，切成片；掰掉一块生姜，清洗干净，先切3到4片姜片，然后切姜丝。姜切成丝后更出味。把切好的姜蒜和腌的肉放在一起。</p>
+<p>  平菇先切掉根部，然后撕小一点方便食用。撕完后用清水冲洗，洗的时候力气不要太大，否则容易把蘑菇洗碎。平菇没有什么泥沙，稍微冲洗两遍就行。沥干水分备用。</p>
+<p>  大多数的蘑菇都要认为是不容易熟的菜，蘑菇一定要充分加热，否则容易食物中毒。需要先把蘑菇炒熟。</p>
+<ol type="1">
+<li>锅烧干倒油，油热后倒入蘑菇，用三档火，火太大容易把蘑菇炒糊，火太小蘑菇里的水分就流出来了，水分太大会让最后的成菜不清爽。蘑菇的水分很多，等水分快炒干，蘑菇打蔫变软时就代表快成熟了，加小半勺盐进来，让蘑菇有底味；盐和匀后把蘑菇盛出来；</li>
+<li>锅洗干净，烧干倒油，四档大火，油热放入干花椒，稍微炸一下就放肉，把肉滑散，不断翻炒；</li>
+<li>肉没有红色生肉基本断生后，放入炒好的蘑菇，稍微翻炒一下；</li>
+<li>关小火放调料：三勺生抽、鸡精，蘑菇本身就有鲜味成分，可以不放味精，开大火和匀；尝尝咸淡，不够加盐，够了直接出锅；</li>
+</ol>
+<hr />
+<p> </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E8%94%AC%E8%8F%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E8%94%AC%E8%8F%9C/" class="post-title-link" itemprop="url">三、常见蔬菜</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-08-29 21:49:31" itemprop="dateCreated datePublished" datetime="2026-08-29T21:49:31+08:00">2026-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-11-12 17:41:09" itemprop="dateModified" datetime="2026-11-12T17:41:09+08:00">2026-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/" itemprop="url" rel="index"><span itemprop="name">厨艺</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="凉拌菜">凉拌菜</h1>
+<h2 id="拍黄瓜">拍黄瓜</h2>
+<p>主料：黄瓜两根；</p>
+<p>调料：生姜、大蒜、盐、味精、鸡精、生抽、陈醋、花椒油、芝麻油</p>
+<ol type="1">
+<li>黄瓜洗净，不用去皮。把尾部的蒂去掉，头的部分先留着；</li>
+<li>左手握住头部，右手持刀往下拍，使劲拍，拍碎一点容易入味（也不要太碎，不然就失去口感了），彻底拍碎后去掉头部。</li>
+<li>刀斜着45°切成小块，间距2cm左右，放入盆中；</li>
+<li>要2瓣大蒜，一点生姜，混合切成沫，放入盆中；</li>
+<li>放入调料：一勺盐，半勺味精、半勺鸡精、2勺生抽、1勺陈醋、半勺花椒油、半勺芝麻油</li>
+<li>搅拌均匀</li>
+</ol>
+<h2 id="凉拌金针菇">凉拌金针菇</h2>
+<p>主料：金针菇一把</p>
+<p>调料：盐、味精、白糖（白砂糖即可）、生抽、陈醋、花椒油、芝麻油、生姜、大蒜、红小米椒、辣椒油</p>
+<p>金针菇根部比较老，要切掉一部分。撕成小束。淘洗两遍，金针菇没有什么泥沙，稍微清洗即可。</p>
+<ol type="1">
+<li>锅中烧水，水开后下入金针菇，大概煮3分钟基本熟透，倒出来后过凉水，滤干水份备用；</li>
+<li>用小碗准备调料汁：一勺盐、一勺味精、一勺白糖、三勺生抽、两勺陈醋、几滴芝麻油、几滴花椒油、两勺辣椒油、一点姜蒜末、2到3个小米椒的辣椒碎；</li>
+<li>金针菇装盘，把料汁淋在金针菇上。</li>
+<li>加一点葱花点缀；</li>
+</ol>
+<h2 id="凉拌豇豆">凉拌豇豆</h2>
+<p>主料：豇豆一把</p>
+<p>调料：盐、味精、白糖、生抽、陈醋、花椒油、芝麻油、生姜、大蒜、红小米椒、辣椒油</p>
+<p>豇豆有两种：绿色的和紫色的。绿色的豇豆口感爽脆，紫色豇豆口感偏面。豇豆细一点的、捏起来硬邦邦的就比较嫩，很大根的，捏起来往下塌的就比较老。</p>
+<p>豇豆择菜和四季豆类似。找到尖的那头，逆着把头撕下来，然后从刚刚撕完筋的一侧掐断让另一侧的筋露出来；把另一侧的筋掐掉，再掐断，循环往复。择菜时注意黑点，这个是虫眼，这一节掐掉不要。</p>
+<p>豇豆本身没有什么筋，如果豇豆本身品质不错，可以直接用刀切成5cm左右的段。</p>
+<p>择好的豇豆淘洗2遍，滤干水份备用。</p>
+<h1 id="经典家常菜">经典家常菜</h1>
+<h2 id="炝炒莲花白">炝炒莲花白</h2>
+<p>食材：圆白菜、2g花椒、7g干辣椒、22g生抽、20g米醋、2g盐、1g味精、5g糖</p>
+<p>莲花白是四川的一种菜，在家做的时候，就买那种松弛的圆白菜就行。买回来的圆白菜从中间切2半，把中间的杆去掉不要。这道菜很注重火候，杆和叶成熟时间不一样，所以只要叶子。把叶子用手撕成小片。圆白菜一定不要超过家里锅的高度，家中火不够大，菜太多温度下降的特别快，出菜影响口感。</p>
+<p>还是因为火候很重要，所以要把碗汁兑好。生抽、米醋、糖、味精、盐按照前面的克重来加。</p>
+<ol type="1">
+<li>锅中倒油，烧热后放入花椒，关小火炸香；</li>
+<li>倒入一小点凉油，把干辣椒倒进锅中炸香；</li>
+<li>辣椒变棕红色后，把圆白菜放进锅中，全程开大火翻炒；</li>
+<li>菜变颜色就可以沿着锅边倒入碗汁，翻炒一下出锅；</li>
+</ol>
+<p> </p>
+<h2 id="家常豆腐">家常豆腐</h2>
+<p>这道菜先把豆腐煎出金黄的表皮，然后再重新烹调调味。</p>
+<p>主料：豆腐一块。一般用嫩豆腐，表面煎出酥皮了内部还是嫩的，但下锅煎的时候新手很可能把豆腐弄碎，所以新手可以用老豆腐</p>
+<p>辅料：猪瘦肉或者牛瘦肉一小块</p>
+<p>调料：盐、豆瓣酱、生抽、料酒、胡椒粉、味精、鸡精、淀粉、生姜、大蒜、蒜苗、油</p>
+<p><strong>备料：</strong></p>
+<ol type="1">
+<li>取一块豆腐，先切2半，然后再切1cm厚的片；放一边备用；</li>
+<li>把肉洗净后切小块，然后剁成肉沫，放一边备用；</li>
+<li>2瓣大蒜、一小块生姜，都切成颗粒；</li>
+<li>两颗蒜苗，根洗净后切成段：根部斜刀切，叶子直接切，放一边备用；</li>
+<li>一勺淀粉、一勺水，搅拌均匀做成水淀粉</li>
+</ol>
+<p><strong>把豆腐煎一下，剪到两面金黄，煎过的豆腐表皮失去水分孔隙变大，更好吸收调料:</strong></p>
+<ol type="1">
+<li>锅烧干后，二档火，放薄薄的一层油，再均匀的撒一些盐，既可以防止豆腐粘锅，也可以让豆腐提前入味；晃一晃锅底，让锅底均匀铺满油；</li>
+<li>依旧二档小火，用筷子轻轻夹起豆腐，均匀铺在锅底，拜访紧凑一下。如果一次煎不完可以多次来；全程二档火，慢慢煎。煎的时候时不时晃动锅底，防止粘锅；没隔一分钟都可以晃一下；</li>
+<li>如果豆腐边角变黄，就可以翻面了；</li>
+<li>第二面也变黄了，再翻个面复煎一下；2分钟左右再翻个面；然后出锅；</li>
+</ol>
+<p><strong>最后可以重新烹饪调味：</strong></p>
+<ol type="1">
+<li>2档小火，锅不用洗，补一点油，然后放入一勺豆瓣酱，慢慢翻炒；豆瓣酱炒香后，放入姜、蒜；</li>
+<li>姜蒜翻炒10秒，就放入肉沫，用锅铲尽快把肉沫散开，不停翻炒；</li>
+<li>肉沫炒散后，放入一点胡椒粉，一小勺料酒，继续翻炒片刻，把肉沫水分炒干；</li>
+<li>把豆腐放进来，加水没到豆腐8分满（别加太多，这个不是豆腐汤），然后开大火，把豆腐弄匀后加入2勺生抽，弄均匀后，盖上锅盖，继续用2档小火炖煮；</li>
+<li>水开后再煮2分钟，打开盖子开始调味。先尝一下锅里的汤，如果盐度合适就不用加盐，否则要补一点盐，加一点鸡精、味精，调料和匀，动作轻一点别把豆腐弄碎了；</li>
+<li>切好的蒜苗倒入锅中，翻炒；</li>
+<li>把水淀粉搅散，倒入锅中勾芡，可以让汤汁变得浓稠，不停搅拌20秒后出锅；</li>
+</ol>
+<p> </p>
+<h2 id="麻婆豆腐">麻婆豆腐</h2>
+<p>主料：豆腐一块，老豆腐嫩豆腐都可以，老豆腐吃起来更香、嫩豆腐口感嫩滑</p>
+<p>辅料：猪/牛瘦肉一小块</p>
+<p>调料：豆瓣酱、豆豉、盐、生抽、味精、鸡精、辣椒粉、蒜苗2颗、淀粉、花椒粉、食用油</p>
+<p>要把豆腐切成拇指大小的方块，切小一点方便入味。先横着慢慢切，正常大小的豆腐切两刀，变成三个厚片就行，每层1.2厘米厚。接着码放整齐，竖着切，切成大小统一的小方块。切好都放一边备用。</p>
+<p>一小块瘦肉，洗净后切成肉沫。放一边备用。</p>
+<p>两颗蒜苗，洗净后去掉根部。茎的部分用刀拍破，然后和叶子一起切成1cm长的小段。放一边备用。</p>
+<p>拿出几颗豆豉，稍微改小，放一边备用。</p>
+<p>取2大勺淀粉，加小半碗水，和匀做成水淀粉。</p>
+<ol type="1">
+<li>锅中加冷水，水要多一点，把豆腐倒进来，开大火焯水。焯水的目的是去除豆腐的豆腥味。需要加入2勺食盐，让豆腐有底味。大火把水烧开后，再转中小火煮一分钟；煮完后把豆腐倒出来沥干水分备用；</li>
+<li>锅烧干、倒油，中小火，倒入一大勺豆瓣酱；豆瓣酱炒香后倒入豆豉、2大勺辣椒粉，火一定不要大，不然辣椒就炒糊了；</li>
+<li>辣椒炒10来秒，出香味后倒入肉沫翻炒，炒散后撒一小勺胡椒粉、一小勺料酒，然后再炒30秒左右；</li>
+<li>倒入清水，能刚好末过豆腐，转大火把水烧开；</li>
+<li>水开后转中小火调味：4勺生抽，和匀时尝尝咸度，此时汤的咸度要和日常吃菜的咸度一样，不够就补盐，汤要咸一点，否则一会煮豆腐没味；</li>
+<li>把豆腐倒入锅中，锅铲推散推均匀，用二档小火慢慢煮，让豆腐吸收味道。煮的时候用锅铲时不时铲一下锅底，免得粘锅；</li>
+<li>看时间，大概4~5分钟，锅里的水还剩一半时，放入一勺鸡精、一勺味精，和匀。需要注意，由于锅里全是豆腐，所以大概豆腐露出1/3的时候，汤就是还剩一半的量；千万不要等豆腐露出一半了再放调料，此时汤就很少了；</li>
+<li>把水淀粉抓散，倒入1/3，用锅铲背部不停的轻轻地推，和匀；等半分钟左右淀粉熟了，再倒剩下的1/3，再不停的推半分钟；</li>
+<li>倒入切好的蒜苗，再把剩下的水淀粉全部倒进了，不停的推半分钟。淀粉分三次加的原因是加入的淀粉会让锅里的汤汁一次比一次浓稠，淀粉可以更好的包裹食材。</li>
+<li>出锅，表面轻轻撒一层花椒粉；</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E5%88%80%E5%B7%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E5%88%80%E5%B7%A5/" class="post-title-link" itemprop="url">二、刀工</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-07-13 20:53:46" itemprop="dateCreated datePublished" datetime="2026-07-13T20:53:46+08:00">2026-07-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-08-29 21:39:29" itemprop="dateModified" datetime="2026-08-29T21:39:29+08:00">2026-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/" itemprop="url" rel="index"><span itemprop="name">厨艺</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>做好一道菜，七分靠刀工，三分靠炉工。</p>
+<h1 id="持刀">持刀</h1>
+<p>常见的<strong>错误</strong>的持刀姿势：</p>
+<ul>
+<li>食指按在刀背上；</li>
+<li>拇指按在刀背上；</li>
+<li>只握刀把</li>
+</ul>
+<p>正确的握刀方法，需要拇指和食指扶着刀身，这样可以紧紧的握住刀，切起菜来也非常灵活。</p>
+<hr />
+<h1 id="切块">切块</h1>
+<h2 id="南瓜冬瓜汤">南瓜/冬瓜汤</h2>
+<p>买来的南瓜皮很厚，需要用刀来切。一个南瓜切掉一半后，像刨子一样刮掉皮。然后再切一半（1/4）后，把南瓜瓤去掉。</p>
+<p>切菜就是左手和右手的配合，左手起到两个左右：</p>
+<p>第一就是支撑作用，握住食材后，<strong>用中指的第一个关节支撑刀</strong>，手指往里面握。刀抬起的高度永远不要超过中指的第一个关节。千万不要把手指放平来切菜，很容易切到手，且没有效率。刚开始学的时候，手掌不要悬空，要么贴着案板，要么贴着食材。，牢牢控制住食材，防止食材到处跑。</p>
+<p>第二个作用就是量距离，要切多大，左手就要留出多大的位置。切一块后左手往后退再切。</p>
+<p>把南瓜切成块。</p>
+<p>冬瓜同理，先用刀去皮。切成两半后把瓤去掉。然后按照切南瓜的样子，左手配合右手切。</p>
+<p>切蔬菜就是一切到底，不要考虑什么推、拉、锯什么的都不要管。</p>
+<blockquote>
+<p>切蔬菜时食材很容易沾刀，有一个小窍门就是刀稍微往右边（外边）倾斜一点点，这样切菜后会往右边掉，就不会粘在刀上了。</p>
+</blockquote>
+<p>切完南瓜，再切一点小葱，切成葱花，2~3毫米就行。切姜片，1毫米后左右。一个汤中准备3、4片即可，有提鲜增香的作用。</p>
+<ol type="1">
+<li>锅中加水，你用什么容器来装菜，就用什么容器来量需要多少水，水到容器的七成或八成；然后锅中放入南瓜、3、4片姜片，盖上盖子，直接四档大火把水烧开；</li>
+<li>转2档小火慢煮，约10分钟；判断有没有煮好就用筷子戳一下南瓜，没有阻力就说明煮好了；</li>
+<li>煮好后加入调料：盐、鸡精、味精、少许食用油；</li>
+<li>出锅后加入少许葱花；</li>
+</ol>
+<p>用这个方法可以做南瓜汤、冬瓜汤、芋头汤之类的。</p>
+<p>当出锅后，还可以继续加工，放入锅中二次四档大火烧开，开锅后放入羊肉片，打去浮沫煮2、3分钟即可出锅。</p>
+<hr />
+<h1 id="切片">切片</h1>
+<h2 id="焖炒冬瓜片">焖炒冬瓜片</h2>
+<p>一片冬瓜，切一半，去皮去瓤。</p>
+<p>切片和切块一样的手法，但切片一定要注意均匀，1mm厚左右即可。如果不均匀，煮菜时相同的时间有的是生的，有的都煮烂了。</p>
+<p>刚开始不要着急，慢慢来。后期熟练的时候，可以切三退一或者切五退一，先留出三片(五片)位置，切完后再后退，这样可以找到饭店大厨切菜的感觉。</p>
+<p>这道菜要用到两个新调料：</p>
+<p>第一个是耗油。耗油有一种细腻的咸鲜感，起到提味增鲜的作用；第二个是生抽，起到提味、增香、上色。</p>
+<ol type="1">
+<li>大火起锅烧油，放入切好的冬瓜，翻炒2分钟；</li>
+<li>放入一丢丢水，防止冬瓜糊锅；</li>
+<li>三档火候盖盖子煮一分钟。冬瓜本身含水，但需要煮一会才能把自身的水分释放出来，所以需要提前加一点点水，算是“引子”；</li>
+<li>一分钟后，把面上的冬瓜翻炒到下面，地下的冬瓜翻上来，让食材受热均匀，再焖煮一分钟；</li>
+<li>放入耗油、少许生抽，和匀。生抽不易过多，否则颜色太深；</li>
+<li>放入盐、味精、鸡精。耗油和生抽都带盐，所以不用放太多。</li>
+<li>出锅</li>
+</ol>
+<hr />
+<h1 id="切丝">切丝</h1>
+<h2 id="青椒炒土豆丝">青椒炒土豆丝</h2>
+<p>土豆先去皮，然后清水洗干净。先把土豆切成片，然后再切成丝。</p>
+<p>土豆整体一面宽、一面窄。先在宽的那面切2、3刀，大概2mm厚，这样可以切出一个平面来。接下来把这个平面当作底，这样土豆就比较稳定，不会滚来滚去。然后就可以切片了。</p>
+<p>切完后，把之前切下来的那几片放在前面，然后用刀轻轻的拍均匀拍散开。然后就可以切丝了。只要切片切的匀，切丝就均匀。</p>
+<p>切好的土豆丝用清水浸泡，防止变色。</p>
+<p>炒之前要用清水淘洗以下，洗去土豆上的淀粉，这样炒出来的土豆丝就不会黏黏糊糊的。沥干水分备用。然后把青椒切成丝，两瓣蒜切成片。</p>
+<ol type="1">
+<li>大火锅烧干，放油；</li>
+<li>油热就放蒜，然后马上放入土豆丝、辣椒丝。</li>
+<li>大火慢炒，让食材充分受热。（家里的火不能和饭店里的火比，所以家中都是大火慢炒）；</li>
+<li>大概炒2分钟，土豆丝变透明了，可以放入盐、味精、鸡精。使劲和匀；</li>
+<li>出锅；</li>
+</ol>
+<hr />
+<h1 id="切丁">切丁</h1>
+<h2 id="扬州炒饭">扬州炒饭</h2>
+<p>原料：黄瓜、胡萝卜、火腿肠、鸡蛋、小葱、生姜、冷米饭。</p>
+<p>黄瓜去头去尾。黄瓜需要切成6mm厚的丁，所以先要切成6mm厚的片，要竖着切，不要横着切；切完后再把黄瓜切成丝，也是6mm宽度；最后把丝码放整齐，按照6mm厚切成丁。</p>
+<p>胡萝卜去掉根部，和黄瓜一样切6mm厚的片，竖着切。然后切成6mm的丝；然后切丁。</p>
+<p>火腿肠重复操作，第一步切片也竖着切。</p>
+<p>把这些原料都码放到一个盘子里。</p>
+<p>接下来切姜末。先切一点薄片，不用太多；然后把姜片切成细丝，然后再切洗沫。其实就是切丁，只不过很细小。</p>
+<p>最后切葱花。直接切成很小的段就行。2、3mm左右即可。</p>
+<p>取一个碗，打入两个鸡蛋，稍微加入盐，一定不要加太多，因为之后炒饭时还要加盐，搅匀鸡蛋，蛋清和蛋黄混合就行，不用打太散。</p>
+<ol type="1">
+<li>大火烧干锅，加入油。
+先煎鸡蛋，所以一定要等油足够热，油热了鸡蛋才能松软酥香</li>
+<li>倒入鸡蛋，两面煎的差不多了就捞出来；</li>
+<li>用刚刚的油煎切好的食材丁，翻炒半分钟后把姜末放进去一起翻炒半分钟；</li>
+<li>倒入米饭、鸡蛋。鸡蛋用锅铲弄碎；慢慢翻炒一分钟；</li>
+<li>放入调料，蛋炒饭放盐能稍微尝出咸味即可。可以用手把调料撒匀，防止一嘴咸一嘴淡，然后疯狂翻炒。</li>
+<li>最后放入葱花，继续疯狂翻炒；</li>
+<li>出锅。</li>
+</ol>
+<hr />
+<h1 id="切沫">切沫</h1>
+<h2 id="蒜蓉油麦菜">蒜蓉油麦菜</h2>
+<p>取三棵油麦菜。如果油麦菜底部发红代表不新鲜，切掉不要。把叶子撕下来，不用切，放在一起用拳头拧，凝成拳头大小的段。油麦菜的颈很好吃，不要扔掉，可以切成薄片。把菜淘洗一下，然后滤干水份。</p>
+<p>直接取半头蒜，大概5-6瓣。蒜头前面很硬，要切掉。</p>
+<p>蒜末如果直接用菜刀胡乱切，会把蒜弄的到处都是，很难打扫。可以先把蒜切小一点，然后胡乱剁。有一种切法是用另一只手拿着菜刀的另一头，左右摇摆来回切。</p>
+<ol type="1">
+<li>锅烧干放油；润一下锅；</li>
+<li>看到锅开始冒烟后，放入蒜末，稍微滋滋几下就好，然后马上放入油麦菜。</li>
+<li>翻炒1、2分钟，等叶子炒蔫巴了，放入盐、味精、鸡精，和匀出锅。</li>
+</ol>
+<hr />
+<h1 id="滚刀块">滚刀块</h1>
+<p>滚刀块不算太常用，在炖、闷的菜品里用的比较多，可以用这种切法切土豆块、窝笋块、萝卜块。</p>
+<h2 id="素炒胡萝卜">素炒胡萝卜</h2>
+<p>原料：4、5根胡萝卜、三瓣蒜。</p>
+<p>胡萝卜清洗，去头去尾。</p>
+<p>滚刀块就是滚着切。先在一头斜着切一刀，然后胡萝卜往我们这边滚90°，再斜着切一刀，厚度要和之前的基本一致。循环往复。</p>
+<p>大蒜去皮切片。</p>
+<ol type="1">
+<li>锅烧干放油，放入蒜片煎几秒钟；</li>
+<li>放入切好的胡萝卜，再煎一分钟；</li>
+<li>加水，大概淹没食材三分之一。因为胡萝卜切的滚刀块不容易熟，需要盖上锅盖焖煮一段时间，用二档小火焖煮5分钟。</li>
+<li>打开锅盖，翻炒一下，让成熟度均匀。胡萝卜不容易入味，需要提前放盐。放入盐后再翻炒一下。然后盖上锅盖继续焖煮3~4分钟；如果水快没了，可以补一点，防止糊锅。</li>
+<li>用锅铲戳胡萝卜，如果能轻松戳动，就代表达到了我们需要的成熟度。胡萝卜煮耙且没有多余的汤汁，就可以放鸡精和味精，如果有多余的汤汁，开大火收汁。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E5%88%9D%E5%85%A5%E5%8E%A8%E6%88%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/cook/%E5%88%9D%E5%85%A5%E5%8E%A8%E6%88%BF/" class="post-title-link" itemprop="url">一、初入厨房</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-09 21:55:16" itemprop="dateCreated datePublished" datetime="2026-06-09T21:55:16+08:00">2026-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-11-07 19:16:55" itemprop="dateModified" datetime="2026-11-07T19:16:55+08:00">2026-11-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E5%8E%A8%E8%89%BA/" itemprop="url" rel="index"><span itemprop="name">厨艺</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基本厨具">基本厨具</h1>
+<ul>
+<li>锅具
+<ul>
+<li>炒锅：万能的，煎炒烹炸样样精通；</li>
+<li>汤锅：用于煮面条或者烧水；</li>
+<li>平底不粘锅：用于煎饼、煎肉；</li>
+<li>小奶锅：做快手菜</li>
+</ul></li>
+<li>菜刀
+<ul>
+<li>切刀：刃薄，锋利，适合切菜；</li>
+<li>砍刀：刃厚，稍微钝，适合砍骨头；</li>
+</ul></li>
+</ul>
+<h1 id="家中必备调理">家中必备调理</h1>
+<ul>
+<li>生抽</li>
+<li>陈醋</li>
+<li>油</li>
+<li>大蒜</li>
+<li>生姜</li>
+<li>淀粉</li>
+<li>鸡精</li>
+<li>味精</li>
+<li>盐</li>
+</ul>
+<p>以上9个调料可以应付80%的家常菜。可以适当添加以下几种扩充：</p>
+<ul>
+<li>料酒</li>
+<li>豆瓣酱</li>
+<li>干辣椒</li>
+<li>白糖</li>
+<li>胡椒粉</li>
+</ul>
+<hr />
+<h1 id="认识盐">认识盐</h1>
+<p>  盐是百味的基础，做菜时别的调料可以不放，但绝对不能少了盐。放盐的原则：<strong>宁少勿多</strong>！！</p>
+<h2 id="煎鸡蛋">煎鸡蛋</h2>
+<ol type="1">
+<li>碗中打入两个鸡蛋，<strong>加入适量食盐</strong>，一个鸡蛋就是一个小指甲盖那么多的盐；</li>
+<li>用筷子把鸡蛋打散。左手拿碗可以稍微向右手倾斜，不容易撒出去。打10多秒即可，目的是让蛋清和蛋黄混在一起；</li>
+<li>开火，把锅中水分烧干；</li>
+<li>倒油，用油把锅底润一下；</li>
+<li>油冒烟后，倒入鸡蛋；</li>
+<li>鸡蛋蛋清凝固后记得用锅铲捅破，让里面蛋黄流出来，否则里面煎不到；</li>
+<li>蛋液定型后翻面，一面不要煎太久，多操作几次，两面金黄即可捞出；</li>
+</ol>
+<p>注意，油少或者油温过高，容易煎糊；油温太低，煎出的蛋不够松软。</p>
+<h2 id="荷包蛋">荷包蛋</h2>
+<ol type="1">
+<li>小火，倒入少许的油；</li>
+<li>油在微微冒烟时，打一个鸡蛋下去，让鸡蛋在油里慢慢的煎，等定型（边缘变的焦黄）后翻面；</li>
+<li>撒上少许盐，倒在手掌上分开撒，再翻面；</li>
+<li>多翻面，让每一面都接触到盐，然后盛出；</li>
+</ol>
+<p>  喜欢溏心蛋的可以少煎一会或者只煎一面，不过从营养学的角度来说不建议吃溏心蛋，溏心蛋没有熟，不利于人体吸收。全熟蛋杀菌效果更彻底，更利于健康。</p>
+<hr />
+<h1 id="味精与鸡精">味精与鸡精</h1>
+<p>  鸡精和味精主要用于调味，放很少一点就可以成倍的提升菜品的口味。不过很多人认为鸡精和味精有害，尤其是味精在加热到120度后会生成焦谷氨酸钠，可能致癌。但有论文指出适量吃鸡精和味精都是安全的。只需要注意味精温度过高会失去鲜味，所以只在出锅前加味精。</p>
+<h2 id="炒空心菜味精和鸡精的运用">炒空心菜——味精和鸡精的运用</h2>
+<ol type="1">
+<li>择菜——把食材处理的长短大小统一，方便食用，方便烹饪；把叶子都摘下来，如果空心菜不是很老，那么根部也可以留着，只要用指甲掐一下根部，能掐动就代表还不老；</li>
+<li>洗菜，把泥沙充分洗掉，淘洗就行，不要用手搓；洗完用滤网捞出来；</li>
+<li>开火，直接开最大的火，把锅里水烧干；</li>
+<li>倒油，对于铁锅来说宁多勿少防止炒糊；</li>
+<li>油开始冒烟后倒入蔬菜，动作一定要快，用菜把油盖住防止砰溅；绿叶菜很容易熟，所以需要经常的翻炒，每隔几秒钟就翻炒一下；这个就看火大小，火大勤翻炒，火小慢翻炒；</li>
+<li>叶子快蔫掉时代表快熟了，此时放调料，放入盐、鸡精、味精，撒开一点。盐要多放一点（因为蔬菜的水多），鸡精和味精用量是盐的1/4~1/5即可，鸡精可以更少；放入调料后疯狂翻炒，让调料均匀；</li>
+</ol>
+<blockquote>
+<p>鸡精和味精一起使用有1+1&gt;2的效果。</p>
+</blockquote>
+<blockquote>
+<p>用旺火炒菜的原因：用旺火炒菜更好吃，且蔬菜中有很多的维生素被加热后容易流失，所以用旺火炒菜可以尽快的出锅。</p>
+</blockquote>
+<h1 id="炒菜的第一个公式">炒菜的第一个公式</h1>
+<p><code>油+菜+盐+鸡精\味精 -&gt; 出锅。</code>先把油烧热，放入菜，菜快熟的时候放入盐、鸡精、味精，把调理和匀就可以出锅了。至少80%带叶子的蔬菜都可以这么做。</p>
+<p>翻炒时注意，如果菜的茎叶比较厚实，类似白菜，就可以适当减少翻炒的频率。</p>
+<p>放调料的时候可以先放到锅铲上，这样可以控制用量，也方便和均匀。</p>
+<p>根据经验来看，有些蔬菜含水量很大，炒菜后的汤水会很多，这时候要么选择把汤汁倒掉，要么就多放盐。</p>
+<hr />
+<h1 id="干辣椒大蒜花椒">干辣椒、大蒜、花椒</h1>
+<p>干辣椒、大蒜、花椒也属于调料的范畴，不过他们是土里长出来的天然调料，一样可以增加食品的风味。这三个是川菜中的三剑客，经常形影不离。</p>
+<p>新手炒菜容易把这些配料炒糊，因为油温太高了。在熟能生巧之前，可以在放入油后立马下锅配料。</p>
+<h2 id="炒菜苔">炒菜苔</h2>
+<p>  菜苔择菜的时候需要一点小技巧，用一把刀从根部切十字，第一刀切到第二片叶子的位置，第二刀切到第三片叶子的位置。然后从第三片叶子稍微往上一点的地方切掉，这样就是一个十字花刀的形状，方便炒熟也方便入味。剩下的部分很细，切一刀就可以了。菜苔上有花的话把花去掉，口感不好。如果买来的菜苔根部很老的话，还需要先去根部的皮。</p>
+<p>  一盘菜用三颗大蒜，三个干辣椒，几粒干花椒：</p>
+<ul>
+<li>用到把干辣椒切成一厘米长的段；</li>
+<li>大蒜剥皮，剥皮最快的方法就是用菜刀拍。然后把大蒜切成片。</li>
+</ul>
+<p>炒菜步骤：</p>
+<ol type="1">
+<li>烧半锅水，水开后把菜苔焯水（菜苔的茎太厚了，不好炒，需要提前焯水），煮1分钟到1分半即可，不要太久，否则就不脆了；</li>
+<li>把菜苔倒入滤网中，用冷水冲，可以保持爽脆口感；</li>
+<li>锅烧干后倒油，然后马上放入准备好的干花椒、干辣椒；看到干辣椒微微发黑的时候放大蒜，然后立即放入准备好的菜；</li>
+<li>提前焯水后菜基本已经熟了，所以翻炒片刻就可以放盐、味精、鸡精，和匀后出锅；</li>
+</ol>
+<p> </p>
+<h3 id="手撕莲白">手撕莲白</h3>
+<p>洋葱、大白菜、卷心菜等都需要去掉外边1到2层，之地很老，卖相差，口感也不好。</p>
+<p>然后把莲白一层一层的拨下来，每一片叶子在随意撕成片。手撕的比刀切的好吃，因为手撕的断面不整齐，更容易入味。只要叶子部分，菜帮子可以丢掉。撕完之后清洗滤水。</p>
+<p>依旧准备大蒜、干辣椒、干花椒。莲白菜不需要焯水。</p>
+<p> </p>
+<h3 id="素炒四季豆">素炒四季豆</h3>
+<p>四季豆的挑选：粗壮的四季豆口感稍微老，但是四季豆味道足，缺点是筋多；细长的四季豆口感更细嫩。挑选时看表面有没有黑点或者坑坑洼洼的，这可能被虫子咬过。</p>
+<p>四季豆比较耐放，在冰箱中放7~10天没问题。</p>
+<p>四季豆择菜时要把两侧的筋去掉，从头部的尖开始，逆着尖使劲往后一拉就行，然后把尾巴掐下一点，逆着把另一侧筋去掉。两侧筋都去掉后，把四季豆恰成5厘米左右的段，这时中间一些没有去掉的筋就露出来了，可以去掉。</p>
+<p>四季豆没有泥沙，清洗时使劲拿手和一下就行。</p>
+<p>素炒四季豆的配料，可以准备2-3瓣大蒜切片。还有一个秘密武器：留兰香（食用薄荷），取顶端的部分，掐5-6根左右，用刀稍微切碎即可。</p>
+<p>生的四季豆吃了会引起食物中毒，所以四季豆的做法要分两步：先制熟，然后回锅调味。</p>
+<p>在饭店里制熟四季豆，用的是大量热油，又快又好吃，但是家里这样做太浪费了。家里比较经济实惠的方法就是用水煮，把四季豆放入锅中，加水，水要稍微没过四季豆。盖上盖子大火烧开，然后转中火再煮5~10分钟。出锅后用凉水冲一下口感更佳。</p>
+<p>剩下的步骤很简单：大火烧干锅，放油、放入大蒜，放入四季豆翻炒。不过四季豆很难入味，所以需要更早的时候放入盐，然后再翻炒两三分钟。最后调为中火再煎两三分钟。出锅前放入鸡精、味精、食用薄荷，翻炒几秒把薄荷炒到打蔫即可出锅。</p>
+<p>豇豆、扁豆都可以用这个方法来做。</p>
+<h1 id="火候">火候</h1>
+<p>炒菜中火候是个动态的概念，菜到了不同的时候会用到不同的火候。炖鸡的时候先大火烧开然后小火慢炖；红烧肉先大火烧开转小火慢炖最后大火收汁。</p>
+<p>家用燃气灶可以分为四个挡位：</p>
+<ol type="1">
+<li>燃气灶打开后直接拧到最后，火最小但不会熄灭，这个就是1档，炖汤、放调料、煎蛋时会用到这个档位；</li>
+<li>往回拧，外环稍稍有一点火焰，这个就是二档，一般在炖煮、蒸菜的时候会用到；</li>
+<li>继续往回拧，外环火焰加大，这个就是三档，一般炒菜时使用；</li>
+<li>拧到最中间，火焰最大，就是第四档，火力全开模式，炒菜或需要把水烧开时使用。</li>
+</ol>
+<h1 id="养锅">养锅</h1>
+<p>炒菜的锅就只用来炒菜，不要用来烧水或炖汤，这样铁锅表面就会一直有一层油膜。有了这层膜，铁锅就成了天然的不粘锅。油膜不怕清洗、不怕洗洁精，但就是怕水。</p>
+<h2 id="葱油饼">葱油饼</h2>
+<p>做个葱油饼，看看铁锅是否能不粘。</p>
+<p>原料：免费、盐、鸡蛋、葱花。一般2勺面粉搭配一个鸡蛋。</p>
+<ol type="1">
+<li>盆中放入面粉，再放入一点盐，面粉加清水和匀。</li>
+<li>把干面粉全部和湿后加入鸡蛋和匀。一定要先加水后加鸡蛋，否则面粉容易起球，很难和均匀。</li>
+<li>鸡蛋、面粉和匀后加入葱花，继续和匀。可以再加点水，只要可以用筷子蘸起来后可以轻松滴下去就可以了。</li>
+<li>用二档小火（之后全程小火）锅烧干放油，让油在锅周围绕一圈，防止之后粘锅；</li>
+<li>放入准备好的面。新手可以从1勺开始尝试，放入面越多难度越大。让面绕着锅溜一圈，成一个圆形。先不要动，调整以下让饼定型。</li>
+<li>定型后抖动铁锅，让饼从铁锅上脱落；如果锅保养的不好那么就粘锅了，此时可以往周围滴几滴油。用锅铲把饼弄下来。</li>
+<li>可以晃动铁锅，让饼在锅内滑动受热均匀。听到沙沙的声音就可以翻面了。每翻一次煎一分钟即可，翻2、3次。每面都煎到金黄后可以出锅。</li>
+</ol>
+<p> </p>
+<p>铁锅用完一定要擦干，防止里面有水，否则很容易生锈。</p>
+<p> </p>
+<h1 id="调料分类">调料分类</h1>
+<h2 id="油">油</h2>
+<p>食用油算不上调料，但却是不可缺少的部分。日常可以换着花样用油，我们人体需要从吃到的油脂中获取单不饱和脂肪酸、多不饱和脂肪酸、饱和脂肪酸，长期单一的吃某一种油不能满足身体的需要，所以可以换着花样吃，这次买大豆油，下次就买花生油。</p>
+<p>动物性油脂也是重要的油脂来源。</p>
+<h2 id="盐">盐</h2>
+<p>盐是百味之首，也是百味的基础。买盐要看标签。一般我们吃的是“加碘食盐”。标识“腌制用盐”一般用来腌制咸菜泡菜。还有的盐会标注“粗盐”或“大粒盐”，这种盐颗粒比较大，不容易溶解，不适合家中炒菜。</p>
+<h2 id="味精">味精</h2>
+<p>味精用来提升菜品的鲜味。一般要买标注“99%味精”的味精，意思是谷氨酸钠含量达到99%。</p>
+<h2 id="鸡精">鸡精</h2>
+<p>主要成分还是味精，因为加了风味物质，吃起来有鸡肉味。鸡精的鲜味需要热量激发，所以用在热菜中。</p>
+<h2 id="酱油">酱油</h2>
+<p>黄豆酱油、红烧酱油、生抽、老抽、味极鲜、蒸鱼豉油都属于酱油，只是因为配料和酿造工艺不同所以有了不同的风味和口感。可以只买一瓶生抽，老抽的主要作用是上色。</p>
+<h2 id="醋">醋</h2>
+<p>分为陈醋和白醋。</p>
+<p>陈醋各个城市的主要品牌不同。陈醋分为各个等级，比如特级、一级、二级等等，差别在于总酸度，酸度越高表示酸味越浓，特技最酸，依次递减。</p>
+<p>白醋也叫米醋，这种醋就是纯粹的酸，是煮酸菜鱼的必备调料。买白醋看度数，度数越高醋越酸。度数其实就是表示乙酸浓度，6度醋就是每100ml含有6g乙酸，没有标度数的就看配料表。</p>
+<h2 id="料酒">料酒</h2>
+<p>料酒的作用就是去腥。好的料酒应该起到去腥增香的作用。含有黄酒、香辛料等成分的料酒都是不错的选择。</p>
+<h2 id="耗油">耗油</h2>
+<p>买海天的就行。耗油就是一个辅助性质的存在，味道像生抽，但是比生抽更淡。耗油的鲜味和鸡精一样需要热量激发，所以一般用在热菜汤中。</p>
+<h2 id="豆瓣酱">豆瓣酱</h2>
+<p>买豆瓣酱看产地，要是四川郫县产的。其次看上面的油色，颜色红亮为上品。然后看颜色，好的豆瓣酱色泽红润不暗淡。</p>
+<h2 id="鲜花椒油藤椒油">鲜花椒油/藤椒油</h2>
+<p>鲜花椒是一种比较难获得的原料，所以一瓶保留了鲜花椒滋味的鲜花椒油/藤椒油就是家里不错的选择。藤椒油和鲜花椒油的区别在于，藤椒油清香，鲜花椒油麻味更足。</p>
+<h2 id="芝麻油">芝麻油</h2>
+<p>芝麻油是一种很好的火锅蘸料。一些菜放入芝麻油可以让口味变的更醇厚。购买时看配料表，最好选择纯芝麻压榨的，不要买食用油和芝麻油调配的。</p>
+<h2 id="干花椒">干花椒</h2>
+<p>干花椒分为红花椒和青花椒，青花椒又叫麻椒。红花椒突出香味，青花椒有独特的麻香味。家里选择青花椒即可。</p>
+<h2 id="花椒粉">花椒粉</h2>
+<p>如果讨厌吃到大颗粒的干花椒，那么可以用花椒粉替代。买的时候要看配料表，应该只有花椒才行。</p>
+<h2 id="白胡椒粉">白胡椒粉</h2>
+<p>注意是白胡椒粉。黑胡椒一般用于西餐。白胡椒粉是去腥神器，做各种肉类鱼类菜肴都可以用到。买的时候要看配料表只有白胡椒才行。</p>
+<h2 id="干辣椒">干辣椒</h2>
+<p>市面上的干辣椒品种繁多，并不是所有干辣椒都适合拿来炒菜。建议购买“新一代”干辣椒，名字就叫“新一代”，一般超市都难看到。卖辣椒窍门：个小的比个大的辣，个细的比个粗的辣。</p>
+<h2 id="桂皮八角">桂皮、八角</h2>
+<p>八角又俗称大料。桂皮和八角这两种香料都非常适合拿来炖肉，可以使肉类菜肴去腥解腻。一般两种香料同时使用。</p>
+<h2 id="陈皮">陈皮</h2>
+<p>陈皮就是经过特殊处理的橘子皮。功能是去腥、除膻、增香、解腻、开胃。煮牛羊肉的时候丢一块进去，汤鲜肉香。</p>
+<h2 id="红薯粉">红薯粉</h2>
+<p>新手可以简单的把超市里买到的嫩肉粉、红薯粉、生粉、玉米淀粉、土豆淀粉等看作是一个东西。他们都属于淀粉，作用都是让肉质变得鲜嫩。新手只需要用好这一个特性即可。</p>
+<h2 id="白糖">白糖</h2>
+<p>白糖在一些糖醋类菜肴中会用到。</p>
+<h2 id="白芝麻">白芝麻</h2>
+<p>白芝麻可以用来做辣椒油，或者给菜品做点缀。也有增香的作用。白芝麻分为去皮白芝麻和没有去皮的白芝麻。要注意生的白芝麻不香，需要炒熟之后才香，突出芝麻味。凉菜、起锅后放芝麻的菜用熟芝麻，需要芝麻和食材一起过油炸或者炒的菜用生芝麻。</p>
+<h2 id="十三香">十三香</h2>
+<p>一些麻辣干香的菜品中会用到。</p>
+<h2 id="孜然粉">孜然粉</h2>
+<p>孜然粉就是用于烧烤的。</p>
+<h2 id="生姜">生姜</h2>
+<p>去腥增香的神器。可以选择个头大的洗干净的生姜，虽然理论上来说个头小的更香，但是清洗太麻烦了。炒肉、炖鱼的时候放一点生姜准没错。</p>
+<p>姜还是老的辣，家里的姜一般都是老姜，只有老姜才有比较好的去腥增香效果。与之对应的是仔姜，只在特殊的菜中才会用到。</p>
+<h2 id="大蒜">大蒜</h2>
+<p>大蒜也是去腥增香的神器。大蒜品种很多，买普通的就行。大蒜买回来放冰箱保鲜室保存防止发芽。</p>
+<h2 id="小葱">小葱</h2>
+<p>小葱也有去腥增香的作用，一般用于汤菜、肉菜中。</p>
+<h2 id="大葱">大葱</h2>
+<p>大葱也是去腥增香，尤其是去腥效果非常强，煮鱼的时候可以放两根。因为其爽脆鲜嫩的口感，也可以当配菜使用。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/%E9%A5%AE%E9%A3%9F/%E9%A5%AE%E6%96%99/cook/%E8%B0%83%E9%85%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/%E9%A5%AE%E9%A3%9F/%E9%A5%AE%E6%96%99/cook/%E8%B0%83%E9%85%92/" class="post-title-link" itemprop="url">调酒</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-06-08 22:08:20" itemprop="dateCreated datePublished" datetime="2026-06-08T22:08:20+08:00">2026-06-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-09 21:11:06" itemprop="dateModified" datetime="2026-06-09T21:11:06+08:00">2026-06-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/" itemprop="url" rel="index"><span itemprop="name">饮食</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A5%AE%E9%A3%9F/%E9%A5%AE%E6%96%99/" itemprop="url" rel="index"><span itemprop="name">饮料</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="六大基酒">六大基酒</h1>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>基酒</th>
+<th>核心风味来源</th>
+<th>一句话性格</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>金酒Gin</td>
+<td>杜松子为主，加橙皮、桂皮、芫荽籽等植物</td>
+<td>杜松子为主，加橙皮、桂皮、芫荽籽等植物</td>
+</tr>
+<tr class="even">
+<td>伏特加 Vodka</td>
+<td>几乎无味，仅有轻微的谷物或马铃薯感</td>
+<td>透明、中性、诚实，不抢话的聆听者</td>
+</tr>
+<tr class="odd">
+<td>威士忌 Whiskey</td>
+<td>麦芽、谷物、桶（香草、焦糖、烟熏）</td>
+<td>深沉、复杂、有故事感，像旧书或皮衣</td>
+</tr>
+<tr class="even">
+<td>朗姆酒 Rum</td>
+<td>甘蔗糖蜜，陈年后有焦糖、热带水果感</td>
+<td>热情、甜润、不设防，像海边派对</td>
+</tr>
+<tr class="odd">
+<td>龙舌兰 Tequila</td>
+<td>蓝色龙舌兰植物芯，有鲜明的青草、胡椒、矿物味</td>
+<td>野性、直接、带一点泥土感</td>
+</tr>
+<tr class="even">
+<td>白兰地 Brandy</td>
+<td>葡萄或其他水果，橡木桶带来葡萄干、可可、花香</td>
+<td>优雅、圆润、偏暖调，像老派绅士</td>
+</tr>
+</tbody>
+</table>
+<h2 id="伏特加">伏特加</h2>
+<p>  鸡尾酒中的万金油，突出纯净，就像一张空白画纸，可以填充任意的风味和材料，包括果汁、咖啡和奶茶。不知道喝什么，但就是想喝酒的时候，选择伏特加就不会出错。推荐：斯米诺、SKYY、绝对伏特加；如果想要品质好的伏特加，可以选绝对亦乐、灰雁。</p>
+<h2 id="金酒">金酒</h2>
+<p>  金酒又被称作风味伏特加，是在蒸馏烈酒的基础上加以杜松子为首的各种香料和草本来增加风味。所以金酒最大的特点就是有草本气息。不同品牌做出的风味不一样。推荐必富达、添加利、孟买蓝宝石。</p>
+<h2 id="朗姆酒">朗姆酒</h2>
+<p>  带有浓浓热带气息的海盗酒，本身的原料是甘蔗糖蜜，所以喝起来有香甜感，做出的鸡尾酒也有热带风情。最常见的就是百加得。进阶的话朗姆酒有细分：金朗姆、黑朗姆、陈年朗姆等，刚刚入门只需要一瓶白朗姆即可。</p>
+<h2 id="龙舌兰">龙舌兰</h2>
+<p>  具有异域风情的酒。必须使用墨西哥当地的蓝色龙舌兰草作为原料。派对和夜店常见的喝法是把盐放在虎口上，先舔一口盐，再喝一shooter龙舌兰，最后再咬一瓣超酸青柠。国内性价比高的龙舌兰就是奥美加、培恩。</p>
+<h2 id="威士忌">威士忌</h2>
+<p>  威士忌种类非常多，调酒的话不推荐用高价的单一麦芽威士忌，这种威士忌是纯喝风味的，调酒不需要太强的风味。推荐百龄坛、波本。</p>
+<h2 id="白兰地">白兰地</h2>
+<p>  白兰地的分级是按照年份分级，可以在标签上看到VS、VSOP和XO。XO是陈年时间最久的，VS是最轻的。调酒时推荐用VS，口味风格不会特别突出。</p>
+<hr />
+<h1 id="家庭吧台中的辅料推荐">家庭吧台中的辅料推荐</h1>
+<h2 id="利口酒">利口酒</h2>
+<p>利口酒可以给烈酒加上特殊的风味。</p>
+<ul>
+<li>君度橙酒 COINTREAU</li>
+<li>金巴利 CAMPARI</li>
+<li>味美思 VERMOUTH,味美思是加烈葡萄酒，分为干性、甜性、半干性。</li>
+<li>苦精 Bitters。就是浓缩的草药酒。用于鸡尾酒的提香。</li>
+</ul>
+<h2 id="非酒类材料">非酒类材料</h2>
+<ul>
+<li>柠檬和青柠檬，可以直接用青柠汁。</li>
+<li>各种苏打水。</li>
+<li>果汁</li>
+</ul>
+<hr />
+<h1 id="一些常见的鸡尾酒配方">一些常见的鸡尾酒配方</h1>
+<h2 id="金酒篇">金酒篇</h2>
+<h3 id="gin-tonic-金汤力">GIN &amp; TONIC 金汤力</h3>
+<p>直调酒，不需要搅拌不需要摇晃。</p>
+<ul>
+<li>加冰</li>
+<li>45-60ml金酒</li>
+<li>90-150ml汤力水</li>
+<li>少许青柠汁（可选，经典金汤力不加）</li>
+<li>一瓣青柠做装饰</li>
+</ul>
+<p>勺子只做提拉，不要搅拌，否则气泡会散失</p>
+<h3 id="gimlet-螺丝钻">GIMLET 螺丝钻</h3>
+<ul>
+<li>60ml金酒</li>
+<li>15ml青柠汁</li>
+<li>15ml糖浆</li>
+<li>摇晃，一瓣青柠做装饰</li>
+</ul>
+<h3 id="negroni-尼格罗尼">NEGRONI 尼格罗尼</h3>
+<p>口感苦涩，但是很好看</p>
+<ul>
+<li>30ml金酒</li>
+<li>30ml金巴利</li>
+<li>30ml甜味美思</li>
+<li>搅拌，一片橙子皮做装饰</li>
+</ul>
+<h3 id="tom-collins-汤姆柯林斯">TOM COLLINS 汤姆柯林斯</h3>
+<ul>
+<li>60ml金酒</li>
+<li>30ml柠檬汁</li>
+<li>15ml糖浆</li>
+<li>加满新鲜的苏打水</li>
+<li>摇晃，一片柠檬皮做装饰</li>
+</ul>
+<h3 id="french-75-法兰西75">FRENCH 75 法兰西75</h3>
+<ul>
+<li>45ml金酒</li>
+<li>22.5ml柠檬汁</li>
+<li>22.5糖浆</li>
+<li>加满香槟</li>
+<li>摇晃，长条柠檬皮做装饰</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/AI/cursor/AI/cursor/cursor%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/AI/cursor/AI/cursor/cursor%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">cursor基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-03-22 16:10:53" itemprop="dateCreated datePublished" datetime="2026-03-22T16:10:53+08:00">2026-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-06-09 23:34:44" itemprop="dateModified" datetime="2026-06-09T23:34:44+08:00">2026-06-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/cursor/" itemprop="url" rel="index"><span itemprop="name">cursor</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ai编程">AI编程</h1>
+<p>  传统的编程模型中，开发程序是一项高度专业化的任务。程序员需要具备深厚的技术背景，掌握至少一门编程语言。并且要对复杂的逻辑和算法有着清晰的理解。然而随着AI人工智能技术飞速发展，编程的方式正在迎来革命性的变化。现在迎来了一个全新的阶段：我们不再需要精通晦涩难懂的编程语法，甚至不需要直接面对复杂的代码编辑器。取而代之的是，我们可以像和朋友聊天一样，用自然、日常的语言，向一个强大的AI大模型描述我们的需求。</p>
+<p>  AI编程的核心在于利用强大的AI大模型来辅助甚至主导编程过程。这些AI大模型经过海量数据的训练，具备了理解和生成代码的能力。通过简单的对话聊天，即使是非专业的用户，也能够与AI大模型交互，快速生成所需的程序代码。</p>
+<h1 id="主流ai编程ide对比">主流AI编程IDE对比</h1>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 10%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">工具名称</th>
+<th style="text-align: left;">类型</th>
+<th style="text-align: left;">核心功能</th>
+<th style="text-align: left;">支持模型</th>
+<th style="text-align: left;">价格</th>
+<th style="text-align: left;">优势</th>
+<th style="text-align: left;">劣势</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GitHub Copilot</td>
+<td style="text-align: left;">IDE插件</td>
+<td style="text-align: left;">代码补全、Copilot Chat、支持多种语言</td>
+<td style="text-align: left;">GPT-4o、Claude3.7等</td>
+<td style="text-align: left;">个人用户$10/月或$100/年</td>
+<td
+style="text-align: left;">代码补全能力强、支持广泛的语言、成熟社区</td>
+<td
+style="text-align: left;">对整个代码库的理解有限、基本重构能力较弱</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cursor AI</td>
+<td style="text-align: left;">独立IDE</td>
+<td
+style="text-align: left;">代码生成、重构、自然语言编辑、多文件协作</td>
+<td style="text-align: left;">Open AI系列、Claude系列、DeepSeek系列</td>
+<td style="text-align: left;">有免费版，Pro版本$20/月</td>
+<td
+style="text-align: left;">AI编程第一选择，最强AI编程IDE、接入新模型的速度非常快，适合专业开发</td>
+<td style="text-align: left;">价格较高</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Windsurf IDE</td>
+<td style="text-align: left;">独立IDE</td>
+<td style="text-align: left;">AI
+Flow动态思维画布、实时差分评估、本地优先AI</td>
+<td style="text-align: left;">OpenAI系列、DeepSeek系列</td>
+<td style="text-align: left;">有免费版，Pro版本$15/月</td>
+<td style="text-align: left;">本地运行AI模型，快速性能，以Web为中心</td>
+<td style="text-align: left;">还不够成熟，需要高端硬件</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Trae</td>
+<td style="text-align: left;">独立IDE</td>
+<td style="text-align: left;">自然语言到代码的转化、低代码开发</td>
+<td style="text-align: left;">Claude3.5、DeepSeek R1</td>
+<td style="text-align: left;">免费</td>
+<td style="text-align: left;">国产工具(字节)，免费且有潜力</td>
+<td style="text-align: left;">功能相对基础，社区支持有限</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Codeium</td>
+<td style="text-align: left;">IDE插件</td>
+<td style="text-align: left;">代码生成、聊天、搜索功能</td>
+<td style="text-align: left;">未明确</td>
+<td style="text-align: left;">免费</td>
+<td style="text-align: left;">免费试用、支持多种语言和IDE</td>
+<td style="text-align: left;">功能相对基础</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="cursor安装与基础配置">Cursor安装与基础配置</h1>
+<p>  Curosr是一款基于人工智能的现代化代码编辑器，由Anysphere公司开发。</p>
+<p>  Cursor是基于VS Code开发的一款编辑器，它在保留VS
+Code强大功能和熟悉操作体验的同时，专注于集成AI技术，帮助开发者更高效的编写代码。</p>
+<p>  国内阿里与字节页有基于VS Code开发的IDE：</p>
+<ul>
+<li>阿里Lingma IDE: <a
+target="_blank" rel="noopener" href="https://lingma.aliyun.com/">https://lingma.aliyun.com/</a></li>
+<li>字节Trae：<a
+target="_blank" rel="noopener" href="https://www.trae.com.cn/">https://www.trae.com.cn/</a></li>
+</ul>
+<p><strong>核心特征：</strong></p>
+<ul>
+<li>AI 原生设计：从底层架构就融入了AI能力，而非后期添加的插件；</li>
+<li>智能代码生成：通过自然语言描述快速生成代码片段；</li>
+<li>上下文感知：深度理解项目结构和代码关系；</li>
+<li>实时协助：在编程过程中提供即时的建议和优化；</li>
+<li>多模型支持：集成了多种先进的大语言模型；</li>
+</ul>
+<h2 id="设置">设置</h2>
+<p>如果之前使用VS Code的话，可以</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2026/apps/apps/VSCode%E9%85%8D%E7%BD%AEC++/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/apps/apps/VSCode%E9%85%8D%E7%BD%AEC++/" class="post-title-link" itemprop="url">VSCode配置C/C++</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-03-16 21:04:17 / 修改时间：22:11:02" itemprop="dateCreated datePublished" datetime="2026-03-16T21:04:17+08:00">2026-03-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/apps/" itemprop="url" rel="index"><span itemprop="name">apps</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="vscode的下载和安装">VSCode的下载和安装</h1>
+<ul>
+<li>下载VSCode：<a
+target="_blank" rel="noopener" href="https://code.visualstudio.com/">vscode官网</a></li>
+</ul>
+<p>  安装时有选项，推荐选择“添加到PATH”、“通过Code打开”、“添加到右键菜单”；</p>
+<p>  安装完成后是英文版本，可以安装汉化插件。点击左侧扩展按钮，搜索安装[Chinese(Simplified)]，安装完成后右下角弹窗，点击重启后即可生效。</p>
+<h1 id="c环境配置">C++环境配置</h1>
+<p>  VSCode本质上就是一个轻量级文本编辑器，是不能够直接运行代码的，还需要额外进行配置。</p>
+<h2 id="方案一安装mingw">方案一：安装MinGW</h2>
+<ol type="1">
+<li>下载MinGW-w64:<a
+target="_blank" rel="noopener" href="https://sourceforge.net/projects/mingw-w64/files/">MinGW</a>;</li>
+<li>点击<kbd>Toolchains targetting Win64</kbd>--<kbd>Personal
+Builds</kbd>--<kbd>mingw-builds</kbd>--<kbd>8.1.0</kbd>--<kbd>threads-posix</kbd>--<kbd>seh</kbd>，单击下载里面的压缩包文件。</li>
+<li>解压到一个目录后，我们需要配置环境变量，在系统的环境变量中编辑Path，把“X:\mingw64\bin”的路径添加进去。</li>
+</ol>
+<p>  上述操作完成后，我们的环境就配置完成了，VSCode会自动识别g++编译器。</p>
+<h2 id="方案二复用visual-studio的msvc编译器">方案二：复用Visual
+Studio的MSVC编译器</h2>
+<p>如果熟悉Visual Studio的话，可以直接复用MSVC编译器。</p>
+<p>1、找到MSVC编译器路径，通常在</p>
+<blockquote>
+<p>C:FilesVisual Studio\2022\14.x.x</p>
+</blockquote>
+<p>2、配置VSCode使用MSVC：在VSCode中按<kbd>Ctrl+Shift+P</kbd>，输入“Edit
+Configurations”。在生成的c_cpp_properties.json中配置：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Win32&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePath&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.x.x/include/**&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;defines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;_DEBUG&quot;</span><span class="punctuation">,</span> <span class="string">&quot;UNICODE&quot;</span><span class="punctuation">,</span> <span class="string">&quot;_UNICODE&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;windowsSdkVersion&quot;</span><span class="punctuation">:</span> <span class="string">&quot;10.0.22000.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;compilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.x.x/bin/Hostx64/x64/cl.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c17&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cppStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c++17&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;intelliSenseMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;windows-msvc-x64&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="配置编译环境">配置编译环境</h1>
+<p>需要安装如下的扩展：</p>
+<ul>
+<li>C/C++：提供语法高亮、智能感知、调试支持；</li>
+<li>C++ Themes：优化C++语法高亮；</li>
+<li>CMake Tools：如果使用CMake的话，需要安装这个；</li>
+<li>Code Runner：一键运行代码片段；</li>
+</ul>
+<p> </p>
+<p>推荐安装以下扩展：</p>
+<ul>
+<li>GitLens：增强Git功能；</li>
+<li>Bracket Pair Colorizer：彩虹括号；</li>
+<li>Todo Tree：管理TODO注释；</li>
+</ul>
+<p> </p>
+<h1 id="创建和编译c程序">创建和编译C++程序</h1>
+<ul>
+<li>在本地资源管理器中新建一个文件夹用来存放代码，然后用VSCode打开这个文件夹；</li>
+<li>左边工作区中点击<kbd>新建文件</kbd>，新建一个C语言文件，例如“test.c”；</li>
+<li>编写我们的程序，如hello world。</li>
+<li>点击<kbd>Ctrl+Shift+P</kbd>，搜索“C/C++”，选择<kbd>编辑配置(UI)</kbd>。可以看到其中【编译器配置】中默认的是"cl.exe"，我们需要修改为之前安装的mingw64里的gcc.exe；同时【IntelliSense】模式需要修改为"Windows-gcc-x64"；</li>
+<li>在代码页点击菜单栏的<kbd>终端</kbd>、<kbd>配置任务</kbd>，选择“C/c++:gcc.exe生成活动文件”，会生成一个"task.json"文件，此时就可以生成我们的代码了；</li>
+<li>在代码页点击菜单栏<kbd>终端</kbd>、<kbd>运行生成任务</kbd>，使用gcc.exe生成活动文件。</li>
+<li>我们可以在终端中运行，在菜单栏点击<kbd>终端</kbd>、<kbd>新建终端</kbd>，在窗口中输出".\test.exe"，回车后就可以运行了。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liu-fb.com/2025/git/git/Github/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="Fabian">
+      <meta itemprop="description" content="水止无恒地，云行不计程。到时为彼岸，过处即前生。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Fabian备忘录">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/git/git/Github/" class="post-title-link" itemprop="url">Github</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-06-18 16:02:51" itemprop="dateCreated datePublished" datetime="2025-06-18T16:02:51+08:00">2025-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-06-24 21:10:05" itemprop="dateModified" datetime="2025-06-24T21:10:05+08:00">2025-06-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>107</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="github使用">github使用</h1>
+<h2 id="注册">注册</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/">Github官网</a>上注册账号(Sign
+up)。注册时需要使用邮箱，本地配置时也需要邮箱账户，后续的git信息就会通过邮箱发送给用户。</p>
+<h2 id="配置公私钥">配置公私钥</h2>
+<p>  git常常使用ssh协议进行传输，需要配置公钥和私钥。</p>
+<ol type="1">
+<li></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/posts/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/posts/page/5/">5</a><a class="extend next" rel="next" href="/posts/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fabian"
+      src="https://my-hexo-blog-1308129409.cos.ap-beijing.myqcloud.com/Hexo%E5%8D%9A%E5%AE%A2/%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">Fabian</p>
+  <div class="site-description" itemprop="description">水止无恒地，云行不计程。到时为彼岸，过处即前生。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Liuqianci" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Liuqianci" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Damon_liufb@163.com" title="E-Mail → mailto:Damon_liufb@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2022 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="bed"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FabianLiu</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">205k</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div> -->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'neutral',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+  <script async src="/js/cursor/love.min.js"></script>
+
+<script defer src="/js/copy-email.js"></script>
+
+</body>
+</html>
