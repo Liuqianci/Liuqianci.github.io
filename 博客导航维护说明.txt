@@ -13,6 +13,8 @@
 导航配置：source/_data/notebooks.yml
 文章目录：source/_posts/
 生成脚本：scripts/notebooks.js
+文章列表：scripts/post-index.js，按文章头部的 date 倒序排列，新文章在前、老文章在后；旧文章里的 top 字段保留但不生效。
+这部分逻辑随仓库同步，不要再修改 node_modules 里的索引插件。
 
 首页和专题页共用 notebooks.yml，按文章的文件路径归类，不读取文章里的 categories 字段。
 在已经配置的目录里新增公开文章后，执行 hexo g 会自动收录，并更新篇数；草稿不进入导航。
