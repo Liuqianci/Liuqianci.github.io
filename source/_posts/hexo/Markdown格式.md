@@ -36,6 +36,48 @@ Hexo博客要求必须使用Github风格的Markdown语言编辑。所以需要�
 ## 代码块
 利用三个反引号`把内容扩起来即可。在上面的那个反引号后面还可以加上语言名称来进行自适应。
 
+常用的语言标记如下，写在第一行的三个反引号后面。同一行有多个标记时，任选一个即可。
+
+| 语言或内容 | 代码块标记 |
+| --- | --- |
+| C | `c` |
+| C++ | `cpp` |
+| C# | `csharp`、`cs` |
+| Java | `java` |
+| Python | `python`、`py` |
+| JavaScript | `javascript`、`js` |
+| TypeScript | `typescript`、`ts` |
+| Go | `go` |
+| Rust | `rust` |
+| Lua | `lua` |
+| PHP | `php` |
+| SQL | `sql` |
+| HTML | `html` |
+| XML | `xml` |
+| CSS | `css` |
+| Markdown | `markdown`、`md` |
+| JSON | `json` |
+| YAML | `yaml`、`yml` |
+| INI 配置文件 | `ini` |
+| Windows CMD 命令、批处理文件 | `bat`、`cmd`、`dos` |
+| PowerShell 命令、脚本 | `powershell`、`ps1` |
+| Bash / Shell 脚本 | `bash`、`sh` |
+| 带 `$` 提示符和输出的 Shell 终端记录 | `console`、`shell` |
+| 纯文本、无需高亮的日志 | `text`、`plaintext` |
+
+例如，在 Windows CMD 中执行的命令可以这样写：
+
+````text
+```bat
+hexo clean
+hexo g
+```
+````
+
+代码块只负责展示和语法高亮，不会执行里面的命令。`html` 和 `markdown` 也可以用来展示源码：HTML 标签不会变成网页元素，Markdown 标题也不会变成正文标题。
+
+更多标记可以查阅 [highlight.js 支持的语言](https://highlightjs.readthedocs.io/en/latest/supported-languages.html)。
+
 ## 斜体
 可以用一组`*`号来把文字包起来，也可以直接用快捷键`Ctrl+I`。
 
